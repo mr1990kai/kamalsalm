@@ -42,7 +42,7 @@
             font-family: var(--font-en);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (MODIFIED FOR 3-COLUMN FLEX LAYOUT) --- */
         header {
             position: fixed;
             top: 0;
@@ -53,14 +53,28 @@
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
         }
 
-        .header-left, .header-right {
+        .header-left {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        .header-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             gap: 15px;
         }
 
@@ -71,13 +85,14 @@
             font-weight: 600;
             cursor: pointer;
             font-size: 0.85rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             letter-spacing: 1px;
         }
 
         .lang-btn:hover {
             background: var(--text-color);
             color: var(--bg-color);
+            transform: translateY(-2px);
         }
 
         .logo {
@@ -89,6 +104,12 @@
             text-decoration: none;
             color: var(--text-color);
             text-align: center;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
         }
 
         .nav-links {
@@ -102,20 +123,27 @@
             color: var(--text-color);
             font-size: 0.9rem;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
+            display: inline-block;
         }
 
         .nav-links a:hover {
             opacity: 0.6;
+            transform: translateY(-1px);
         }
 
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--text-color);
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
         }
 
         /* Mobile Drawer */
@@ -133,13 +161,13 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            transition: right 0.4s ease;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         html[dir="ltr"] .mobile-drawer {
             right: auto;
             left: -100%;
-            transition: left 0.4s ease;
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-drawer.active { right: 0; }
@@ -151,6 +179,11 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-drawer:hover {
+            transform: rotate(90deg);
         }
 
         .mobile-nav-links {
@@ -165,6 +198,11 @@
             color: var(--text-color);
             font-size: 1.1rem;
             font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            opacity: 0.6;
         }
 
         .overlay {
@@ -175,10 +213,15 @@
             height: 100vh;
             background: rgba(0,0,0,0.4);
             z-index: 1000;
-            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
-        .overlay.active { display: block; }
+        .overlay.active { 
+            opacity: 1;
+            pointer-events: auto;
+        }
 
         /* --- HERO SECTION --- */
         .hero-section {
@@ -189,6 +232,7 @@
         .hero-image-container {
             width: 100%;
             background-color: #f9f9f9;
+            overflow: hidden;
         }
 
         .hero-image-container img {
@@ -197,16 +241,23 @@
             max-height: 85vh;
             object-fit: cover;
             display: block;
+            transition: transform 0.8s ease-out;
         }
 
+        .hero-image-container:hover img {
+            transform: scale(1.015);
+        }
+
+        /* --- ANIMATIONS (OPTIMIZED MODERN FADE-UP) --- */
         .fade-up-content {
             max-width: 900px;
             margin: 50px auto;
             padding: 0 20px;
             text-align: center;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(25px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
         }
 
         .fade-up-content.visible {
@@ -262,12 +313,12 @@
             padding: 35px 25px;
             border-radius: 4px;
             background: var(--card-bg);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.06);
         }
 
         .service-card .platform-badge {
@@ -355,6 +406,11 @@
         .process-step {
             border-right: 2px solid var(--text-color);
             padding-right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateX(-4px);
         }
 
         html[dir="ltr"] .process-step {
@@ -362,6 +418,10 @@
             border-left: 2px solid var(--text-color);
             padding-right: 0;
             padding-left: 20px;
+        }
+
+        html[dir="ltr"] .process-step:hover {
+            transform: translateX(4px);
         }
 
         .process-step span {
@@ -391,6 +451,7 @@
             width: 100%;
             background-color: #f9f9f9;
             margin-bottom: 30px;
+            overflow: hidden;
         }
 
         .secondary-image-container img {
@@ -399,6 +460,11 @@
             max-height: 600px;
             object-fit: cover;
             display: block;
+            transition: transform 0.8s ease-out;
+        }
+
+        .secondary-image-container:hover img {
+            transform: scale(1.015);
         }
 
         .quote-box {
@@ -447,10 +513,14 @@
             font-weight: 700;
             text-decoration: none;
             border-radius: 2px;
-            transition: opacity 0.3s;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .cta-btn:hover { opacity: 0.85; }
+        .cta-btn:hover { 
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+        }
 
         footer {
             border-top: 1px solid var(--border-color);
@@ -476,12 +546,13 @@
             color: var(--text-color);
             font-size: 1.2rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .footer-socials a:hover {
             background: var(--text-color);
             color: var(--bg-color);
+            transform: translateY(-3px);
         }
 
         .copyright {
@@ -529,10 +600,14 @@
     <!-- HEADER -->
     <header>
         <div class="header-left">
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>
             <button class="lang-btn" id="langToggle">EN</button>
+        </div>
+
+        <div class="header-center">
+            <a href="#" class="logo">Kamal Elnhrawy</a>
+        </div>
+
+        <div class="header-right">
             <ul class="nav-links">
                 <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
                 <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
@@ -540,12 +615,9 @@
                 <li><a href="#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
                 <li><a href="#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
             </ul>
-        </div>
-
-        <a href="#" class="logo">Kamal Elnhrawy</a>
-
-        <div class="header-right">
-            <!-- Header clean & icon-free -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
     </header>
 
@@ -605,7 +677,7 @@
 
     <!-- STATS SECTION -->
     <section class="stats-section">
-        <div class="stats-grid">
+        <div class="stats-grid fade-up-content">
             <div class="stat-item">
                 <h3>+1</h3>
                 <p data-ar="سنة خبرة متخصصة" data-en="Year of E-Com Experience">سنة خبرة متخصصة</p>
@@ -654,7 +726,7 @@
 
     <!-- SECONDARY SECTION -->
     <section class="secondary-section">
-        <div class="secondary-image-container">
+        <div class="secondary-image-container fade-up-content">
             <img src="2.jpg" alt="Kamal Elnhrawy designing stores">
         </div>
 
@@ -676,14 +748,14 @@
 
     <!-- FOOTER -->
     <footer id="contact">
-        <div class="footer-socials">
+        <div class="footer-socials fade-up-content">
             <a href="https://wa.me/201123449977" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             <a href="https://facebook.com/hi19man" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
         <p class="copyright">© 2026 Kamal Elnhrawy. All rights reserved.</p>
     </footer>
 
-    <!-- JS FOR LANGUAGE TOGGLE & MOBILE DRAWER -->
+    <!-- JS FOR LANGUAGE TOGGLE & MOBILE DRAWER & ANIMATIONS -->
     <script>
         const langToggleBtn = document.getElementById('langToggle');
         let currentLang = 'ar';
@@ -724,14 +796,19 @@
         overlay.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // Intersection Observer for Fade Up Animation
+        // Intersection Observer for Smooth Fade Up Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
         document.querySelectorAll('.fade-up-content').forEach(el => {
             observer.observe(el);
