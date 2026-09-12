@@ -43,7 +43,7 @@
             font-family: var(--font-en);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (تم تعديل الهيكل لضمان سنترة اللوجو في النص تماماً) --- */
         header {
             position: fixed;
             top: 0;
@@ -67,10 +67,19 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
-        .header-left, .header-right {
+        .header-side {
             display: flex;
             align-items: center;
             gap: 20px;
+            flex: 1;
+        }
+
+        .header-side.left {
+            justify-content: flex-start;
+        }
+
+        .header-side.right {
+            justify-content: flex-end;
         }
 
         .lang-btn {
@@ -101,6 +110,7 @@
             color: var(--text-color);
             text-align: center;
             transition: opacity 0.3s ease;
+            white-space: nowrap;
         }
 
         .logo:hover {
@@ -486,13 +496,13 @@
         </ul>
     </div>
 
-    <!-- HEADER -->
+    <!-- HEADER: اللوجو متمركز تماماً بالمنتصف -->
     <header id="mainHeader">
-        <div class="header-left">
+        <!-- الجانب الأيسر: زر القائمة للموبايل + روابط التنقل للشاشات الكبيرة -->
+        <div class="header-side left">
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
-            <button class="lang-btn" id="langToggle">EN</button>
             <ul class="nav-links">
                 <li><a href="index.html#about" data-ar="عني" data-en="About">عني</a></li>
                 <li><a href="index.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
@@ -502,12 +512,16 @@
             </ul>
         </div>
 
+        <!-- المنتصف: اللوجو فقط -->
         <a href="index.html" class="logo">Kamal Elnhrawy</a>
 
-        <div class="header-right"></div>
+        <!-- الجانب الأيمن: زر تغيير اللغة -->
+        <div class="header-side right">
+            <button class="lang-btn" id="langToggle">EN</button>
+        </div>
     </header>
 
-    <!-- HERO IMAGE BANNER (3.jpg) -->
+    <!-- HERO IMAGE BANNER -->
     <div class="hero-banner-container reveal">
         <img src="3.jpg" alt="Kamal Elnhrawy Workspace" onerror="this.style.display='none'">
     </div>
@@ -791,14 +805,14 @@
         overlay.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // Scroll Reveal Animation (Intersection Observer)
+        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
 
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Runs once for smooth experience
+                    observer.unobserve(entry.target);
                 }
             });
         }, {
