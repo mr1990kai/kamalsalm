@@ -3,232 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamal Elnhrawy | E-commerce Designer & Brand Builder</title>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <title>كمال النحراوي | مصمم متاجر إلكترونية وبناء براندات</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Kufi+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --accent-gold: #c5a059;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-ar: 'Noto Kufi Arabic', sans-serif;
+            --font-en: 'Plus Jakarta Sans', sans-serif;
+            --font-heading: 'Cinzel', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-ar);
+        }
+
+        body {
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin-bottom: 35px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-gold {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .btn-gold:hover {
+            background: #d4af66;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+        }
+
+        .hero-img-container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 4/5;
+        }
+
+        /* --- SCROLL-DRIVEN STICKY PORTFOLIO (KAROLINA HESS STYLE) --- */
+        .pinned-portfolio {
+            position: relative;
+            height: 300vh; /* طول التمرير لتطبيق التأثير */
+            background: #080808;
+        }
+
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .portfolio-header h2 {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .portfolio-stage {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+        }
+
+        .project-card {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+        }
+
+        .project-card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .project-info span {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .project-info h3 {
+            font-size: clamp(2rem, 3vw, 3rem);
+            margin: 10px 0 15px;
+        }
+
+        .project-info p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            max-width: 450px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            max-height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            padding: 100px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- CONTACT CTA --- */
+        .contact-cta {
+            padding: 100px 5%;
+            text-align: center;
+            background: linear-gradient(180deg, #0d0d0d 0%, #17140e 100%);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 30px 5%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* --- MOBILE RESPONSIVE FIXES --- */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-desc {
+                margin: 0 auto 35px;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .hero-img-container {
+                max-width: 300px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .pinned-portfolio {
+                height: auto; /* إلغاء الـ Pinned Height في الجوال لضمان التصفح الطبيعي */
+                background: transparent;
+            }
+
+            .sticky-wrapper {
+                position: relative;
+                height: auto;
+                padding: 60px 5%;
+            }
+
+            .portfolio-stage {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .project-card {
+                position: relative;
+                inset: auto;
+                grid-template-columns: 1fr;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                gap: 20px;
+            }
+
+            .project-img {
+                height: 250px;
+                order: -1;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- OVERLAY & MOBILE DRAWER -->
-    <div class="overlay" id="overlay"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
-        <button class="close-drawer" id="closeDrawer">&times;</button>
-        <ul class="mobile-nav-links">
-            <li><a href="#hero" class="mobile-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
-            <li><a href="#pinned-portfolio" class="mobile-link" data-ar="أبرز الأعمال" data-en="Selected Work">أبرز الأعمال</a></li>
-            <li><a href="#services" class="mobile-link" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-            <li><a href="#process" class="mobile-link" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
-            <li><a href="#about" class="mobile-link" data-ar="عني" data-en="About">عني</a></li>
-            <li><a href="#contact" class="mobile-link" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">KAMAL ELNHRAWY</div>
+        <ul class="nav-links">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#portfolio">الأعمال المختارة</a></li>
+            <li><a href="#services">الخدمات</a></li>
+            <li><a href="#contact">تواصل معي</a></li>
         </ul>
-    </div>
-
-    <!-- HEADER NAVIGATION -->
-    <header id="mainHeader">
-        <div class="header-left">
-            <button class="lang-btn" id="langToggle">EN</button>
-        </div>
-        <div class="header-center">
-            <a href="#" class="logo">KAMAL ELNHRAWY</a>
-        </div>
-        <div class="header-right">
-            <ul class="nav-links">
-                <li><a href="#pinned-portfolio" data-ar="أبرز الأعمال" data-en="Selected Work">أبرز الأعمال</a></li>
-                <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-                <li><a href="projects.html" data-ar="كل المشاريع" data-en="All Projects">كل المشاريع</a></li>
-                <li><a href="#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
-            </ul>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
+        <button class="menu-toggle" aria-label="Open Menu"><i class="fa-solid fa-bars"></i></button>
     </header>
 
-    <!-- 01. HERO SECTION (FULLSCREEN CINEMATIC) -->
-    <section class="hero-fullscreen" id="hero">
-        <div class="hero-bg-overlay"></div>
-        <img src="1.jpg" alt="Kamal Elnhrawy" class="hero-bg-img">
-        <div class="hero-content">
-            <span class="hero-tag" data-ar="مصمم متاجر وبناء براندات" data-en="E-Commerce Designer & Brand Builder">مصمم متاجر وبناء براندات</span>
-            <h1 class="hero-name">KAMAL ELNHRAWY</h1>
-            <p class="hero-subtext" 
-               data-ar="أحول المتاجر الإلكترونية إلى تجارب بصريّة سينمائية موجهة لرفع المبيعات والتحويل المباشر."
-               data-en="Crafting high-converting Shopify & Easy Order stores and immersive brand experiences.">
-               أحول المتاجر الإلكترونية إلى تجارب بصريّة سينمائية موجهة لرفع المبيعات والتحويل المباشر.
-            </p>
-            <div class="scroll-indicator">
-                <span data-ar="اسحب للأستكشاف" data-en="Scroll to explore">اسحب للأستكشاف</span>
-                <i class="fa-solid fa-arrow-down-long"></i>
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <span class="hero-badge">مصمم متاجر وبناء براندات</span>
+                <h1 class="hero-title">KAMAL ELNHRAWY</h1>
+                <p class="hero-desc">أحول المتاجر الإلكترونية إلى تجارب بصريّة سينمائية موجهة لرفع المبيعات والتحويل المباشر.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn btn-gold">استكشف الأعمال</a>
+                    <a href="#contact" class="btn btn-outline">تواصل معي</a>
+                </div>
+            </div>
+            <div class="hero-img-container">
+                <img src="1.jpg" alt="كمال النحراوي">
             </div>
         </div>
     </section>
 
-    <!-- 02. PINNED SCROLL STORYTELLING PORTFOLIO (4 SELECTED PROJECTS) -->
-    <section class="pinned-portfolio-section" id="pinned-portfolio">
-        <div class="pinned-container">
-            <!-- Counter & Label Header -->
-            <div class="portfolio-meta">
-                <span class="section-label" data-ar="مشاريع مختارة" data-en="SELECTED WORK">SELECTED WORK</span>
-                <span class="project-counter" id="projectCounter">01 / 04</span>
+    <!-- PINNED SCROLL PORTFOLIO SECTION -->
+    <section class="pinned-portfolio" id="portfolio">
+        <div class="sticky-wrapper">
+            <div class="portfolio-header">
+                <h2>أبرز المشاريع المختارة</h2>
+                <span id="counter-label" style="color: var(--text-secondary);">01 / 03</span>
             </div>
 
-            <!-- Display Area -->
             <div class="portfolio-stage">
                 <!-- Project 1 -->
-                <div class="project-slide active" data-index="0">
-                    <div class="slide-image-wrapper">
-                        <img src="01.jpg" alt="Vamilano Project">
+                <div class="project-card active" data-step="1">
+                    <div class="project-info">
+                        <span>SHOPIFY STORE</span>
+                        <h3>VAMILANO</h3>
+                        <p>علامة تجارية متخصصة في ألعاب الأطفال والعناية بالأم. واجهة فخمة وتجربة شراء سلسة.</p>
+                        <a href="#" class="btn btn-outline">مشاهدة التفاصيل ←</a>
                     </div>
-                    <div class="slide-info">
-                        <span class="platform-tag">SHOPIFY STORE</span>
-                        <h2>VAMILANO</h2>
-                        <p data-ar="علامة تجارية متخصصة في ألعاب الأطفال والعناية بالأم. واجهة فخمة وتجربة شراء سلسة." data-en="Luxury Shopify store for kids' toys and mother care products with high-converting UX.">علامة تجارية متخصصة في ألعاب الأطفال والعناية بالأم. واجهة فخمة وتجربة شراء سلسة.</p>
-                        <a href="vamilano.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    <div class="project-img">
+                        <img src="01.jpg" alt="Vamilano">
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-slide" data-index="1">
-                    <div class="slide-image-wrapper">
-                        <img src="02.jpg" alt="Kenz Project">
+                <div class="project-card" data-step="2">
+                    <div class="project-info">
+                        <span>EASY ORDER & BRANDING</span>
+                        <h3>KENZ BRAND</h3>
+                        <p>بناء هوية فاخرة ومتجر إلكتروني متكامل للبودي ميست والعطور الفواحة.</p>
+                        <a href="#" class="btn btn-outline">مشاهدة التفاصيل ←</a>
                     </div>
-                    <div class="slide-info">
-                        <span class="platform-tag">EASY ORDER & BRANDING</span>
-                        <h2>KENZ BRAND</h2>
-                        <p data-ar="بناء هوية فاخرة ومتجر إلكتروني متكامل للبودي ميست والعطور الفواحة." data-en="Complete visual identity and custom store design for premium perfume & body mist brand.">بناء هوية فاخرة ومتجر إلكتروني متكامل للبودي ميست والعطور الفواحة.</p>
-                        <a href="kenz.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    <div class="project-img">
+                        <img src="02.jpg" alt="Kenz Brand">
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-slide" data-index="2">
-                    <div class="slide-image-wrapper">
-                        <img src="04.jpg" alt="Kemet Project">
+                <div class="project-card" data-step="3">
+                    <div class="project-info">
+                        <span>LANDING PAGE</span>
+                        <h3>KEMET BODY MIST</h3>
+                        <p>تصميم واجهة مستخدم ذات طابع عريق وفاخر موجهة للإعلانات المدفوعة مباشرة.</p>
+                        <a href="#" class="btn btn-outline">مشاهدة التفاصيل ←</a>
                     </div>
-                    <div class="slide-info">
-                        <span class="platform-tag">HIGH-CONVERSION LANDING PAGE</span>
-                        <h2>KEMET BODY MIST</h2>
-                        <p data-ar="تصميم واجهة مستخدم ذات طابع عريق وفاخر موجهة للإعلانات المدفوعة مباشرة." data-en="High-CRO landing page optimized for direct traffic from Meta & TikTok campaigns.">تصميم واجهة مستخدم ذات طابع عريق وفاخر موجهة للإعلانات المدفوعة مباشرة.</p>
-                        <a href="kemet.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-slide" data-index="3">
-                    <div class="slide-image-wrapper">
-                        <img src="05.jpg" alt="Maytroo Project">
-                    </div>
-                    <div class="slide-info">
-                        <span class="platform-tag">EASY ORDER / COD FOCUS</span>
-                        <h2>MAYTROO</h2>
-                        <p data-ar="نموذج شراء سريع مخصص للبيع بنظام الدفع عند الاستلام مع تقليل معدل ترك السلات." data-en="Streamlined COD checkout flow designed to reduce abandoned carts effectively.">نموذج شراء سريع مخصص للبيع بنظام الدفع عند الاستلام مع تقليل معدل ترك السلات.</p>
-                        <a href="maytroo.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    <div class="project-img">
+                        <img src="04.jpg" alt="Kemet">
                     </div>
                 </div>
-            </div>
-
-            <div class="view-all-wrapper">
-                <a href="projects.html" class="view-all-link" data-ar="عرض كل المشاريع ➔" data-en="View All Projects ➔">عرض كل المشاريع ➔</a>
             </div>
         </div>
     </section>
 
-    <!-- 03. SERVICES SECTION -->
-    <section class="services-section" id="services">
-        <div class="section-title-wrap">
-            <h2 data-ar="الخدمات والتخصصات" data-en="Core Specializations">الخدمات والتخصصات</h2>
-            <p data-ar="حلول متكاملة لبناء متجر يبيع من اليوم الأول" data-en="End-to-end solutions built for scale and revenue">حلول متكاملة لبناء متجر يبيع من اليوم الأول</p>
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>الخدمات والتخصصات</h2>
+            <p>حلول متكاملة لبناء متجر يبيع من اليوم الأول</p>
         </div>
-
         <div class="services-grid">
             <div class="service-card">
-                <div class="card-num">01</div>
-                <h3 data-ar="تصميم متاجر شوبيفاي (Shopify)" data-en="Shopify Store Design">تصميم متاجر شوبيفاي (Shopify)</h3>
-                <p data-ar="بناء واجهات مخصصة بالكامل تبرز هوية البراند وتضمن سرعة التصفح وسهولة الشراء." data-en="Custom layout design, seamless collection structure, and mobile-optimized buying journeys.">بناء واجهات مخصصة بالكامل تبرز هوية البراند وتضمن سرعة التصفح وسهولة الشراء.</p>
+                <h3>تصميم متاجر شوبيفاي</h3>
+                <p>بناء واجهات مخصصة بالكامل تبرز هوية البراند وتضمن سرعة التصفح وسهولة الشراء.</p>
             </div>
             <div class="service-card">
-                <div class="card-num">02</div>
-                <h3 data-ar="صفحات ايزي اوردر (Easy Order)" data-en="Easy Order Sales Funnels">صفحات ايزي اوردر (Easy Order)</h3>
-                <p data-ar="تطوير صفحات هبوط سريعة جداً للمنتجات الأحادية مع نماذج شراء مبسطة تناسب عملاء COD." data-en="High-converting single product sales pages with optimized COD checkout forms.">تطوير صفحات هبوط سريعة جداً للمنتجات الأحادية مع نماذج شراء مبسطة تناسب عملاء COD.</p>
+                <h3>صفحات ايزي اوردر</h3>
+                <p>تطوير صفحات هبوط سريعة جداً للمنتجات الأحادية مع نماذج شراء مبسطة تناسب عملاء COD.</p>
             </div>
             <div class="service-card">
-                <div class="card-num">03</div>
-                <h3 data-ar="الهوية البصرية واللوجو" data-en="Brand Identity & Design">الهوية البصرية واللوجو</h3>
-                <p data-ar="ابتكار الشعارات والألوان والخطوط والبانرات البصرية التي تجعل متجرك يبدو كعلامة عالمية." data-en="Logo design, brand color palettes, typography, and promotional ad banners.">ابتكار الشعارات والألوان والخطوط والبانرات البصرية التي تجعل متجرك يبدو كعلامة عالمية.</p>
+                <h3>الهوية البصرية</h3>
+                <p>ابتكار الشعارات والألوان والخطوط والبانرات البصرية التي تجعل متجرك يبدو كعلامة عالمية.</p>
             </div>
         </div>
     </section>
 
-    <!-- 04. HOW I WORK -->
-    <section class="process-section" id="process">
-        <div class="section-title-wrap">
-            <h2 data-ar="منهجية العمل" data-en="Work Process">منهجية العمل</h2>
-            <p data-ar="4 خطوات واضحة تضمن تحويل متجرك إلى ماكينة تحويلات" data-en="A streamlined 4-step path from concept to sales">4 خطوات واضحة تضمن تحويل متجرك إلى ماكينة تحويلات</p>
-        </div>
-
-        <div class="process-steps">
-            <div class="step-item">
-                <span class="step-no">01</span>
-                <h4 data-ar="التخطيط والدراسة" data-en="Discovery & Strategy">التخطيط والدراسة</h4>
-                <p data-ar="فهم زاوية البيع بالمنتج والجمهور المستهدف." data-en="Analyzing products and target buyers.">فهم زاوية البيع بالمنتج والجمهور المستهدف.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-no">02</span>
-                <h4 data-ar="الهوية والتصميم" data-en="Branding & UI">الهوية والتصميم</h4>
-                <p data-ar="بناء اللوجو واختيار الألوان وتجهيز الصور." data-en="Designing logos and visual components.">بناء اللوجو واختيار الألوان وتجهيز الصور.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-no">03</span>
-                <h4 data-ar="التطوير والتتبع" data-en="Integration & Pixel">التطوير والتتبع</h4>
-                <p data-ar="ربط الدومين، البيكسل، وتهيئة نموذج الطلب." data-en="Setting up tracking pixels & checkout.">ربط الدومين، البيكسل، وتهيئة نموذج الطلب.</p>
-            </div>
-            <div class="step-item">
-                <span class="step-no">04</span>
-                <h4 data-ar="الإطلاق والمتابعة" data-en="Launch & Support">الإطلاق والمتابعة</h4>
-                <p data-ar="اختبار الشراء الفعلي وضمان الجاهزية." data-en="Final testing and readiness check.">اختبار الشراء الفعلي وضمان الجاهزية.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 05. ABOUT SECTION -->
-    <section class="about-section" id="about">
-        <div class="about-grid">
-            <div class="about-image">
-                <img src="2.jpg" alt="Kamal Elnhrawy">
-            </div>
-            <div class="about-text">
-                <h2 data-ar="كمال النحراوي" data-en="Kamal Elnhrawy">كمال النحراوي</h2>
-                <h4 data-ar="E-commerce Designer & Brand Builder" data-en="E-commerce Designer & Brand Builder">E-commerce Designer & Brand Builder</h4>
-                <p data-ar="أنا لا أقوم فقط بتنسيق ألوان ومكونات الويب، بل أصمم تجربة متكاملة تجعل العميل يثق بمتجرك فور دخوله. خبرتي تجمع بين فهم الجماليات البصرية الفاخرة، وبين هندسة الواجهات الموجهة للتحويل المباشر (CRO) لضمان تحقيق أعلم عائد من إعلاناتك."
-                   data-en="I don't just assemble web pages; I create end-to-end brand experiences that build immediate consumer trust. My approach merges luxury minimalist design with strict Conversion Rate Optimization (CRO).">
-                   أنا لا أقوم فقط بتنسيق ألوان ومكونات الويب، بل أصمم تجربة متكاملة تجعل العميل يثق بمتجرك فور دخوله. خبرتي تجمع بين فهم الجماليات البصرية الفاخرة، وبين هندسة الواجهات الموجهة للتحويل المباشر (CRO) لضمان تحقيق أعلم عائد من إعلاناتك.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 06. CONTACT CTA -->
-    <section class="cta-section" id="contact">
-        <h2 data-ar="عندك متجر أو براند حابب تطلقه؟" data-en="Have a store in mind? Let's build it.">عندك متجر أو براند حابب تطلقه؟</h2>
-        <p data-ar="تواصل معي الآن ونحول الفكرة لمتجر احترافي يعمل بكفاءة." data-en="Reach out today and let's turn your vision into a sales-generating brand.">تواصل معي الآن ونحول الفكرة لمتجر احترافي يعمل بكفاءة.</p>
-        <a href="https://wa.me/201123449977" target="_blank" class="cta-btn" data-ar="ابدأ مشروعك عبر واتساب ➔" data-en="Start Project via WhatsApp ➔">ابدأ مشروعك عبر واتساب ➔</a>
+    <!-- CONTACT CTA -->
+    <section class="contact-cta" id="contact">
+        <h2>عندك متجر أو براند حابب تطلقه؟</h2>
+        <p>تواصل معي الآن ونحول الفكرة لمتجر احترافي يعمل بكفاءة.</p>
+        <a href="https://wa.me/201123449977" target="_blank" class="btn btn-gold">تواصل عبر واتساب ➔</a>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-socials">
-            <a href="https://wa.me/201123449977" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://facebook.com/hi19man" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        </div>
-        <p class="copyright">© 2026 KAMAL ELNHRAWY. ALL RIGHTS RESERVED.</p>
+        <p>© 2026 KAMAL ELNHRAWY. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <script src="main.js"></script>
+    <!-- SCROLL CONTROL SCRIPT -->
+    <script>
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 900) return; // تعطيل الحركة المتقدمة في الجوال للحفاظ على الأداء السلس
+
+            const section = document.querySelector('.pinned-portfolio');
+            const cards = document.querySelectorAll('.project-card');
+            const counter = document.getElementById('counter-label');
+            
+            const rect = section.getBoundingClientRect();
+            const sectionHeight = section.offsetHeight - window.innerHeight;
+            const progress = Math.min(Math.max(-rect.top / sectionHeight, 0), 1);
+            
+            let activeIndex = 0;
+            if (progress > 0.66) {
+                activeIndex = 2;
+            } else if (progress > 0.33) {
+                activeIndex = 1;
+            }
+
+            cards.forEach((card, idx) => {
+                if (idx === activeIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            counter.textContent = `0${activeIndex + 1} / 03`;
+        });
+    </script>
 </body>
 </html>
