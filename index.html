@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كمال النحراوي | مصمم متاجر إلكترونية وبناء براندات</title>
+    <title>KAMAL ELNHRAWY | E-Commerce Designer & Brand Builder</title>
     
-    <!-- Fonts -->
+    <!-- Typography & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Kufi+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- CORE SYSTEM & VARIABLES --- */
         :root {
-            --bg-color: #0d0d0d;
-            --card-bg: #141414;
-            --accent-gold: #c5a059;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg: #0a0a0b;
+            --surface: #121214;
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --accent: #d4af37;
+            --text-primary: #f5f5f7;
+            --text-secondary: #8e8e93;
             --font-ar: 'Noto Kufi Arabic', sans-serif;
             --font-en: 'Plus Jakarta Sans', sans-serif;
             --font-heading: 'Cinzel', serif;
+            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -35,14 +34,15 @@
 
         html {
             scroll-behavior: smooth;
-            background-color: var(--bg-color);
+            background-color: var(--bg);
             color: var(--text-primary);
             font-family: var(--font-ar);
+            overflow-x: hidden;
         }
 
         body {
-            overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -50,7 +50,7 @@
             text-decoration: none;
         }
 
-        /* --- HEADER --- */
+        /* --- NAVIGATION BAR --- */
         header {
             position: fixed;
             top: 0;
@@ -60,34 +60,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(13, 13, 13, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            padding: 24px 6%;
+            background: rgba(10, 10, 11, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--surface-border);
         }
 
-        .logo {
+        .brand-logo {
             font-family: var(--font-heading);
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 800;
             letter-spacing: 2px;
             color: var(--text-primary);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 36px;
             list-style: none;
         }
 
         .nav-links a {
             font-size: 0.9rem;
+            font-weight: 500;
             color: var(--text-secondary);
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-gold);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
         }
 
         .menu-toggle {
@@ -95,480 +96,762 @@
             background: none;
             border: none;
             color: var(--text-primary);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             cursor: pointer;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- CINEMATIC HERO --- */
         .hero {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 120px 5% 60px;
-            max-width: 1300px;
-            margin: 0 auto;
+            text-align: center;
+            padding: 140px 6% 60px;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.05) 0%, rgba(10, 10, 11, 0) 70%);
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 50px;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(197, 160, 89, 0.1);
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            border-radius: 30px;
+        .hero-tag {
             font-size: 0.85rem;
-            margin-bottom: 24px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .hero-title {
             font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 5vw, 4.2rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            max-width: 1000px;
         }
 
-        .hero-desc {
-            font-size: 1.1rem;
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--text-secondary);
-            max-width: 550px;
-            margin-bottom: 35px;
+            max-width: 680px;
+            margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        .hero-btns {
+        .hero-actions {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            align-items: center;
         }
 
-        .btn {
-            padding: 14px 30px;
-            border-radius: 6px;
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg);
+            padding: 16px 36px;
+            border-radius: 4px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
+            font-size: 0.95rem;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
-        .btn-gold {
-            background: var(--accent-gold);
-            color: #000;
-        }
-
-        .btn-gold:hover {
-            background: #d4af66;
+        .btn-primary:hover {
             transform: translateY(-2px);
+            background: #ffffff;
         }
 
-        .btn-outline {
-            border: 1px solid var(--border-color);
+        .btn-secondary {
+            border: 1px solid var(--surface-border);
             color: var(--text-primary);
+            padding: 16px 36px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
         }
 
-        .btn-outline:hover {
+        .btn-secondary:hover {
             border-color: var(--text-primary);
         }
 
-        .hero-img-container {
-            width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .hero-img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            aspect-ratio: 4/5;
-        }
-
-        /* --- SCROLL-DRIVEN STICKY PORTFOLIO (KAROLINA HESS STYLE) --- */
-        .pinned-portfolio {
-            position: relative;
-            height: 300vh; /* طول التمرير لتطبيق التأثير */
-            background: #080808;
-        }
-
-        .sticky-wrapper {
-            position: sticky;
-            top: 0;
-            height: 100vh;
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 0 5%;
-            max-width: 1300px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .portfolio-header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-        }
-
-        .portfolio-header h2 {
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-        }
-
-        .portfolio-stage {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-        }
-
-        .project-card {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-            transform: translateY(20px);
-        }
-
-        .project-card.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .project-info span {
-            color: var(--accent-gold);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .project-info h3 {
-            font-size: clamp(2rem, 3vw, 3rem);
-            margin: 10px 0 15px;
-        }
-
-        .project-info p {
+            gap: 10px;
             color: var(--text-secondary);
-            margin-bottom: 25px;
-            max-width: 450px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
         }
 
-        .project-img {
-            width: 100%;
-            height: 100%;
-            max-height: 450px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
+        .scroll-indicator .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollPulse 2s infinite ease-in-out;
         }
 
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        @keyframes scrollPulse {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
         }
 
-        /* --- SERVICES SECTION --- */
-        .services {
-            padding: 100px 5%;
-            max-width: 1300px;
+        /* --- POSITIONING STATEMENT --- */
+        .positioning {
+            padding: 100px 6%;
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
+            background: var(--surface);
+        }
+
+        .positioning-content {
+            max-width: 950px;
             margin: 0 auto;
-        }
-
-        .section-title {
             text-align: center;
-            margin-bottom: 60px;
         }
 
-        .section-title h2 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: var(--text-secondary);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+        .positioning-statement {
+            font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+            font-weight: 400;
+            line-height: 1.4;
             color: var(--text-primary);
         }
 
-        .service-card p {
+        .positioning-statement span {
+            color: var(--accent);
+        }
+
+        /* --- PINNED SCROLL-DRIVEN SELECTED WORK --- */
+        .pinned-portfolio {
+            position: relative;
+            height: 400vh; /* Scroll track for 4 scenes */
+        }
+
+        .sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 0 6%;
+        }
+
+        .portfolio-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .project-meta-container {
+            position: relative;
+            height: 380px;
+        }
+
+        .meta-slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s var(--transition-smooth), transform 0.6s var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .meta-slide.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .project-counter {
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .project-category {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            max-width: 480px;
+        }
+
+        .project-visual-stage {
+            position: relative;
+            height: 520px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--surface-border);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .visual-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: scale(1.08);
+            transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+        }
+
+        .visual-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .visual-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .view-all-bar {
+            position: absolute;
+            bottom: 40px;
+            left: 6%;
+            right: 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--surface-border);
+            padding-top: 20px;
+        }
+
+        .view-all-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: gap 0.3s ease;
+        }
+
+        .view-all-link:hover {
+            gap: 16px;
+        }
+
+        /* --- SERVICES (EDITORIAL LAYOUT) --- */
+        .services {
+            padding: 120px 6%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-head {
+            margin-bottom: 70px;
+        }
+
+        .section-head label {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-head h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-top: 10px;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 40px;
+        }
+
+        .service-item {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 40px;
+            border-radius: 6px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .service-num {
+            font-family: var(--font-en);
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .service-item h3 {
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+        }
+
+        .service-item p {
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
-        /* --- CONTACT CTA --- */
-        .contact-cta {
-            padding: 100px 5%;
-            text-align: center;
-            background: linear-gradient(180deg, #0d0d0d 0%, #17140e 100%);
-            border-top: 1px solid var(--border-color);
+        /* --- PROCESS --- */
+        .process {
+            padding: 100px 6%;
+            background: var(--surface);
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
         }
 
-        .contact-cta h2 {
-            font-size: 2.5rem;
+        .process-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .process-card {
+            border-right: 1px solid var(--surface-border);
+            padding-right: 30px;
+        }
+
+        html[dir="ltr"] .process-card {
+            border-right: none;
+            border-left: 1px solid var(--surface-border);
+            padding-right: 0;
+            padding-left: 30px;
+        }
+
+        .process-step-num {
+            font-size: 2.2rem;
+            font-family: var(--font-heading);
+            color: var(--accent);
             margin-bottom: 15px;
         }
 
-        .contact-cta p {
+        .process-card h4 {
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        .process-card p {
             color: var(--text-secondary);
-            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* --- ABOUT & PERSONAL STATEMENT --- */
+        .about-section {
+            padding: 120px 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--surface-border);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- FINAL CTA --- */
+        .final-cta {
+            padding: 140px 6%;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg) 0%, #161510 100%);
+            border-top: 1px solid var(--surface-border);
+        }
+
+        .final-cta h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 30px 5%;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
+            padding: 40px 6%;
+            border-top: 1px solid var(--surface-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: var(--text-secondary);
             font-size: 0.85rem;
         }
 
-        /* --- MOBILE RESPONSIVE FIXES --- */
-        @media (max-width: 900px) {
-            .hero-grid {
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* --- RESPONSIVE FALLBACKS --- */
+        @media (max-width: 1024px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            .process-card {
+                border: none !important;
+                padding: 0 !important;
+            }
+            .about-section {
                 grid-template-columns: 1fr;
-                text-align: center;
             }
+        }
 
-            .hero-desc {
-                margin: 0 auto 35px;
+        @media (max-width: 900px) {
+            .pinned-portfolio {
+                height: auto;
             }
-
-            .hero-btns {
-                justify-content: center;
+            .sticky-viewport {
+                position: relative;
+                height: auto;
+                padding: 80px 6%;
             }
-
-            .hero-img-container {
-                max-width: 300px;
+            .portfolio-wrapper {
+                grid-template-columns: 1fr;
             }
-
+            .project-meta-container {
+                height: auto;
+            }
+            .meta-slide {
+                position: relative;
+                opacity: 1 !important;
+                transform: none !important;
+                pointer-events: auto !important;
+                margin-bottom: 30px;
+            }
+            .meta-slide:not(:first-child) {
+                display: none;
+            }
+            .project-visual-stage {
+                height: 320px;
+            }
             .nav-links {
                 display: none;
             }
-
             .menu-toggle {
                 display: block;
-            }
-
-            .pinned-portfolio {
-                height: auto; /* إلغاء الـ Pinned Height في الجوال لضمان التصفح الطبيعي */
-                background: transparent;
-            }
-
-            .sticky-wrapper {
-                position: relative;
-                height: auto;
-                padding: 60px 5%;
-            }
-
-            .portfolio-stage {
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 50px;
-            }
-
-            .project-card {
-                position: relative;
-                inset: auto;
-                grid-template-columns: 1fr;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                gap: 20px;
-            }
-
-            .project-img {
-                height: 250px;
-                order: -1;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- NAVIGATION -->
     <header>
-        <div class="logo">KAMAL ELNHRAWY</div>
+        <a href="index.html" class="brand-logo">KAMAL ELNHRAWY</a>
         <ul class="nav-links">
-            <li><a href="#hero">الرئيسية</a></li>
-            <li><a href="#portfolio">الأعمال المختارة</a></li>
+            <li><a href="index.html" class="active">الرئيسية</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
             <li><a href="#services">الخدمات</a></li>
+            <li><a href="#about">عني</a></li>
             <li><a href="#contact">تواصل معي</a></li>
         </ul>
-        <button class="menu-toggle" aria-label="Open Menu"><i class="fa-solid fa-bars"></i></button>
+        <button class="menu-toggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars"></i></button>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <span class="hero-badge">مصمم متاجر وبناء براندات</span>
-                <h1 class="hero-title">KAMAL ELNHRAWY</h1>
-                <p class="hero-desc">أحول المتاجر الإلكترونية إلى تجارب بصريّة سينمائية موجهة لرفع المبيعات والتحويل المباشر.</p>
-                <div class="hero-btns">
-                    <a href="#portfolio" class="btn btn-gold">استكشف الأعمال</a>
-                    <a href="#contact" class="btn btn-outline">تواصل معي</a>
-                </div>
-            </div>
-            <div class="hero-img-container">
-                <img src="1.jpg" alt="كمال النحراوي">
-            </div>
+    <!-- CINEMATIC HERO -->
+    <section class="hero">
+        <span class="hero-tag">E-Commerce Designer & Brand Builder</span>
+        <h1 class="hero-title">KAMAL ELNHRAWY</h1>
+        <p class="hero-subtitle">أُحَوِّل المتاجر الإلكترونية والعلامات التجارية إلى تجارب بصريّة سينمائية مُصممة لرفع معدلات التحويل والمبيعات على منصات Shopify و EasyOrder.</p>
+        <div class="hero-actions">
+            <a href="#selected-work" class="btn-primary">استكشف الأعمال المختارة</a>
+            <a href="projects.html" class="btn-secondary">كافة المشاريع</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="line"></div>
         </div>
     </section>
 
-    <!-- PINNED SCROLL PORTFOLIO SECTION -->
-    <section class="pinned-portfolio" id="portfolio">
-        <div class="sticky-wrapper">
-            <div class="portfolio-header">
-                <h2>أبرز المشاريع المختارة</h2>
-                <span id="counter-label" style="color: var(--text-secondary);">01 / 03</span>
-            </div>
+    <!-- POSITIONING STATEMENT -->
+    <section class="positioning">
+        <div class="positioning-content">
+            <p class="positioning-statement">
+                التصميم الناجح ليس مجرد شكل جمالي، بل هو <span>استراتيجية بيع بصريّة</span> تمنح علامتك التجارية الثقة وتدفع العميل لاتخاذ قرار الشراء فوراً.
+            </p>
+        </div>
+    </section>
 
-            <div class="portfolio-stage">
-                <!-- Project 1 -->
-                <div class="project-card active" data-step="1">
-                    <div class="project-info">
-                        <span>SHOPIFY STORE</span>
-                        <h3>VAMILANO</h3>
-                        <p>علامة تجارية متخصصة في ألعاب الأطفال والعناية بالأم. واجهة فخمة وتجربة شراء سلسة.</p>
-                        <a href="#" class="btn btn-outline">مشاهدة التفاصيل ←</a>
+    <!-- PINNED SCROLL-DRIVEN SELECTED WORK -->
+    <section class="pinned-portfolio" id="selected-work">
+        <div class="sticky-viewport">
+            <div class="portfolio-wrapper">
+                
+                <!-- LEFT: META TEXT -->
+                <div class="project-meta-container">
+                    
+                    <!-- Scene 1 -->
+                    <div class="meta-slide active" data-index="0">
+                        <div class="project-counter">01 / 04</div>
+                        <h2 class="project-title">VAMILANO</h2>
+                        <div class="project-category">Shopify Store & Visual Identity</div>
+                        <p class="project-desc">تصميم واجهة متجر فاخر متكامل يجمع بين الطابع الإيطالي العصري وتجربة المستخدم السلسة لزيادة متوسط قيمة الطلب.</p>
+                        <div>
+                            <a href="projects.html" class="btn-secondary">مشاهدة تفاصيل المشروع ←</a>
+                        </div>
                     </div>
-                    <div class="project-img">
-                        <img src="01.jpg" alt="Vamilano">
+
+                    <!-- Scene 2 -->
+                    <div class="meta-slide" data-index="1">
+                        <div class="project-counter">02 / 04</div>
+                        <h2 class="project-title">KENZ BRAND</h2>
+                        <div class="project-category">EasyOrder & Brand Experience</div>
+                        <p class="project-desc">بناء هوية بصرية مخصصة لصفحة هبوط منتجات العطور والبودي ميست مع التركيز على نمط الدفع عند الاستلام COD.</p>
+                        <div>
+                            <a href="projects.html" class="btn-secondary">مشاهدة تفاصيل المشروع ←</a>
+                        </div>
                     </div>
+
+                    <!-- Scene 3 -->
+                    <div class="meta-slide" data-index="2">
+                        <div class="project-counter">03 / 04</div>
+                        <h2 class="project-title">KEMET MIST</h2>
+                        <div class="project-category">High-Converting Landing Page</div>
+                        <p class="project-desc">صفحة هبوط أحادية ذات إخراج سينمائي ومستوحاة من التراث لرفع معدل تحويل الإعلانات المدفوعة مباشرة.</p>
+                        <div>
+                            <a href="projects.html" class="btn-secondary">مشاهدة تفاصيل المشروع ←</a>
+                        </div>
+                    </div>
+
+                    <!-- Scene 4 -->
+                    <div class="meta-slide" data-index="3">
+                        <div class="project-counter">04 / 04</div>
+                        <h2 class="project-title">WANWEI BEAUTY</h2>
+                        <div class="project-category">E-Commerce UI/UX & Pixel Track</div>
+                        <p class="project-desc">تصميم تجربة تسوق متكاملة لمنتجات التجميل مع ضبط وتتبع الـ Meta Pixel و CAPI بدقة عالية.</p>
+                        <div>
+                            <a href="projects.html" class="btn-secondary">مشاهدة تفاصيل المشروع ←</a>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Project 2 -->
-                <div class="project-card" data-step="2">
-                    <div class="project-info">
-                        <span>EASY ORDER & BRANDING</span>
-                        <h3>KENZ BRAND</h3>
-                        <p>بناء هوية فاخرة ومتجر إلكتروني متكامل للبودي ميست والعطور الفواحة.</p>
-                        <a href="#" class="btn btn-outline">مشاهدة التفاصيل ←</a>
+                <!-- RIGHT: VISUAL STAGE -->
+                <div class="project-visual-stage">
+                    <div class="visual-slide active" data-index="0">
+                        <img src="01.jpg" alt="Vamilano Shopify Store">
                     </div>
-                    <div class="project-img">
+                    <div class="visual-slide" data-index="1">
                         <img src="02.jpg" alt="Kenz Brand">
                     </div>
+                    <div class="visual-slide" data-index="2">
+                        <img src="04.jpg" alt="Kemet Body Mist">
+                    </div>
+                    <div class="visual-slide" data-index="3">
+                        <img src="1.jpg" alt="Wanwei Cosmetics">
+                    </div>
                 </div>
 
-                <!-- Project 3 -->
-                <div class="project-card" data-step="3">
-                    <div class="project-info">
-                        <span>LANDING PAGE</span>
-                        <h3>KEMET BODY MIST</h3>
-                        <p>تصميم واجهة مستخدم ذات طابع عريق وفاخر موجهة للإعلانات المدفوعة مباشرة.</p>
-                        <a href="#" class="btn btn-outline">مشاهدة التفاصيل ←</a>
-                    </div>
-                    <div class="project-img">
-                        <img src="04.jpg" alt="Kemet">
-                    </div>
-                </div>
+            </div>
+
+            <div class="view-all-bar">
+                <span style="color: var(--text-secondary); font-size: 0.85rem;">FEATURED PROJECTS</span>
+                <a href="projects.html" class="view-all-link">استعرض جميع المشاريع (11+) ➔</a>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION -->
+    <!-- SERVICES -->
     <section class="services" id="services">
-        <div class="section-title">
+        <div class="section-head">
+            <label>EXPERT SOLUTIONS</label>
             <h2>الخدمات والتخصصات</h2>
-            <p>حلول متكاملة لبناء متجر يبيع من اليوم الأول</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>تصميم متاجر شوبيفاي</h3>
-                <p>بناء واجهات مخصصة بالكامل تبرز هوية البراند وتضمن سرعة التصفح وسهولة الشراء.</p>
+        <div class="services-list">
+            <div class="service-item">
+                <div class="service-num">01</div>
+                <h3>تصميم متاجر Shopify</h3>
+                <p>بناء واجهات متاجر مخصصة بترتيب بصري عالمي يضمن سرعة التحميل وسهولة التصفح والتحويل المباشر.</p>
             </div>
-            <div class="service-card">
-                <h3>صفحات ايزي اوردر</h3>
-                <p>تطوير صفحات هبوط سريعة جداً للمنتجات الأحادية مع نماذج شراء مبسطة تناسب عملاء COD.</p>
+            <div class="service-item">
+                <div class="service-num">02</div>
+                <h3>صفحات EasyOrder السريعة</h3>
+                <p>تصميم صفحات هبوط مخصصة للمنتجات الفردية تناسب نموذج الدفع عند الاستلام (COD) وتقليل نسبة التخلي عن السلة.</p>
             </div>
-            <div class="service-card">
-                <h3>الهوية البصرية</h3>
-                <p>ابتكار الشعارات والألوان والخطوط والبانرات البصرية التي تجعل متجرك يبدو كعلامة عالمية.</p>
+            <div class="service-item">
+                <div class="service-num">03</div>
+                <h3>الهوية البصرية واللوجو</h3>
+                <p>ابتكار هوية تجارية فريدة تعكس قيمة براندك وتخلق انطباعاً فاخراً وموثوقاً لدى العميل.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-num">04</div>
+                <h3>إعداد Meta Pixel & CAPI</h3>
+                <p>ربط دقيق ومحترف لأدوات التتبع لقياس نتائج الحملات الإعلانية وتحسين استهداف العملاء بدقة.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-num">05</div>
+                <h3>E-Commerce UI/UX</h3>
+                <p>تحليل سلوك العميل وتصميم خطوات شراء واضحة تلغي أي عوائق أمام إتمام الطلب.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-num">06</div>
+                <h3>دراسة وتطوير تجربة المنافسين</h3>
+                <p>تحليل نقاط القوة والضعف في متاجر المنافسين لإبراز متجرك بزاوية بيعية أقوى وأكثر جاذبية.</p>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT CTA -->
-    <section class="contact-cta" id="contact">
-        <h2>عندك متجر أو براند حابب تطلقه؟</h2>
-        <p>تواصل معي الآن ونحول الفكرة لمتجر احترافي يعمل بكفاءة.</p>
-        <a href="https://wa.me/201123449977" target="_blank" class="btn btn-gold">تواصل عبر واتساب ➔</a>
+    <!-- PROCESS -->
+    <section class="process">
+        <div class="section-head" style="max-width: 1300px; margin: 0 auto;">
+            <label>WORKFLOW</label>
+            <h2>منهجية العمل</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-step-num">01</div>
+                <h4>الاستكشاف والدراسة</h4>
+                <p>تحليل المنتج والجمهور المستهدف وتحديد الميزة التنافسية للبراند.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-step-num">02</div>
+                <h4>التصميم والبناء البصري</h4>
+                <p>ابتكار الهوية ورسم واجهات المتجر بأسلوب سينمائي موثوق.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-step-num">03</div>
+                <h4>التجهيز والتتبع</h4>
+                <p>رفع المنتجات، ضبط وسائل الدفع والشحن، وتفعيل البيكسل.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-step-num">04</div>
+                <h4>الإطلاق والمتابعة</h4>
+                <p>اختبار جاهزية الشراء الكاملة وإطلاق المتجر لاستقبال الحملات.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="about-img">
+            <img src="2.jpg" alt="كمال النحراوي">
+        </div>
+        <div class="about-text">
+            <h2>عن كمال النحراوي</h2>
+            <p>أنا مصمم متجر إلكتروني ومتخصص في بناء التجربة البصرية للبراندات. لا أتعامل مع المتجر كأكواد برمجية مجردة، بل كبيئة بيعية وتجربة بصريّة ممتعة تجعل العميل يثق في براندك من اللحظة الأولى.</p>
+            <p>على مدار السنوات الماضية، ساعدت العديد من المتاجر والعلامات التجارية في السوق المصري والعربي على تحويل أفكارها إلى براندات حقيقية تعمل بكفاءة تحقق مبيعات استثنائية.</p>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="contact">
+        <h2>جاهز لبناء متجر يتذكره الجميع؟</h2>
+        <p>دعنا نحول فكرتك إلى براند احترافي بتجربة شراء فاخرة ومبيعات مستمرة.</p>
+        <a href="https://wa.me/201123449977" target="_blank" class="btn-primary">ابدأ مشروعك الآن عبر واتساب ➔</a>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <p>© 2026 KAMAL ELNHRAWY. ALL RIGHTS RESERVED.</p>
+        <div class="social-links">
+            <a href="https://wa.me/201123449977" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://facebook.com/hi19man" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
     </footer>
 
-    <!-- SCROLL CONTROL SCRIPT -->
+    <!-- SCROLL-DRIVEN INTERACTION SCRIPT -->
     <script>
         window.addEventListener('scroll', () => {
-            if (window.innerWidth <= 900) return; // تعطيل الحركة المتقدمة في الجوال للحفاظ على الأداء السلس
+            if (window.innerWidth <= 900) return;
 
-            const section = document.querySelector('.pinned-portfolio');
-            const cards = document.querySelectorAll('.project-card');
-            const counter = document.getElementById('counter-label');
-            
-            const rect = section.getBoundingClientRect();
-            const sectionHeight = section.offsetHeight - window.innerHeight;
-            const progress = Math.min(Math.max(-rect.top / sectionHeight, 0), 1);
-            
-            let activeIndex = 0;
-            if (progress > 0.66) {
-                activeIndex = 2;
-            } else if (progress > 0.33) {
-                activeIndex = 1;
-            }
+            const pinnedSection = document.querySelector('.pinned-portfolio');
+            const metaSlides = document.querySelectorAll('.meta-slide');
+            const visualSlides = document.querySelectorAll('.visual-slide');
 
-            cards.forEach((card, idx) => {
-                if (idx === activeIndex) {
-                    card.classList.add('active');
+            const rect = pinnedSection.getBoundingClientRect();
+            const totalScrollableDistance = pinnedSection.offsetHeight - window.innerHeight;
+            
+            // Calculate progress between 0 and 1
+            let progress = -rect.top / totalScrollableDistance;
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Map progress to 4 steps (0, 1, 2, 3)
+            let currentIndex = Math.floor(progress * 4);
+            if (currentIndex >= 4) currentIndex = 3;
+
+            metaSlides.forEach((slide, idx) => {
+                if (idx === currentIndex) {
+                    slide.classList.add('active');
                 } else {
-                    card.classList.remove('active');
+                    slide.classList.remove('active');
                 }
             });
 
-            counter.textContent = `0${activeIndex + 1} / 03`;
+            visualSlides.forEach((slide, idx) => {
+                if (idx === currentIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>
