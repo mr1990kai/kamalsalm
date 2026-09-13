@@ -9,610 +9,39 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --text-muted: #666666;
-            --border-color: #e5e5e5;
-            --card-bg: #fdfdfd;
-            --font-ar: 'Noto Kufi Arabic', sans-serif;
-            --font-en: 'Plus Jakarta Sans', sans-serif;
-            --font-logo: 'Cinzel', serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-ar);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body.lang-en {
-            font-family: var(--font-en);
-        }
-
-        /* --- HEADER (MODIFIED FOR 3-COLUMN FLEX LAYOUT) --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 15px 5%;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 15px;
-        }
-
-        .header-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 15px;
-        }
-
-        .lang-btn {
-            background: none;
-            border: 1px solid var(--text-color);
-            padding: 5px 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            letter-spacing: 1px;
-        }
-
-        .lang-btn:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
-            transform: translateY(-2px);
-        }
-
-        .logo {
-            font-family: var(--font-logo);
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--text-color);
-            text-align: center;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .logo:hover {
-            opacity: 0.8;
-            transform: scale(1.02);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: opacity 0.3s, transform 0.3s;
-            display: inline-block;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.6;
-            transform: translateY(-1px);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Mobile Drawer */
-        .mobile-drawer {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: #ffffff;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-            z-index: 1001;
-            padding: 40px 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html[dir="ltr"] .mobile-drawer {
-            right: auto;
-            left: -100%;
-            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .mobile-drawer.active { right: 0; }
-        html[dir="ltr"] .mobile-drawer.active { left: 0; }
-
-        .close-drawer {
-            align-self: flex-end;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .close-drawer:hover {
-            transform: rotate(90deg);
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: opacity 0.3s ease;
-        }
-
-        .mobile-nav-links a:hover {
-            opacity: 0.6;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.4);
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .overlay.active { 
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero-section {
-            margin-top: 65px;
-            width: 100%;
-        }
-
-        .hero-image-container {
-            width: 100%;
-            background-color: #f9f9f9;
-            overflow: hidden;
-        }
-
-        .hero-image-container img {
-            width: 100%;
-            height: auto;
-            max-height: 85vh;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.8s ease-out;
-        }
-
-        .hero-image-container:hover img {
-            transform: scale(1.015);
-        }
-
-        /* --- ANIMATIONS (OPTIMIZED MODERN FADE-UP) --- */
-        .fade-up-content {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: opacity, transform;
-        }
-
-        .fade-up-content.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            line-height: 1.8;
-        }
-
-        /* --- SECTION HEADINGS --- */
-        .section-header {
-            text-align: center;
-            margin: 60px 0 30px;
-            padding: 0 20px;
-        }
-
-        .section-header h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* --- SERVICES SECTION --- */
-        .services-grid {
-            max-width: 1100px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            border: 1px solid var(--border-color);
-            padding: 35px 25px;
-            border-radius: 4px;
-            background: var(--card-bg);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.06);
-        }
-
-        .service-card .platform-badge {
-            display: inline-block;
-            background: #111;
-            color: #fff;
-            padding: 4px 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .service-card ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .service-card ul li {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .service-card ul li i {
-            color: #111;
-            margin-top: 4px;
-            font-size: 0.8rem;
-        }
-
-        /* --- STATS SECTION --- */
-        .stats-section {
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 50px 5%;
-            margin: 60px 0;
-            background: #fafafa;
-        }
-
-        .stats-grid {
-            display: flex;
-            justify-content: space-around;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .stat-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* --- WORK PROCESS --- */
-        .process-section {
-            max-width: 1000px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .process-step {
-            border-right: 2px solid var(--text-color);
-            padding-right: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .process-step:hover {
-            transform: translateX(-4px);
-        }
-
-        html[dir="ltr"] .process-step {
-            border-right: none;
-            border-left: 2px solid var(--text-color);
-            padding-right: 0;
-            padding-left: 20px;
-        }
-
-        html[dir="ltr"] .process-step:hover {
-            transform: translateX(4px);
-        }
-
-        .process-step span {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-
-        .process-step h4 {
-            font-size: 1.1rem;
-            margin: 8px 0;
-        }
-
-        .process-step p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* --- SECONDARY IMAGE SECTION --- */
-        .secondary-section {
-            max-width: 1100px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-
-        .secondary-image-container {
-            width: 100%;
-            background-color: #f9f9f9;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .secondary-image-container img {
-            width: 100%;
-            height: auto;
-            max-height: 600px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.8s ease-out;
-        }
-
-        .secondary-image-container:hover img {
-            transform: scale(1.015);
-        }
-
-        .quote-box {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quote-box h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .quote-box p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-        }
-
-        /* --- CTA / FOOTER --- */
-        .cta-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: #111;
-            color: #fff;
-            margin-top: 80px;
-        }
-
-        .cta-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .cta-section p {
-            color: #ccc;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: #fff;
-            color: #111;
-            padding: 12px 30px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .cta-btn:hover { 
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255,255,255,0.15);
-        }
-
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 40px 5%;
-            text-align: center;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footer-socials a {
-            width: 45px;
-            height: 45px;
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .footer-socials a:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-toggle { display: block; }
-            .hero-title { font-size: 1.5rem; }
-            .hero-subtitle { font-size: 0.95rem; }
-            .stat-item { flex: 1 1 40%; }
-            .process-step {
-                border-right: none;
-                border-bottom: 2px solid var(--text-color);
-                padding-right: 0;
-                padding-bottom: 15px;
-            }
-            html[dir="ltr"] .process-step {
-                border-left: none;
-                padding-left: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- OVERLAY -->
+    <!-- OVERLAY & MOBILE DRAWER -->
     <div class="overlay" id="overlay"></div>
-
-    <!-- MOBILE DRAWER -->
     <div class="mobile-drawer" id="mobileDrawer">
         <button class="close-drawer" id="closeDrawer">&times;</button>
         <ul class="mobile-nav-links">
-            <li><a href="#about" class="mobile-link" data-ar="عني" data-en="About">عني</a></li>
+            <li><a href="#hero" class="mobile-link" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+            <li><a href="#pinned-portfolio" class="mobile-link" data-ar="أبرز الأعمال" data-en="Selected Work">أبرز الأعمال</a></li>
             <li><a href="#services" class="mobile-link" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-            <li><a href="projects.html" class="mobile-link" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
             <li><a href="#process" class="mobile-link" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
+            <li><a href="#about" class="mobile-link" data-ar="عني" data-en="About">عني</a></li>
             <li><a href="#contact" class="mobile-link" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
         </ul>
     </div>
 
-    <!-- HEADER -->
-    <header>
+    <!-- HEADER NAVIGATION -->
+    <header id="mainHeader">
         <div class="header-left">
             <button class="lang-btn" id="langToggle">EN</button>
         </div>
-
         <div class="header-center">
-            <a href="#" class="logo">Kamal Elnhrawy</a>
+            <a href="#" class="logo">KAMAL ELNHRAWY</a>
         </div>
-
         <div class="header-right">
             <ul class="nav-links">
-                <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
+                <li><a href="#pinned-portfolio" data-ar="أبرز الأعمال" data-en="Selected Work">أبرز الأعمال</a></li>
                 <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-                <li><a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
-                <li><a href="#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
+                <li><a href="projects.html" data-ar="كل المشاريع" data-en="All Projects">كل المشاريع</a></li>
                 <li><a href="#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -621,198 +50,185 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section" id="about">
-        <div class="hero-image-container">
-            <img src="1.jpg" alt="Kamal Elnhrawy">
-        </div>
-
-        <div class="fade-up-content" id="heroText">
-            <h1 class="hero-title" 
-                data-ar="كمال النحراوي — مصمم متاجر تجارية وبناء براندات متكاملة" 
-                data-en="Kamal Elnhrawy — E-Commerce Designer & Brand Builder">
-                كمال النحراوي — مصمم متاجر تجارية وبناء براندات متكاملة
-            </h1>
-            <p class="hero-subtitle" 
-               data-ar="أبني متاجر إلكترونية وصفحات هبوط موجهة للبيع الفعلي على منصات Shopify و Easy Order. من تصميم اللوجو والهوية البصرية وحتى تجهيز تجربة مستخدم تحول الزوار إلى عملاء دائمين."
-               data-en="Crafting high-converting Shopify & Easy Order stores and sales funnels. From visual identity to seamless user journeys that drive real revenue.">
-                أبني متاجر إلكترونية وصفحات هبوط موجهة للبيع الفعلي على منصات Shopify و Easy Order. من تصميم اللوجو والهوية البصرية وحتى تجهيز تجربة مستخدم تحول الزوار إلى عملاء دائمين.
+    <!-- 01. HERO SECTION (FULLSCREEN CINEMATIC) -->
+    <section class="hero-fullscreen" id="hero">
+        <div class="hero-bg-overlay"></div>
+        <img src="1.jpg" alt="Kamal Elnhrawy" class="hero-bg-img">
+        <div class="hero-content">
+            <span class="hero-tag" data-ar="مصمم متاجر وبناء براندات" data-en="E-Commerce Designer & Brand Builder">مصمم متاجر وبناء براندات</span>
+            <h1 class="hero-name">KAMAL ELNHRAWY</h1>
+            <p class="hero-subtext" 
+               data-ar="أحول المتاجر الإلكترونية إلى تجارب بصريّة سينمائية موجهة لرفع المبيعات والتحويل المباشر."
+               data-en="Crafting high-converting Shopify & Easy Order stores and immersive brand experiences.">
+               أحول المتاجر الإلكترونية إلى تجارب بصريّة سينمائية موجهة لرفع المبيعات والتحويل المباشر.
             </p>
+            <div class="scroll-indicator">
+                <span data-ar="اسحب للأستكشاف" data-en="Scroll to explore">اسحب للأستكشاف</span>
+                <i class="fa-solid fa-arrow-down-long"></i>
+            </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION -->
+    <!-- 02. PINNED SCROLL STORYTELLING PORTFOLIO (4 SELECTED PROJECTS) -->
+    <section class="pinned-portfolio-section" id="pinned-portfolio">
+        <div class="pinned-container">
+            <!-- Counter & Label Header -->
+            <div class="portfolio-meta">
+                <span class="section-label" data-ar="مشاريع مختارة" data-en="SELECTED WORK">SELECTED WORK</span>
+                <span class="project-counter" id="projectCounter">01 / 04</span>
+            </div>
+
+            <!-- Display Area -->
+            <div class="portfolio-stage">
+                <!-- Project 1 -->
+                <div class="project-slide active" data-index="0">
+                    <div class="slide-image-wrapper">
+                        <img src="01.jpg" alt="Vamilano Project">
+                    </div>
+                    <div class="slide-info">
+                        <span class="platform-tag">SHOPIFY STORE</span>
+                        <h2>VAMILANO</h2>
+                        <p data-ar="علامة تجارية متخصصة في ألعاب الأطفال والعناية بالأم. واجهة فخمة وتجربة شراء سلسة." data-en="Luxury Shopify store for kids' toys and mother care products with high-converting UX.">علامة تجارية متخصصة في ألعاب الأطفال والعناية بالأم. واجهة فخمة وتجربة شراء سلسة.</p>
+                        <a href="vamilano.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-slide" data-index="1">
+                    <div class="slide-image-wrapper">
+                        <img src="02.jpg" alt="Kenz Project">
+                    </div>
+                    <div class="slide-info">
+                        <span class="platform-tag">EASY ORDER & BRANDING</span>
+                        <h2>KENZ BRAND</h2>
+                        <p data-ar="بناء هوية فاخرة ومتجر إلكتروني متكامل للبودي ميست والعطور الفواحة." data-en="Complete visual identity and custom store design for premium perfume & body mist brand.">بناء هوية فاخرة ومتجر إلكتروني متكامل للبودي ميست والعطور الفواحة.</p>
+                        <a href="kenz.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-slide" data-index="2">
+                    <div class="slide-image-wrapper">
+                        <img src="04.jpg" alt="Kemet Project">
+                    </div>
+                    <div class="slide-info">
+                        <span class="platform-tag">HIGH-CONVERSION LANDING PAGE</span>
+                        <h2>KEMET BODY MIST</h2>
+                        <p data-ar="تصميم واجهة مستخدم ذات طابع عريق وفاخر موجهة للإعلانات المدفوعة مباشرة." data-en="High-CRO landing page optimized for direct traffic from Meta & TikTok campaigns.">تصميم واجهة مستخدم ذات طابع عريق وفاخر موجهة للإعلانات المدفوعة مباشرة.</p>
+                        <a href="kemet.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-slide" data-index="3">
+                    <div class="slide-image-wrapper">
+                        <img src="05.jpg" alt="Maytroo Project">
+                    </div>
+                    <div class="slide-info">
+                        <span class="platform-tag">EASY ORDER / COD FOCUS</span>
+                        <h2>MAYTROO</h2>
+                        <p data-ar="نموذج شراء سريع مخصص للبيع بنظام الدفع عند الاستلام مع تقليل معدل ترك السلات." data-en="Streamlined COD checkout flow designed to reduce abandoned carts effectively.">نموذج شراء سريع مخصص للبيع بنظام الدفع عند الاستلام مع تقليل معدل ترك السلات.</p>
+                        <a href="maytroo.html" class="project-btn" data-ar="استكشف المشروع ←" data-en="Explore Case Study →">استكشف المشروع ←</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-all-wrapper">
+                <a href="projects.html" class="view-all-link" data-ar="عرض كل المشاريع ➔" data-en="View All Projects ➔">عرض كل المشاريع ➔</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. SERVICES SECTION -->
     <section class="services-section" id="services">
-        <div class="section-header fade-up-content">
-            <h2 data-ar="حلول التجارة الإلكترونية المخصصة" data-en="Tailored E-Commerce Solutions">حلول التجارة الإلكترونية المخصصة</h2>
-            <p data-ar="تصميم واجهات حديثة ومجهزة خصيصاً لزيادة معدل التحويل (CRO)" data-en="Conversion-optimized designs built for scale and performance">تصميم واجهات حديثة ومجهزة خصيصاً لزيادة معدل التحويل (CRO)</p>
+        <div class="section-title-wrap">
+            <h2 data-ar="الخدمات والتخصصات" data-en="Core Specializations">الخدمات والتخصصات</h2>
+            <p data-ar="حلول متكاملة لبناء متجر يبيع من اليوم الأول" data-en="End-to-end solutions built for scale and revenue">حلول متكاملة لبناء متجر يبيع من اليوم الأول</p>
         </div>
 
         <div class="services-grid">
-            <!-- Shopify Card -->
-            <div class="service-card fade-up-content">
-                <span class="platform-badge">Shopify Specialist</span>
-                <h3 data-ar="تصميم وتطوير متجر شوبيفاي" data-en="Shopify Store Development">تصميم وتطوير متجر شوبيفاي</h3>
-                <ul>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="تصميم بصري بترتيب الواجهات باستخدام أحدث المحررات (Theme Editor)" data-en="Custom layout design using modern Shopify Theme Editors">تصميم بصري بترتيب الواجهات باستخدام أحدث المحررات (Theme Editor)</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="بناء صفحات هبوط احترافية (Funnel Pages) لزيادة المبيعات المباشرة" data-en="High-converting product landing pages & sales funnels">بناء صفحات هبوط احترافية (Funnel Pages) لزيادة المبيعات المباشرة</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="إعداد وتنسيق الهوية: الألوان، الخطوط، البانرات المتحركة، وتنسيق المجموعات" data-en="Brand identity setup: colors, typography, banners, & collections">إعداد وتنسيق الهوية: الألوان، الخطوط، البانرات المتحركة، وتنسيق المجموعات</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="ربط الدومين، وتفعيل Meta Pixel و TikTok Pixel لتتبع الحملات" data-en="Domain setup & Meta/TikTok Pixel integration for ads">ربط الدومين، وتفعيل Meta Pixel و TikTok Pixel لتتبع الحملات</span></li>
-                </ul>
+            <div class="service-card">
+                <div class="card-num">01</div>
+                <h3 data-ar="تصميم متاجر شوبيفاي (Shopify)" data-en="Shopify Store Design">تصميم متاجر شوبيفاي (Shopify)</h3>
+                <p data-ar="بناء واجهات مخصصة بالكامل تبرز هوية البراند وتضمن سرعة التصفح وسهولة الشراء." data-en="Custom layout design, seamless collection structure, and mobile-optimized buying journeys.">بناء واجهات مخصصة بالكامل تبرز هوية البراند وتضمن سرعة التصفح وسهولة الشراء.</p>
             </div>
-
-            <!-- Easy Order Card -->
-            <div class="service-card fade-up-content">
-                <span class="platform-badge">Easy Order Specialist</span>
-                <h3 data-ar="تصميم متاجر وصفحات ايزي اوردر" data-en="Easy Order Sales Pages">تصميم متاجر وصفحات ايزي اوردر</h3>
-                <ul>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="تجهيز صفحات البيع المباشر السريعة (Single Product Landing Pages)" data-en="Fast single-product landing pages built for direct sales">تجهيز صفحات البيع المباشر السريعة (Single Product Landing Pages)</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="تحسين تجربة نموذج الشراء (Checkout) لتناسب عملاء الدفع عند الاستلام (COD)" data-en="Optimized COD checkout forms to reduce drop-offs">تحسين تجربة نموذج الشراء (Checkout) لتناسب عملاء الدفع عند الاستلام (COD)</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="إبراز عناصر الثقة: أوسمة الأمان، مراجعات العملاء، والخصومات التنافسية" data-en="Trust elements integration: reviews, security badges, & offers">إبراز عناصر الثقة: أوسمة الأمان، مراجعات العملاء، والخصومات التنافسية</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-ar="الربط السريع والدقيق للبيكسل والدومين للاختبار الفوري للحملات" data-en="Pixel & domain tracking for campaign readiness">الربط السريع والدقيق للبيكسل والدومين للاختبار الفوري للحملات</span></li>
-                </ul>
+            <div class="service-card">
+                <div class="card-num">02</div>
+                <h3 data-ar="صفحات ايزي اوردر (Easy Order)" data-en="Easy Order Sales Funnels">صفحات ايزي اوردر (Easy Order)</h3>
+                <p data-ar="تطوير صفحات هبوط سريعة جداً للمنتجات الأحادية مع نماذج شراء مبسطة تناسب عملاء COD." data-en="High-converting single product sales pages with optimized COD checkout forms.">تطوير صفحات هبوط سريعة جداً للمنتجات الأحادية مع نماذج شراء مبسطة تناسب عملاء COD.</p>
+            </div>
+            <div class="service-card">
+                <div class="card-num">03</div>
+                <h3 data-ar="الهوية البصرية واللوجو" data-en="Brand Identity & Design">الهوية البصرية واللوجو</h3>
+                <p data-ar="ابتكار الشعارات والألوان والخطوط والبانرات البصرية التي تجعل متجرك يبدو كعلامة عالمية." data-en="Logo design, brand color palettes, typography, and promotional ad banners.">ابتكار الشعارات والألوان والخطوط والبانرات البصرية التي تجعل متجرك يبدو كعلامة عالمية.</p>
             </div>
         </div>
     </section>
 
-    <!-- STATS SECTION -->
-    <section class="stats-section">
-        <div class="stats-grid fade-up-content">
-            <div class="stat-item">
-                <h3>+1</h3>
-                <p data-ar="سنة خبرة متخصصة" data-en="Year of E-Com Experience">سنة خبرة متخصصة</p>
-            </div>
-            <div class="stat-item">
-                <h3>11+</h3>
-                <p data-ar="علامة تجارية تم بناؤها وتطويرها" data-en="Brands & Stores Designed">علامة تجارية تم بناؤها وتطويرها</p>
-            </div>
-            <div class="stat-item">
-                <h3>100%</h3>
-                <p data-ar="تركيز على تجربة المستخدم الشاملة" data-en="User Experience & Conversion Focus">تركيز على تجربة المستخدم الشاملة</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- WORK PROCESS SECTION -->
+    <!-- 04. HOW I WORK -->
     <section class="process-section" id="process">
-        <div class="section-header fade-up-content">
-            <h2 data-ar="كيف نعمل معاً؟" data-en="How We Work Together">كيف نعمل معاً؟</h2>
-            <p data-ar="خطوات واضحة وبسيطة تحول فكرتك إلى متجر يعمل بكفاءة عالية" data-en="A streamlined 4-step process to build your high-converting store">خطوات واضحة وبسيطة تحول فكرتك إلى متجر يعمل بكفاءة عالية</p>
+        <div class="section-title-wrap">
+            <h2 data-ar="منهجية العمل" data-en="Work Process">منهجية العمل</h2>
+            <p data-ar="4 خطوات واضحة تضمن تحويل متجرك إلى ماكينة تحويلات" data-en="A streamlined 4-step path from concept to sales">4 خطوات واضحة تضمن تحويل متجرك إلى ماكينة تحويلات</p>
         </div>
 
-        <div class="process-grid">
-            <div class="process-step fade-up-content">
-                <span>01</span>
-                <h4 data-ar="الدراسة والتخطيط" data-en="Strategy & Discovery">الدراسة والتخطيط</h4>
-                <p data-ar="فهم المنتج، الجمهور المستهدف، والمنافسين لتحديد زاوية العرض الأنسب." data-en="Analyzing your product, target audience, and competitors.">فهم المنتج، الجمهور المستهدف، والمنافسين لتحديد زاوية العرض الأنسب.</p>
+        <div class="process-steps">
+            <div class="step-item">
+                <span class="step-no">01</span>
+                <h4 data-ar="التخطيط والدراسة" data-en="Discovery & Strategy">التخطيط والدراسة</h4>
+                <p data-ar="فهم زاوية البيع بالمنتج والجمهور المستهدف." data-en="Analyzing products and target buyers.">فهم زاوية البيع بالمنتج والجمهور المستهدف.</p>
             </div>
-            <div class="process-step fade-up-content">
-                <span>02</span>
-                <h4 data-ar="بناء الهوية والبنية" data-en="Branding & Layout">بناء الهوية والبنية</h4>
-                <p data-ar="تصميم اللوجو، اختيار الألوان والخطوط، وتنسيق هيكل المتجر الرئيسي." data-en="Creating logos, color systems, and structuring store layout.">تصميم اللوجو، اختيار الألوان والخطوط، وتنسيق هيكل المتجر الرئيسي.</p>
+            <div class="step-item">
+                <span class="step-no">02</span>
+                <h4 data-ar="الهوية والتصميم" data-en="Branding & UI">الهوية والتصميم</h4>
+                <p data-ar="بناء اللوجو واختيار الألوان وتجهيز الصور." data-en="Designing logos and visual components.">بناء اللوجو واختيار الألوان وتجهيز الصور.</p>
             </div>
-            <div class="process-step fade-up-content">
-                <span>03</span>
-                <h4 data-ar="التطوير والتتبع" data-en="Integration & Tracking">التطوير والتتبع</h4>
-                <p data-ar="رفع المنتجات، كتابة محتوى جذّاب، وربط بيكسل الإعلانات والدومين." data-en="Setting up products, domain, and ad pixels tracking.">رفع المنتجات، كتابة محتوى جذّاب، وربط بيكسل الإعلانات والدومين.</p>
+            <div class="step-item">
+                <span class="step-no">03</span>
+                <h4 data-ar="التطوير والتتبع" data-en="Integration & Pixel">التطوير والتتبع</h4>
+                <p data-ar="ربط الدومين، البيكسل، وتهيئة نموذج الطلب." data-en="Setting up tracking pixels & checkout.">ربط الدومين، البيكسل، وتهيئة نموذج الطلب.</p>
             </div>
-            <div class="process-step fade-up-content">
-                <span>04</span>
+            <div class="step-item">
+                <span class="step-no">04</span>
                 <h4 data-ar="الإطلاق والمتابعة" data-en="Launch & Support">الإطلاق والمتابعة</h4>
-                <p data-ar="اختبار المتجر بالكامل، التأكد من جاهزية الشراء، ومتابعة الأداء بعد الإطلاق." data-en="Full testing, launch readiness, and post-launch tuning.">اختبار المتجر بالكامل، التأكد من جاهزية الشراء، ومتابعة الأداء بعد الإطلاق.</p>
+                <p data-ar="اختبار الشراء الفعلي وضمان الجاهزية." data-en="Final testing and readiness check.">اختبار الشراء الفعلي وضمان الجاهزية.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECONDARY SECTION -->
-    <section class="secondary-section">
-        <div class="secondary-image-container fade-up-content">
-            <img src="2.jpg" alt="Kamal Elnhrawy designing stores">
-        </div>
-
-        <div class="quote-box fade-up-content">
-            <h2 data-ar="نعمل معاً لنصنع شيئاً تفتخر به" data-en="Building Exceptional Visuals Together">نعمل معاً لنصنع شيئاً تفتخر به</h2>
-            <p data-ar="مشروعك في أيدٍ أمينة تهتم بكل تفصيلة بصرية واستراتيجية لضمان نجاح حملاتك الإعلانية وسلاسة تجربة عميلك." 
-               data-en="Rest assured, your e-commerce brand is in good hands. Every detail is crafted to maximize trust and drive conversions.">
-                مشروعك في أيدٍ أمينة تهتم بكل تفصيلة بصرية واستراتيجية لضمان نجاح حملاتك الإعلانية وسلاسة تجربة عميلك.
-            </p>
+    <!-- 05. ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="2.jpg" alt="Kamal Elnhrawy">
+            </div>
+            <div class="about-text">
+                <h2 data-ar="كمال النحراوي" data-en="Kamal Elnhrawy">كمال النحراوي</h2>
+                <h4 data-ar="E-commerce Designer & Brand Builder" data-en="E-commerce Designer & Brand Builder">E-commerce Designer & Brand Builder</h4>
+                <p data-ar="أنا لا أقوم فقط بتنسيق ألوان ومكونات الويب، بل أصمم تجربة متكاملة تجعل العميل يثق بمتجرك فور دخوله. خبرتي تجمع بين فهم الجماليات البصرية الفاخرة، وبين هندسة الواجهات الموجهة للتحويل المباشر (CRO) لضمان تحقيق أعلم عائد من إعلاناتك."
+                   data-en="I don't just assemble web pages; I create end-to-end brand experiences that build immediate consumer trust. My approach merges luxury minimalist design with strict Conversion Rate Optimization (CRO).">
+                   أنا لا أقوم فقط بتنسيق ألوان ومكونات الويب، بل أصمم تجربة متكاملة تجعل العميل يثق بمتجرك فور دخوله. خبرتي تجمع بين فهم الجماليات البصرية الفاخرة، وبين هندسة الواجهات الموجهة للتحويل المباشر (CRO) لضمان تحقيق أعلم عائد من إعلاناتك.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- CALL TO ACTION -->
-    <section class="cta-section fade-up-content">
-        <h2 data-ar="جاهز لبناء متجرك القادم بكفاءة؟" data-en="Ready to Build Your High-Converting Store?">جاهز لبناء متجرك القادم بكفاءة؟</h2>
-        <p data-ar="تواصل معي اليوم لنبدأ في تحويل فكرتك إلى براند احترافي ومبيعات مستمرة." data-en="Let's turn your ideas into a fully optimized, sales-ready online brand.">تواصل معي اليوم لنبدأ في تحويل فكرتك إلى براند احترافي ومبيعات مستمرة.</p>
-        <a href="https://wa.me/201123449977" target="_blank" class="cta-btn" data-ar="ابدأ مشروعك الآن عبر واتساب" data-en="Start Your Project via WhatsApp">ابدأ مشروعك الآن عبر واتساب</a>
+    <!-- 06. CONTACT CTA -->
+    <section class="cta-section" id="contact">
+        <h2 data-ar="عندك متجر أو براند حابب تطلقه؟" data-en="Have a store in mind? Let's build it.">عندك متجر أو براند حابب تطلقه؟</h2>
+        <p data-ar="تواصل معي الآن ونحول الفكرة لمتجر احترافي يعمل بكفاءة." data-en="Reach out today and let's turn your vision into a sales-generating brand.">تواصل معي الآن ونحول الفكرة لمتجر احترافي يعمل بكفاءة.</p>
+        <a href="https://wa.me/201123449977" target="_blank" class="cta-btn" data-ar="ابدأ مشروعك عبر واتساب ➔" data-en="Start Project via WhatsApp ➔">ابدأ مشروعك عبر واتساب ➔</a>
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact">
-        <div class="footer-socials fade-up-content">
+    <footer>
+        <div class="footer-socials">
             <a href="https://wa.me/201123449977" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             <a href="https://facebook.com/hi19man" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
-        <p class="copyright">© 2026 Kamal Elnhrawy. All rights reserved.</p>
+        <p class="copyright">© 2026 KAMAL ELNHRAWY. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- JS FOR LANGUAGE TOGGLE & MOBILE DRAWER & ANIMATIONS -->
-    <script>
-        const langToggleBtn = document.getElementById('langToggle');
-        let currentLang = 'ar';
-
-        langToggleBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = currentLang;
-            document.body.classList.toggle('lang-en', currentLang === 'en');
-            
-            langToggleBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
-
-            document.querySelectorAll('[data-ar]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${currentLang}`);
-            });
-        });
-
-        // Mobile Menu Drawer Control
-        const menuToggle = document.getElementById('menuToggle');
-        const closeDrawer = document.getElementById('closeDrawer');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const overlay = document.getElementById('overlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function openMenu() {
-            mobileDrawer.classList.add('active');
-            overlay.classList.add('active');
-        }
-
-        function closeMenu() {
-            mobileDrawer.classList.remove('active');
-            overlay.classList.remove('active');
-        }
-
-        menuToggle.addEventListener('click', openMenu);
-        closeDrawer.addEventListener('click', closeMenu);
-        overlay.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-        // Intersection Observer for Smooth Fade Up Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up-content').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
