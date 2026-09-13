@@ -471,7 +471,10 @@
                 gap: 30px;
             }
             .project-img-box {
-                aspect-ratio: 4 / 3;
+                aspect-ratio: 3 / 4; /* جعل الإطار بطول عمودي بدلاً من العرض */
+            }
+            .project-img-box img {
+                object-fit: contain; /* إظهار كامل أبعاد الصورة بدون أي قص */
             }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
