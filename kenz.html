@@ -21,7 +21,6 @@
             --font-ar: 'Noto Kufi Arabic', sans-serif;
             --font-en: 'Plus Jakarta Sans', sans-serif;
             --font-logo: 'Cinzel', serif;
-            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -49,113 +48,82 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            padding: 18px 5%;
-            display: flex;
-            justify-content: space-between;
+            padding: 15px 5%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            transition: all 0.3s var(--transition-smooth);
         }
 
-        header.scrolled {
-            padding: 12px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-        }
-
-        .header-side {
+        .header-left {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
+        }
+
+        .header-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             gap: 20px;
-            flex: 1;
         }
-
-        .header-side.left { justify-content: flex-start; }
-        .header-side.right { justify-content: flex-end; }
 
         .lang-btn {
-            background: transparent;
+            background: none;
             border: 1px solid var(--text-color);
-            padding: 6px 14px;
+            padding: 5px 12px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.8rem;
-            border-radius: 4px;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
         }
 
         .lang-btn:hover {
             background: var(--text-color);
             color: var(--bg-color);
-            transform: translateY(-1px);
         }
 
         .logo {
             font-family: var(--font-logo);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             text-decoration: none;
             color: var(--text-color);
             text-align: center;
-            transition: opacity 0.3s ease;
-            white-space: nowrap;
         }
-
-        .logo:hover { opacity: 0.7; }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.88rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
             font-weight: 500;
-            position: relative;
-            padding-bottom: 4px;
-            transition: color 0.3s ease;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--text-color);
-            transition: width 0.3s var(--transition-smooth);
-        }
-
-        html[dir="rtl"] .nav-links a::after {
-            left: auto;
-            right: 0;
-        }
-
-        .nav-links a:hover, .nav-links a.active { color: var(--text-color); }
-        .nav-links a.active::after, .nav-links a:hover::after { width: 100%; }
 
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--text-color);
             cursor: pointer;
-            transition: transform 0.3s ease;
         }
-
-        .menu-toggle:hover { transform: scale(1.1); }
 
         /* Mobile Drawer */
         .mobile-drawer {
@@ -166,23 +134,22 @@
             max-width: 300px;
             height: 100vh;
             background: #ffffff;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.08);
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
             z-index: 1001;
             padding: 40px 25px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            transition: right 0.4s var(--transition-smooth);
+            gap: 25px;
+            transition: right 0.4s ease, left 0.4s ease;
         }
 
         html[dir="ltr"] .mobile-drawer {
             right: auto;
             left: -100%;
-            transition: left 0.4s var(--transition-smooth);
         }
 
         .mobile-drawer.active { right: 0; }
-        html[dir="ltr"] .mobile-drawer.active { left: 0; }
+        html[dir="ltr"] .mobile-drawer.active { left: 0; right: auto; }
 
         .close-drawer {
             align-self: flex-end;
@@ -190,7 +157,6 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text-color);
         }
 
         .mobile-nav-links {
@@ -213,112 +179,124 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(3px);
+            background: rgba(0,0,0,0.4);
             z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
+            display: none;
         }
 
-        .overlay.active { 
-            opacity: 1; 
-            pointer-events: auto;
-        }
+        .overlay.active { display: block; }
 
-        /* --- PROJECT HERO --- */
-        .project-hero {
-            margin-top: 65px;
-            padding: 60px 5% 40px;
+        /* --- CASE STUDY HEADER SECTION --- */
+        .case-study-container {
+            margin-top: 100px;
+            padding: 40px 5% 60px;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+            display: inline-block;
             color: var(--text-muted);
+            text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 600;
             margin-bottom: 25px;
             transition: color 0.3s ease;
         }
 
-        .back-link:hover { color: var(--text-color); }
-
-        .project-header-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        .project-meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            padding: 25px 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-top: 30px;
-            margin-bottom: 50px;
-        }
-
-        .meta-item h4 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-
-        .meta-item p {
-            font-size: 1rem;
-            font-weight: 600;
+        .back-link:hover {
             color: var(--text-color);
         }
 
-        /* --- CONTENT SECTION --- */
-        .project-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 5% 90px;
-        }
-
-        .section-block { margin-bottom: 60px; }
-
-        .section-block h2 {
-            font-size: 1.8rem;
+        .project-main-title {
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .section-block p {
-            font-size: 1.05rem;
+        /* Layout Grid */
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .meta-group {
+            margin-bottom: 25px;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            font-weight: 700;
             color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .project-overview-text {
+            font-size: 1.05rem;
+            color: #333;
             line-height: 1.8;
-            margin-bottom: 20px;
         }
 
-        /* MEDIA SHOWCASE */
-        .media-container {
+        /* --- MEDIA SHOWCASE --- */
+        .media-block {
             width: 100%;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #f7f7f7;
-            margin-bottom: 40px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 50px;
         }
 
-        .media-container img, .media-container video {
+        .media-block img {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .video-header {
+            margin-bottom: 25px;
+        }
+
+        .video-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .video-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background-color: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* CLIENT TESTIMONIAL */
@@ -328,11 +306,13 @@
             padding: 35px;
             border-radius: 4px;
             margin: 50px 0;
+            text-align: right;
         }
 
         html[dir="ltr"] .client-testimonial-box {
             border-right: none;
             border-left: 4px solid var(--text-color);
+            text-align: left;
         }
 
         .testimonial-text {
@@ -349,31 +329,50 @@
             color: var(--text-muted);
         }
 
-        /* NAV PREV/NEXT */
-        .project-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 40px;
+        /* --- CTA SECTION (Pre-Footer) --- */
+        .cta-section {
+            background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 70px 5%;
+            text-align: center;
+            margin-top: 40px;
         }
 
-        .nav-btn {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            display: flex;
+        .cta-section h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
             align-items: center;
             gap: 10px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 2px;
             transition: opacity 0.3s ease;
         }
 
-        .nav-btn:hover { opacity: 0.6; }
+        .cta-btn:hover {
+            opacity: 0.85;
+        }
 
         /* --- FOOTER --- */
         footer {
-            border-top: 1px solid var(--border-color);
-            padding: 50px 5%;
+            padding: 40px 5%;
             text-align: center;
         }
 
@@ -381,7 +380,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .footer-socials a {
@@ -393,15 +392,14 @@
             align-items: center;
             justify-content: center;
             color: var(--text-color);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             text-decoration: none;
-            transition: all 0.3s var(--transition-smooth);
+            transition: all 0.3s ease;
         }
 
         .footer-socials a:hover {
             background: var(--text-color);
             color: var(--bg-color);
-            transform: translateY(-3px);
         }
 
         .copyright {
@@ -409,20 +407,18 @@
             color: var(--text-muted);
         }
 
-        /* ANIMATIONS */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s var(--transition-smooth);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* Mobile Optimization */
         @media (max-width: 850px) {
-            .project-header-title { font-size: 2.1rem; }
+            .project-details-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .project-main-title {
+                font-size: 1.6rem;
+            }
+            .video-header h2 {
+                font-size: 1.4rem;
+            }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
         }
@@ -446,105 +442,96 @@
     </div>
 
     <!-- HEADER -->
-    <header id="mainHeader">
-        <div class="header-side left">
+    <header>
+        <div class="header-left">
+            <button class="lang-btn" id="langToggle">EN</button>
+        </div>
+
+        <div class="header-center">
+            <a href="index.html" class="logo">Kamal Elnhrawy</a>
+        </div>
+
+        <div class="header-right">
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <i class="fa-solid fa-bars-staggered"></i>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
             </button>
             <ul class="nav-links">
                 <li><a href="index.html#about" data-ar="عني" data-en="About">عني</a></li>
                 <li><a href="index.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-                <li><a href="projects.html" class="active" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
+                <li><a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
                 <li><a href="index.html#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
                 <li><a href="index.html#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
             </ul>
         </div>
-
-        <a href="index.html" class="logo">Kamal Elnhrawy</a>
-
-        <div class="header-side right">
-            <button class="lang-btn" id="langToggle">EN</button>
-        </div>
     </header>
 
-    <!-- PROJECT HERO -->
-    <section class="project-hero reveal">
-        <a href="projects.html" class="back-link">
-            <i class="fa-solid fa-arrow-right" id="backIcon"></i>
-            <span data-ar="العودة للمشاريع" data-en="Back to Projects">العودة للمشاريع</span>
-        </a>
+    <!-- MAIN CASE STUDY CONTAINER -->
+    <main class="case-study-container">
         
-        <h1 class="project-header-title" data-ar="كنز (Kenz) — بناء علامة تجارية فاخرة للبودي ميست والعطور" data-en="Kenz — Building a Luxury Body Mist & Fragrance Brand">كنز (Kenz) — بناء علامة تجارية فاخرة للبودي ميست والعطور</h1>
+        <!-- BACK LINK -->
+        <a href="projects.html" class="back-link" data-ar="← العودة لجميع المشروعات" data-en="← Back to all projects">← العودة لجميع المشروعات</a>
 
-        <div class="project-meta-grid">
-            <div class="meta-item">
-                <h4 data-ar="العميل" data-en="Client">العميل</h4>
-                <p data-ar="شاهندة أحمد" data-en="Shahanda Ahmed">شاهندة أحمد</p>
+        <!-- MAIN TITLE -->
+        <h1 class="project-main-title" data-ar="بناء علامة تجارية فاخرة للبودي ميست والعطور | كنز (Kenz)" data-en="Building a Luxury Body Mist & Fragrance Brand | Kenz">بناء علامة تجارية فاخرة للبودي ميست والعطور | كنز (Kenz)</h1>
+
+        <!-- DETAILS GRID -->
+        <div class="project-details-grid">
+            <div class="project-meta">
+                <div class="meta-group">
+                    <div class="meta-label" data-ar="العميل" data-en="Client">العميل</div>
+                    <div class="meta-value" data-ar="شاهندة أحمد" data-en="Shahanda Ahmed">شاهندة أحمد</div>
+                </div>
+                <div class="meta-group">
+                    <div class="meta-label" data-ar="الخدمات" data-en="Services">الخدمات</div>
+                    <div class="meta-value" data-ar="تصميم اللوجو والهوية البصرية، تطوير متجر Easy Order، وإدارة الحملات الإعلانية" data-en="Logo Design, Visual Identity, Easy Order Store Development, & Ad Campaign Management">تصميم اللوجو والهوية البصرية، تطوير متجر Easy Order، وإدارة الحملات الإعلانية</div>
+                </div>
+                <div class="meta-group">
+                    <div class="meta-label" data-ar="السنة" data-en="Year">السنة</div>
+                    <div class="meta-value">2026</div>
+                </div>
             </div>
-            <div class="meta-item">
-                <h4 data-ar="السنة" data-en="Year">السنة</h4>
-                <p>2026</p>
-            </div>
-            <div class="meta-item">
-                <h4 data-ar="الخدمات" data-en="Services">الخدمات</h4>
-                <p data-ar="تصميم اللوجو، الهوية البصرية، تطوير متجر Easy Order، وإدارة الحملات الإعلانية" data-en="Logo Design, Visual Identity, Easy Order Store Development, & Ad Campaign Management">تصميم اللوجو، الهوية البصرية، تطوير متجر Easy Order، وإدارة الحملات الإعلانية</p>
-            </div>
-            <div class="meta-item">
-                <h4 data-ar="المنصة" data-en="Platform">المنصة</h4>
-                <p>Easy Order & Meta Ads</p>
+
+            <div class="project-overview-text" data-ar="بدأت الرحلة بهدف واضح ومحدد: إنشاء براند متكامل للعطور والبودي ميست (Body Mist) يترك انطباعاً فورياً بالفخامة والتميز لدى السيدات. لم يكن الهدف مجرد بيع منتج معطر، بل خلق تجربة حسيّة بصرية تجعل العميل يعرف بمجرد رؤية المتجر والهوية أنه يقف أمام خامة فريدة وتركيبة فاخرة صُممت بأسلوب خاص. شمل المشروع ابتكار لوجو سينمائي فاخر، وتطوير واجهة المتجر على منصة Easy Order لتقليل خطوات الشراء، وصولاً إلى إدارة الإعلانات المدفوعة وتحقيق نتائج ممتازة." data-en="The journey began with a clear vision: to establish an all-inclusive fragrance and body mist brand that leaves an immediate impression of luxury and exclusivity among women. The goal wasn't just to sell a fragrance, but to craft a sensory and visual experience. The project included luxury logo design, Easy Order store optimization, and targeted Meta ads execution.">
+                بدأت الرحلة بهدف واضح ومحدد: إنشاء براند متكامل للعطور والبودي ميست (Body Mist) يترك انطباعاً فورياً بالفخامة والتميز لدى السيدات. لم يكن الهدف مجرد بيع منتج معطر، بل خلق تجربة حسيّة بصرية تجعل العميل يعرف بمجرد رؤية المتجر والهوية أنه يقف أمام خامة فريدة وتركيبة فاخرة صُممت بأسلوب خاص. شمل المشروع ابتكار لوجو سينمائي فاخر، وتطوير واجهة المتجر على منصة Easy Order لتقليل خطوات الشراء، وصولاً إلى إدارة الإعلانات المدفوعة وتحقيق نتائج ممتازة.
             </div>
         </div>
-    </section>
 
-    <!-- PROJECT CONTENT -->
-    <main class="project-content">
-        
-        <!-- MAIN SHOWCASE IMAGE -->
-        <div class="media-container reveal">
-            <img src="K1.jpg" alt="Kenz Brand Showcase" onerror="this.src='https://via.placeholder.com/1200x675/f2f2f2/111111?text=Kenz+Brand+Showcase'">
+        <!-- IMAGE K1 -->
+        <div class="media-block">
+            <img src="K1.jpg" alt="Kenz Brand Showcase K1" onerror="this.src='https://via.placeholder.com/1200x700/fafafa/111111?text=K1.jpg'">
         </div>
 
-        <!-- OVERVIEW & CONCEPT -->
-        <div class="section-block reveal">
-            <h2 data-ar="رؤية المشروع والتحدي الإبداعي" data-en="Project Vision & Creative Challenge">رؤية المشروع والتحدي الإبداعي</h2>
-            <p data-ar="بدأت الرحلة مع الأستاذة شاهندة أحمد بهدف واضح ومحدد: إنشاء براند متكامل للعطور والبودي ميست (Body Mist) يترك انطباعاً فورياً بالفخامة والتميز لدى السيدات. لم يكن الهدف مجرد بيع منتج معطر، بل خلق تجربة حسيّة بصرية تجعل العميل يعرِف بمجرد رؤية المتجر والهوية أنه يقف أمام خامة فريدة وتركيبة فاخرة صُممت بأسلوب خاص." data-en="The journey began with Shahanda Ahmed with a clear vision: to establish an all-inclusive fragrance and body mist brand that leaves an immediate impression of luxury and exclusivity among women. The goal wasn't just to sell a fragrance, but to craft a sensory and visual experience that reassures customers they are discovering a unique, premium formula from the moment they land on the store.">بدأت الرحلة مع الأستاذة شاهندة أحمد بهدف واضح ومحدد: إنشاء براند متكامل للعطور والبودي ميست (Body Mist) يترك انطباعاً فورياً بالفخامة والتميز لدى السيدات. لم يكن الهدف مجرد بيع منتج معطر، بل خلق تجربة حسيّة بصرية تجعل العميل يعرِف بمجرد رؤية المتجر والهوية أنه يقف أمام خامة فريدة وتركيبة فاخرة صُممت بأسلوب خاص.</p>
-        </div>
-
-        <!-- WORK PROCESS -->
-        <div class="section-block reveal">
-            <h2 data-ar="خطوات التنفيذ والتطوير" data-en="Execution & Development Process">خطوات التنفيذ والتطوير</h2>
-            <p data-ar="1. **ابتكار اللوجو والهوية البصرية:** قمت بتطوير لوجو أنيق يعكس اسم 'كنز' بروح سينمائية فاخرة ومينيماليست تجمع بين الأناقة والهدوء، مع اعتماد ألوان وتدرجات تبرز أنوثة ورقي منتجات العناية والرائحة الفواحة." data-en="1. **Logo & Visual Identity Creation:** Designed an elegant logo that captures the essence of 'Kenz' with a luxury, minimalist feel, blending sophistication and warmth while choosing a refined color palette tailored for women's beauty and fragrance.">1. **ابتكار اللوجو والهوية البصرية:** قمت بتطوير لوجو أنيق يعكس اسم 'كنز' بروح سينمائية فاخرة ومينيماليست تجمع بين الأناقة والهدوء، مع اعتماد ألوان وتدرجات تبرز أنوثة ورقي منتجات العناية والرائحة الفواحة.</p>
-            <p data-ar="2. **تطوير واجهة متجر Easy Order:** تم بناء وتنسيق الواجهة بعناية فائقة لعرض المجموعات بأسلوب سلس يقلل خطوات الشراء، مع تركيز تام على الصور الجذابة لزجاجات البودي ميست وإبراز مكونات كل رائحة بوضوح." data-en="2. **Easy Order Store Customization:** Built a seamless, high-converting checkout flow designed to lower bounce rates, focusing heavily on clear product photography and vivid descriptions for each scent notes.">2. **تطوير واجهة متجر Easy Order:** تم بناء وتنسيق الواجهة بعناية فائقة لعرض المجموعات بأسلوب سلس يقلل خطوات الشراء، مع تركيز تام على الصور الجذابة لزجاجات البودي ميست وإبراز مكونات كل رائحة بوضوح.</p>
-            <p data-ar="3. **إدارة التسويق والحملات الإعلانية:** بعد إطلاق المتجر، استلمت ملف التسويق والإعلانات المدفوعة، حيث قمت بصياغة إعلانات موجهة بعناية لشريحة السيدات المستهدفة، مما أثمر عن تحقيق نتائج مبيعات ممتازة ورفع عائد الاستثمار للإعلانات (ROAS)." data-en="3. **Marketing & Paid Ad Management:** Took charge of the ad campaigns, targeting the precise female audience segment with compelling angles, leading to a strong lift in conversions and sales.">3. **إدارة التسويق والحملات الإعلانية:** بعد إطلاق المتجر، استلمت ملف التسويق والإعلانات المدفوعة، حيث قمت بصياغة إعلانات موجهة بعناية لشريحة السيدات المستهدفة، مما أثمر عن تحقيق نتائج مبيعات ممتازة ورفع عائد الاستثمار للإعلانات (ROAS).</p>
-        </div>
-
-        <!-- VIDEO SHOWCASE -->
-        <div class="media-container reveal">
-            <video controls poster="K1.jpg">
-                <source src="KV1.mp4" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو.
-            </video>
-        </div>
+        <!-- VIDEO REVIEW SECTION -->
+        <section class="video-section">
+            <div class="video-header">
+                <h2 data-ar="استعراض تفاعلي لتجربة المتجر" data-en="Interactive Store Showcase & Walkthrough">استعراض تفاعلي لتجربة المتجر</h2>
+                <p data-ar="معاينة حية لسلاسة التصفح والتفاعل داخل متجر كنز على الهاتف" data-en="Live walkthrough demonstrating the fluid UI and mobile responsiveness">معاينة حية لسلاسة التصفح والتفاعل داخل متجر كنز على الهاتف</p>
+            </div>
+            <div class="video-wrapper">
+                <video autoplay muted loop playsinline controls width="100%">
+                    <source src="KV1.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+        </section>
 
         <!-- CLIENT TESTIMONIAL -->
-        <div class="client-testimonial-box reveal">
+        <div class="client-testimonial-box">
             <p class="testimonial-text" data-ar="«الموقع ما شاء الله حلو جدا تسلم ايدك تعبتك معايا في تفاصيل كتير بجد وصبور وفهمت دماغي ربنا يوفقك ويا رب يكون باب خير ليك بالتوفيق»" data-en="“The website is truly amazing, mashallah! Thank you so much for your effort. There were so many details, but you were extremely patient and understood exactly what was on my mind. May God grant you success!”">«الموقع ما شاء الله حلو جدا تسلم ايدك تعبتك معايا في تفاصيل كتير بجد وصبور وفهمت دماغي ربنا يوفقك ويا رب يكون باب خير ليك بالتوفيق»</p>
             <p class="testimonial-author" data-ar="— شاهندة أحمد (مديرة براند كنز)" data-en="— Shahanda Ahmed (Kenz Brand Founder)">— شاهندة أحمد (مديرة براند كنز)</p>
         </div>
 
-        <!-- NEXT / PREV NAVIGATION -->
-        <div class="project-nav reveal">
-            <a href="vamilano.html" class="nav-btn">
-                <i class="fa-solid fa-arrow-right" id="prevIcon"></i>
-                <span data-ar="المشروع السابق: فاميلانو" data-en="Previous: Vamilano">المشروع السابق: فاميلانو</span>
-            </a>
-            <a href="projects.html" class="nav-btn">
-                <span data-ar="معرض المشاريع" data-en="All Projects">معرض المشاريع</span>
-                <i class="fa-solid fa-arrow-left" id="nextIcon"></i>
-            </a>
-        </div>
-
     </main>
+
+    <!-- PRE-FOOTER CTA SECTION -->
+    <section class="cta-section">
+        <h2 data-ar="هل تريد بناء متجر متكامل وبنفس الاحترافية؟" data-en="Ready to Build Your High-Converting E-Commerce Store?">هل تريد بناء متجر متكامل وبنفس الاحترافية؟</h2>
+        <p data-ar="تواصل معي الآن لنحسب تفاصيل مشروعك ونحوله إلى تجربة بصرية متميزة تزيد من مبيعاتك." data-en="Get in touch today to discuss your project requirements and turn your brand into a seamless digital experience.">تواصل معي الآن لنحسب تفاصيل مشروعك ونحوله إلى تجربة بصرية متميزة تزيد من مبيعاتك.</p>
+        <a href="https://wa.me/201123449977" target="_blank" class="cta-btn">
+            <i class="fab fa-whatsapp"></i>
+            <span data-ar="تواصل عبر الواتساب" data-en="Contact via WhatsApp">تواصل عبر الواتساب</span>
+        </a>
+    </section>
 
     <!-- FOOTER -->
     <footer id="contact">
@@ -555,19 +542,8 @@
         <p class="copyright">© 2026 Kamal Elnhrawy. All rights reserved.</p>
     </footer>
 
-    <!-- JS FOR LANG & MOBILE MENU -->
+    <!-- JS FOR LANGUAGE & MOBILE MENU -->
     <script>
-        // Header Dynamic Effect on Scroll
-        const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Language Toggle Logic
         const langToggleBtn = document.getElementById('langToggle');
         let currentLang = 'ar';
 
@@ -579,11 +555,6 @@
             document.body.classList.toggle('lang-en', currentLang === 'en');
             
             langToggleBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
-
-            // Toggle arrow orientation
-            document.getElementById('backIcon').className = currentLang === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left';
-            document.getElementById('prevIcon').className = currentLang === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left';
-            document.getElementById('nextIcon').className = currentLang === 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right';
 
             document.querySelectorAll('[data-ar]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
@@ -611,23 +582,6 @@
         closeDrawer.addEventListener('click', closeMenu);
         overlay.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
