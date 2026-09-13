@@ -391,7 +391,25 @@
             }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
+            .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 2px;
+    transition: opacity 0.3s ease;
+}
+
+.site-link:hover {
+    opacity: 0.6;
+}
         }
+        
     </style>
 </head>
 <body>
@@ -444,6 +462,11 @@
         <!-- MAIN TITLE -->
         <h1 class="project-main-title" data-ar="تصميم الهوية والبناء المتكامل لعلامة العبايات والأناقة النسائية | رقية (Roqea)" data-en="Brand Identity & Full E-Commerce Store Build for Abaya Fashion | Roqea">تصميم الهوية والبناء المتكامل لعلامة العبايات والأناقة النسائية | رقية (Roqea)</h1>
 
+        <!-- زر زيارة الموقع -->
+<a href="https://rokasto.myeasyorders.com/" target="_blank" class="site-link">
+    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    <span data-ar="زيارة الموقع" data-en="Visit Site">زيارة الموقع</span>
+</a>
         <!-- DETAILS GRID -->
         <div class="project-details-grid">
             <div class="project-meta">
