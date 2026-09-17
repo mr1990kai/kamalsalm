@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع NM Kids | Kamal Elnhrawy</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
+            --card-bg: #fafafa;
+            --font-ar: 'Noto Kufi Arabic', sans-serif;
+            --font-en: 'Plus Jakarta Sans', sans-serif;
+            --font-logo: 'Cinzel', serif;
+            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-ar);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.lang-en {
+            font-family: var(--font-en);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        header.scrolled {
+            padding: 12px 5%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .header-side {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .header-side.left { justify-content: flex-start; }
+        .header-side.right { justify-content: flex-end; }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--text-color);
+            padding: 6px 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+            transform: translateY(-1px);
+        }
+
+        .logo {
+            font-family: var(--font-logo);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-color);
+            text-align: center;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .logo:hover { opacity: 0.7; }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: width 0.3s var(--transition-smooth);
+        }
+
+        html[dir="rtl"] .nav-links a::after {
+            left: auto;
+            right: 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--text-color); }
+        .nav-links a.active::after, .nav-links a:hover::after { width: 100%; }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover { transform: scale(1.1); }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.08);
+            z-index: 1001;
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            transition: right 0.4s var(--transition-smooth);
+        }
+
+        html[dir="ltr"] .mobile-drawer {
+            right: auto;
+            left: -100%;
+            transition: left 0.4s var(--transition-smooth);
+        }
+
+        .mobile-drawer.active { right: 0; }
+        html[dir="ltr"] .mobile-drawer.active { left: 0; }
+
+        .close-drawer {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(3px);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .overlay.active { 
+            opacity: 1; 
+            pointer-events: auto;
+        }
+
+        /* --- PROJECT HERO --- */
+        .project-hero {
+            margin-top: 65px;
+            padding: 60px 5% 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover { color: var(--text-color); }
+
+        .project-header-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 25px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .meta-item h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-item p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* --- CONTENT SECTION --- */
+        .project-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 90px;
+        }
+
+        .section-block { margin-bottom: 60px; }
+
+        .section-block h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-block p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* MEDIA SHOWCASE */
+        .media-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f7f7f7;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .media-container img, .media-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* CLIENT TESTIMONIAL */
+        .client-testimonial-box {
+            background-color: var(--card-bg);
+            border-right: 4px solid var(--text-color);
+            padding: 35px;
+            border-radius: 4px;
+            margin: 50px 0;
+        }
+
+        html[dir="ltr"] .client-testimonial-box {
+            border-right: none;
+            border-left: 4px solid var(--text-color);
+        }
+
+        .testimonial-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        /* NAV PREV/NEXT */
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-btn:hover { opacity: 0.6; }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .footer-socials a {
+            width: 45px;
+            height: 45px;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .footer-socials a:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 850px) {
+            .project-header-title { font-size: 2.1rem; }
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- MOBILE DRAWER -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <button class="close-drawer" id="closeDrawer">&times;</button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-link" data-ar="عني" data-en="About">عني</a></li>
+            <li><a href="index.html#services" class="mobile-link" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+            <li><a href="projects.html" class="mobile-link" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
+            <li><a href="index.html#process" class="mobile-link" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
+            <li><a href="index.html#contact" class="mobile-link" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
+        </ul>
+    </div>
+
+    <!-- HEADER -->
+    <header id="mainHeader">
+        <div class="header-side left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#about" data-ar="عني" data-en="About">عني</a></li>
+                <li><a href="index.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+                <li><a href="projects.html" class="active" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
+                <li><a href="index.html#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
+                <li><a href="index.html#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="logo">Kamal Elnhrawy</a>
+
+        <div class="header-side right">
+            <button class="lang-btn" id="langToggle">EN</button>
+        </div>
+    </header>
+
+    <!-- PROJECT HERO -->
+    <section class="project-hero reveal">
+        <a href="projects.html" class="back-link">
+            <i class="fa-solid fa-arrow-right" id="backIcon"></i>
+            <span data-ar="العودة للمشاريع" data-en="Back to Projects">العودة للمشاريع</span>
+        </a>
+        
+        <h1 class="project-header-title" data-ar="NM Kids — بناء علامة تجارية متكاملة وتصميم متجر إلكتروني سهل للأمهات" data-en="NM Kids — Building a Complete Brand Identity & Mother-Friendly E-Commerce Store">NM Kids — بناء علامة تجارية متكاملة وتصميم متجر إلكتروني سهل للأمهات</h1>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <h4 data-ar="العميل" data-en="Client">العميل</h4>
+                <p data-ar="محمود مالك" data-en="Mahmoud Malek">محمود مالك</p>
+            </div>
+            <div class="meta-item">
+                <h4 data-ar="السنة" data-en="Year">السنة</h4>
+                <p>2026</p>
+            </div>
+            <div class="meta-item">
+                <h4 data-ar="الخدمات" data-en="Services">الخدمات</h4>
+                <p data-ar="تصميم الشعار والهوية البصرية المتكاملة، تصميم وتطوير متجر إلكتروني، وتجهيز تجربة شراء سهلة وسريعة للأمهات" data-en="Logo & Complete Brand Identity, E-Commerce Store Design & Development, & Mother-Friendly UX">تصميم الشعار والهوية البصرية المتكاملة، تصميم وتطوير متجر إلكتروني، وتجهيز تجربة شراء سهلة وسريعة للأمهات</p>
+            </div>
+            <div class="meta-item">
+                <h4 data-ar="المنصة" data-en="Platform">المنصة</h4>
+                <p>E-Commerce Store</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT CONTENT -->
+    <main class="project-content">
+        
+        <!-- MAIN SHOWCASE IMAGE -->
+        <div class="media-container reveal">
+            <img src="NM1.jpg" alt="NM Kids Brand Showcase" onerror="this.src='https://via.placeholder.com/1200x675/f2f2f2/111111?text=NM+Kids+Brand+Showcase'">
+        </div>
+
+        <!-- OVERVIEW & CONCEPT -->
+        <div class="section-block reveal">
+            <h2 data-ar="رؤية المشروع والتحدي الإبداعي" data-en="Project Vision & Creative Challenge">رؤية المشروع والتحدي الإبداعي</h2>
+            <p data-ar="بدأت الرحلة مع الأستاذ محمود مالك بطلب تصميم لوجو فريد وبناء براند متكامل لعلامة 'NM Kids' موجهة بشكل أساسي للأمهات الباحثات عن ملابس الأطفال. كان الهدف أن تكون العلامة سهلة التذكر، وأن يعكس المتجر الثقة والاهتمام بتجربة الأم منذ اللحظة الأولى، لذلك تم اختيار ألوان هادئة تبني الإحساس بالثقة، مع لوجو بسيط وواضح يسهل تذكره. كما تم تصميم الموقع ليكون متكاملاً وسريع التصفح، بحيث تستطيع أي أم الوصول لما تحتاجه والشراء بسهولة دون تعقيد." data-en="The project with Mr. Mahmoud Malek started with the creation of a distinctive logo and a complete brand identity for 'NM Kids', designed primarily around mothers shopping for children's clothing. The goal was to make the brand memorable while creating a trustworthy shopping experience from the first interaction, so the visual direction used reassuring colors and a simple, recognizable logo. The website was then designed as a complete, fast, and easy-to-navigate store, making it simple for any mother to find what she needs and complete a purchase without unnecessary complexity.">بدأت الرحلة مع الأستاذ محمود مالك بطلب تصميم لوجو فريد وبناء براند متكامل لعلامة 'NM Kids' موجهة بشكل أساسي للأمهات الباحثات عن ملابس الأطفال. كان الهدف أن تكون العلامة سهلة التذكر، وأن يعكس المتجر الثقة والاهتمام بتجربة الأم منذ اللحظة الأولى، لذلك تم اختيار ألوان هادئة تبني الإحساس بالثقة، مع لوجو بسيط وواضح يسهل تذكره. كما تم تصميم الموقع ليكون متكاملاً وسريع التصفح، بحيث تستطيع أي أم الوصول لما تحتاجه والشراء بسهولة دون تعقيد.</p>
+        </div>
+
+        <!-- WORK PROCESS -->
+        <div class="section-block reveal">
+            <h2 data-ar="خطوات التنفيذ والتطوير" data-en="Execution & Development Process">خطوات التنفيذ والتطوير</h2>
+            <p data-ar="1. تصميم لوجو فريد وسهل التذكر: تم تطوير شعار بسيط ومميز لبراند NM Kids بحيث يكون واضحاً وسهل التذكر، ويمنح العلامة شخصية مناسبة لمجال ملابس الأطفال وموجهة للأمهات." data-en="1. Distinctive & Memorable Logo: A simple, recognizable logo was developed for NM Kids, giving the brand a clear personality that fits children's fashion while speaking naturally to mothers.">1. تصميم لوجو فريد وسهل التذكر: تم تطوير شعار بسيط ومميز لبراند NM Kids بحيث يكون واضحاً وسهل التذكر، ويمنح العلامة شخصية مناسبة لمجال ملابس الأطفال وموجهة للأمهات.</p>
+            <p data-ar="2. بناء هوية بصرية متكاملة: تم اختيار ألوان وعناصر بصرية مدروسة تساعد على بناء الثقة وتقديم البراند بصورة متناسقة واحترافية، مع الحفاظ على إحساس لطيف ومناسب للأمهات والأطفال." data-en="2. Complete Brand Identity: Colors and visual elements were carefully selected to build trust and present the brand consistently and professionally, while keeping the overall feel warm and suitable for mothers and children.">2. بناء هوية بصرية متكاملة: تم اختيار ألوان وعناصر بصرية مدروسة تساعد على بناء الثقة وتقديم البراند بصورة متناسقة واحترافية، مع الحفاظ على إحساس لطيف ومناسب للأمهات والأطفال.</p>
+            <p data-ar="3. تصميم متجر سهل وسريع: تم بناء واجهة واضحة ومنظمة تقلل خطوات البحث وتساعد الأم على الوصول للمنتجات بسهولة، مع التركيز على سرعة التصفح ووضوح عناصر الشراء وعدم تعقيد التجربة." data-en="3. Fast & Mother-Friendly Store Experience: The interface was structured to reduce friction, help mothers reach products quickly, and keep browsing and purchasing clear, fast, and easy to understand.">3. تصميم متجر سهل وسريع: تم بناء واجهة واضحة ومنظمة تقلل خطوات البحث وتساعد الأم على الوصول للمنتجات بسهولة، مع التركيز على سرعة التصفح ووضوح عناصر الشراء وعدم تعقيد التجربة.</p>
+            <p data-ar="4. النتيجة النهائية: تم ربط الهوية البصرية بتجربة الموقع في شكل واحد متكامل، وكانت النتيجة موقعاً مميزاً وسهل الاستخدام نال إعجاب العميل وحقق الشكل والتجربة التي كان يبحث عنها للبراند." data-en="4. Final Outcome: The visual identity and shopping experience were brought together into one cohesive website, resulting in a distinctive, easy-to-use store that met the client's brief and received his positive feedback.">4. النتيجة النهائية: تم ربط الهوية البصرية بتجربة الموقع في شكل واحد متكامل، وكانت النتيجة موقعاً مميزاً وسهل الاستخدام نال إعجاب العميل وحقق الشكل والتجربة التي كان يبحث عنها للبراند.</p>
+        </div>
+
+        <!-- VIDEO SHOWCASE (FIXED AUTOPLAY) -->
+        <div class="media-container reveal">
+            <video autoplay muted playsinline loop controls poster="NM1.jpg">
+                <source src="NMV1.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+
+        <!-- CLIENT TESTIMONIAL -->
+        <div class="client-testimonial-box reveal">
+            <p class="testimonial-text" data-ar="أبدى العميل إعجابه بالنتيجة النهائية، خصوصاً بوضوح الهوية وسهولة تصفح الموقع وترتيب تجربة الشراء بالشكل الذي كان يبحث عنه لبراند NM Kids." data-en="The client was pleased with the final result, especially the clear brand identity, easy navigation, and the streamlined shopping experience created for NM Kids.">أبدى العميل إعجابه بالنتيجة النهائية، خصوصاً بوضوح الهوية وسهولة تصفح الموقع وترتيب تجربة الشراء بالشكل الذي كان يبحث عنه لبراند NM Kids.</p>
+            <p class="testimonial-author" data-ar="— محمود مالك (مؤسس براند NM Kids)" data-en="— Mahmoud Malek (NM Kids Brand Founder)">— محمود مالك (مؤسس براند NM Kids)</p>
+        </div>
+
+        <!-- NEXT / PREV NAVIGATION -->
+        <div class="project-nav reveal">
+            <a href="maytroo.html" class="nav-btn">
+                <i class="fa-solid fa-arrow-right" id="prevIcon"></i>
+                <span data-ar="المشروع السابق: مايترو" data-en="Previous: Maytroo">المشروع السابق: مايترو</span>
+            </a>
+            <a href="projects.html" class="nav-btn">
+                <span data-ar="معرض المشاريع" data-en="All Projects">معرض المشاريع</span>
+                <i class="fa-solid fa-arrow-left" id="nextIcon"></i>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-socials">
+            <a href="https://wa.me/201123449977" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://facebook.com/hi19man" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p class="copyright">© 2026 Kamal Elnhrawy. All rights reserved.</p>
+    </footer>
+
+    <!-- JS FOR LANG & MOBILE MENU -->
+    <script>
+        // Header Dynamic Effect on Scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Language Toggle Logic
+        const langToggleBtn = document.getElementById('langToggle');
+        let currentLang = 'ar';
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+            document.body.classList.toggle('lang-en', currentLang === 'en');
+            
+            langToggleBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
+
+            // Toggle arrow orientation
+            document.getElementById('backIcon').className = currentLang === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left';
+            document.getElementById('prevIcon').className = currentLang === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left';
+            document.getElementById('nextIcon').className = currentLang === 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right';
+
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+        });
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menuToggle');
+        const closeDrawer = document.getElementById('closeDrawer');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const overlay = document.getElementById('overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileDrawer.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function closeMenu() {
+            mobileDrawer.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        closeDrawer.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
