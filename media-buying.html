@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الميديا باينج | Kamal Elnhrawy</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px;background:#2b1810;color:#fff;font-family:'Noto Kufi Arabic',Tahoma,sans-serif}
+body.en{font-family:'Plus Jakarta Sans',Arial,sans-serif}
+main{max-width:560px}
+h1{font-size:clamp(2rem,6vw,3.2rem);margin-bottom:16px}
+p{font-weight:300;line-height:1.9;opacity:.8;margin-bottom:30px}
+a.b{display:inline-block;background:#fff;color:#000;padding:13px 30px;border-radius:3px;font-weight:700;text-decoration:none}
+a.back{display:block;margin-top:26px;color:#fff;opacity:.7;font-size:.9rem}
+button{position:fixed;top:16px;inset-inline-start:18px;background:none;border:1px solid #fff;color:#fff;padding:6px 13px;border-radius:4px;cursor:pointer;font:600 .8rem 'Plus Jakarta Sans',Arial}
+a:focus-visible,button:focus-visible{outline:2px solid #f5b400;outline-offset:3px}
+</style></head><body>
+<button id="l">EN</button>
+<main>
+<h1 data-ar="الميديا باينج — قريبًا" data-en="Media Buying — Coming soon">الميديا باينج — قريبًا</h1>
+<p data-ar="أعمل على خدمة إدارة الحملات الإعلانية بعناية. سجّل اهتمامك عبر واتساب لتكون أول من يعلم عند الإطلاق." data-en="I'm preparing the ad campaign management service with care. Message me on WhatsApp to be the first to know when it opens.">أعمل على خدمة إدارة الحملات الإعلانية بعناية. سجّل اهتمامك عبر واتساب لتكون أول من يعلم عند الإطلاق.</p>
+<a class="b" href="https://wa.me/201123449977" target="_blank" rel="noopener" data-ar="سجّل اهتمامك عبر واتساب" data-en="Register interest on WhatsApp">سجّل اهتمامك عبر واتساب</a>
+<a class="back" href="index.html" data-ar="العودة إلى الصفحة الرئيسية" data-en="Back to home">العودة إلى الصفحة الرئيسية</a>
+</main>
+<script>
+var lang='ar',b=document.getElementById('l');
+b.onclick=function(){lang=lang==='ar'?'en':'ar';document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;document.body.classList.toggle('en',lang==='en');b.textContent=lang==='ar'?'EN':'AR';document.querySelectorAll('[data-ar]').forEach(function(e){e.textContent=e.getAttribute('data-'+lang)})};
+</script></body></html>

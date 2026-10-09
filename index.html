@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كمال النحراوي | Kamal Elnhrawy</title>
+<meta name="description" content="مصمم متاجر إلكترونية على Shopify وEasy Order | E-commerce store designer on Shopify and Easy Order.">
+<meta property="og:title" content="Kamal Elnhrawy">
+<meta property="og:image" content="kamal.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--brown:#2b1810;--white:#fff;--black:#000;--muted:rgba(255,255,255,.74);--ar:'Noto Kufi Arabic',Tahoma,sans-serif;--en:'Plus Jakarta Sans',Arial,sans-serif;--logo:'Cinzel',Georgia,serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--black)}
+body{font-family:var(--ar);color:var(--white);-webkit-font-smoothing:antialiased}
+body.en{font-family:var(--en)}
+body.lock{overflow:hidden}
+#scroller{height:700vh}
+#stage{position:fixed;inset:0;overflow:hidden}
+.layer{position:absolute;inset:0}
+#intro{background:var(--brown);z-index:3;display:grid;place-items:center;text-align:center}
+#logo{direction:ltr;font-family:var(--logo);font-weight:700;font-size:clamp(2rem,7vw,5rem);letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+#logo.ar{direction:rtl;font-family:var(--ar);letter-spacing:0;text-transform:none;font-size:clamp(2.3rem,8vw,5.6rem)}
+#logo span{display:inline-block;opacity:0}
+#logo.ar span{margin-inline:.14em}
+#bar{display:block;height:1px;width:0;background:currentColor;margin:22px auto 0;opacity:.7;color:var(--white)}
+#cue{position:absolute;bottom:calc(36px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.8rem;color:var(--black);opacity:0}
+#cue i{width:22px;height:36px;border:1.5px solid currentColor;border-radius:12px;position:relative}
+#cue i::after{content:'';position:absolute;top:7px;left:50%;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:currentColor;animation:dot 1.6s infinite}
+@keyframes dot{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+#photoScene{z-index:2;background:var(--black)}
+#portrait{position:absolute;top:0;right:0;width:58%;height:100%;object-fit:cover;object-position:50% 8%;transform-origin:50% 0}
+#shade{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.78),rgba(0,0,0,0) 55%)}
+#copy{position:absolute;left:6vw;bottom:0;width:min(44vw,640px);padding-bottom:calc(11vh + env(safe-area-inset-bottom,0px))}
+#headline{font-weight:700;font-size:clamp(1.9rem,4.4vw,3.8rem);line-height:1.3;margin-bottom:26px}
+.line{font-weight:300;font-size:clamp(1rem,1.6vw,1.3rem);line-height:1.9;color:var(--muted);opacity:0;margin-bottom:4px}
+.line b{color:var(--white);font-weight:500}
+#doors{z-index:4;display:flex;transform:translateY(100%);background:var(--black)}
+.door{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:7vw 6vw calc(8vh + env(safe-area-inset-bottom,0px));text-decoration:none;color:var(--white);overflow:hidden;transition:flex .7s cubic-bezier(.16,1,.3,1)}
+.door.d{background:var(--white);color:var(--black)}
+.door.m{background:var(--brown)}
+.door h2{font-weight:700;font-size:clamp(1.8rem,4vw,3.4rem);line-height:1.2;margin-bottom:14px}
+.door p{font-weight:300;font-size:1rem;line-height:1.85;max-width:24em;opacity:.8}
+.go{margin-top:26px;display:inline-flex;align-items:center;gap:12px;font-weight:500;font-size:.95rem}
+.go svg{width:34px;height:12px;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+html[dir=rtl] .go svg{transform:scaleX(-1)}
+.door:hover .go svg{transform:translateX(8px)}
+html[dir=rtl] .door:hover .go svg{transform:scaleX(-1) translateX(8px)}
+.tag{align-self:flex-start;margin-bottom:18px;font-size:.78rem;padding:5px 12px;border:1px solid currentColor;border-radius:99px;opacity:.85}
+@media (hover:hover){#doors:hover .door{flex:.8}#doors .door:hover{flex:1.35}}
+#lang{position:fixed;z-index:10;top:calc(16px + env(safe-area-inset-top,0px));inset-inline-start:18px;background:none;border:1px solid currentColor;color:var(--white);font:600 .8rem var(--en);padding:6px 13px;border-radius:4px;cursor:pointer;mix-blend-mode:difference}
+#lang:focus-visible,.door:focus-visible{outline:2px solid #f5b400;outline-offset:3px}
+@media (max-width:760px){
+#portrait{width:100%;object-position:50% 0}
+#shade{background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,0) 65%)}
+#copy{left:0;right:0;width:auto;padding:0 7vw calc(7vh + env(safe-area-inset-bottom,0px))}
+#headline{font-size:1.75rem;margin-bottom:16px}
+.line{font-size:.95rem;line-height:1.75}
+#doors{flex-direction:column}.door{padding:6vw 7vw;justify-content:center}.door h2{font-size:1.7rem}}
+.static #scroller{height:auto}
+.static #stage{position:static;overflow:visible}
+.static .layer{position:relative;min-height:100vh}
+.static #logo span,.static .line,.static #cue{opacity:1}
+.static #doors{transform:none;min-height:100vh}
+.static #bar{width:min(240px,50vw)}
+</style>
+</head>
+<body class="lock">
+<button id="lang" aria-label="Language">EN</button>
+<div id="scroller"></div>
+<main id="stage">
+  <section class="layer" id="doors" aria-label="اختيار الخدمة">
+    <a class="door d" href="design.html">
+      <h2 data-ar="تصميم المواقع" data-en="Store Design">تصميم المواقع</h2>
+      <p data-ar="متاجر Shopify وEasy Order وصفحات هبوط مصممة لتبيع، بهوية واضحة وتتبع إعلاني جاهز." data-en="Shopify and Easy Order stores and sales pages, built with a clear identity and ad tracking ready.">متاجر Shopify وEasy Order وصفحات هبوط مصممة لتبيع، بهوية واضحة وتتبع إعلاني جاهز.</p>
+      <span class="go"><span data-ar="ادخل إلى المشاريع والباقات" data-en="See projects and packages">ادخل إلى المشاريع والباقات</span><svg viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 6h32M27 1l5 5-5 5"/></svg></span>
+    </a>
+    <a class="door m" href="media-buying.html">
+      <span class="tag" data-ar="قريبًا" data-en="Coming soon">قريبًا</span>
+      <h2 data-ar="الميديا باينج" data-en="Media Buying">الميديا باينج</h2>
+      <p data-ar="إدارة الحملات الإعلانية وتحويل الزيارات إلى طلبات قابلة للقياس." data-en="Ad campaign management that turns visits into measurable orders.">إدارة الحملات الإعلانية وتحويل الزيارات إلى طلبات قابلة للقياس.</p>
+      <span class="go"><span data-ar="سجّل اهتمامك" data-en="Register interest">سجّل اهتمامك</span><svg viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 6h32M27 1l5 5-5 5"/></svg></span>
+    </a>
+  </section>
+  <section class="layer" id="photoScene" aria-label="مقدمة">
+    <img id="portrait" src="kamal.jpg" alt="Kamal Elnhrawy" fetchpriority="high">
+    <div id="shade"></div>
+    <div id="copy">
+      <h1 id="headline" data-ar="أصمّم متاجر إلكترونية تبيع." data-en="I design online stores that sell.">أصمّم متاجر إلكترونية تبيع.</h1>
+      <p class="line" data-ar="<b>أنا كمال</b>، مصمّم متاجر على Shopify وEasy Order." data-en="<b>I'm Kamal</b>, a store designer on Shopify and Easy Order."></p>
+      <p class="line" data-ar="أبني الهوية، وأرتّب رحلة الشراء، وأجهّز التتبع الإعلاني." data-en="I build the identity, shape the buying journey, and set up ad tracking."></p>
+      <p class="line" data-ar="<b>اختر ما تحتاجه الآن.</b>" data-en="<b>Choose what you need.</b>"></p>
+    </div>
+  </section>
+  <section class="layer" id="intro" aria-label="Kamal Elnhrawy">
+    <div><div id="logo"></div><span id="bar"></span></div>
+    <div id="cue"><i></i><span data-ar="اسحب للأسفل" data-en="Scroll down">اسحب للأسفل</span></div>
+  </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+var lang='ar',body=document.body,$=function(s){return document.querySelector(s)};
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches||typeof gsap==='undefined';
+var logo=$('#logo');
+/* Arabic: whole words (letters stay connected). English: letter by letter. */
+function buildLogo(show){
+  logo.innerHTML='';logo.className=lang==='ar'?'ar':'';
+  var parts=lang==='ar'?['كمال','النحراوي']:'Kamal Elnhrawy'.split('');
+  parts.forEach(function(c){var s=document.createElement('span');s.textContent=c===' '?'\u00A0':c;if(show)s.style.opacity=1;logo.appendChild(s)});
+}
+var tl=null,introDone=false;
+function apply(){
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
+  body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
+  document.querySelectorAll('[data-ar]').forEach(function(e){e.innerHTML=e.getAttribute('data-'+lang)});
+  buildLogo(reduce||introDone||(typeof intro!=='undefined'&&intro.time()>1.5));
+}
+if(reduce){body.classList.remove('lock');body.classList.add('static');apply();}
+else{
+  apply();
+  gsap.registerPlugin(ScrollTrigger);
+  var intro=gsap.timeline({onComplete:function(){introDone=true;body.classList.remove('lock');}});
+  intro.add(function(){gsap.fromTo('#logo span',{y:18},{opacity:1,y:0,duration:.6,stagger:lang==='ar'?.3:.07,ease:'power2.out'})},.3)
+       .to('#bar',{width:'min(260px,55vw)',duration:1.1,ease:'power2.inOut'},.5)
+       .to('#intro',{backgroundColor:'#ffffff',duration:.9,ease:'power2.inOut'},2.2)
+       .to('#logo,#bar',{color:'#000',duration:.9,ease:'power2.inOut'},2.2)
+       .to('#cue',{opacity:1,duration:.6},3.0);
+  var total=0,locked=false;
+  function limit(){return (document.documentElement.scrollHeight-innerHeight)*(1.02/total)}
+  tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#scroller',start:'top top',end:'bottom bottom',scrub:.6,onUpdate:function(){
+    var passed=tl.time()>=1.0;
+    if(passed&&!locked){locked=true;$('#intro').style.visibility='hidden';}
+    if(!passed&&locked){window.scrollTo(0,limit());}
+  }}});
+  tl.to('#intro',{yPercent:-100,duration:1},0)
+    .fromTo('#portrait',{scale:1.15},{scale:1,duration:2.4},0)
+    .fromTo('#headline',{opacity:0,y:36},{opacity:1,y:0,duration:1},.7)
+    .fromTo('.line',{opacity:0,y:26},{opacity:1,y:0,duration:.7,stagger:.55},1.9)
+    .fromTo('#doors',{yPercent:100},{yPercent:0,duration:1.1},4.2)
+    .to({},{duration:.8},5.3);
+  total=tl.duration();
+}
+$('#lang').addEventListener('click',function(){lang=lang==='ar'?'en':'ar';apply()});
+})();
+</script>
+</body>
+</html>
