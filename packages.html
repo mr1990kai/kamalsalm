@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الباقات | Kamal Elnhrawy</title>
+<meta name="description" content="باقات تصميم المتاجر الإلكترونية على Shopify وEasy Order بأسعار واضحة بالدولار.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#111;--muted:#666;--line:#e3e0dc;--brown:#2b1810;--gold:#f5b400;--ar:'Noto Kufi Arabic',Tahoma,sans-serif;--en:'Plus Jakarta Sans',Arial,sans-serif;--logo:'Cinzel',Georgia,serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font-family:var(--ar);line-height:1.7;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px)}
+body.en{font-family:var(--en)}
+header{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 5% 14px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--logo);font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);font-size:1.05rem;direction:ltr}
+.back{justify-self:start;color:var(--muted);text-decoration:none;font-size:.88rem}
+#lang{justify-self:end;background:none;border:1px solid var(--ink);padding:5px 12px;font:600 .8rem var(--en);cursor:pointer;border-radius:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 5%}
+.hero{padding:64px 0 36px;text-align:center}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.25;margin-bottom:14px}
+.hero p{color:var(--muted);max-width:40em;margin:0 auto;font-weight:300}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;align-items:stretch;padding-top:8px}
+.card{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;padding:30px 24px 26px;background:#fff;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.card.pop{background:var(--brown);color:#fff;border-color:var(--brown)}
+.badge{position:absolute;top:-13px;inset-inline-start:22px;background:var(--gold);color:#111;font-size:.78rem;font-weight:700;padding:4px 14px;border-radius:99px}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card .sub{font-size:.85rem;opacity:.7;font-weight:300;min-height:3em}
+.price{font-size:2.5rem;font-weight:700;margin:14px 0 4px;line-height:1.1}
+.days{font-size:.85rem;opacity:.75;margin-bottom:18px}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px;flex:1}
+.card li{font-size:.9rem;display:flex;gap:10px;line-height:1.6}
+.card li::before{content:'✓';font-weight:700;flex:none}
+.btn{display:block;width:100%;text-align:center;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:13px 18px;border-radius:4px;font-weight:700;font-size:.95rem;font-family:inherit;cursor:pointer;text-decoration:none;transition:transform .25s,opacity .25s}
+.btn:hover{transform:translateY(-2px);opacity:.9}
+.card.pop .btn{background:#fff;color:var(--brown);border-color:#fff}
+.btn.out{background:#fff;color:var(--ink)}
+.note{margin:26px auto 0;text-align:center;color:var(--muted);font-size:.88rem;font-weight:300}
+/* order */
+#order{max-width:820px;margin:84px auto 0;padding:0 5%}
+#order h2{font-size:clamp(1.6rem,3.6vw,2.4rem);margin-bottom:8px}
+#order .lead{color:var(--muted);font-weight:300;margin-bottom:28px}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:22px 20px;margin-bottom:18px;min-width:0}
+legend{font-weight:700;padding:0 8px;font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:.88rem;font-weight:500;margin-bottom:6px}
+.f{margin-bottom:14px}
+input,select,textarea{width:100%;border:1px solid #cfcbc6;border-radius:4px;padding:12px;font:inherit;font-size:.95rem;background:#fff;color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
+.hint{font-size:.78rem;color:var(--muted);margin-top:4px;font-weight:300}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choices label{display:flex;align-items:center;gap:8px;border:1px solid #cfcbc6;border-radius:4px;padding:10px 14px;margin:0;cursor:pointer;font-weight:500}
+.choices input{width:auto}
+.sum{background:#faf8f6;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:14px;font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pay{background:#faf8f6;border:1px dashed #bdb7b0;border-radius:8px;padding:14px 16px;margin-bottom:14px;font-size:.9rem;line-height:1.8}
+.err{color:#b3261e;font-size:.85rem;margin:6px 0 12px;min-height:1.2em}
+#done{max-width:820px;margin:84px auto 0;padding:34px 5%;text-align:center;border:1px solid var(--line);border-radius:12px}
+#done h2{margin-bottom:10px}
+#done .id{display:inline-block;font:700 1.2rem var(--en);direction:ltr;background:#faf8f6;border:1px solid var(--line);padding:8px 16px;border-radius:6px;margin:10px 0 16px}
+#done p{color:var(--muted);margin-bottom:18px;font-weight:300}
+#done .btn{display:inline-block;width:auto;padding:13px 30px}
+footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-align:center;color:var(--muted);font-size:.8rem}
+[hidden]{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.hero{padding-top:44px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="design.html" data-ar="← العودة" data-en="← Back">← العودة</a>
+  <a class="logo" href="index.html">Kamal Elnhrawy</a>
+  <button id="lang" aria-label="Language">EN</button>
+</header>
+
+<section class="wrap hero">
+  <h1 data-ar="باقات واضحة، وسعر ثابت لكل باقة." data-en="Clear packages, one fixed price each.">باقات واضحة، وسعر ثابت لكل باقة.</h1>
+  <p data-ar="الأسعار بالدولار الأمريكي. تسليم سريع، وضمان جودة لمدة 7 أيام بعد التسليم." data-en="Prices are in US dollars. Fast delivery, with a 7-day quality guarantee after handover.">الأسعار بالدولار الأمريكي. تسليم سريع، وضمان جودة لمدة 7 أيام بعد التسليم.</p>
+</section>
+
+<section class="wrap">
+  <div class="grid" id="grid"></div>
+  <p class="note" data-ar="تكلفة الدومين والاشتراكات على المنصة يتحملها العميل. الباقة تُحدَّد بحسب عدد المنتجات والمدة والإضافات." data-en="Domain and platform subscription costs are paid by the client. Packages differ by product count, timeline and extras.">تكلفة الدومين والاشتراكات على المنصة يتحملها العميل. الباقة تُحدَّد بحسب عدد المنتجات والمدة والإضافات.</p>
+</section>
+
+<section id="order">
+  <h2 data-ar="اطلب باقتك" data-en="Order your package">اطلب باقتك</h2>
+  <p class="lead" data-ar="املأ بيانات مشروعك ليبدأ العمل على أساس صحيح. بعد الإرسال ستتواصل معي على واتساب لإرسال إثبات الدفع." data-en="Tell me about your project so work starts on the right foundation. After sending, you'll continue on WhatsApp to share your payment proof.">املأ بيانات مشروعك ليبدأ العمل على أساس صحيح. بعد الإرسال ستتواصل معي على واتساب لإرسال إثبات الدفع.</p>
+
+  <form id="form" novalidate>
+    <fieldset>
+      <legend data-ar="الباقة ونوع المشروع" data-en="Package and project type">الباقة ونوع المشروع</legend>
+      <div class="f"><label for="pkg" data-ar="الباقة" data-en="Package">الباقة</label><select id="pkg" required></select></div>
+      <div class="f"><label data-ar="ماذا تريد أن نبني؟" data-en="What should I build?">ماذا تريد أن نبني؟</label>
+        <div class="choices" id="type"></div></div>
+      <div class="f"><label data-ar="المنصة" data-en="Platform">المنصة</label>
+        <div class="choices" id="platform"></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-ar="بياناتك" data-en="Your details">بياناتك</legend>
+      <div class="row">
+        <div class="f"><label for="name" data-ar="الاسم" data-en="Name">الاسم</label><input id="name" autocomplete="name" required></div>
+        <div class="f"><label for="wa" data-ar="رقم واتساب (مع رمز الدولة)" data-en="WhatsApp number (with country code)">رقم واتساب (مع رمز الدولة)</label><input id="wa" type="tel" inputmode="tel" placeholder="+966 5X XXX XXXX" required></div>
+      </div>
+      <div class="f"><label for="email" data-ar="البريد الإلكتروني (اختياري)" data-en="Email (optional)">البريد الإلكتروني (اختياري)</label><input id="email" type="email" autocomplete="email"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-ar="عن مشروعك" data-en="About your project">عن مشروعك</legend>
+      <div class="row">
+        <div class="f"><label for="brand" data-ar="اسم المتجر أو العلامة" data-en="Store or brand name">اسم المتجر أو العلامة</label><input id="brand" required></div>
+        <div class="f"><label for="market" data-ar="الدولة أو السوق المستهدف" data-en="Target country or market">الدولة أو السوق المستهدف</label><input id="market"></div>
+      </div>
+      <div class="f"><label for="activity" data-ar="ما نشاطك؟ وماذا تبيع ولمن؟" data-en="What's your business? What do you sell, and to whom?">ما نشاطك؟ وماذا تبيع ولمن؟</label><textarea id="activity" required></textarea></div>
+      <div class="f"><label for="idea" data-ar="فكرة الموقع وما تريد أن يعكسه" data-en="Your idea for the site and the feel you want">فكرة الموقع وما تريد أن يعكسه</label><textarea id="idea"></textarea></div>
+      <div class="row">
+        <div class="f"><label for="site" data-ar="رابط موقعك الحالي (إن وجد)" data-en="Current site link (if any)">رابط موقعك الحالي (إن وجد)</label><input id="site" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="f"><label for="page" data-ar="رابط صفحتك على السوشيال (إن وجد)" data-en="Your social page link (if any)">رابط صفحتك على السوشيال (إن وجد)</label><input id="page" type="url" inputmode="url" placeholder="https://"></div>
+      </div>
+      <div class="row">
+        <div class="f"><label for="count" data-ar="عدد المنتجات تقريبًا" data-en="Approx. number of products">عدد المنتجات تقريبًا</label><input id="count" type="number" min="1" inputmode="numeric"></div>
+        <div class="f"><label for="logo" data-ar="هل تحتاج شعارًا؟" data-en="Do you need a logo?">هل تحتاج شعارًا؟</label><select id="logo"></select></div>
+      </div>
+      <div class="f"><label for="refs" data-ar="مواقع أو متاجر أعجبتك (روابط)" data-en="Sites or stores you like (links)">مواقع أو متاجر أعجبتك (روابط)</label><textarea id="refs"></textarea></div>
+      <div class="f"><label for="notes" data-ar="ملاحظات أخرى" data-en="Anything else">ملاحظات أخرى</label><textarea id="notes"></textarea></div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-ar="الدفع" data-en="Payment">الدفع</legend>
+      <div class="sum"><span id="sumName"></span><span id="sumPrice" dir="ltr"></span></div>
+      <div class="f"><label for="method" data-ar="طريقة الدفع" data-en="Payment method">طريقة الدفع</label><select id="method"></select></div>
+      <div class="pay" id="payBox"></div>
+      <div class="f"><label for="payref" data-ar="اسم المُحوِّل أو رقم العملية (اختياري)" data-en="Sender name or transaction number (optional)">اسم المُحوِّل أو رقم العملية (اختياري)</label><input id="payref"></div>
+      <p class="hint" data-ar="بعد إرسال الطلب سيظهر زر واتساب لتُرفق فيه صورة إثبات الدفع. يبدأ التنفيذ بعد تأكيد وصول المبلغ." data-en="After sending, a WhatsApp button appears so you can attach your payment screenshot. Work starts once the payment is confirmed.">بعد إرسال الطلب سيظهر زر واتساب لتُرفق فيه صورة إثبات الدفع. يبدأ التنفيذ بعد تأكيد وصول المبلغ.</p>
+    </fieldset>
+
+    <p class="err" id="err" role="alert"></p>
+    <button class="btn" type="submit" id="submit" data-ar="إرسال الطلب" data-en="Send order">إرسال الطلب</button>
+  </form>
+</section>
+
+<section id="done" hidden>
+  <h2 data-ar="تم استلام طلبك" data-en="Order received">تم استلام طلبك</h2>
+  <div class="id" id="orderId"></div>
+  <p data-ar="الخطوة الأخيرة: افتح واتساب وأرفق صورة إثبات الدفع. الرسالة جاهزة، وستجد رقم الطلب فيها." data-en="Last step: open WhatsApp and attach your payment screenshot. The message is ready and includes your order number.">الخطوة الأخيرة: افتح واتساب وأرفق صورة إثبات الدفع. الرسالة جاهزة، وستجد رقم الطلب فيها.</p>
+  <a class="btn" id="waBtn" target="_blank" rel="noopener" data-ar="متابعة على واتساب" data-en="Continue on WhatsApp">متابعة على واتساب</a>
+</section>
+
+<footer>© 2026 Kamal Elnhrawy</footer>
+
+<script>
+/* ============ الإعدادات: عدّل هنا فقط (الأسعار والباقات والدفع وجوجل فورم) ============ */
+var CONFIG={
+  WHATSAPP:'201123449977',
+  EGP_RATE:52, /* سعر الدولار بالجنيه للتقدير فقط، حدّثه من وقت لآخر */
+  GOOGLE_FORM:{
+    action:'https://docs.google.com/forms/d/e/1FAIpQLSfz5Y0U_pupWTPpkBcoU_0VtsG8O4T2QZR16XfJERygG67uzQ/formResponse',
+    entries:{order:'entry.1734407784',pkg:'entry.1302079246',name:'entry.1941246449',whatsapp:'entry.303333652',payment:'entry.868042015',details:'entry.405186789'}
+  },
+  /* بيانات حساب الدفع تظهر للعميل. اتركها فارغة وسيطلب منك الدفع على واتساب */
+  PAY:{instapay:'',vodafone:'',paypal:'',card:''}
+};
+var PACKAGES=[
+ {id:'landing',price:40,days:{ar:'التسليم خلال 2 إلى 3 أيام',en:'Delivered in 2–3 days'},
+  name:{ar:'صفحة هبوط',en:'Landing Page'},sub:{ar:'لمنتج واحد وحملة مباشرة',en:'For one product and a direct campaign'},
+  items:{ar:['تصميم صفحة بيع لمنتج واحد','متجاوبة مع الجوال','نموذج طلب مناسب للدفع عند الاستلام','جاهزة للإعلانات وربط البيكسل'],
+         en:['Sales page design for one product','Mobile responsive','Order form suited to cash on delivery','Ad-ready, pixel connected']}},
+ {id:'starter',price:55,days:{ar:'التسليم خلال 4 أيام',en:'Delivered in 4 days'},
+  name:{ar:'متجر أساسي',en:'Starter Store'},sub:{ar:'انطلاقة نظيفة لمتجرك',en:'A clean start for your store'},
+  items:{ar:['متجر جاهز حتى 10 منتجات','تنظيم الأقسام والإعدادات','ربط الدومين','تصميم متجاوب بهوية لونية واضحة'],
+         en:['Ready store with up to 10 products','Collections and settings set up','Domain connection','Responsive design with a clear colour identity']}},
+ {id:'pro',price:79,days:{ar:'التسليم خلال 4 إلى 5 أيام',en:'Delivered in 4–5 days'},pop:true,
+  name:{ar:'متجر احترافي',en:'Pro Store'},sub:{ar:'متجر كامل مع صفحة هبوط وتتبع',en:'Full store with a landing page and tracking'},
+  items:{ar:['متجر حتى 30 منتجًا','صفحة هبوط لمنتج','بانرات وصور المتجر','ربط Meta Pixel وTikTok Pixel','إعداد SEO أساسي','ربط الدومين'],
+         en:['Store with up to 30 products','One product landing page','Store banners and graphics','Meta and TikTok Pixel setup','Basic SEO setup','Domain connection']}},
+ {id:'premium',price:99,days:{ar:'التسليم خلال 5 إلى 7 أيام',en:'Delivered in 5–7 days'},
+  name:{ar:'متجر متكامل',en:'Premium Store'},sub:{ar:'كل ما تحتاجه من الفكرة إلى الإطلاق',en:'Everything from idea to launch'},
+  items:{ar:['متجر حتى 50 منتجًا','شعار وهوية بصرية','صفحتا هبوط','تتبع إعلاني كامل (Pixel وConversion API)','جلسة شرح لإدارة المتجر','دعم 30 يومًا بعد التسليم'],
+         en:['Store with up to 50 products','Logo and visual identity','Two landing pages','Full ad tracking (Pixel and Conversion API)','A walkthrough session on managing the store','30 days of support after delivery']}}
+];
+var TYPES=[{id:'store',ar:'متجر كامل',en:'Full store'},{id:'landing',ar:'صفحة هبوط',en:'Landing page'},{id:'both',ar:'الاثنان',en:'Both'}];
+var PLATFORMS=[{id:'shopify',ar:'Shopify',en:'Shopify'},{id:'easy',ar:'Easy Order',en:'Easy Order'},{id:'unsure',ar:'لا أعرف، أريد نصيحتك',en:"Not sure, advise me"}];
+var LOGO=[{id:'need',ar:'نعم، أحتاج شعارًا',en:'Yes, I need a logo'},{id:'have',ar:'لا، لدي شعار',en:'No, I have one'},{id:'unsure',ar:'لست متأكدًا',en:'Not sure'}];
+var METHODS=[
+ {id:'ask',ar:'أرسلوا لي بيانات الدفع على واتساب',en:'Send me payment details on WhatsApp'},
+ {id:'instapay',ar:'إنستا باي (للدفع من مصر)',en:'InstaPay (paying from Egypt)',egp:true},
+ {id:'vodafone',ar:'فودافون كاش (للدفع من مصر)',en:'Vodafone Cash (paying from Egypt)',egp:true},
+ {id:'paypal',ar:'PayPal (قريبًا)',en:'PayPal (coming soon)',soon:true},
+ {id:'card',ar:'بطاقة بنكية (قريبًا)',en:'Bank card (coming soon)',soon:true}
+];
+/* ============ نهاية الإعدادات ============ */
+
+var lang='ar',$=function(s){return document.querySelector(s)};
+var L=function(o){return o[lang]};
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function pkgById(id){return PACKAGES.filter(function(p){return p.id===id})[0]}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+function renderGrid(){
+  var g=$('#grid');g.innerHTML='';
+  PACKAGES.forEach(function(p){
+    var c=el('article','card'+(p.pop?' pop':''));
+    if(p.pop)c.appendChild(el('div','badge',lang==='ar'?'الأكثر طلبًا':'Most popular'));
+    c.appendChild(el('h3','',esc(L(p.name))));
+    c.appendChild(el('p','sub',esc(L(p.sub))));
+    c.appendChild(el('div','price','$'+p.price));
+    c.appendChild(el('div','days',esc(L(p.days))));
+    var ul=el('ul');L(p.items).forEach(function(i){ul.appendChild(el('li','',esc(i)))});c.appendChild(ul);
+    var b=el('button','btn',lang==='ar'?'اختر هذه الباقة':'Choose this package');b.type='button';
+    b.onclick=function(){$('#pkg').value=p.id;updateSummary();$('#order').scrollIntoView({behavior:'smooth'})};
+    c.appendChild(b);g.appendChild(c);
+  });
+}
+function fillSelect(sel,list,withPrice){
+  var v=sel.value;sel.innerHTML='';
+  list.forEach(function(o){var op=document.createElement('option');op.value=o.id;
+    op.textContent=withPrice?L(o.name)+' — $'+o.price:L(o);if(o.soon)op.disabled=true;sel.appendChild(op)});
+  if(v)sel.value=v;
+}
+function fillChoices(box,name,list){
+  var cur=(box.querySelector('input:checked')||{}).value||list[0].id;box.innerHTML='';
+  list.forEach(function(o){var l=el('label');var i=document.createElement('input');i.type='radio';i.name=name;i.value=o.id;i.checked=o.id===cur;
+    l.appendChild(i);l.appendChild(document.createTextNode(L(o)));box.appendChild(l)});
+}
+function egp(usd){return Math.round(usd*CONFIG.EGP_RATE/10)*10}
+function updateSummary(){
+  var p=pkgById($('#pkg').value);if(!p)return;
+  $('#sumName').textContent=L(p.name);$('#sumPrice').textContent='$'+p.price;
+  var m=METHODS.filter(function(x){return x.id===$('#method').value})[0],t='';
+  if(m.id==='ask'){t=lang==='ar'?'سنرسل لك بيانات الحساب المناسبة لبلدك على واتساب بعد إرسال الطلب.':'I will send the account details that suit your country on WhatsApp after you send the order.'}
+  else if(m.egp){var acc=CONFIG.PAY[m.id];
+    t=(lang==='ar'?'المبلغ بالجنيه المصري تقريبًا: ':'Approx. amount in Egyptian pounds: ')+'<b dir="ltr">'+egp(p.price)+' EGP</b>. '+
+      (lang==='ar'?'يُؤكَّد المبلغ النهائي على واتساب. ':'The final amount is confirmed on WhatsApp. ')+
+      (acc?'<br>'+(lang==='ar'?'الحساب: ':'Account: ')+'<b dir="ltr">'+esc(acc)+'</b>':(lang==='ar'?'<br>سيصلك رقم الحساب على واتساب.':'<br>The account number will be sent on WhatsApp.'))}
+  $('#payBox').innerHTML=t;
+}
+function applyLang(){
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
+  document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
+  document.querySelectorAll('[data-ar]').forEach(function(e){e.innerHTML=e.getAttribute('data-'+lang)});
+  document.title=lang==='ar'?'الباقات | Kamal Elnhrawy':'Packages | Kamal Elnhrawy';
+  renderGrid();fillSelect($('#pkg'),PACKAGES,true);fillSelect($('#logo'),LOGO);fillSelect($('#method'),METHODS);
+  fillChoices($('#type'),'type',TYPES);fillChoices($('#platform'),'platform',PLATFORMS);updateSummary();
+}
+$('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';applyLang()};
+$('#pkg').addEventListener('change',updateSummary);
+$('#method').addEventListener('change',updateSummary);
+$('#pkg').value='pro';applyLang();$('#pkg').value='pro';updateSummary();
+
+function pick(name){var c=document.querySelector('input[name="'+name+'"]:checked');return c?c.parentNode.textContent:''}
+function sendToGoogle(d){
+  var g=CONFIG.GOOGLE_FORM,e=g.entries;
+  if(!g.action||!e.order)return Promise.resolve(false);
+  var b=new URLSearchParams();
+  b.append(e.order,d.order);b.append(e.pkg,d.pkg);b.append(e.name,d.name);b.append(e.whatsapp,d.whatsapp);b.append(e.payment,d.payment);b.append(e.details,d.details);
+  return fetch(g.action,{method:'POST',mode:'no-cors',body:b}).then(function(){return true}).catch(function(){return false});
+}
+$('#form').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var err=$('#err');err.textContent='';
+  var need=['name','wa','brand','activity'],bad=need.filter(function(i){return !$('#'+i).value.trim()});
+  if(bad.length){err.textContent=lang==='ar'?'من فضلك املأ الحقول المطلوبة: الاسم، رقم واتساب، اسم المتجر، ونشاطك.':'Please fill the required fields: name, WhatsApp, brand name and your business.';$('#'+bad[0]).focus();return}
+  if(!/^[+\d][\d\s\-()]{6,}$/.test($('#wa').value.trim())){err.textContent=lang==='ar'?'رقم واتساب غير صحيح. اكتبه مع رمز الدولة.':'Invalid WhatsApp number. Include the country code.';$('#wa').focus();return}
+  var p=pkgById($('#pkg').value),m=METHODS.filter(function(x){return x.id===$('#method').value})[0];
+  var order='KN-'+Date.now().toString(36).toUpperCase().slice(-6);
+  var details=[
+    'Type: '+pick('type'),'Platform: '+pick('platform'),'Brand: '+$('#brand').value,'Market: '+$('#market').value,
+    'Activity: '+$('#activity').value,'Idea: '+$('#idea').value,'Site: '+$('#site').value,'Social page: '+$('#page').value,
+    'Products: '+$('#count').value,'Logo: '+$('#logo').selectedOptions[0].textContent,'References: '+$('#refs').value,
+    'Notes: '+$('#notes').value,'Email: '+$('#email').value,'Language: '+lang
+  ].join('\n');
+  var data={order:order,pkg:p.name.en+' ($'+p.price+')',name:$('#name').value,whatsapp:$('#wa').value,payment:m.en+' | '+$('#payref').value,details:details};
+  var btn=$('#submit');btn.disabled=true;
+  sendToGoogle(data).then(function(sent){
+    var msg=(lang==='ar'?'مرحبًا كمال، هذا طلبي.':'Hello Kamal, this is my order.')+'\n'+
+      (lang==='ar'?'رقم الطلب: ':'Order: ')+order+'\n'+(lang==='ar'?'الباقة: ':'Package: ')+L(p.name)+' ($'+p.price+')\n'+
+      (lang==='ar'?'الاسم: ':'Name: ')+data.name+'\n'+(lang==='ar'?'طريقة الدفع: ':'Payment: ')+L(m)+'\n'+
+      (lang==='ar'?'سأرفق صورة إثبات الدفع الآن.':'I am attaching my payment screenshot now.');
+    if(!sent)msg+='\n\n'+details; /* احتياطي: لو جوجل فورم غير مفعّل ترسل كل البيانات في الرسالة */
+    $('#orderId').textContent=order;
+    $('#waBtn').href='https://wa.me/'+CONFIG.WHATSAPP+'?text='+encodeURIComponent(msg);
+    $('#order').hidden=true;$('#done').hidden=false;$('#done').scrollIntoView({behavior:'smooth'});btn.disabled=false;
+  });
+});
+</script>
+</body>
+</html>
