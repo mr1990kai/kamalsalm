@@ -37,7 +37,7 @@ body.lock{overflow:hidden}
 #headline{font-weight:700;font-size:clamp(1.9rem,4.4vw,3.8rem);line-height:1.3;margin-bottom:26px}
 .line{font-weight:300;font-size:clamp(1rem,1.6vw,1.3rem);line-height:1.9;color:var(--muted);opacity:0;margin-bottom:4px}
 .line b{color:var(--white);font-weight:500}
-#doors{z-index:4;display:flex;transform:translateY(100%);background:var(--black)}
+#doors{z-index:4;display:flex;background:var(--black);visibility:hidden}
 .door{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:7vw 6vw calc(8vh + env(safe-area-inset-bottom,0px));text-decoration:none;color:var(--white);overflow:hidden;transition:flex .7s cubic-bezier(.16,1,.3,1)}
 .door.d{background:var(--white);color:var(--black)}
 .door.m{background:var(--brown)}
@@ -63,7 +63,7 @@ html[dir=rtl] .door:hover .go svg{transform:scaleX(-1) translateX(8px)}
 .static #stage{position:static;overflow:visible}
 .static .layer{position:relative;min-height:100vh}
 .static #logo span,.static .line,.static #cue{opacity:1}
-.static #doors{transform:none;min-height:100vh}
+.static #doors{visibility:visible;min-height:100vh}
 .static #bar{width:min(240px,50vw)}
 </style>
 </head>
@@ -143,6 +143,7 @@ else{
     .fromTo('#doors',{yPercent:100},{yPercent:0,duration:1.1},4.2)
     .to({},{duration:.8},5.3);
   total=tl.duration();
+  $('#doors').style.visibility='visible';
 }
 $('#lang').addEventListener('click',function(){lang=lang==='ar'?'en':'ar';apply()});
 })();
