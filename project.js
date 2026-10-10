@@ -18,7 +18,7 @@ var h='';
 h+='<section class="wrap hero"><h1 class="rv">'+B(P.title,'span')+'</h1><p class="tag rv">'+B(P.tagline,'span')+'</p><dl class="meta rv">'
  +'<div><dt>'+U('client')+'</dt><dd>'+B(P.client)+'</dd></div>'
  +'<div><dt>'+U('services')+'</dt><dd>'+B(P.services)+'</dd></div>'
- +'<div><dt>'+U('platform')+'</dt><dd>'+esc(P.platform)+'</dd></div>'
+ +(P.platform?'<div><dt>'+U('platform')+'</dt><dd>'+esc(P.platform)+'</dd></div>':'')
  +(P.year?'<div><dt>'+U('year')+'</dt><dd>'+esc(P.year)+'</dd></div>':'')
  +(P.live?'<div><dt>&nbsp;</dt><dd><a href="'+esc(P.live)+'" target="_blank" rel="noopener">'+U('live')+' ↗</a></dd></div>':'')
  +'</dl></section>';
@@ -40,7 +40,7 @@ if((P.review&&P.review.quote)||(P.reviews&&P.reviews.length)){
  h+='</section></div>';
 }
 h+='<div class="wrap"><section class="packs rv"><h2>'+U('packs')+'</h2><p>'+U('packsp')+'</p><div class="pg" id="pg"></div><a class="btn" href="packages.html">'+U('all')+'</a></section>';
-if(P.next)h+='<a class="next rv" href="'+esc(P.next.href)+'"><small>'+U('next')+'</small><h3>'+B(P.next.title)+'</h3></a>';
+if(P.next)h+='<a class="next rv" href="'+esc(P.next.href)+'"><small>'+(P.next.label?B(P.next.label):U('next'))+'</small><h3>'+B(P.next.title)+'</h3></a>';
 h+='</div>';
 $('#app').innerHTML=h;
 
