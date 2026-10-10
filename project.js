@@ -14,6 +14,9 @@ function B(o,tag,cls){return T(o.ar,o.en,tag,cls)}
 function imgs(list){return (list||[]).map(function(s){return '<div class="shot rv"><img src="'+esc(s)+'" alt="'+esc(P.title.en)+'" loading="lazy" onerror="this.parentNode.hidden=true"></div>'}).join('')}
 function list(a,e,tag){var out='';for(var i=0;i<a.length;i++)out+=T(a[i],(e&&e[i])||a[i],tag||'li');return out}
 
+var NEXT=P.next;
+if(window.PROJECTS&&P.slug){var ix=-1;window.PROJECTS.forEach(function(q,i){if(q.slug===P.slug)ix=i});
+  if(ix>-1){var nx=window.PROJECTS[ix+1];NEXT=nx?{href:nx.href,title:nx.title}:{href:'projects.html',label:{ar:'معرض الأعمال',en:'The portfolio'},title:{ar:'شاهد كل المشاريع',en:'See all projects'}}}}
 var h='';
 h+='<section class="wrap hero"><h1 class="rv">'+B(P.title,'span')+'</h1><p class="tag rv">'+B(P.tagline,'span')+'</p><dl class="meta rv">'
  +'<div><dt>'+U('client')+'</dt><dd>'+B(P.client)+'</dd></div>'
@@ -40,7 +43,7 @@ if((P.review&&P.review.quote)||(P.reviews&&P.reviews.length)){
  h+='</section></div>';
 }
 h+='<div class="wrap"><section class="packs rv"><h2>'+U('packs')+'</h2><p>'+U('packsp')+'</p><div class="pg" id="pg"></div><a class="btn" href="packages.html">'+U('all')+'</a></section>';
-if(P.next)h+='<a class="next rv" href="'+esc(P.next.href)+'"><small>'+(P.next.label?B(P.next.label):U('next'))+'</small><h3>'+B(P.next.title)+'</h3></a>';
+if(NEXT)h+='<a class="next rv" href="'+esc(NEXT.href)+'"><small>'+(NEXT.label?B(NEXT.label):U('next'))+'</small><h3>'+B(NEXT.title)+'</h3></a>';
 h+='</div>';
 $('#app').innerHTML=h;
 

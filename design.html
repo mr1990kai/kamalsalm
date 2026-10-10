@@ -191,6 +191,7 @@ nav.m{display:none}#menu{display:block}#dots{display:none}
   </section>
 </main>
 
+<script src="projects-data.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -215,22 +216,14 @@ function closeM(){$('#drawer').classList.remove('on');$('#shade').classList.remo
 $('#menu').onclick=openM;$('#close').onclick=closeM;$('#shade').onclick=closeM;
 $$('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();closeM();go(+a.getAttribute('data-go'))})});
 
-/* بطاقات المشاريع تُسحب تلقائيًا من projects.html (أول 5 مشاريع) */
-fetch('projects.html',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(h){
-  var doc=new DOMParser().parseFromString(h,'text/html'),out=[];
-  Array.prototype.forEach.call(doc.querySelectorAll('a.project-card-link'),function(a){
-    if(out.length>=5)return;
-    var img=a.querySelector('img'),t=a.querySelector('.project-title span'),d=a.querySelector('.project-desc');
-    if(!img||!t)return;
-    var ta=t.getAttribute('data-ar')||t.textContent,te=t.getAttribute('data-en')||ta,da=(d&&d.getAttribute('data-ar'))||'',de=(d&&d.getAttribute('data-en'))||da;
-    out.push('<a class="pc" href="'+esc(a.getAttribute('href'))+'"><div class="m"><img src="'+esc(img.getAttribute('src'))+'" alt="'+esc(img.getAttribute('alt')||'')+'" loading="lazy"></div><div class="c"><h3 data-ar="'+esc(ta)+'" data-en="'+esc(te)+'">'+esc(ta)+'</h3><p data-ar="'+esc(da)+'" data-en="'+esc(de)+'">'+esc(da)+'</p></div></a>');
-  });
-  if(!out.length)throw 0;
+/* بطاقات المشاريع من projects-data.js (أول 5 مشاريع حسب ترتيبها هناك) */
+(function(){
+  var out=(window.PROJECTS||[]).slice(0,5).map(function(p){
+    return '<a class="pc" href="'+esc(p.href)+'"><div class="m"><img src="'+esc(p.cover)+'" alt="'+esc(p.title.en)+'" loading="lazy" onerror="this.parentNode.parentNode.remove()"></div><div class="c"><h3 data-ar="'+esc(p.title.ar)+'" data-en="'+esc(p.title.en)+'">'+esc(p.title.ar)+'</h3><p data-ar="'+esc(p.desc.ar)+'" data-en="'+esc(p.desc.en)+'">'+esc(p.desc.ar)+'</p></div></a>'});
   out.push('<a class="pc all" href="projects.html" data-ar="عرض كل المشاريع" data-en="View all projects">عرض كل المشاريع</a>');
-  $('#track').innerHTML=out.join('');apply();
-}).catch(function(){
-  $('#track').innerHTML='<a class="pc all" href="projects.html" data-ar="عرض كل المشاريع" data-en="View all projects">عرض كل المشاريع</a>';apply();
-});
+  $('#track').innerHTML=out.join('');
+  window.addEventListener('load',function(){if(window.ScrollTrigger)ScrollTrigger.refresh()});
+})();
 
 if(scenes){
   gsap.registerPlugin(ScrollTrigger);ScrollTrigger.config({ignoreMobileResize:true});
