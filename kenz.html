@@ -1,582 +1,68 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشروع كنز (Kenz) | Kamal Elnhrawy</title>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --text-muted: #666666;
-            --border-color: #e5e5e5;
-            --card-bg: #fafafa;
-            --font-ar: 'Noto Kufi Arabic', sans-serif;
-            --font-en: 'Plus Jakarta Sans', sans-serif;
-            --font-logo: 'Cinzel', serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-ar);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body.lang-en {
-            font-family: var(--font-en);
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 15px 5%;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .header-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 20px;
-        }
-
-        .lang-btn {
-            background: none;
-            border: 1px solid var(--text-color);
-            padding: 5px 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
-        }
-
-        .logo {
-            font-family: var(--font-logo);
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--text-color);
-            text-align: center;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            color: var(--text-color);
-            cursor: pointer;
-        }
-
-        /* Mobile Drawer */
-        .mobile-drawer {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: #ffffff;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-            z-index: 1001;
-            padding: 40px 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            transition: right 0.4s ease, left 0.4s ease;
-        }
-
-        html[dir="ltr"] .mobile-drawer {
-            right: auto;
-            left: -100%;
-        }
-
-        .mobile-drawer.active { right: 0; }
-        html[dir="ltr"] .mobile-drawer.active { left: 0; right: auto; }
-
-        .close-drawer {
-            align-self: flex-end;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.4);
-            z-index: 1000;
-            display: none;
-        }
-
-        .overlay.active { display: block; }
-
-        /* --- CASE STUDY HEADER SECTION --- */
-        .case-study-container {
-            margin-top: 100px;
-            padding: 40px 5% 60px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--text-color);
-        }
-
-        .project-main-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        /* Layout Grid */
-        .project-details-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .meta-group {
-            margin-bottom: 25px;
-        }
-
-        .meta-label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .meta-value {
-            font-size: 1rem;
-            color: var(--text-color);
-            font-weight: 600;
-        }
-
-        .project-overview-text {
-            font-size: 1.05rem;
-            color: #333;
-            line-height: 1.8;
-        }
-
-        /* --- MEDIA SHOWCASE --- */
-        .media-block {
-            width: 100%;
-            margin-bottom: 50px;
-        }
-
-        .media-block img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-        }
-
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-header {
-            margin-bottom: 25px;
-        }
-
-        .video-header h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .video-header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .video-wrapper {
-            width: 100%;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            background-color: #000;
-        }
-
-        .video-wrapper video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* CLIENT TESTIMONIAL */
-        .client-testimonial-box {
-            background-color: var(--card-bg);
-            border-right: 4px solid var(--text-color);
-            padding: 35px;
-            border-radius: 4px;
-            margin: 50px 0;
-            text-align: right;
-        }
-
-        html[dir="ltr"] .client-testimonial-box {
-            border-right: none;
-            border-left: 4px solid var(--text-color);
-            text-align: left;
-        }
-
-        .testimonial-text {
-            font-size: 1.15rem;
-            font-style: italic;
-            line-height: 1.8;
-            color: #222;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-author {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-
-        /* --- CTA SECTION (Pre-Footer) --- */
-        .cta-section {
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 70px 5%;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .cta-section h2 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .cta-section p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            padding: 14px 32px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 2px;
-            transition: opacity 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            opacity: 0.85;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 40px 5%;
-            text-align: center;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footer-socials a {
-            width: 45px;
-            height: 45px;
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-socials a:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
-        }
-
-        .copyright {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 850px) {
-            .project-details-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            .project-main-title {
-                font-size: 1.6rem;
-            }
-            .video-header h2 {
-                font-size: 1.4rem;
-            }
-            .nav-links { display: none; }
-            .menu-toggle { display: block; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>متجر كنز | Kamal Elnhrawy</title>
+<meta name="description" content="هوية بصرية ومتجر Easy Order لعلامة كنز للعطور والبودي ميست.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
 </head>
 <body>
+<header>
+  <a class="back" href="projects.html" data-ar="← كل المشاريع" data-en="← All projects">← كل المشاريع</a>
+  <a class="logo" href="index.html">Kamal Elnhrawy</a>
+  <button id="lang" aria-label="Language">EN</button>
+</header>
+<main id="app"></main>
+<footer>
+  <div class="soc">
+    <a href="https://wa.me/201123449977" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+  </div>
+  <p class="cp">© 2026 Kamal Elnhrawy</p>
+</footer>
 
-    <!-- OVERLAY -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- MOBILE DRAWER -->
-    <div class="mobile-drawer" id="mobileDrawer">
-        <button class="close-drawer" id="closeDrawer">&times;</button>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html#about" class="mobile-link" data-ar="عني" data-en="About">عني</a></li>
-            <li><a href="index.html#services" class="mobile-link" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-            <li><a href="projects.html" class="mobile-link" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
-            <li><a href="index.html#process" class="mobile-link" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
-            <li><a href="index.html#contact" class="mobile-link" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
-        </ul>
-    </div>
-
-    <!-- HEADER -->
-    <header>
-        <div class="header-left">
-            <button class="lang-btn" id="langToggle">EN</button>
-        </div>
-
-        <div class="header-center">
-            <a href="index.html" class="logo">Kamal Elnhrawy</a>
-        </div>
-
-        <div class="header-right">
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#about" data-ar="عني" data-en="About">عني</a></li>
-                <li><a href="index.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-                <li><a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
-                <li><a href="index.html#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
-                <li><a href="index.html#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- MAIN CASE STUDY CONTAINER -->
-    <main class="case-study-container">
-        
-        <!-- BACK LINK -->
-        <a href="projects.html" class="back-link" data-ar="← العودة لجميع المشروعات" data-en="← Back to all projects">← العودة لجميع المشروعات</a>
-
-        <!-- MAIN TITLE -->
-        <h1 class="project-main-title" data-ar="بناء علامة تجارية فاخرة للبودي ميست والعطور | كنز (Kenz)" data-en="Building a Luxury Body Mist & Fragrance Brand | Kenz">بناء علامة تجارية فاخرة للبودي ميست والعطور | كنز (Kenz)</h1>
-
-        <!-- DETAILS GRID -->
-        <div class="project-details-grid">
-            <div class="project-meta">
-                <div class="meta-group">
-                    <div class="meta-label" data-ar="العميل" data-en="Client">العميل</div>
-                    <div class="meta-value" data-ar="شاهندة أحمد" data-en="Shahanda Ahmed">شاهندة أحمد</div>
-                </div>
-                <div class="meta-group">
-                    <div class="meta-label" data-ar="الخدمات" data-en="Services">الخدمات</div>
-                    <div class="meta-value" data-ar="تصميم اللوجو والهوية البصرية، تطوير متجر Easy Order، وإدارة الحملات الإعلانية" data-en="Logo Design, Visual Identity, Easy Order Store Development, & Ad Campaign Management">تصميم اللوجو والهوية البصرية، تطوير متجر Easy Order، وإدارة الحملات الإعلانية</div>
-                </div>
-                <div class="meta-group">
-                    <div class="meta-label" data-ar="السنة" data-en="Year">السنة</div>
-                    <div class="meta-value">2026</div>
-                </div>
-            </div>
-
-            <div class="project-overview-text" data-ar="بدأت الرحلة بهدف واضح ومحدد: إنشاء براند متكامل للعطور والبودي ميست (Body Mist) يترك انطباعاً فورياً بالفخامة والتميز لدى السيدات. لم يكن الهدف مجرد بيع منتج معطر، بل خلق تجربة حسيّة بصرية تجعل العميل يعرف بمجرد رؤية المتجر والهوية أنه يقف أمام خامة فريدة وتركيبة فاخرة صُممت بأسلوب خاص. شمل المشروع ابتكار لوجو سينمائي فاخر، وتطوير واجهة المتجر على منصة Easy Order لتقليل خطوات الشراء، وصولاً إلى إدارة الإعلانات المدفوعة وتحقيق نتائج ممتازة." data-en="The journey began with a clear vision: to establish an all-inclusive fragrance and body mist brand that leaves an immediate impression of luxury and exclusivity among women. The goal wasn't just to sell a fragrance, but to craft a sensory and visual experience. The project included luxury logo design, Easy Order store optimization, and targeted Meta ads execution.">
-                بدأت الرحلة بهدف واضح ومحدد: إنشاء براند متكامل للعطور والبودي ميست (Body Mist) يترك انطباعاً فورياً بالفخامة والتميز لدى السيدات. لم يكن الهدف مجرد بيع منتج معطر، بل خلق تجربة حسيّة بصرية تجعل العميل يعرف بمجرد رؤية المتجر والهوية أنه يقف أمام خامة فريدة وتركيبة فاخرة صُممت بأسلوب خاص. شمل المشروع ابتكار لوجو سينمائي فاخر، وتطوير واجهة المتجر على منصة Easy Order لتقليل خطوات الشراء، وصولاً إلى إدارة الإعلانات المدفوعة وتحقيق نتائج ممتازة.
-            </div>
-        </div>
-
-        <!-- IMAGE K1 -->
-        <div class="media-block">
-            <img src="K1.jpg" alt="Kenz Brand Showcase K1" onerror="this.src='https://via.placeholder.com/1200x700/fafafa/111111?text=K1.jpg'">
-        </div>
-
-        <!-- VIDEO REVIEW SECTION -->
-        <section class="video-section">
-            <div class="video-header">
-                <h2 data-ar="استعراض تفاعلي لتجربة المتجر" data-en="Interactive Store Showcase & Walkthrough">استعراض تفاعلي لتجربة المتجر</h2>
-                <p data-ar="معاينة حية لسلاسة التصفح والتفاعل داخل متجر كنز على الهاتف" data-en="Live walkthrough demonstrating the fluid UI and mobile responsiveness">معاينة حية لسلاسة التصفح والتفاعل داخل متجر كنز على الهاتف</p>
-            </div>
-            <div class="video-wrapper">
-                <video autoplay muted loop playsinline controls width="100%">
-                    <source src="KV1.mp4" type="video/mp4">
-                    متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-            </div>
-        </section>
-
-
-    </main>
-
-    <!-- PRE-FOOTER CTA SECTION -->
-    <section class="cta-section">
-        <h2 data-ar="هل تريد بناء متجر متكامل وبنفس الاحترافية؟" data-en="Ready to Build Your High-Converting E-Commerce Store?">هل تريد بناء متجر متكامل وبنفس الاحترافية؟</h2>
-        <p data-ar="تواصل معي الآن لنحسب تفاصيل مشروعك ونحوله إلى تجربة بصرية متميزة تزيد من مبيعاتك." data-en="Get in touch today to discuss your project requirements and turn your brand into a seamless digital experience.">تواصل معي الآن لنحسب تفاصيل مشروعك ونحوله إلى تجربة بصرية متميزة تزيد من مبيعاتك.</p>
-        <a href="https://wa.me/201123449977" target="_blank" class="cta-btn">
-            <i class="fab fa-whatsapp"></i>
-            <span data-ar="تواصل عبر الواتساب" data-en="Contact via WhatsApp">تواصل عبر الواتساب</span>
-        </a>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contact">
-        <div class="footer-socials">
-            <a href="https://wa.me/201123449977" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://facebook.com/hi19man" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        </div>
-        <p class="copyright">© 2026 Kamal Elnhrawy. All rights reserved.</p>
-    </footer>
-
-    <!-- JS FOR LANGUAGE & MOBILE MENU -->
-    <script>
-        const langToggleBtn = document.getElementById('langToggle');
-        let currentLang = 'ar';
-
-        langToggleBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = currentLang;
-            document.body.classList.toggle('lang-en', currentLang === 'en');
-            
-            langToggleBtn.textContent = currentLang === 'ar' ? 'EN' : 'AR';
-
-            document.querySelectorAll('[data-ar]').forEach(el => {
-                el.textContent = el.getAttribute(`data-${currentLang}`);
-            });
-        });
-
-        // Mobile Menu Logic
-        const menuToggle = document.getElementById('menuToggle');
-        const closeDrawer = document.getElementById('closeDrawer');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const overlay = document.getElementById('overlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function openMenu() {
-            mobileDrawer.classList.add('active');
-            overlay.classList.add('active');
-        }
-
-        function closeMenu() {
-            mobileDrawer.classList.remove('active');
-            overlay.classList.remove('active');
-        }
-
-        menuToggle.addEventListener('click', openMenu);
-        closeDrawer.addEventListener('click', closeMenu);
-        overlay.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-    </script>
+<script src="packages-data.js"></script>
+<script>
+/* ===== بيانات المشروع: غيّر هنا فقط ===== */
+window.PROJECT={
+  title:{ar:'متجر كنز',en:'Kenz Store'},
+  tagline:{ar:'هوية بصرية ومتجر Easy Order لعطور وبودي ميست بروح فاخرة.',en:'A visual identity and an Easy Order store for fragrances and body mists, with a refined, luxurious feel.'},
+  client:{ar:'شاهندة أحمد، مديرة براند كنز',en:'Shahenda Ahmed, Kenz brand manager'},
+  services:{ar:'الشعار والهوية البصرية، وتصميم المتجر',en:'Logo, visual identity and store design'},
+  platform:'Easy Order',
+  year:'2026',
+  live:'',
+  hero:'K1.jpg',
+  video:['KV1.mp4'],
+  gallery:[],
+  review:{quote:{ar:'«الموقع ما شاء الله حلو جدًا، تسلم إيدك. تعبتك معايا في تفاصيل كتير بجد، وكنت صبورًا وفهمت دماغي. ربنا يوفقك»',
+                 en:'“The website is truly amazing, mashallah. Thank you for your effort. There were so many details, but you were patient and understood exactly what I had in mind. May God grant you success.”'},
+          author:{ar:'شاهندة أحمد، مديرة براند كنز',en:'Shahenda Ahmed, Kenz brand manager'}},
+  reviews:['K-review1.jpg','K-review2.jpg'],   /* صور محادثات العميلة */
+  reviewBy:null,
+  brief:{
+    ar:['بدأ العمل مع الأستاذة شاهندة أحمد بهدف واضح: إنشاء براند متكامل للعطور والبودي ميست يترك انطباعًا فوريًا بالفخامة والتميّز لدى السيدات.',
+        'لم يكن الهدف بيع منتج معطّر فقط، بل خلق تجربة بصرية حسّية تُشعر العميلة منذ أول لحظة بأنها أمام تركيبة فاخرة صُمّمت بأسلوب خاص.'],
+    en:['The work began with Ms. Shahenda Ahmed and a clear goal: a complete fragrance and body-mist brand that gives women an immediate impression of luxury and distinction.',
+        'The aim was not only to sell a scented product, but to create a sensory, visual experience that tells the customer from the first moment that this is a premium formula made in a distinctive way.']},
+  built:{
+    ar:['لوجو أنيق باسم «كنز» بروح فاخرة وبسيطة تجمع بين الأناقة والهدوء، مع ألوان وتدرجات تبرز أنوثة المنتجات ورقيّها',
+        'واجهة متجر على Easy Order تعرض المجموعات بأسلوب سلس يقلل خطوات الشراء',
+        'تركيز على صور زجاجات البودي ميست وإبراز مكونات كل رائحة بوضوح'],
+    en:['An elegant logo for the name “Kenz”, luxurious yet simple, with colours and gradients that bring out the femininity and refinement of the products',
+        'An Easy Order storefront that presents the collections smoothly and reduces buying steps',
+        'A focus on the body-mist bottle photography, with the notes of each scent made clear']},
+  next:{href:'roqea.html',title:{ar:'رقية',en:'Roqea'}}
+};
+</script>
+<script src="project.js"></script>
 </body>
 </html>

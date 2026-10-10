@@ -5,7 +5,7 @@ var WA='https://wa.me/201123449977',FB='https://facebook.com/hi19man';
 var UI={back:['← كل المشاريع','← All projects'],client:['العميل','Client'],services:['الخدمات','Services'],platform:['المنصة','Platform'],year:['السنة','Year'],
  live:['زيارة المتجر','Visit the store'],brief:['المطلوب','The brief'],built:['ما نفّذته','What I built'],
  tour:['جولة داخل المتجر','A walkthrough of the store'],tourp:['معاينة حية لتجربة التصفح والتفاعل.','A live look at browsing and interaction.'],
- review:['رأي العميل','Client feedback'],packs:['ابدأ مشروعك','Start your project'],packsp:['اختر باقة بسعر ثابت وتسليم سريع.','Choose a fixed-price package with fast delivery.'],
+ review:['رأي العميل','Client feedback'],tap:['اضغط على الصورة لتكبيرها','Tap an image to enlarge'],packs:['ابدأ مشروعك','Start your project'],packsp:['اختر باقة بسعر ثابت وتسليم سريع.','Choose a fixed-price package with fast delivery.'],
  all:['شاهد كل الباقات','See all packages'],pop:['الأكثر طلبًا','Most popular'],next:['المشروع التالي','Next project'],days:['يوم','days']};
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function T(a,e,tag,cls){return '<'+(tag||'span')+(cls?' class="'+cls+'"':'')+' data-ar="'+esc(a)+'" data-en="'+esc(e)+'">'+esc(a)+'</'+(tag||'span')+'>'}
@@ -19,7 +19,7 @@ h+='<section class="wrap hero"><h1 class="rv">'+B(P.title,'span')+'</h1><p class
  +'<div><dt>'+U('client')+'</dt><dd>'+B(P.client)+'</dd></div>'
  +'<div><dt>'+U('services')+'</dt><dd>'+B(P.services)+'</dd></div>'
  +'<div><dt>'+U('platform')+'</dt><dd>'+esc(P.platform)+'</dd></div>'
- +'<div><dt>'+U('year')+'</dt><dd>'+esc(P.year)+'</dd></div>'
+ +(P.year?'<div><dt>'+U('year')+'</dt><dd>'+esc(P.year)+'</dd></div>':'')
  +(P.live?'<div><dt>&nbsp;</dt><dd><a href="'+esc(P.live)+'" target="_blank" rel="noopener">'+U('live')+' ↗</a></dd></div>':'')
  +'</dl></section>';
 h+='<div class="wrap">'+imgs([P.hero])+'</div>';
@@ -30,7 +30,15 @@ if(P.video&&P.video.length){
   +P.video.map(function(v){return '<source src="'+esc(v)+'" type="video/'+(v.split('.').pop()==='webm'?'webm':'mp4')+'">'}).join('')+'</video></div></section></div>';
 }
 if(P.gallery&&P.gallery.length)h+='<div class="wrap">'+imgs(P.gallery)+'</div>';
-if(P.review)h+='<div class="wrap"><blockquote class="quote rv"><p>'+B(P.review.quote)+'</p><span>'+B(P.review.author)+'</span></blockquote></div>';
+if((P.review&&P.review.quote)||(P.reviews&&P.reviews.length)){
+ h+='<div class="wrap"><section class="rev rv" id="rev"><h2>'+U('review')+'</h2>';
+ if(P.review&&P.review.quote)h+='<blockquote class="quote"><p>'+B(P.review.quote)+'</p><span>'+B(P.review.author)+'</span></blockquote>';
+ if(P.reviews&&P.reviews.length){
+  if(P.reviewBy)h+='<p class="by">'+B(P.reviewBy)+'</p>';
+  h+='<div class="proofs">'+P.reviews.map(function(r){return '<img src="'+esc(r)+'" alt="'+esc(UI.review[1])+'" loading="lazy">'}).join('')+'</div><p class="by sm">'+U('tap')+'</p>';
+ }
+ h+='</section></div>';
+}
 h+='<div class="wrap"><section class="packs rv"><h2>'+U('packs')+'</h2><p>'+U('packsp')+'</p><div class="pg" id="pg"></div><a class="btn" href="packages.html">'+U('all')+'</a></section>';
 if(P.next)h+='<a class="next rv" href="'+esc(P.next.href)+'"><small>'+U('next')+'</small><h3>'+B(P.next.title)+'</h3></a>';
 h+='</div>';
@@ -61,5 +69,12 @@ if(v){
   srcs[srcs.length-1].addEventListener('error',function(){$('#tour').hidden=true});
   new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.35}).observe(box);
   box.onclick=function(){v.paused?v.play():v.pause()};
+}
+/* صور رأي العميل: تكبير عند الضغط، وإخفاء القسم لو مفيش صور */
+var rev=document.querySelector('#rev');
+if(rev&&rev.querySelector('.proofs')){
+  var pr=rev.querySelectorAll('.proofs img'),bad=0,hasQ=!!rev.querySelector('.quote');
+  pr.forEach(function(im){im.addEventListener('error',function(){im.hidden=true;bad++;if(bad===pr.length){rev.querySelector('.proofs').hidden=true;var by=rev.querySelectorAll('.by');by.forEach(function(b){b.hidden=true});if(!hasQ)rev.hidden=true}});
+    im.addEventListener('click',function(){var lb=document.createElement('div');lb.className='lb';lb.innerHTML='<img src="'+im.src+'" alt="">';lb.onclick=function(){lb.remove()};document.body.appendChild(lb)})});
 }
 })();
