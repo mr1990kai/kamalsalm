@@ -11,7 +11,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return
 function T(a,e,tag,cls){return '<'+(tag||'span')+(cls?' class="'+cls+'"':'')+' data-ar="'+esc(a)+'" data-en="'+esc(e)+'">'+esc(a)+'</'+(tag||'span')+'>'}
 function U(k,tag,cls){return T(UI[k][0],UI[k][1],tag,cls)}
 function B(o,tag,cls){return T(o.ar,o.en,tag,cls)}
-function imgs(list){return (list||[]).map(function(s){return '<div class="shot rv"><img src="'+esc(s)+'" alt="'+esc(P.title.en)+'" loading="lazy" onerror="this.parentNode.hidden=true"></div>'}).join('')}
+function imgs(list){return (list||[]).map(function(s){return '<div class="shot rv"><img src="'+esc(s)+'" alt="'+esc(P.title.en)+'" loading="lazy" onerror="this.parentNode.hidden=true" onload="if(this.naturalHeight>this.naturalWidth*1.15)this.parentNode.classList.add(\'portrait\')"></div>'}).join('')}
 function list(a,e,tag){var out='';for(var i=0;i<a.length;i++)out+=T(a[i],(e&&e[i])||a[i],tag||'li');return out}
 
 var NEXT=P.next;

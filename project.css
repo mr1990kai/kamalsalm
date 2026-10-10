@@ -17,6 +17,7 @@ header{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:1fr a
 .meta dd{font-weight:700;font-size:.98rem;line-height:1.55}
 .meta a{text-decoration:none;border-bottom:1px solid var(--ink)}
 .shot{margin:34px 0}
+.shot.portrait{max-width:min(100%,380px);margin-inline:auto}
 .shot img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#f4f1ed}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:6vw;padding:46px 0}
 .cols h2{font-size:1.4rem;margin-bottom:14px}
