@@ -36,7 +36,7 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
 #shade.on{opacity:1;pointer-events:auto}
 #stage{position:fixed;inset:0;overflow:hidden}
 .scene{position:absolute;inset:0;padding:96px 6vw 36px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.s1{background:#fff;z-index:1}.s2{background:var(--brown);color:#fff;z-index:2}.s3{background:#f6f3ef;z-index:3}.s4{background:#000;color:#fff;z-index:4}
+.s1{background:#fff;z-index:1}.s2{background:var(--brown);color:#fff;z-index:2}.s3{background:#f6f3ef;z-index:3}.s4{background:#000;color:#fff;z-index:4}.s5{background:var(--brown);color:#fff;z-index:5}
 .sh{max-width:760px;margin-bottom:26px}
 .sh h2{font-size:clamp(1.7rem,3.4vw,2.8rem);line-height:1.25;margin-bottom:10px}
 .sh p{opacity:.72;font-weight:300;line-height:1.85}
@@ -52,13 +52,15 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
 .facts b{display:block;font-size:1.6rem;line-height:1.1}.facts span{font-size:.8rem;color:var(--muted)}
 .ph{border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.1);height:min(66vh,560px);background:#eee}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1180px;width:100%}
-.svc{border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:26px 26px 22px}
-.svc .t{display:inline-block;font:600 .75rem var(--en);background:#fff;color:var(--brown);padding:4px 12px;margin-bottom:14px;direction:ltr}
-.svc h3{font-size:1.3rem;margin-bottom:14px}
-.svc ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.svc li{font-size:.9rem;line-height:1.65;opacity:.85;display:flex;gap:10px}
-.svc li::before{content:'✓';color:var(--gold);flex:none}
+.sv{max-width:760px;margin:0 auto;width:100%;position:relative;z-index:1}
+.sv .t{display:inline-block;font:600 .78rem var(--en);padding:4px 12px;margin-bottom:18px;direction:ltr}
+.s2 .t{background:#fff;color:var(--brown)}.s3 .t{background:#111;color:#fff}
+.sv h2{font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.2;margin-bottom:14px}
+.sv>p{opacity:.75;font-weight:300;line-height:1.9;margin-bottom:24px;max-width:32em}
+.sv ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.sv li{display:flex;gap:12px;line-height:1.7}
+.sv li::before{content:'✓';flex:none;color:var(--gold)}
+.wm{position:absolute;inset-inline:0;bottom:-1vw;text-align:center;font:700 clamp(4rem,20vw,18rem)/1 var(--logo);opacity:.06;direction:ltr;pointer-events:none;white-space:nowrap}
 #view{overflow:hidden;margin-inline:-6vw}
 #track{display:flex;gap:20px;padding-inline:6vw;width:max-content}
 .pc{flex:none;width:min(360px,78vw);background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;display:block}
@@ -87,7 +89,20 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
 .static #view{overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-5%;padding-bottom:6px}
 .static #track{padding-inline:5%}.static .pc{scroll-snap-align:center}
 .static .rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.static .rv.on{opacity:1;transform:none}
-@media (max-width:899px){nav.m{display:none}#menu{display:block}.about,.cards{grid-template-columns:1fr}.ph{height:340px}.about h1{font-size:2rem}.facts{gap:20px}}
+@media (max-width:899px){
+nav.m{display:none}#menu{display:block}#dots{display:none}
+.s1{padding:0;justify-content:flex-end;background:#000;color:#fff}
+.about{display:block;max-width:none}
+.about>div:first-child{position:relative;z-index:2;padding:0 6vw calc(6vh + env(safe-area-inset-bottom,0px))}
+.ph{position:absolute;inset:0;height:auto;border-radius:0;box-shadow:none}
+.ph::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.6) 42%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.35) 100%)}
+.about h1{font-size:1.85rem}
+.about p{color:#ddd;font-size:.95rem;line-height:1.8;margin-bottom:18px}
+.eyebrow{color:#ddd;border-color:rgba(255,255,255,.3)}
+.b1{background:#fff;color:#000}.b2{background:none;color:#fff;border-color:rgba(255,255,255,.5)}
+.facts{display:none}
+.sv h2{font-size:1.9rem}.sv li{font-size:.95rem}}
+@media (min-width:900px) and (max-height:700px){.ph{height:min(60vh,460px)}.about h1{font-size:clamp(1.8rem,3.4vw,3rem)}.facts{margin-top:18px}.sv ul{gap:8px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -99,7 +114,7 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
   <a href="#" data-go="1" data-ar="الخدمات" data-en="Services">الخدمات</a>
   <a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a>
   <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
-  <a href="#" data-go="3" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
+  <a href="#" data-go="4" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
 </nav>
 <header>
   <button id="lang" aria-label="Language">EN</button>
@@ -109,7 +124,7 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
     <a href="#" data-go="1" data-ar="الخدمات" data-en="Services">الخدمات</a>
     <a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a>
     <a href="packages.html" class="pill" data-ar="الباقات" data-en="Packages">الباقات</a>
-    <a href="#" data-go="3" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
+    <a href="#" data-go="4" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
   </nav>
   <button id="menu" aria-label="Menu">&#9776;</button>
 </header>
@@ -138,29 +153,31 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
   </section>
 
   <section class="scene s2" id="services">
-    <div class="sh rv"><h2 data-ar="ماذا أقدّم" data-en="What I do">ماذا أقدّم</h2>
-      <p data-ar="لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل." data-en="Every part of the store has a clear job: a stronger presentation, more trust, an easier experience.">لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل.</p></div>
-    <div class="cards">
-      <div class="svc rv"><span class="t">Shopify</span><h3 data-ar="تصميم متاجر Shopify" data-en="Shopify store design">تصميم متاجر Shopify</h3><ul>
-        <li data-ar="واجهات مرتبة وواضحة باستخدام ثيمات حديثة" data-en="Clean, conversion-minded layouts on modern themes">واجهات مرتبة وواضحة باستخدام ثيمات حديثة</li>
-        <li data-ar="صفحات منتجات وصفحات هبوط تشرح العرض بسرعة" data-en="Product and landing pages that explain the offer fast">صفحات منتجات وصفحات هبوط تشرح العرض بسرعة</li>
-        <li data-ar="الهوية: الألوان والخطوط والبانرات والأقسام" data-en="Identity: colours, typography, banners, collections">الهوية: الألوان والخطوط والبانرات والأقسام</li>
-        <li data-ar="ربط الدومين وتجهيز Meta وTikTok Pixel" data-en="Domain setup and Meta and TikTok Pixel readiness">ربط الدومين وتجهيز Meta وTikTok Pixel</li></ul></div>
-      <div class="svc rv"><span class="t">Easy Order</span><h3 data-ar="متاجر وصفحات Easy Order" data-en="Easy Order stores and pages">متاجر وصفحات Easy Order</h3><ul>
-        <li data-ar="صفحات بيع سريعة لمنتج واحد للحملات المباشرة" data-en="Fast single-product pages for direct campaigns">صفحات بيع سريعة لمنتج واحد للحملات المباشرة</li>
-        <li data-ar="نموذج طلب واضح للدفع عند الاستلام" data-en="A clear cash-on-delivery order form">نموذج طلب واضح للدفع عند الاستلام</li>
-        <li data-ar="عناصر ثقة كالمراجعات والعروض في أماكنها" data-en="Trust elements like reviews and offers, well placed">عناصر ثقة كالمراجعات والعروض في أماكنها</li>
-        <li data-ar="ربط البيكسل واختبار الجاهزية قبل الحملات" data-en="Pixel setup and readiness checks before campaigns">ربط البيكسل واختبار الجاهزية قبل الحملات</li></ul></div>
+    <div class="wm" aria-hidden="true">Shopify</div>
+    <div class="sv">
+      <span class="t rv">Shopify</span>
+      <h2 class="rv" data-ar="تصميم متاجر Shopify" data-en="Shopify store design">تصميم متاجر Shopify</h2>
+      <p class="rv" data-ar="لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل." data-en="Every part of the store has a clear job: a stronger presentation, more trust, an easier experience.">لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل.</p>
+      <ul class="rv"><li data-ar="واجهات مرتبة وواضحة باستخدام ثيمات حديثة" data-en="Clean, conversion-minded layouts on modern themes">واجهات مرتبة وواضحة باستخدام ثيمات حديثة</li><li data-ar="صفحات منتجات وصفحات هبوط تشرح العرض بسرعة" data-en="Product and landing pages that explain the offer fast">صفحات منتجات وصفحات هبوط تشرح العرض بسرعة</li><li data-ar="الهوية: الألوان والخطوط والبانرات والأقسام" data-en="Identity: colours, typography, banners, collections">الهوية: الألوان والخطوط والبانرات والأقسام</li><li data-ar="ربط الدومين وتجهيز Meta وTikTok Pixel" data-en="Domain setup and Meta and TikTok Pixel readiness">ربط الدومين وتجهيز Meta وTikTok Pixel</li></ul>
+    </div>
+  </section>
+  <section class="scene s3" id="services2">
+    <div class="wm" aria-hidden="true">Easy Order</div>
+    <div class="sv">
+      <span class="t rv">Easy Order</span>
+      <h2 class="rv" data-ar="متاجر وصفحات Easy Order" data-en="Easy Order stores and pages">متاجر وصفحات Easy Order</h2>
+      <p class="rv" data-ar="صفحات بيع سريعة مصممة للحملات المباشرة، بنموذج طلب بسيط للدفع عند الاستلام." data-en="Fast sales pages built for direct campaigns, with a simple cash-on-delivery order form.">صفحات بيع سريعة مصممة للحملات المباشرة، بنموذج طلب بسيط للدفع عند الاستلام.</p>
+      <ul class="rv"><li data-ar="صفحات بيع سريعة لمنتج واحد للحملات المباشرة" data-en="Fast single-product pages for direct campaigns">صفحات بيع سريعة لمنتج واحد للحملات المباشرة</li><li data-ar="نموذج طلب واضح يقلل التشتت" data-en="A clear order form that reduces friction">نموذج طلب واضح يقلل التشتت</li><li data-ar="عناصر ثقة كالمراجعات والعروض في أماكنها" data-en="Trust elements like reviews and offers, well placed">عناصر ثقة كالمراجعات والعروض في أماكنها</li><li data-ar="ربط البيكسل واختبار الجاهزية قبل الحملات" data-en="Pixel setup and readiness checks before campaigns">ربط البيكسل واختبار الجاهزية قبل الحملات</li></ul>
     </div>
   </section>
 
-  <section class="scene s3" id="work">
+  <section class="scene s4" id="work">
     <div class="sh rv"><h2 data-ar="نبذة عن المشروعات" data-en="A look at the work">نبذة عن المشروعات</h2>
       <p data-ar="مشاريع منفّذة لعلامات حقيقية. واصل التمرير لتتصفحها، أو افتح المعرض كاملًا." data-en="Delivered projects for real brands. Keep scrolling to browse, or open the full gallery.">مشاريع منفّذة لعلامات حقيقية. واصل التمرير لتتصفحها، أو افتح المعرض كاملًا.</p></div>
     <div id="view"><div id="track"><div class="ld" data-ar="جارٍ تحميل المشاريع…" data-en="Loading projects…">جارٍ تحميل المشاريع…</div></div></div>
   </section>
 
-  <section class="scene s4" id="contact">
+  <section class="scene s5" id="contact">
     <div class="end">
       <h2 class="rv" data-ar="لديك منتج يستحق عرضًا أقوى؟" data-en="Have a product that deserves a stronger presentation?">لديك منتج يستحق عرضًا أقوى؟</h2>
       <p class="rv" data-ar="اختر باقة بسعر ثابت، أو أرسل لي تفاصيل مشروعك وسأتواصل معك على واتساب." data-en="Pick a fixed-price package, or send me your project details and I'll reach out on WhatsApp.">اختر باقة بسعر ثابت، أو أرسل لي تفاصيل مشروعك وسأتواصل معك على واتساب.</p>
@@ -178,8 +195,8 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 var lang='ar',$=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
-var scenes=window.matchMedia('(min-width:900px) and (min-height:620px)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof gsap!=='undefined';
-var tl=null,POS=[0,1.6,4.7,8.9],total=1;
+var scenes=!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof gsap!=='undefined';
+var tl=null,POS=[0,1.6,3.9,6.0,10.6],total=1;
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function apply(){
   document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
@@ -189,7 +206,7 @@ function apply(){
   if(scenes&&window.ScrollTrigger)ScrollTrigger.refresh();
 }
 function go(i){
-  if(!scenes){var e=document.getElementById(['about','services','work','contact'][i]);if(e)e.scrollIntoView({behavior:'smooth'});return}
+  if(!scenes){var e=document.getElementById(['about','services','services2','work','contact'][i]);if(e)e.scrollIntoView({behavior:'smooth'});return}
   var max=document.documentElement.scrollHeight-innerHeight;window.scrollTo({top:POS[i]/total*max,behavior:'smooth'});
 }
 $('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';apply()};
@@ -216,27 +233,29 @@ fetch('projects.html',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;retu
 });
 
 if(scenes){
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);ScrollTrigger.config({ignoreMobileResize:true});
   var s=$$('.scene'),track=$('#track'),view=$('#view');
   gsap.set(s.slice(1),{yPercent:100});
   var dist=function(){var o=track.scrollWidth-view.clientWidth;return (document.documentElement.dir==='rtl'?1:-1)*Math.max(0,o)};
-  var dots=$('#dots');[0,1,2,3].forEach(function(i){var b=document.createElement('button');b.setAttribute('aria-label','Section '+(i+1));b.onclick=function(){go(i)};dots.appendChild(b)});
+  var dots=$('#dots');[0,1,2,3,4].forEach(function(i){var b=document.createElement('button');b.setAttribute('aria-label','Section '+(i+1));b.onclick=function(){go(i)};dots.appendChild(b)});
   tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#scroller',start:'top top',end:'bottom bottom',scrub:.6,onUpdate:function(){
     var t=tl.time(),c=0;POS.forEach(function(p,i){if(t>=p-.4)c=i});
     $$('#dots button').forEach(function(b,i){b.classList.toggle('on',i===c)});
   }}});
   tl.to({},{duration:.6})
-    .to('.s1 .about',{scale:.94,opacity:.3,duration:1},.6)
+    .to('.s1',{scale:.95,opacity:.4,duration:1},.6)
     .fromTo('.s2',{yPercent:100},{yPercent:0,duration:1},.6)
-    .fromTo('.s2 .rv',{y:34,opacity:0},{y:0,opacity:1,stagger:.3,duration:.6},1.4)
-    .fromTo('.s3',{yPercent:100},{yPercent:0,duration:1},3.6)
-    .fromTo('.s3 .rv',{y:30,opacity:0},{y:0,opacity:1,duration:.6},4.4)
-    .fromTo('#track',{x:0},{x:dist,duration:3,invalidateOnRefresh:true},4.8)
-    .fromTo('.s4',{yPercent:100},{yPercent:0,duration:1},7.9)
-    .fromTo('.s4 .rv',{y:30,opacity:0},{y:0,opacity:1,stagger:.22,duration:.6},8.8)
-    .to({},{duration:1},9.4);
+    .fromTo('.s2 .rv',{y:34,opacity:0},{y:0,opacity:1,stagger:.25,duration:.6},1.4)
+    .fromTo('.s3',{yPercent:100},{yPercent:0,duration:1},2.9)
+    .fromTo('.s3 .rv',{y:34,opacity:0},{y:0,opacity:1,stagger:.25,duration:.6},3.7)
+    .fromTo('.s4',{yPercent:100},{yPercent:0,duration:1},5.0)
+    .fromTo('.s4 .rv',{y:30,opacity:0},{y:0,opacity:1,duration:.6},5.8)
+    .fromTo('#track',{x:0},{x:dist,duration:3,invalidateOnRefresh:true},6.3)
+    .fromTo('.s5',{yPercent:100},{yPercent:0,duration:1},9.6)
+    .fromTo('.s5 .rv',{y:30,opacity:0},{y:0,opacity:1,stagger:.22,duration:.6},10.5)
+    .to({},{duration:1},11.1);
   total=tl.duration();
-  $('#scroller').style.height=(total*58+100)+'vh';
+  $('#scroller').style.height=(total*50+100)+'vh';
   gsap.from('.s1 .rv',{y:28,opacity:0,stagger:.12,duration:.9,delay:.15,ease:'power2.out'});
   $$('#dots button')[0].classList.add('on');
 }else{
