@@ -2,278 +2,248 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>تصميم المواقع | Kamal Elnhrawy</title>
 <meta name="description" content="تصميم متاجر Shopify وEasy Order وصفحات الهبوط بهوية واضحة وتتبع إعلاني جاهز.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff;--ink:#111;--muted:#666;--line:#e5e5e5;--brown:#2b1810;--ar:'Noto Kufi Arabic',sans-serif;--en:'Plus Jakarta Sans',sans-serif;--logo:'Cinzel',serif}
+:root{--ink:#111;--muted:#666;--line:#e5e2de;--brown:#2b1810;--gold:#f5b400;--ar:'Noto Kufi Arabic',Tahoma,sans-serif;--en:'Plus Jakarta Sans',Arial,sans-serif;--logo:'Cinzel',Georgia,serif}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{background:var(--bg);color:var(--ink);font-family:var(--ar);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased}
-body.lang-en{font-family:var(--en)}
-a:focus-visible,button:focus-visible{outline:2px solid #f5b400;outline-offset:3px}
-header{position:fixed;top:0;left:0;width:100%;z-index:1000;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(15px + env(safe-area-inset-top,0px)) 5% 15px;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.hl{display:flex;align-items:center;gap:15px}.hr{display:flex;align-items:center;justify-content:flex-end;gap:15px}
-.lang-btn{background:none;border:1px solid var(--ink);padding:5px 12px;font:600 .85rem var(--en);cursor:pointer;transition:.3s}
-.lang-btn:hover{background:var(--ink);color:#fff}
-.logo{font-family:var(--logo);font-size:1.2rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--ink);direction:ltr}
-.nav-links{display:flex;list-style:none;gap:20px}
-.nav-links a{text-decoration:none;color:var(--ink);font-size:.9rem;font-weight:500;transition:opacity .3s}
-.nav-links a:hover{opacity:.6}
-.nav-links a.pill{border:1px solid var(--ink);padding:4px 14px;border-radius:99px}
-.menu-toggle{display:none;background:none;border:none;font-size:1.3rem;color:var(--ink);cursor:pointer}
-.drawer{position:fixed;top:0;right:-100%;width:80%;max-width:300px;height:100vh;background:#fff;box-shadow:-5px 0 25px rgba(0,0,0,.1);z-index:1001;padding:40px 25px;display:flex;flex-direction:column;gap:25px;transition:right .4s cubic-bezier(.16,1,.3,1)}
-html[dir=ltr] .drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16,1,.3,1)}
-.drawer.active{right:0}html[dir=ltr] .drawer.active{left:0}
-.drawer button{align-self:flex-end;background:none;border:none;font-size:1.5rem;cursor:pointer}
-.drawer ul{list-style:none;display:flex;flex-direction:column;gap:20px}
-.drawer a{text-decoration:none;color:var(--ink);font-size:1.1rem;font-weight:600}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1000;opacity:0;pointer-events:none;transition:opacity .4s}
-.overlay.active{opacity:1;pointer-events:auto}
-main{padding-top:65px}
-.hero{padding:34px 5% 72px}
-.hero-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(340px,.9fr);gap:56px;align-items:center}
-.hero-img{border-radius:12px;background:#f6f6f6;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.08);min-height:460px;max-height:700px}
-.hero-img img{width:100%;height:100%;min-height:460px;max-height:700px;object-fit:cover;display:block;transition:transform .8s ease-out}
-.hero-img:hover img{transform:scale(1.015)}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:7px 12px;border:1px solid var(--line);border-radius:99px;color:var(--muted);font-size:.78rem}
-.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--ink)}
-.hero h1{font-size:clamp(2rem,3.8vw,3.6rem);line-height:1.25;margin-bottom:20px}
-.hero p{font-size:1.05rem;line-height:1.95;color:var(--muted);font-weight:300;margin-bottom:28px;max-width:34em}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.b1,.b2{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 20px;border-radius:4px;font-size:.9rem;font-weight:700;text-decoration:none;transition:transform .25s,box-shadow .25s}
-.b1{background:var(--ink);color:#fff}.b2{border:1px solid #d0d0d0;color:var(--ink);background:#fff}
-.b1:hover,.b2:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.1)}
-.sec{max-width:1180px;margin:0 auto;padding:88px 5% 0}
-.sh{text-align:center;max-width:780px;margin:0 auto 34px}
-.sh h2{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:10px;line-height:1.3}
-.sh p{color:var(--muted);line-height:1.85}
-.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.pc{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;text-decoration:none;color:inherit;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
-.pc:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(0,0,0,.08)}
-.pc .m{aspect-ratio:16/10;overflow:hidden;background:#f6f6f6}
-.pc .m img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s}
-.pc:hover .m img{transform:scale(1.04)}
-.pc .c{padding:20px 22px 22px}.pc h3{font-size:1.15rem;margin-bottom:8px}
-.pc p{color:var(--muted);font-size:.86rem;line-height:1.75;margin-bottom:12px}
-.pc .l{font-size:.84rem;font-weight:700}
-.loading{grid-column:1/-1;padding:40px 20px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted)}
-.more{margin-top:24px;text-align:center}
-.more a{display:inline-block;padding:12px 20px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;border-radius:4px;font-weight:700;font-size:.88rem;transition:.25s}
-.more a:hover{background:var(--ink);color:#fff}
-.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.sc{border:1px solid var(--line);border-radius:10px;padding:32px 28px}
-.sc .pb{display:inline-block;background:var(--ink);color:#fff;padding:4px 12px;font:600 .75rem var(--en);margin-bottom:18px;direction:ltr}
-.sc h3{font-size:1.25rem;margin-bottom:14px}
-.sc ul{list-style:none;display:flex;flex-direction:column;gap:12px}
-.sc li{font-size:.9rem;color:var(--muted);display:flex;gap:10px;line-height:1.7}
-.sc li i{color:var(--ink);margin-top:5px;font-size:.78rem}
-.pk{margin-top:22px;border-radius:12px;background:var(--brown);color:#fff;padding:34px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.pk h3{font-size:1.4rem;margin-bottom:6px}.pk p{opacity:.8;font-weight:300;max-width:34em}
-.pk a{background:#fff;color:var(--brown);padding:13px 28px;border-radius:3px;font-weight:700;text-decoration:none;transition:.25s}
-.pk a:hover{transform:translateY(-2px)}
-.proof{display:grid;grid-template-columns:.95fr 1.05fr;gap:46px;align-items:center;padding:44px;border:1px solid var(--line);border-radius:12px;background:#fafafa}
-.proof h2{font-size:clamp(1.6rem,2.6vw,2.15rem);line-height:1.4;margin-bottom:14px}
-.proof p{color:var(--muted);line-height:1.9}
-.pts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-.pt{padding:15px;background:#fff;border:1px solid var(--line);border-radius:8px}
-.pt strong{display:block;margin-bottom:4px}.pt span{color:var(--muted);font-size:.8rem;line-height:1.6}
-.proof img{width:100%;max-height:520px;object-fit:cover;border-radius:10px;display:block}
-.stats{display:flex;justify-content:space-around;gap:30px;flex-wrap:wrap;text-align:center;margin-top:88px;padding:48px 5%;border-block:1px solid var(--line);background:#fafafa}
-.stats h3{font-size:2.3rem}.stats p{color:var(--muted);font-size:.92rem}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.st{padding:24px;border:1px solid var(--line);border-inline-start:3px solid var(--ink);border-radius:8px}
-.st span{font-size:.8rem;font-weight:700;color:var(--muted)}.st h4{margin:8px 0}.st p{font-size:.86rem;color:var(--muted)}
-.cta{background:#111;color:#fff;text-align:center;padding:76px 20px;margin-top:96px}
-.cta h2{font-size:clamp(1.8rem,3.3vw,2.7rem);line-height:1.3;margin-bottom:14px}
-.cta p{color:#ccc;max-width:600px;margin:0 auto 28px;line-height:1.85}
-.cta .wa{display:inline-block;background:#fff;color:#111;padding:13px 30px;font-weight:700;text-decoration:none;border-radius:2px;transition:.3s}
-.cta .wa:hover{transform:translateY(-2px)}
-footer{padding:36px 5%;text-align:center}
-.soc{display:flex;justify-content:center;gap:20px;margin-bottom:18px}
-.soc a{width:45px;height:45px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1.2rem;text-decoration:none;transition:.3s}
-.soc a:hover{background:var(--ink);color:#fff;transform:translateY(-3px)}
-.copy{font-size:.8rem;color:var(--muted)}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}.rv.on{opacity:1;transform:none}
-html[dir=rtl] .pc .l i,html[dir=rtl] .more i{transform:rotate(180deg)}
-@media (max-width:900px){.hero-inner{grid-template-columns:1fr;gap:28px}.hero-copy{text-align:center}.hero p{margin-inline:auto}.actions{justify-content:center}.hero-img,.hero-img img{min-height:400px}.proof{grid-template-columns:1fr}}
-@media (max-width:768px){.nav-links{display:none}.menu-toggle{display:block}main{padding-top:calc(65px + env(safe-area-inset-top,0px))}.hero{padding:16px 16px 50px}.fgrid,.sgrid{grid-template-columns:1fr}.sec{padding:68px 16px 0}.proof{padding:24px;gap:26px}.pts{grid-template-columns:1fr}.pk{padding:26px}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+html,body{background:#fff}
+body{font-family:var(--ar);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.en{font-family:var(--en)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 5% 14px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--logo);font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-size:1.1rem;direction:ltr}
+#lang{justify-self:start;background:none;border:1px solid var(--ink);padding:5px 12px;font:600 .8rem var(--en);cursor:pointer;border-radius:3px}
+nav.m{justify-self:end;display:flex;gap:20px;align-items:center}
+nav.m a{text-decoration:none;font-size:.9rem;font-weight:500;cursor:pointer;transition:opacity .3s}
+nav.m a:hover{opacity:.6}
+nav.m a.pill{border:1px solid var(--ink);padding:4px 14px;border-radius:99px}
+#menu{display:none;justify-self:end;background:none;border:none;font-size:1.5rem;cursor:pointer}
+#drawer{position:fixed;top:0;right:-100%;width:80%;max-width:300px;height:100vh;background:#fff;z-index:70;padding:40px 25px;display:flex;flex-direction:column;gap:22px;box-shadow:-5px 0 25px rgba(0,0,0,.1);transition:right .4s cubic-bezier(.16,1,.3,1)}
+html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16,1,.3,1)}
+#drawer.on{right:0}html[dir=ltr] #drawer.on{left:0}
+#drawer button{align-self:flex-end;background:none;border:none;font-size:1.6rem;cursor:pointer}
+#drawer a{text-decoration:none;font-weight:600;font-size:1.1rem}
+#shade{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:60;opacity:0;pointer-events:none;transition:opacity .4s}
+#shade.on{opacity:1;pointer-events:auto}
+#stage{position:fixed;inset:0;overflow:hidden}
+.scene{position:absolute;inset:0;padding:96px 6vw 36px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.s1{background:#fff;z-index:1}.s2{background:var(--brown);color:#fff;z-index:2}.s3{background:#f6f3ef;z-index:3}.s4{background:#000;color:#fff;z-index:4}
+.sh{max-width:760px;margin-bottom:26px}
+.sh h2{font-size:clamp(1.7rem,3.4vw,2.8rem);line-height:1.25;margin-bottom:10px}
+.sh p{opacity:.72;font-weight:300;line-height:1.85}
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:5vw;align-items:center;max-width:1180px;margin:0 auto;width:100%}
+.eyebrow{display:inline-block;margin-bottom:16px;padding:6px 13px;border:1px solid var(--line);border-radius:99px;color:var(--muted);font-size:.78rem}
+.about h1{font-size:clamp(2rem,4vw,3.6rem);line-height:1.22;margin-bottom:18px}
+.about p{color:var(--muted);font-weight:300;line-height:1.95;max-width:34em;margin-bottom:24px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.b1,.b2{display:inline-flex;align-items:center;min-height:46px;padding:10px 20px;border-radius:4px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .25s}
+.b1{background:var(--ink);color:#fff}.b2{border:1px solid #cfcbc6;background:#fff}
+.b1:hover,.b2:hover{transform:translateY(-2px)}
+.facts{display:flex;gap:28px;margin-top:28px;flex-wrap:wrap}
+.facts b{display:block;font-size:1.6rem;line-height:1.1}.facts span{font-size:.8rem;color:var(--muted)}
+.ph{border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.1);height:min(66vh,560px);background:#eee}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1180px;width:100%}
+.svc{border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:26px 26px 22px}
+.svc .t{display:inline-block;font:600 .75rem var(--en);background:#fff;color:var(--brown);padding:4px 12px;margin-bottom:14px;direction:ltr}
+.svc h3{font-size:1.3rem;margin-bottom:14px}
+.svc ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.svc li{font-size:.9rem;line-height:1.65;opacity:.85;display:flex;gap:10px}
+.svc li::before{content:'✓';color:var(--gold);flex:none}
+#view{overflow:hidden;margin-inline:-6vw}
+#track{display:flex;gap:20px;padding-inline:6vw;width:max-content}
+.pc{flex:none;width:min(360px,78vw);background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;display:block}
+.pc .m{aspect-ratio:4/3;overflow:hidden;background:#eee}
+.pc img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s}
+.pc:hover img{transform:scale(1.04)}
+.pc .c{padding:16px 18px 18px}.pc h3{font-size:1.05rem;margin-bottom:6px}
+.pc p{font-size:.82rem;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc.all{display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:700;min-height:240px}
+.ld{padding:30px;color:var(--muted)}
+.end{max-width:760px;margin:0 auto;text-align:center}
+.end h2{font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.25;margin-bottom:14px}
+.end p{color:#cfcfcf;font-weight:300;line-height:1.9;margin-bottom:28px}
+.end .btns{justify-content:center}
+.end .b1{background:#fff;color:#000}.end .b2{background:none;color:#fff;border-color:#555}
+.soc{display:flex;justify-content:center;gap:16px;margin-top:40px}
+.soc a{width:44px;height:44px;border:1px solid #444;border-radius:50%;display:grid;place-items:center;text-decoration:none;font-size:.8rem;font-weight:700;transition:.3s}
+.soc a:hover{background:#fff;color:#000}
+.end .cp{margin-top:18px;margin-bottom:0;font-size:.78rem;color:#888}
+#dots{position:fixed;inset-inline-end:18px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:12px}
+#dots button{width:10px;height:10px;border-radius:50%;border:1.5px solid #888;background:transparent;cursor:pointer;padding:0;transition:.3s}
+#dots button.on{background:var(--gold);border-color:var(--gold);transform:scale(1.25)}
+.static #stage{position:static;overflow:visible}
+.static .scene{position:relative;inset:auto;padding:84px 5% 56px;justify-content:flex-start;overflow:visible}
+.static #dots{display:none}
+.static #view{overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-5%;padding-bottom:6px}
+.static #track{padding-inline:5%}.static .pc{scroll-snap-align:center}
+.static .rv{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.static .rv.on{opacity:1;transform:none}
+@media (max-width:899px){nav.m{display:none}#menu{display:block}.about,.cards{grid-template-columns:1fr}.ph{height:340px}.about h1{font-size:2rem}.facts{gap:20px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="overlay" id="overlay"></div>
-<nav class="drawer" id="drawer" aria-label="Menu">
-  <button id="closeDrawer" aria-label="Close">&times;</button>
-  <ul>
-    <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
-    <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-    <li><a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
-    <li><a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a></li>
-    <li><a href="#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
-    <li><a href="#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
-  </ul>
+<div id="shade"></div>
+<nav id="drawer" aria-label="Menu">
+  <button id="close" aria-label="Close">&times;</button>
+  <a href="#" data-go="0" data-ar="عني" data-en="About">عني</a>
+  <a href="#" data-go="1" data-ar="الخدمات" data-en="Services">الخدمات</a>
+  <a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a>
+  <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
+  <a href="#" data-go="3" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
 </nav>
 <header>
-  <div class="hl"><button class="lang-btn" id="langToggle">EN</button></div>
-  <a href="index.html" class="logo">Kamal Elnhrawy</a>
-  <div class="hr">
-    <ul class="nav-links">
-      <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
-      <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
-      <li><a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a></li>
-      <li><a href="packages.html" class="pill" data-ar="الباقات" data-en="Packages">الباقات</a></li>
-      <li><a href="#process" data-ar="منهجية العمل" data-en="Process">منهجية العمل</a></li>
-      <li><a href="#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
-    </ul>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-  </div>
+  <button id="lang" aria-label="Language">EN</button>
+  <a class="logo" href="index.html">Kamal Elnhrawy</a>
+  <nav class="m">
+    <a href="#" data-go="0" data-ar="عني" data-en="About">عني</a>
+    <a href="#" data-go="1" data-ar="الخدمات" data-en="Services">الخدمات</a>
+    <a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a>
+    <a href="packages.html" class="pill" data-ar="الباقات" data-en="Packages">الباقات</a>
+    <a href="#" data-go="3" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
+  </nav>
+  <button id="menu" aria-label="Menu">&#9776;</button>
 </header>
+<div id="dots" aria-label="Sections"></div>
+<div id="scroller"></div>
 
-<main>
-<section class="hero" id="about">
-  <div class="hero-inner">
-    <div class="hero-img rv"><img src="1.jpg" alt="Kamal Elnhrawy"></div>
-    <div class="hero-copy rv">
-      <div class="eyebrow" data-ar="مصمم متاجر إلكترونية وبناء علامات تجارية" data-en="E-Commerce Designer & Brand Builder">مصمم متاجر إلكترونية وبناء علامات تجارية</div>
-      <h1 data-ar="أحوّل فكرة منتجك إلى متجر احترافي يقود العميل إلى الشراء." data-en="I turn your product idea into a professional store that guides customers to buy.">أحوّل فكرة منتجك إلى متجر احترافي يقود العميل إلى الشراء.</h1>
-      <p data-ar="أصمّم متاجر Shopify وEasy Order وصفحات هبوط موجّهة للبيع، مع هوية بصرية وتجربة مستخدم واضحة وتجهيز التتبع الإعلاني، من الفكرة حتى متجر جاهز للحملات." data-en="I design Shopify and Easy Order stores and sales pages built around clarity, trust and conversion, with a visual identity and ad tracking ready, from idea to launch.">أصمّم متاجر Shopify وEasy Order وصفحات هبوط موجّهة للبيع، مع هوية بصرية وتجربة مستخدم واضحة وتجهيز التتبع الإعلاني، من الفكرة حتى متجر جاهز للحملات.</p>
-      <div class="actions">
-        <a href="projects.html" class="b1" data-ar="شاهد الأعمال" data-en="View my work">شاهد الأعمال</a>
-        <a href="packages.html" class="b2" data-ar="الباقات والأسعار" data-en="Packages and pricing">الباقات والأسعار</a>
+<main id="stage">
+  <section class="scene s1" id="about">
+    <div class="about">
+      <div>
+        <div class="eyebrow rv" data-ar="مصمم متاجر إلكترونية وبناء علامات تجارية" data-en="E-Commerce Designer & Brand Builder">مصمم متاجر إلكترونية وبناء علامات تجارية</div>
+        <h1 class="rv" data-ar="أحوّل فكرة منتجك إلى متجر احترافي يقود العميل إلى الشراء." data-en="I turn your product idea into a professional store that guides customers to buy.">أحوّل فكرة منتجك إلى متجر احترافي يقود العميل إلى الشراء.</h1>
+        <p class="rv" data-ar="أصمّم متاجر Shopify وEasy Order وصفحات هبوط موجّهة للبيع، مع هوية بصرية وتتبع إعلاني جاهز، من الفكرة حتى الإطلاق." data-en="I design Shopify and Easy Order stores and sales pages, with a visual identity and ad tracking ready, from idea to launch.">أصمّم متاجر Shopify وEasy Order وصفحات هبوط موجّهة للبيع، مع هوية بصرية وتتبع إعلاني جاهز، من الفكرة حتى الإطلاق.</p>
+        <div class="btns rv">
+          <a class="b1" href="packages.html" data-ar="الباقات والأسعار" data-en="Packages and pricing">الباقات والأسعار</a>
+          <a class="b2" href="projects.html" data-ar="شاهد الأعمال" data-en="View my work">شاهد الأعمال</a>
+        </div>
+        <div class="facts rv">
+          <div><b>15+</b><span data-ar="مشروعًا منفّذًا" data-en="Projects delivered">مشروعًا منفّذًا</span></div>
+          <div><b>7</b><span data-ar="أيام ضمان جودة" data-en="Days quality guarantee">أيام ضمان جودة</span></div>
+          <div><b>2–7</b><span data-ar="أيام للتسليم" data-en="Days to deliver">أيام للتسليم</span></div>
+        </div>
       </div>
+      <div class="ph rv"><img src="1.jpg" alt="Kamal Elnhrawy"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec rv" aria-label="Featured projects">
-  <div class="sh">
-    <h2 data-ar="شاهد الأعمال أولًا، ثم قرّر" data-en="See the work first, then decide">شاهد الأعمال أولًا، ثم قرّر</h2>
-    <p data-ar="مشاريع مختارة من معرض الأعمال، لتحكم بنفسك على مستوى التنفيذ قبل أن تدخل في تفاصيل الخدمة." data-en="A selection from the portfolio, so you can judge the quality of the work before reading about the service.">مشاريع مختارة من معرض الأعمال، لتحكم بنفسك على مستوى التنفيذ قبل أن تدخل في تفاصيل الخدمة.</p>
-  </div>
-  <div class="fgrid" id="fgrid"><div class="loading" data-ar="جارٍ تحميل المشاريع…" data-en="Loading projects…">جارٍ تحميل المشاريع…</div></div>
-  <div class="more"><a href="projects.html"><span data-ar="عرض كل المشاريع" data-en="View all projects">عرض كل المشاريع</span> <i class="fa-solid fa-arrow-left"></i></a></div>
-</section>
-
-<section class="sec rv" id="services">
-  <div class="sh">
-    <h2 data-ar="حلول متكاملة للتجارة الإلكترونية" data-en="Complete e-commerce solutions">حلول متكاملة للتجارة الإلكترونية</h2>
-    <p data-ar="لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل." data-en="Every part of the store has a clear job: a stronger presentation, more trust, and an easier experience for the customer.">لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل.</p>
-  </div>
-  <div class="sgrid">
-    <div class="sc">
-      <span class="pb">Shopify</span>
-      <h3 data-ar="تصميم متاجر Shopify" data-en="Shopify store design">تصميم متاجر Shopify</h3>
-      <ul>
-        <li><i class="fa-solid fa-check"></i><span data-ar="واجهات مرتبة وواضحة باستخدام ثيمات Shopify الحديثة" data-en="Clean, conversion-minded layouts using modern Shopify themes">واجهات مرتبة وواضحة باستخدام ثيمات Shopify الحديثة</span></li>
-        <li><i class="fa-solid fa-check"></i><span data-ar="صفحات منتجات وصفحات هبوط تشرح العرض بسرعة" data-en="Product and landing pages that explain the offer quickly">صفحات منتجات وصفحات هبوط تشرح العرض بسرعة</span></li>
-        <li><i class="fa-solid fa-check"></i><span data-ar="تنسيق الهوية: الألوان والخطوط والبانرات والأقسام" data-en="Brand system: colours, typography, banners and collections">تنسيق الهوية: الألوان والخطوط والبانرات والأقسام</span></li>
-        <li><i class="fa-solid fa-check"></i><span data-ar="ربط الدومين وتجهيز Meta Pixel وTikTok Pixel" data-en="Domain setup and Meta and TikTok Pixel readiness">ربط الدومين وتجهيز Meta Pixel وTikTok Pixel</span></li>
-      </ul>
+  <section class="scene s2" id="services">
+    <div class="sh rv"><h2 data-ar="ماذا أقدّم" data-en="What I do">ماذا أقدّم</h2>
+      <p data-ar="لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل." data-en="Every part of the store has a clear job: a stronger presentation, more trust, an easier experience.">لكل جزء في المتجر هدف واضح: عرض أقوى، وثقة أعلى، وتجربة أسهل للعميل.</p></div>
+    <div class="cards">
+      <div class="svc rv"><span class="t">Shopify</span><h3 data-ar="تصميم متاجر Shopify" data-en="Shopify store design">تصميم متاجر Shopify</h3><ul>
+        <li data-ar="واجهات مرتبة وواضحة باستخدام ثيمات حديثة" data-en="Clean, conversion-minded layouts on modern themes">واجهات مرتبة وواضحة باستخدام ثيمات حديثة</li>
+        <li data-ar="صفحات منتجات وصفحات هبوط تشرح العرض بسرعة" data-en="Product and landing pages that explain the offer fast">صفحات منتجات وصفحات هبوط تشرح العرض بسرعة</li>
+        <li data-ar="الهوية: الألوان والخطوط والبانرات والأقسام" data-en="Identity: colours, typography, banners, collections">الهوية: الألوان والخطوط والبانرات والأقسام</li>
+        <li data-ar="ربط الدومين وتجهيز Meta وTikTok Pixel" data-en="Domain setup and Meta and TikTok Pixel readiness">ربط الدومين وتجهيز Meta وTikTok Pixel</li></ul></div>
+      <div class="svc rv"><span class="t">Easy Order</span><h3 data-ar="متاجر وصفحات Easy Order" data-en="Easy Order stores and pages">متاجر وصفحات Easy Order</h3><ul>
+        <li data-ar="صفحات بيع سريعة لمنتج واحد للحملات المباشرة" data-en="Fast single-product pages for direct campaigns">صفحات بيع سريعة لمنتج واحد للحملات المباشرة</li>
+        <li data-ar="نموذج طلب واضح للدفع عند الاستلام" data-en="A clear cash-on-delivery order form">نموذج طلب واضح للدفع عند الاستلام</li>
+        <li data-ar="عناصر ثقة كالمراجعات والعروض في أماكنها" data-en="Trust elements like reviews and offers, well placed">عناصر ثقة كالمراجعات والعروض في أماكنها</li>
+        <li data-ar="ربط البيكسل واختبار الجاهزية قبل الحملات" data-en="Pixel setup and readiness checks before campaigns">ربط البيكسل واختبار الجاهزية قبل الحملات</li></ul></div>
     </div>
-    <div class="sc">
-      <span class="pb">Easy Order</span>
-      <h3 data-ar="متاجر وصفحات Easy Order" data-en="Easy Order stores and sales pages">متاجر وصفحات Easy Order</h3>
-      <ul>
-        <li><i class="fa-solid fa-check"></i><span data-ar="صفحات بيع سريعة لمنتج واحد، مناسبة للحملات المباشرة" data-en="Fast single-product pages made for direct-response campaigns">صفحات بيع سريعة لمنتج واحد، مناسبة للحملات المباشرة</span></li>
-        <li><i class="fa-solid fa-check"></i><span data-ar="نموذج طلب واضح للدفع عند الاستلام يقلل التشتت" data-en="A clear cash-on-delivery order form that reduces friction">نموذج طلب واضح للدفع عند الاستلام يقلل التشتت</span></li>
-        <li><i class="fa-solid fa-check"></i><span data-ar="عناصر ثقة كالمراجعات والعروض في أماكنها الصحيحة" data-en="Trust elements such as reviews and offers in the right places">عناصر ثقة كالمراجعات والعروض في أماكنها الصحيحة</span></li>
-        <li><i class="fa-solid fa-check"></i><span data-ar="ربط البيكسل والدومين واختبار الجاهزية قبل الحملات" data-en="Pixel and domain setup, with checks before campaigns start">ربط البيكسل والدومين واختبار الجاهزية قبل الحملات</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="pk">
-    <div><h3 data-ar="باقات بأسعار ثابتة وتسليم سريع" data-en="Fixed-price packages with fast delivery">باقات بأسعار ثابتة وتسليم سريع</h3>
-    <p data-ar="اختر الباقة المناسبة، واكتب تفاصيل مشروعك، وسأتواصل معك على واتساب لبدء العمل." data-en="Choose the package that fits, tell me about your project, and I'll reach out on WhatsApp to get started.">اختر الباقة المناسبة، واكتب تفاصيل مشروعك، وسأتواصل معك على واتساب لبدء العمل.</p></div>
-    <a href="packages.html" data-ar="شاهد الباقات والأسعار" data-en="See packages and pricing">شاهد الباقات والأسعار</a>
-  </div>
-</section>
+  </section>
 
-<section class="sec rv">
-  <div class="proof">
-    <div>
-      <h2 data-ar="لا أصمّم شكلًا جميلًا فقط، بل تجربة تخدم البيع." data-en="I don't only design something good looking, I build an experience that serves the sale.">لا أصمّم شكلًا جميلًا فقط، بل تجربة تخدم البيع.</h2>
-      <p data-ar="بدل أن يتنقل الزائر بين تفاصيل كثيرة، يجد إجابات الأسئلة المهمة بالترتيب: من أنا، وماذا أقدّم، وما مستوى شغلي، وما الخطوة التالية." data-en="Instead of digging through details, visitors find the important answers in order: who I am, what I offer, how my work looks, and what to do next.">بدل أن يتنقل الزائر بين تفاصيل كثيرة، يجد إجابات الأسئلة المهمة بالترتيب: من أنا، وماذا أقدّم، وما مستوى شغلي، وما الخطوة التالية.</p>
-      <div class="pts">
-        <div class="pt"><strong data-ar="تصميم موجّه للتحويل" data-en="Conversion-minded">تصميم موجّه للتحويل</strong><span data-ar="ترتيب المحتوى قبل الزخرفة." data-en="Structure before decoration.">ترتيب المحتوى قبل الزخرفة.</span></div>
-        <div class="pt"><strong data-ar="عرض واضح للخدمة" data-en="A clear offer">عرض واضح للخدمة</strong><span data-ar="تعرف ماذا ستحصل عليه بالضبط." data-en="You know exactly what you get.">تعرف ماذا ستحصل عليه بالضبط.</span></div>
-        <div class="pt"><strong data-ar="أعمال حقيقية" data-en="Real work">أعمال حقيقية</strong><span data-ar="مشاريع منفّذة تستطيع زيارتها." data-en="Delivered projects you can visit.">مشاريع منفّذة تستطيع زيارتها.</span></div>
-        <div class="pt"><strong data-ar="جاهز للحملات" data-en="Ad-ready">جاهز للحملات</strong><span data-ar="تجهيز التتبع ضمن الخدمة." data-en="Tracking is part of the setup.">تجهيز التتبع ضمن الخدمة.</span></div>
+  <section class="scene s3" id="work">
+    <div class="sh rv"><h2 data-ar="نبذة عن المشروعات" data-en="A look at the work">نبذة عن المشروعات</h2>
+      <p data-ar="مشاريع منفّذة لعلامات حقيقية. واصل التمرير لتتصفحها، أو افتح المعرض كاملًا." data-en="Delivered projects for real brands. Keep scrolling to browse, or open the full gallery.">مشاريع منفّذة لعلامات حقيقية. واصل التمرير لتتصفحها، أو افتح المعرض كاملًا.</p></div>
+    <div id="view"><div id="track"><div class="ld" data-ar="جارٍ تحميل المشاريع…" data-en="Loading projects…">جارٍ تحميل المشاريع…</div></div></div>
+  </section>
+
+  <section class="scene s4" id="contact">
+    <div class="end">
+      <h2 class="rv" data-ar="لديك منتج يستحق عرضًا أقوى؟" data-en="Have a product that deserves a stronger presentation?">لديك منتج يستحق عرضًا أقوى؟</h2>
+      <p class="rv" data-ar="اختر باقة بسعر ثابت، أو أرسل لي تفاصيل مشروعك وسأتواصل معك على واتساب." data-en="Pick a fixed-price package, or send me your project details and I'll reach out on WhatsApp.">اختر باقة بسعر ثابت، أو أرسل لي تفاصيل مشروعك وسأتواصل معك على واتساب.</p>
+      <div class="btns rv">
+        <a class="b1" href="packages.html" data-ar="شاهد الباقات والأسعار" data-en="See packages and pricing">شاهد الباقات والأسعار</a>
+        <a class="b2" href="https://wa.me/201123449977" target="_blank" rel="noopener" data-ar="تواصل عبر واتساب" data-en="Chat on WhatsApp">تواصل عبر واتساب</a>
       </div>
+      <div class="soc rv"><a href="https://wa.me/201123449977" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a><a href="https://facebook.com/hi19man" target="_blank" rel="noopener" aria-label="Facebook">FB</a></div>
+      <p class="cp rv">© 2026 Kamal Elnhrawy</p>
     </div>
-    <img src="2.jpg" alt="Kamal Elnhrawy designing stores" loading="lazy">
-  </div>
-</section>
-
-<div class="stats rv">
-  <div><h3>15+</h3><p data-ar="مشروعًا منفّذًا" data-en="Projects delivered">مشروعًا منفّذًا</p></div>
-  <div><h3>7</h3><p data-ar="أيام ضمان جودة بعد التسليم" data-en="Days quality guarantee after handover">أيام ضمان جودة بعد التسليم</p></div>
-  <div><h3>2–7</h3><p data-ar="أيام للتسليم بحسب الباقة" data-en="Days to deliver, by package">أيام للتسليم بحسب الباقة</p></div>
-</div>
-
-<section class="sec rv" id="process">
-  <div class="sh">
-    <h2 data-ar="من الفكرة إلى متجر جاهز للحملة" data-en="From idea to a campaign-ready store">من الفكرة إلى متجر جاهز للحملة</h2>
-    <p data-ar="خطوات واضحة تقلل العشوائية، وكل مرحلة ترتبط بما بعدها." data-en="Clear steps that cut the guesswork, each connected to the next.">خطوات واضحة تقلل العشوائية، وكل مرحلة ترتبط بما بعدها.</p>
-  </div>
-  <div class="steps">
-    <div class="st"><span>01</span><h4 data-ar="الدراسة والتخطيط" data-en="Strategy and discovery">الدراسة والتخطيط</h4><p data-ar="فهم المنتج والجمهور والمنافسين وزاوية العرض." data-en="Understanding the product, audience, competitors and offer angle.">فهم المنتج والجمهور والمنافسين وزاوية العرض.</p></div>
-    <div class="st"><span>02</span><h4 data-ar="الهوية والبنية" data-en="Branding and structure">الهوية والبنية</h4><p data-ar="اختيار الشكل والألوان والخطوط وترتيب الصفحات." data-en="Choosing the look, colours, typography and page structure.">اختيار الشكل والألوان والخطوط وترتيب الصفحات.</p></div>
-    <div class="st"><span>03</span><h4 data-ar="التنفيذ والتتبع" data-en="Build and tracking">التنفيذ والتتبع</h4><p data-ar="رفع المحتوى والمنتجات وتجهيز الدومين والبيكسل." data-en="Setting up content, products, domain and pixels.">رفع المحتوى والمنتجات وتجهيز الدومين والبيكسل.</p></div>
-    <div class="st"><span>04</span><h4 data-ar="الاختبار والإطلاق" data-en="Test and launch">الاختبار والإطلاق</h4><p data-ar="مراجعة التجربة والتأكد من وضوح رحلة الشراء قبل الإطلاق." data-en="Testing the journey and making sure the buying path is clear before launch.">مراجعة التجربة والتأكد من وضوح رحلة الشراء قبل الإطلاق.</p></div>
-  </div>
-</section>
-
-<section class="cta rv">
-  <h2 data-ar="لديك منتج يستحق عرضًا أقوى؟" data-en="Have a product that deserves a stronger presentation?">لديك منتج يستحق عرضًا أقوى؟</h2>
-  <p data-ar="اختر باقتك، أو أرسل لي تفاصيل مشروعك، ونبدأ من الهدف الحقيقي: حضور أقوى للعلامة ورحلة شراء أبسط وأكثر إقناعًا." data-en="Pick a package, or send me your project details, and we'll start from the real goal: a stronger brand presence and a simpler, more convincing buying journey.">اختر باقتك، أو أرسل لي تفاصيل مشروعك، ونبدأ من الهدف الحقيقي: حضور أقوى للعلامة ورحلة شراء أبسط وأكثر إقناعًا.</p>
-  <a class="wa" href="packages.html" data-ar="ابدأ مشروعك" data-en="Start your project">ابدأ مشروعك</a>
-</section>
+  </section>
 </main>
 
-<footer id="contact">
-  <div class="soc">
-    <a href="https://wa.me/201123449977" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-  </div>
-  <p class="copy">© 2026 Kamal Elnhrawy. All rights reserved.</p>
-</footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-var lang='ar',$=function(s){return document.querySelector(s)};
+var lang='ar',$=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var scenes=window.matchMedia('(min-width:900px) and (min-height:620px)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof gsap!=='undefined';
+var tl=null,POS=[0,1.6,4.7,8.9],total=1;
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function apply(){
   document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
-  document.body.classList.toggle('lang-en',lang==='en');$('#langToggle').textContent=lang==='ar'?'EN':'AR';
-  document.querySelectorAll('[data-ar]').forEach(function(e){var v=e.getAttribute('data-'+lang);if(v!==null)e.textContent=v});
+  document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
+  $$('[data-ar]').forEach(function(e){e.textContent=e.getAttribute('data-'+lang)});
+  document.title=lang==='ar'?'تصميم المواقع | Kamal Elnhrawy':'Store Design | Kamal Elnhrawy';
+  if(scenes&&window.ScrollTrigger)ScrollTrigger.refresh();
 }
-$('#langToggle').onclick=function(){lang=lang==='ar'?'en':'ar';apply()};
-var dr=$('#drawer'),ov=$('#overlay');
-function openM(){dr.classList.add('active');ov.classList.add('active')}function closeM(){dr.classList.remove('active');ov.classList.remove('active')}
-$('#menuToggle').onclick=openM;$('#closeDrawer').onclick=closeM;ov.onclick=closeM;
-dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeM)});
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -35px 0px'});
-document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+function go(i){
+  if(!scenes){var e=document.getElementById(['about','services','work','contact'][i]);if(e)e.scrollIntoView({behavior:'smooth'});return}
+  var max=document.documentElement.scrollHeight-innerHeight;window.scrollTo({top:POS[i]/total*max,behavior:'smooth'});
+}
+$('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';apply()};
+function openM(){$('#drawer').classList.add('on');$('#shade').classList.add('on')}
+function closeM(){$('#drawer').classList.remove('on');$('#shade').classList.remove('on')}
+$('#menu').onclick=openM;$('#close').onclick=closeM;$('#shade').onclick=closeM;
+$$('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();closeM();go(+a.getAttribute('data-go'))})});
 
-/* المشاريع المميزة: تُسحب تلقائيًا من projects.html (أول 4 مشاريع) */
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* بطاقات المشاريع تُسحب تلقائيًا من projects.html (أول 5 مشاريع) */
 fetch('projects.html',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(h){
   var doc=new DOMParser().parseFromString(h,'text/html'),out=[];
-  doc.querySelectorAll('a.project-card-link').forEach(function(a){
-    if(out.length>=4)return;
+  Array.prototype.forEach.call(doc.querySelectorAll('a.project-card-link'),function(a){
+    if(out.length>=5)return;
     var img=a.querySelector('img'),t=a.querySelector('.project-title span'),d=a.querySelector('.project-desc');
     if(!img||!t)return;
-    var ta=t.getAttribute('data-ar'),te=t.getAttribute('data-en'),da=d&&d.getAttribute('data-ar'),de=d&&d.getAttribute('data-en');
-    out.push('<a class="pc" href="'+esc(a.getAttribute('href'))+'"><div class="m"><img src="'+esc(img.getAttribute('src'))+'" alt="'+esc(img.getAttribute('alt')||'')+'" loading="lazy"></div><div class="c"><h3 data-ar="'+esc(ta||t.textContent)+'" data-en="'+esc(te||t.textContent)+'">'+esc(ta||t.textContent)+'</h3><p data-ar="'+esc(da||'')+'" data-en="'+esc(de||da||'')+'">'+esc(da||'')+'</p><span class="l"><span data-ar="عرض المشروع" data-en="View project">عرض المشروع</span> <i class="fa-solid fa-arrow-left"></i></span></div></a>');
+    var ta=t.getAttribute('data-ar')||t.textContent,te=t.getAttribute('data-en')||ta,da=(d&&d.getAttribute('data-ar'))||'',de=(d&&d.getAttribute('data-en'))||da;
+    out.push('<a class="pc" href="'+esc(a.getAttribute('href'))+'"><div class="m"><img src="'+esc(img.getAttribute('src'))+'" alt="'+esc(img.getAttribute('alt')||'')+'" loading="lazy"></div><div class="c"><h3 data-ar="'+esc(ta)+'" data-en="'+esc(te)+'">'+esc(ta)+'</h3><p data-ar="'+esc(da)+'" data-en="'+esc(de)+'">'+esc(da)+'</p></div></a>');
   });
   if(!out.length)throw 0;
-  $('#fgrid').innerHTML=out.join('');apply();
+  out.push('<a class="pc all" href="projects.html" data-ar="عرض كل المشاريع" data-en="View all projects">عرض كل المشاريع</a>');
+  $('#track').innerHTML=out.join('');apply();
 }).catch(function(){
-  $('#fgrid').innerHTML='<div class="loading" style="grid-column:1/-1"><a href="projects.html" data-ar="شاهد كل المشاريع" data-en="View all projects" style="color:inherit">شاهد كل المشاريع</a></div>';apply();
+  $('#track').innerHTML='<a class="pc all" href="projects.html" data-ar="عرض كل المشاريع" data-en="View all projects">عرض كل المشاريع</a>';apply();
 });
+
+if(scenes){
+  gsap.registerPlugin(ScrollTrigger);
+  var s=$$('.scene'),track=$('#track'),view=$('#view');
+  gsap.set(s.slice(1),{yPercent:100});
+  var dist=function(){var o=track.scrollWidth-view.clientWidth;return (document.documentElement.dir==='rtl'?1:-1)*Math.max(0,o)};
+  var dots=$('#dots');[0,1,2,3].forEach(function(i){var b=document.createElement('button');b.setAttribute('aria-label','Section '+(i+1));b.onclick=function(){go(i)};dots.appendChild(b)});
+  tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#scroller',start:'top top',end:'bottom bottom',scrub:.6,onUpdate:function(){
+    var t=tl.time(),c=0;POS.forEach(function(p,i){if(t>=p-.4)c=i});
+    $$('#dots button').forEach(function(b,i){b.classList.toggle('on',i===c)});
+  }}});
+  tl.to({},{duration:.6})
+    .to('.s1 .about',{scale:.94,opacity:.3,duration:1},.6)
+    .fromTo('.s2',{yPercent:100},{yPercent:0,duration:1},.6)
+    .fromTo('.s2 .rv',{y:34,opacity:0},{y:0,opacity:1,stagger:.3,duration:.6},1.4)
+    .fromTo('.s3',{yPercent:100},{yPercent:0,duration:1},3.6)
+    .fromTo('.s3 .rv',{y:30,opacity:0},{y:0,opacity:1,duration:.6},4.4)
+    .fromTo('#track',{x:0},{x:dist,duration:3,invalidateOnRefresh:true},4.8)
+    .fromTo('.s4',{yPercent:100},{yPercent:0,duration:1},7.9)
+    .fromTo('.s4 .rv',{y:30,opacity:0},{y:0,opacity:1,stagger:.22,duration:.6},8.8)
+    .to({},{duration:1},9.4);
+  total=tl.duration();
+  $('#scroller').style.height=(total*58+100)+'vh';
+  gsap.from('.s1 .rv',{y:28,opacity:0,stagger:.12,duration:.9,delay:.15,ease:'power2.out'});
+  $$('#dots button')[0].classList.add('on');
+}else{
+  document.body.classList.add('static');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.08});
+  $$('.rv').forEach(function(e){io.observe(e)});
+}
 apply();
 </script>
 </body>
