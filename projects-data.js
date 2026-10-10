@@ -16,6 +16,66 @@ window.PROJECTS=[
     "href": "ladyland.html"
   },
   {
+    "slug": "kenz",
+    "cover": "02.jpg",
+    "platform": "Easy Order",
+    "year": "2026",
+    "title": {
+      "ar": "كنز ستور",
+      "en": "Kenz Store"
+    },
+    "desc": {
+      "ar": "لوجو وهوية ومتجر لعطور وبودي ميست بروح فاخرة.",
+      "en": "A logo, identity and store for fragrances and body mists, with a luxurious feel."
+    },
+    "href": "kenz.html"
+  },
+  {
+    "slug": "m7",
+    "cover": "07.jpg",
+    "platform": "Easy Order",
+    "year": "2026",
+    "title": {
+      "ar": "M7",
+      "en": "M7"
+    },
+    "desc": {
+      "ar": "شعار عصري ومتجر لعلامة أحذية رجالية، بأناقة هادئة بلا مبالغة.",
+      "en": "A modern logo and store for a men's footwear brand, calmly elegant and never flashy."
+    },
+    "href": "m7.html"
+  },
+  {
+    "slug": "maytroo",
+    "cover": "04.jpg",
+    "platform": "Easy Order",
+    "year": "",
+    "title": {
+      "ar": "مايترو (Maytroo)",
+      "en": "Maytroo"
+    },
+    "desc": {
+      "ar": "هوية ومتجر لعلامة سعودية، مع وصف المنتجات وترتيبها وإبراز جمال الصور.",
+      "en": "An identity and store for a Saudi brand, with product copywriting, arrangement and beautiful imagery."
+    },
+    "href": "maytroo.html"
+  },
+  {
+    "slug": "backbelt",
+    "cover": "08.jpg",
+    "platform": "Easy Order",
+    "year": "2026",
+    "title": {
+      "ar": "صفحة هبوط مشد الظهر",
+      "en": "Back Support Landing Page"
+    },
+    "desc": {
+      "ar": "صفحة لمنتج واحد ببناء جديد وصور حقيقية للمنتج ورحلة عميل واضحة.",
+      "en": "A single-product page rebuilt with real product photos and a clear customer journey."
+    },
+    "href": "backbelt.html"
+  },
+  {
     "slug": "wenwei",
     "cover": "09.jpg",
     "platform": "Easy Order",
@@ -44,66 +104,6 @@ window.PROJECTS=[
       "en": "A Saudi-market version of the same idea, designed to suit Saudi society."
     },
     "href": "wenwix.html"
-  },
-  {
-    "slug": "maytroo",
-    "cover": "04.jpg",
-    "platform": "Easy Order",
-    "year": "",
-    "title": {
-      "ar": "مايترو (Maytroo)",
-      "en": "Maytroo"
-    },
-    "desc": {
-      "ar": "هوية ومتجر لعلامة سعودية، مع وصف المنتجات وترتيبها وإبراز جمال الصور.",
-      "en": "An identity and store for a Saudi brand, with product copywriting, arrangement and beautiful imagery."
-    },
-    "href": "maytroo.html"
-  },
-  {
-    "slug": "m7",
-    "cover": "07.jpg",
-    "platform": "Easy Order",
-    "year": "2026",
-    "title": {
-      "ar": "M7",
-      "en": "M7"
-    },
-    "desc": {
-      "ar": "شعار عصري ومتجر لعلامة أحذية رجالية، بأناقة هادئة بلا مبالغة.",
-      "en": "A modern logo and store for a men's footwear brand, calmly elegant and never flashy."
-    },
-    "href": "m7.html"
-  },
-  {
-    "slug": "kenz",
-    "cover": "02.jpg",
-    "platform": "Easy Order",
-    "year": "2026",
-    "title": {
-      "ar": "كنز ستور",
-      "en": "Kenz Store"
-    },
-    "desc": {
-      "ar": "لوجو وهوية ومتجر لعطور وبودي ميست بروح فاخرة.",
-      "en": "A logo, identity and store for fragrances and body mists, with a luxurious feel."
-    },
-    "href": "kenz.html"
-  },
-  {
-    "slug": "backbelt",
-    "cover": "08.jpg",
-    "platform": "Easy Order",
-    "year": "2026",
-    "title": {
-      "ar": "صفحة هبوط مشد الظهر",
-      "en": "Back Support Landing Page"
-    },
-    "desc": {
-      "ar": "صفحة لمنتج واحد ببناء جديد وصور حقيقية للمنتج ورحلة عميل واضحة.",
-      "en": "A single-product page rebuilt with real product photos and a clear customer journey."
-    },
-    "href": "backbelt.html"
   },
   {
     "slug": "vamilano",
