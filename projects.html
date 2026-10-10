@@ -14,6 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project.css">
 <style>
+.banner{margin-top:26px;border-radius:14px;overflow:hidden;background:#eceae6}
+.banner img{width:100%;aspect-ratio:21/9;max-height:520px;object-fit:cover;object-position:50% 45%;display:block}
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
 .chips button{background:#fff;border:1px solid #cfcbc6;border-radius:99px;padding:7px 18px;font:inherit;font-size:.88rem;cursor:pointer;transition:.25s}
 .chips button.on,.chips button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -33,6 +35,8 @@ html[dir=rtl] .pcard .mt{justify-content:flex-end}
 .cta h2{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:8px}
 .cta p{color:var(--muted);font-weight:300;margin-bottom:22px}
 .cta .btn+.btn{margin-inline-start:10px;background:#fff;color:var(--ink);border:1px solid #cfcbc6}
+@media (max-width:760px){.banner img{aspect-ratio:16/10}.banner{border-radius:10px;margin-top:16px}}
+.hero{padding-top:36px}
 </style>
 </head>
 <body>
@@ -42,6 +46,7 @@ html[dir=rtl] .pcard .mt{justify-content:flex-end}
   <button id="lang" aria-label="Language">EN</button>
 </header>
 <main>
+  <div class="wrap"><div class="banner rv"><img src="3.jpg" alt="Kamal Elnhrawy" onerror="this.parentNode.hidden=true"></div></div>
   <section class="wrap hero">
     <h1 class="rv" data-ar="المشروعات" data-en="Projects">المشروعات</h1>
     <p class="tag rv" data-ar="متاجر وعلامات تجارية صمّمتها، لأسواق مصر والخليج." data-en="Stores and brands I've designed, for Egypt and the Gulf.">متاجر وعلامات تجارية صمّمتها، لأسواق مصر والخليج.</p>
