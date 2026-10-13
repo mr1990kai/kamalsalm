@@ -7,6 +7,17 @@ window.POSTS = [
     date: '2026-10-13',
     category: 'الميديا باينج',
     lang: 'ar',
-    read: 6
+    read: 6,
+    cover: 'images/ai-mode-search-cover.webp'
+  },
+  {
+    slug: 'discounts-profit-not-sales-2026',
+    title: 'الخصم اللي بيجيب طلبات ممكن يخسّرك: إزاي تحسب المكسب الحقيقي من العرض؟',
+    excerpt: 'بحث جديد من IPA يوضح ليه ارتفاع الطلبات وقت الخصم مش دليل كافي على الربحية، وإزاي تراجع تكلفة الطلب والمبيعات الإضافية قبل تكرار العرض.',
+    date: '2026-10-13',
+    category: 'التسويق والربحية',
+    lang: 'ar',
+    read: 7,
+    cover: 'images/promotion-profit-cover.webp'
   }
 ];
