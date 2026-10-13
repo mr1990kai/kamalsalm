@@ -62,7 +62,6 @@
 <header>
   <a class="back" id="back" href="blog.html">← المقالات</a>
   <a class="logo" href="index.html">Kamal Elnhrawy</a>
-  <button id="lang" type="button" aria-label="تغيير اللغة">EN</button>
 </header>
 <main>
   <article class="art" id="art" hidden>
@@ -103,15 +102,6 @@
     setMeta('meta[name="robots"]','noindex,follow');
     setMeta('meta[name="description"]','المقال غير متاح. تصفح المقالات الأخرى على موقع كمال النحراوي.');
   }
-  $('#lang').addEventListener('click',function(){
-    var en=document.documentElement.lang!=='en';
-    document.documentElement.lang=en?'en':'ar';
-    document.documentElement.dir=en?'ltr':'rtl';
-    document.body.classList.toggle('en',en);
-    $('#lang').textContent=en?'AR':'EN';
-    $('#back').textContent=en?'← Articles':'← المقالات';
-    if(P)$('#cp').textContent=en?'Copy article link':'نسخ رابط المقال';
-  });
   if(!P){notFound()}
   else{
     fetch('posts/'+encodeURIComponent(P.slug)+'.md',{cache:'no-cache'}).then(function(r){
