@@ -29,7 +29,6 @@
 <header>
   <a class="back" href="design.html">← الرئيسية</a>
   <a class="logo" href="index.html">Kamal Elnhrawy</a>
-  <button id="lang" type="button" aria-label="تغيير اللغة">EN</button>
 </header>
 <main>
   <section class="wrap hero">
@@ -55,7 +54,7 @@
 (function(){
   'use strict';
   var $=function(s){return document.querySelector(s)};
-  var lang='ar',current='all',list=Array.isArray(window.POSTS)?window.POSTS.slice():[];
+  var current='all',list=Array.isArray(window.POSTS)?window.POSTS.slice():[];
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
   function card(p){
@@ -80,14 +79,6 @@
       render();
     });
   }
-  $('#lang').addEventListener('click',function(){
-    lang=lang==='ar'?'en':'ar';
-    document.documentElement.lang=lang;
-    document.documentElement.dir=lang==='ar'?'rtl':'ltr';
-    document.body.classList.toggle('en',lang==='en');
-    $('#lang').textContent=lang==='ar'?'EN':'AR';
-    document.title=lang==='ar'?'مقالات التصميم والبراندينج والتسويق | كمال النحراوي':'Design, Branding & Marketing Articles | Kamal Elnhrawy';
-  });
   if(!Array.isArray(window.POSTS))$('#error').hidden=false;
   list.sort(function(a,b){return String(a.date)<String(b.date)?1:-1});
   drawChips();render();
