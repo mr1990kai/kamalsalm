@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مقال | كمال النحراوي</title>
 <meta name="description" content="مقال من مدونة كمال النحراوي.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kamalsalm.vercel.app/blog.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kamal Elnhrawy">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:title" content="مقال | كمال النحراوي">
+<meta property="og:description" content="مقال من مدونة كمال النحراوي.">
+<meta property="og:url" content="https://kamalsalm.vercel.app/blog.html">
+<meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مقال | كمال النحراوي">
+<meta name="twitter:description" content="مقال من مدونة كمال النحراوي.">
+<meta name="theme-color" content="#2b1810">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -16,112 +29,133 @@
 <link rel="stylesheet" href="blog.css">
 <style>
 #bar{position:fixed;top:0;inset-inline-start:0;height:3px;width:0;background:var(--gold);z-index:60}
-.art{max-width:720px;margin:0 auto;padding:54px 5% 20px}
+.art{max-width:760px;margin:0 auto;padding:48px 5% 20px}
 .art .cat{font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:10px}
-.art h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.35;margin-bottom:16px}
-.art .info{color:var(--muted);font-size:.88rem;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.art h1{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.5;margin-bottom:16px}
+.art .info{color:var(--muted);font-size:.86rem;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:28px}
 .art .cov{width:100%;height:auto;border-radius:12px;display:block;margin:0 0 30px}
-.body{font-size:1.1rem;line-height:2.05;color:#222}
-.body.ar{font-family:'Noto Naskh Arabic','Noto Kufi Arabic',serif;font-size:1.22rem;line-height:2.1}
-.body.en{font-family:var(--en);line-height:1.85}
-.body h2{font-family:var(--ar);font-size:1.5rem;line-height:1.5;margin:42px 0 12px;color:#000}
-.body.en h2,.body.en h3{font-family:var(--en)}
-.body h3{font-family:var(--ar);font-size:1.2rem;margin:30px 0 10px}
-.body p{margin-bottom:20px}
+.body{font-size:1.08rem;line-height:2;color:#222;overflow-wrap:anywhere}
+.body.ar{font-family:'Noto Naskh Arabic','Noto Kufi Arabic',serif;font-size:1.22rem;line-height:2.05}
+.body h2{font-family:var(--ar);font-size:1.45rem;line-height:1.6;margin:38px 0 12px;color:#000}
+.body h3{font-family:var(--ar);font-size:1.16rem;margin:28px 0 10px}
+.body p{margin-bottom:18px}
 .body ul,.body ol{margin:0 0 22px;padding-inline-start:1.4em}.body li{margin-bottom:8px}
-.body blockquote{margin:28px 0;padding:6px 22px;border-inline-start:3px solid var(--gold);font-size:1.25rem;color:#000;background:#faf8f6;border-radius:4px}
+.body blockquote{margin:26px 0;padding:8px 20px;border-inline-start:3px solid var(--gold);font-size:1.15rem;color:#000;background:#faf8f6;border-radius:4px}
 .body a{color:#000;text-decoration:underline;text-underline-offset:4px}
-.body figure{margin:28px 0}.body img{max-width:100%;height:auto;border-radius:10px;display:block;margin:auto}
-.body hr{border:0;border-top:1px solid var(--line);margin:36px 0}
+.body img{max-width:100%;height:auto;border-radius:10px}
+.body hr{border:0;border-top:1px solid var(--line);margin:34px 0}
 .body code{background:#f1eee9;padding:1px 6px;border-radius:4px;font-size:.92em}
-.share{display:flex;gap:10px;flex-wrap:wrap;margin:34px 0 10px;padding-top:22px;border-top:1px solid var(--line)}
+.share{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 10px;padding-top:22px;border-top:1px solid var(--line)}
 .share a,.share button{border:1px solid #cfcbc6;background:#fff;border-radius:99px;padding:8px 18px;font:inherit;font-size:.86rem;text-decoration:none;color:var(--ink);cursor:pointer}
 .share a:hover,.share button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.ctab{max-width:720px;margin:34px auto 0;padding:0 5%}
-.ctab div{background:var(--brown);color:#fff;border-radius:12px;padding:30px;text-align:center}
-.ctab h3{font-size:1.4rem;margin-bottom:8px}.ctab p{opacity:.8;font-weight:300;margin-bottom:18px}
-.ctab a{display:inline-block;background:#fff;color:var(--brown);padding:12px 26px;border-radius:4px;font-weight:700;text-decoration:none}
-.more{max-width:1120px;margin:60px auto 0;padding:0 5%}.more h2{font-size:1.5rem;margin-bottom:18px}
+.ctab{max-width:760px;margin:30px auto 0;padding:0 5%}
+.ctab>div{background:var(--brown);color:#fff;border-radius:12px;padding:28px;text-align:center}
+.ctab h2{font-size:1.35rem;margin-bottom:8px}.ctab p{opacity:.85;margin-bottom:16px}
+.ctab a{display:inline-block;background:#fff;color:var(--brown);padding:10px 24px;border-radius:4px;font-weight:700;text-decoration:none}
+.more{max-width:1120px;margin:54px auto 0;padding:0 5%}.more h2{font-size:1.4rem;margin-bottom:18px}
 .nf{padding:90px 5%;text-align:center;color:var(--muted)}
+@media(max-width:760px){.art{padding-top:34px}.body.ar{font-size:1.12rem}.body h2{font-size:1.3rem}.ctab>div{padding:22px}}
 </style>
-<!-- seo -->
-<link rel="canonical" href="https://kamalsalm.vercel.app/blog.html">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Kamal Elnhrawy">
-<meta property="og:locale" content="ar_AR">
-<meta property="og:title" content="مقال | كمال النحراوي">
-<meta property="og:description" content="مقال من مدونة كمال النحراوي.">
-<meta property="og:url" content="https://kamalsalm.vercel.app/blog.html">
-<meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2b1810">
-<!-- /seo -->
 </head>
 <body>
 <div id="bar"></div>
 <header>
-  <a class="back" id="back" href="blog.html" data-ar="← المقالات" data-en="← Articles">← المقالات</a>
+  <a class="back" id="back" href="blog.html">← المقالات</a>
   <a class="logo" href="index.html">Kamal Elnhrawy</a>
-  <button id="lang" aria-label="Language">EN</button>
+  <button id="lang" type="button" aria-label="تغيير اللغة">EN</button>
 </header>
 <main>
   <article class="art" id="art" hidden>
     <div class="cat" id="cat"></div><h1 id="ttl"></h1><div class="info" id="info"></div>
-    <img class="cov" id="cov" alt="" hidden><div class="body" id="body"></div>
-    <div class="share"><a id="wa" target="_blank" rel="noopener" data-ar="مشاركة عبر واتساب" data-en="Share on WhatsApp">مشاركة عبر واتساب</a><button id="cp" data-ar="نسخ الرابط" data-en="Copy link">نسخ الرابط</button></div>
+    <img class="cov" id="cov" alt="" hidden>
+    <div class="body" id="body"></div>
+    <div class="share"><a id="wa" target="_blank" rel="noopener noreferrer">مشاركة عبر واتساب</a><button id="cp" type="button">نسخ رابط المقال</button></div>
   </article>
-  <p class="nf" id="nf" hidden data-ar="لم يُعثر على هذا المقال." data-en="This article was not found.">لم يُعثر على هذا المقال.</p>
-  <div class="ctab" id="ctab" hidden><div><h3 data-ar="هل لديك متجر أو فكرة مشروع؟" data-en="Have a store or a project idea?">هل لديك متجر أو فكرة مشروع؟</h3><p data-ar="اختر باقة بسعر ثابت، أو راسلني على واتساب." data-en="Pick a fixed-price package, or message me on WhatsApp.">اختر باقة بسعر ثابت، أو راسلني على واتساب.</p><a href="packages.html" data-ar="الباقات والأسعار" data-en="Packages and pricing">الباقات والأسعار</a></div></div>
-  <section class="more" id="more" hidden><h2 data-ar="مقالات أخرى" data-en="More articles">مقالات أخرى</h2><div class="bgrid" id="mg"></div></section>
+  <p class="nf" id="nf" hidden>لم يُعثر على هذا المقال. ارجع لصفحة المقالات واختار مقالًا موجودًا.</p>
+  <div class="ctab" id="ctab" hidden><div><h2>عندك متجر أو مشروع وعايز تطوره؟</h2><p>شوف المشاريع والباقات المتاحة أو تواصل مباشرة.</p><a href="packages.html">الباقات والأسعار</a></div></div>
+  <section class="more" id="more" hidden><h2>مقالات تانية</h2><div class="bgrid" id="mg"></div></section>
 </main>
 <footer>
   <div class="soc">
-    <a href="https://wa.me/201123449977" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://wa.me/201123449977" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
   </div>
   <p class="cp">© 2026 Kamal Elnhrawy</p>
 </footer>
 <script src="md.js"></script>
 <script src="posts-data.js"></script>
 <script>
-var $=function(s){return document.querySelector(s)};
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function fmt(d,l){try{return new Intl.DateTimeFormat(l==='ar'?'ar-u-ca-gregory':'en-GB',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d}}
-var UIL={ar:{min:'دقائق قراءة',back:'← المقالات'},en:{min:'min read',back:'← Articles'}};
-function card(p,ui){
-  var cov=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.remove()">':'';
-  return '<a class="bcard rv" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+(cov||esc((p.title||'K').charAt(0)))+'</div><div class="tx"><div class="ct">'+esc(p.category||'')+'</div><h3 dir="'+(p.lang==='ar'?'rtl':'ltr')+'">'+esc(p.title)+'</h3><p dir="'+(p.lang==='ar'?'rtl':'ltr')+'">'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date,ui)+' · '+p.read+' '+UIL[ui].min+'</div></div></a>'}
-function reveal(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.rv').forEach(function(e){io.observe(e)})}
-var lang='ar',slug=new URLSearchParams(location.search).get('p')||'',list=window.POSTS||[],P=list.filter(function(x){return x.slug===slug})[0];
-function apply(){
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
-  document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
-  document.querySelectorAll('[data-ar]').forEach(function(e){e.textContent=e.getAttribute('data-'+lang)});
-  if(P){$('#info').textContent=fmt(P.date,lang)+' · '+P.read+' '+UIL[lang].min;
-    $('#mg').innerHTML=list.filter(function(x){return x.slug!==P.slug}).sort(function(a,b){return a.date<b.date?1:-1}).slice(0,2).map(function(x){return card(x,lang)}).join('');
-    $('#more').hidden=!$('#mg').children.length;reveal()}
-}
-$('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';apply()};
-if(!P){var rm=document.createElement('meta');rm.name='robots';rm.content='noindex';document.head.appendChild(rm);$('#nf').hidden=false;apply()}
-else{
-  lang=P.lang||'ar';
-  fetch('posts/'+encodeURIComponent(P.slug)+'.md',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
-    var a=$('#art');a.dir=P.lang==='ar'?'rtl':'ltr';a.hidden=false;$('#ctab').hidden=false;
-    $('#cat').textContent=P.category||'';$('#ttl').textContent=P.title;
-    var b=$('#body');b.className='body '+(P.lang==='ar'?'ar':'en');b.innerHTML=md(t);
-    if(P.cover){var c=$('#cov');c.src=P.cover;c.alt=P.title;c.hidden=false;c.onerror=function(){c.hidden=true}}
-    document.title=P.title+' | كمال النحراوي';
-    var cu=location.origin+'/post.html?p='+encodeURIComponent(P.slug),cl=document.querySelector('link[rel=canonical]');if(cl)cl.href=cu;
-    var ld={'@context':'https://schema.org','@type':'Article',headline:P.title,description:P.excerpt||'',datePublished:P.date,inLanguage:P.lang,author:{'@type':'Person',name:'Kamal Elnhrawy'},mainEntityOfPage:cu};
-    if(P.cover)ld.image=location.origin+'/'+P.cover;
-    var sj=document.createElement('script');sj.type='application/ld+json';sj.textContent=JSON.stringify(ld);document.head.appendChild(sj);
-    var m=document.querySelector('meta[name=description]');if(m)m.content=P.excerpt||P.title;
-    $('#wa').href='https://wa.me/?text='+encodeURIComponent(P.title+' '+location.href);
-    $('#cp').onclick=function(){var s=this;(navigator.clipboard?navigator.clipboard.writeText(location.href):Promise.reject()).then(function(){s.textContent=lang==='ar'?'تم النسخ ✓':'Copied ✓'}).catch(function(){})};
-    apply();
-  }).catch(function(){var rm=document.createElement('meta');rm.name='robots';rm.content='noindex';document.head.appendChild(rm);$('#nf').hidden=false;apply()});
-  window.addEventListener('scroll',function(){var h=document.documentElement,s=h.scrollTop/(h.scrollHeight-h.clientHeight||1);$('#bar').style.width=Math.min(100,s*100)+'%'},{passive:true});
-}
+(function(){
+  'use strict';
+  var $=function(s){return document.querySelector(s)};
+  function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
+  function setMeta(selector,content){var node=document.querySelector(selector);if(node)node.setAttribute('content',content)}
+  function card(p){
+    var cover=p.cover?'<img src="'+String(p.cover).replace(/[&<>"']/g,'')+'" alt="" loading="lazy">':String((p.title||'م').slice(0,1));
+    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx"><div class="ct">'+String(p.category||'')+'</div><h3>'+String(p.title||'')+'</h3><p>'+String(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+String(p.read||'')+' دقائق قراءة</div></div></a>';
+  }
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  var slug=new URLSearchParams(location.search).get('p')||'';
+  var list=Array.isArray(window.POSTS)?window.POSTS:[];
+  var P=list.filter(function(x){return x.slug===slug})[0];
+  function notFound(){
+    $('#nf').hidden=false;
+    setMeta('meta[name="robots"]','noindex,follow');
+    setMeta('meta[name="description"]','المقال غير متاح. تصفح المقالات الأخرى على موقع كمال النحراوي.');
+  }
+  $('#lang').addEventListener('click',function(){
+    var en=document.documentElement.lang!=='en';
+    document.documentElement.lang=en?'en':'ar';
+    document.documentElement.dir=en?'ltr':'rtl';
+    document.body.classList.toggle('en',en);
+    $('#lang').textContent=en?'AR':'EN';
+    $('#back').textContent=en?'← Articles':'← المقالات';
+    if(P)$('#cp').textContent=en?'Copy article link':'نسخ رابط المقال';
+  });
+  if(!P){notFound()}
+  else{
+    fetch('posts/'+encodeURIComponent(P.slug)+'.md',{cache:'no-cache'}).then(function(r){
+      if(!r.ok)throw new Error('Article Markdown file not found');
+      return r.text();
+    }).then(function(source){
+      $('#art').hidden=false;$('#ctab').hidden=false;
+      $('#cat').textContent=P.category||'';
+      $('#ttl').textContent=P.title||'';
+      $('#info').textContent=fmt(P.date)+' · '+(P.read||'')+' دقائق قراءة';
+      $('#art').dir=P.lang==='ar'?'rtl':'ltr';
+      $('#body').className='body '+(P.lang==='ar'?'ar':'en');
+      $('#body').innerHTML=window.md(source);
+      if(P.cover){$('#cov').src=P.cover;$('#cov').alt=P.title||'';$('#cov').hidden=false;$('#cov').onerror=function(){this.hidden=true}}
+      var url=location.origin+location.pathname+'?p='+encodeURIComponent(P.slug);
+      var canonical=document.querySelector('link[rel="canonical"]');
+      if(canonical)canonical.href=url;
+      document.title=(P.title||'مقال')+' | كمال النحراوي';
+      setMeta('meta[name="description"]',P.excerpt||P.title||'مقال من مدونة كمال النحراوي.');
+      setMeta('meta[property="og:title"]',(P.title||'مقال')+' | كمال النحراوي');
+      setMeta('meta[property="og:description"]',P.excerpt||P.title||'');
+      setMeta('meta[property="og:url"]',url);
+      setMeta('meta[name="twitter:title"]',(P.title||'مقال')+' | كمال النحراوي');
+      setMeta('meta[name="twitter:description"]',P.excerpt||P.title||'');
+      var ld={'@context':'https://schema.org','@type':'Article',headline:P.title||'',description:P.excerpt||'',datePublished:P.date||'',inLanguage:P.lang||'ar',author:{'@type':'Person',name:'Kamal Elnhrawy'},mainEntityOfPage:url};
+      if(P.cover){var imageUrl=new URL(P.cover,location.href).href;setMeta('meta[property="og:image"]',imageUrl);setMeta('meta[name="twitter:image"]',imageUrl);ld.image=imageUrl}
+      var old=document.querySelector('script[type="application/ld+json"]');if(old)old.remove();
+      var schema=document.createElement('script');schema.type='application/ld+json';schema.textContent=JSON.stringify(ld);document.head.appendChild(schema);
+      $('#wa').href='https://wa.me/?text='+encodeURIComponent((P.title||'')+' '+url);
+      $('#cp').addEventListener('click',function(){
+        var button=this;
+        function done(){button.textContent=document.documentElement.lang==='en'?'Copied':'تم النسخ'}
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){window.prompt('انسخ رابط المقال',url)})}
+        else window.prompt('انسخ رابط المقال',url);
+      });
+      $('#mg').innerHTML=list.filter(function(x){return x.slug!==P.slug}).sort(function(a,b){return String(a.date)<String(b.date)?1:-1}).slice(0,2).map(card).join('');
+      $('#more').hidden=!$('#mg').children.length;
+    }).catch(function(){notFound()});
+  }
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement,range=h.scrollHeight-h.clientHeight;
+    $('#bar').style.width=(range>0?Math.min(100,h.scrollTop/range*100):0)+'%';
+  },{passive:true});
+})();
 </script>
 </body>
 </html>
