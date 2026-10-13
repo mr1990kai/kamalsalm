@@ -59,7 +59,7 @@
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
   function card(p){
-    var cover=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.parentNode.textContent='+JSON.stringify((p.title||'م').slice(0,1))+'">':esc((p.title||'م').slice(0,1));
+    var cover=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.remove()">':esc((p.title||'م').slice(0,1));
     return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx"><div class="ct">'+esc(p.category||'')+'</div><h2>'+esc(p.title||'')+'</h2><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
   }
   function render(){
