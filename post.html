@@ -91,8 +91,8 @@
   function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
   function setMeta(selector,content){var node=document.querySelector(selector);if(node)node.setAttribute('content',content)}
   function card(p){
-    var cover=p.cover?'<img src="'+String(p.cover).replace(/[&<>"']/g,'')+'" alt="" loading="lazy">':String((p.title||'م').slice(0,1));
-    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx"><div class="ct">'+String(p.category||'')+'</div><h3>'+String(p.title||'')+'</h3><p>'+String(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+String(p.read||'')+' دقائق قراءة</div></div></a>';
+    var cover=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.remove()">':esc((p.title||'م').slice(0,1));
+    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx"><div class="ct">'+esc(p.category||'')+'</div><h3>'+esc(p.title||'')+'</h3><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
   }
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   var slug=new URLSearchParams(location.search).get('p')||'';
