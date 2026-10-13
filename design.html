@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>تصميم المواقع | Kamal Elnhrawy</title>
-<meta name="description" content="تصميم متاجر Shopify وEasy Order وصفحات الهبوط بهوية واضحة وتتبع إعلاني جاهز.">
+<title>تصميم متاجر Shopify وEasy Order وصفحات هبوط | كمال النحراوي</title>
+<meta name="description" content="تصميم متاجر Shopify وEasy Order وصفحات هبوط موجّهة للبيع، بهوية بصرية وتتبع إعلاني جاهز، من الفكرة حتى الإطلاق.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -62,13 +62,13 @@ html[dir=ltr] #drawer{right:auto;left:-100%;transition:left .4s cubic-bezier(.16
 .sv li::before{content:'✓';flex:none;color:var(--gold)}
 .wm{position:absolute;inset-inline:0;bottom:-1vw;text-align:center;font:700 clamp(4rem,20vw,18rem)/1 var(--logo);opacity:.06;direction:ltr;pointer-events:none;white-space:nowrap}
 #view{overflow:hidden;margin-inline:-6vw}
-#track{display:flex;align-items:flex-start;gap:20px;padding-inline:6vw;width:max-content}
-.pc{flex:none;width:min(360px,78vw);background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;display:block}
-.pc .m{overflow:hidden;background:#eee}
-.pc img{width:100%;height:auto;max-height:44vh;object-fit:contain;display:block;transition:transform .6s}
+#track{display:flex;align-items:stretch;gap:20px;padding-inline:6vw;width:max-content}
+.pc{flex:none;width:min(360px,78vw);background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column}
+.pc .m{aspect-ratio:16/10;overflow:hidden;background:#eee;flex:none}
+.pc img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .6s}
 .pc:hover img{transform:scale(1.04)}
-.pc .c{padding:16px 18px 18px}.pc h3{font-size:1.05rem;margin-bottom:6px}
-.pc p{font-size:.82rem;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc .c{padding:16px 18px 18px;flex:1}.pc h3{font-size:1.05rem;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc p{font-size:.82rem;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3.4em}
 .pc.all{display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:700;min-height:240px}
 .ld{padding:30px;color:var(--muted)}
 .end{max-width:760px;margin:0 auto;text-align:center}
@@ -105,6 +105,19 @@ nav.m{display:none}#menu{display:block}#dots{display:none}
 @media (min-width:900px) and (max-height:700px){.ph{height:min(60vh,460px)}.about h1{font-size:clamp(1.8rem,3.4vw,3rem)}.facts{margin-top:18px}.sv ul{gap:8px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<!-- seo -->
+<link rel="canonical" href="https://kamalsalm.vercel.app/design.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kamal Elnhrawy">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:title" content="تصميم متاجر Shopify وEasy Order وصفحات هبوط | كمال النحراوي">
+<meta property="og:description" content="تصميم متاجر Shopify وEasy Order وصفحات هبوط موجّهة للبيع، بهوية بصرية وتتبع إعلاني جاهز، من الفكرة حتى الإطلاق.">
+<meta property="og:url" content="https://kamalsalm.vercel.app/design.html">
+<meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2b1810">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Kamal Elnhrawy", "alternateName": "كمال النحراوي", "url": "https://kamalsalm.vercel.app/", "image": "https://kamalsalm.vercel.app/kamal.jpg", "jobTitle": "E-commerce Designer & Brand Builder", "sameAs": ["https://facebook.com/hi19man"], "knowsAbout": ["Shopify", "Easy Order", "E-commerce store design", "Landing pages", "Brand identity"]}</script>
+<!-- /seo -->
 </head>
 <body>
 <div id="shade"></div>
@@ -114,6 +127,7 @@ nav.m{display:none}#menu{display:block}#dots{display:none}
   <a href="#" data-go="1" data-ar="الخدمات" data-en="Services">الخدمات</a>
   <a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a>
   <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
+  <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
   <a href="#" data-go="4" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
 </nav>
 <header>
@@ -124,6 +138,7 @@ nav.m{display:none}#menu{display:block}#dots{display:none}
     <a href="#" data-go="1" data-ar="الخدمات" data-en="Services">الخدمات</a>
     <a href="projects.html" data-ar="المشروعات" data-en="Projects">المشروعات</a>
     <a href="packages.html" class="pill" data-ar="الباقات" data-en="Packages">الباقات</a>
+    <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
     <a href="#" data-go="4" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
   </nav>
   <button id="menu" aria-label="Menu">&#9776;</button>
@@ -203,7 +218,7 @@ function apply(){
   document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
   document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
   $$('[data-ar]').forEach(function(e){e.textContent=e.getAttribute('data-'+lang)});
-  document.title=lang==='ar'?'تصميم المواقع | Kamal Elnhrawy':'Store Design | Kamal Elnhrawy';
+  document.title=lang==='ar'?'تصميم متاجر Shopify وEasy Order وصفحات هبوط | كمال النحراوي':'Shopify & Easy Order Store Design | Kamal Elnhrawy';
   if(scenes&&window.ScrollTrigger)ScrollTrigger.refresh();
 }
 function go(i){
