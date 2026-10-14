@@ -55,5 +55,15 @@ window.POSTS = [
     category: 'التجارة الإلكترونية وتجربة المنتجات',
     lang: 'ar',
     read: 10
+  },
+  {
+    slug: "tiktok-algorithm-update-2026-conversion-egypt",
+    title: "تأثير تحديث خوارزمية تيك توك 2026 على معدلات التحويل في التجارة الإلكترونية بالمملكة",
+    excerpt: "تحديث خوارزمية تيك توك 2026 يغير طريقة الإعلانات التجارية في مصر، مع تركيز على الفيديو القصير وتكامل SDK للتجارة. كيف تؤثر على معدلات التحويل؟",
+    date: "2026-10-14",
+    category: "الميديا باينج والتجارة الإلكترونية",
+    lang: "ar",
+    read: 15,
+    cover: 'images/covers/tiktok-algorithm-update-2026-conversion-egypt.svg'
   }
 ];
