@@ -1,4 +1,3 @@
-
 name: Daily Blog Article
 
 on:
@@ -17,57 +16,83 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Get today's Cairo date
         id: date
         run: |
           echo "today=$(TZ=Africa/Cairo date +%F)" >> "$GITHUB_OUTPUT"
 
-      - name: Generate article using Gemini
+      - name: Research and prepare one original Arabic article
         uses: google-github-actions/run-gemini-cli@v0
         env:
           GEMINI_CLI_TRUST_WORKSPACE: "true"
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           prompt: |
-            You are the content editor for Kamal Elnhrawy's
-            Arabic marketing, branding, ecommerce and design blog.
-
             Today's date in Egypt is ${{ steps.date.outputs.today }}.
 
-            Read GEMINI.md, posts-data.js and existing articles
-            in posts/ before doing anything.
+            Follow GEMINI.md exactly. Your task is research first, writing second.
+            You MUST use the built-in google_web_search tool for actual web searches.
+            Do not rely on memory, and do not claim a search was performed unless you
+            ran it with the tool.
 
-            Create exactly one new, original Arabic article.
+            TOPIC AREAS
+            Prioritize media buying, paid social/search ads, performance marketing,
+            ecommerce, pricing and profit, ad creative, brand strategy, conversion
+            optimization, landing pages, attribution, analytics, and useful marketing
+            experiments. Find ideas from English-language coverage/case studies/reports
+            and turn them into original Arabic analysis useful to Egyptian businesses.
 
-            Research the topic using reliable original sources.
-            Include direct source links in the article.
-            Never invent statistics, case studies, quotes or citations.
-            Clearly distinguish facts from your analysis.
+            REQUIRED WORKFLOW
+            1. Read posts-data.js and inspect relevant articles in posts/. List the
+               site's existing topics before selecting a candidate.
+            2. Research at least three possible candidate topics from English sources.
+               Prefer recent material and primary sources: official platform updates,
+               original studies/reports, company case studies, and reputable trade
+               publications. Check publication dates and direct source URLs.
+            3. For the best candidate, execute at least THREE actual English web-search
+               queries. Look for original evidence, the underlying case study/report,
+               and context or limitations. Do not treat an AI summary as a source.
+            4. Separately execute at least THREE actual Arabic web-search queries for
+               the same concept. Try several phrases using terms such as الميديا باينج،
+               الإعلانات الممولة، التسويق الرقمي، التجارة الإلكترونية, plus an appropriate
+               Egyptian/Arab-market phrasing. Search the key finding AND the case study,
+               not only a literal translation of the title.
+            5. Compare the closest Arabic results with the candidate. If an Arabic article
+               already covers substantially the same key finding/case and practical lesson,
+               reject that candidate and screen another candidate. Do not claim that an
+               idea is absent from all Arabic content on the internet; report only what
+               the actual searches found and the search limitation.
+            6. If no candidate passes, write research-audit.md with the required headings
+               and DECISION: SKIP. Do not create any post or edit posts-data.js. This is a
+               successful no-publication outcome; the workflow should finish without commit.
+            7. If a candidate passes, write research-audit.md with all six exact headings
+               and the queries/results/sources required in GEMINI.md. End it with
+               DECISION: PUBLISH and a concise reason.
+            8. Write one original Arabic Markdown article (at least 3,500 characters),
+               not a direct translation. Explain the foreign finding accurately, give
+               context and limitations, then show how an Egyptian marketer/store can
+               apply or test it without assuming foreign results transfer unchanged.
+               Include at least three direct source links inline or in a 'المصادر' section.
+               The two main English sources listed in the audit must also be cited in the
+               article. Do not invent statistics, quotes, dates, or case-study results.
+            9. Create posts/<unique-kebab-case-slug>.md and add exactly one matching
+               metadata object to posts-data.js. Set date to today's Cairo date,
+               lang: "ar", and the existing category/read/title/excerpt/slug fields.
+               Do not set a cover path unless that exact cover file already exists.
+            10. Only edit the new article and posts-data.js, and create research-audit.md.
+                Do not modify old posts, page templates, styles, or other project files.
+                Do not commit or push; the workflow validates and publishes.
 
-            Avoid repeating existing article topics.
-            Write natural, clear Egyptian-friendly Arabic.
-            Include a strong title, useful practical examples,
-            clear headings, and an actionable conclusion.
+            Return a brief summary of the decision and why. Never reveal secrets.
 
-            Create posts/<unique-slug>.md.
-            Add exactly one matching metadata object to posts-data.js.
-
-            Keep the existing window.POSTS format.
-            Set the date to today's date, category, lang: "ar",
-            read time, title, excerpt and slug correctly.
-
-            Only edit the new article and posts-data.js.
-            Do not rewrite existing articles or site templates.
-            Do not reference a cover image unless that file exists.
-            Do not commit or push changes yourself.
-            The workflow will validate and publish the changes.
-
-      - name: Validate blog files
+      - name: Validate research and article
+        id: validate
         env:
           TODAY: ${{ steps.date.outputs.today }}
         run: |
@@ -75,81 +100,132 @@ jobs:
           const fs = require("fs");
           const cp = require("child_process");
 
-          global.window = {};
-          require("./posts-data.js");
-          const posts = window.POSTS;
-
-          if (!Array.isArray(posts)) {
-            throw new Error("posts-data.js is invalid");
+          function fail(message) {
+            console.error("Validation failed: " + message);
+            process.exit(1);
+          }
+          function section(markdown, heading, nextHeading) {
+            const start = markdown.indexOf(heading);
+            if (start < 0) return [];
+            const from = start + heading.length;
+            const end = nextHeading ? markdown.indexOf(nextHeading, from) : -1;
+            return markdown.slice(from, end < 0 ? undefined : end)
+              .split(/\r?\n/)
+              .map(line => line.trim())
+              .filter(line => line.startsWith("- "));
           }
 
-          const slugs = new Set();
-
-          for (const p of posts) {
-            if (!p.slug || !p.title || !p.date || !p.category) {
-              throw new Error("Missing required post metadata");
-            }
-
-            if (slugs.has(p.slug)) {
-              throw new Error("Duplicate slug: " + p.slug);
-            }
-            slugs.add(p.slug);
-
-            const file = `posts/${p.slug}.md`;
-            if (!fs.existsSync(file)) {
-              throw new Error("Missing article file: " + file);
-            }
+          if (!fs.existsSync("research-audit.md")) {
+            fail("Gemini did not create research-audit.md; research cannot be verified.");
           }
+          const audit = fs.readFileSync("research-audit.md", "utf8");
+          const decisionMatch = audit.match(/DECISION:\s*(PUBLISH|SKIP)\b/i);
+          if (!decisionMatch) fail("Audit must include DECISION: PUBLISH or DECISION: SKIP.");
+          const decision = decisionMatch[1].toUpperCase();
 
-          const newFiles = cp.execSync(
+          fs.appendFileSync(
+            process.env.GITHUB_STEP_SUMMARY,
+            "## Daily article research audit\n\n" + audit + "\n"
+          );
+
+          const createdPosts = cp.execSync(
             "git ls-files --others --exclude-standard -- 'posts/*.md'",
             { encoding: "utf8" }
           ).trim().split("\n").filter(Boolean);
 
-          if (newFiles.length !== 1) {
-            throw new Error(
-              "Expected exactly one new Markdown article"
-            );
+          if (decision === "SKIP") {
+            if (createdPosts.length !== 0) {
+              fail("Audit says SKIP, but a new article was also created.");
+            }
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, "publish=false\n");
+            console.log("No article published: research/novelty checks did not pass.");
+            process.exit(0);
           }
 
-          const slug = newFiles[0]
-            .replace(/^posts\//, "")
-            .replace(/\.md$/, "");
+          const headings = [
+            "## English Search Queries",
+            "## Arabic Market Search Queries",
+            "## English Source Articles",
+            "## Arabic-Market Results",
+            "## Existing Site Duplicate Check",
+            "## Decision"
+          ];
+          for (const heading of headings) {
+            if (!audit.includes(heading)) fail("Missing audit heading: " + heading);
+          }
 
+          const enQueries = section(audit, headings[0], headings[1]);
+          const arQueries = section(audit, headings[1], headings[2]);
+          const enSources = section(audit, headings[2], headings[3]);
+          const arFindings = section(audit, headings[3], headings[4]);
+          const duplicateCheck = section(audit, headings[4], headings[5]);
+
+          if (enQueries.length < 3 || !enQueries.every(line => /query:/i.test(line))) {
+            fail("Audit must list at least 3 executed English search queries.");
+          }
+          if (arQueries.length < 3 ||
+              !arQueries.every(line => /query:/i.test(line) && /[\u0600-\u06FF]/.test(line))) {
+            fail("Audit must list at least 3 executed Arabic search queries.");
+          }
+          const sourceLinks = enSources.join("\n").match(/https?:\/\/[^\s)]+/g) || [];
+          if (sourceLinks.length < 2) fail("Audit needs at least 2 direct English source URLs.");
+          if (arFindings.join("\n").trim().length < 100) {
+            fail("Arabic-market results and search limitations are not documented.");
+          }
+          if (duplicateCheck.join("\n").trim().length < 80) {
+            fail("The comparison with existing blog articles is too brief.");
+          }
+          if (createdPosts.length !== 1) {
+            fail("Expected exactly one new Markdown article in posts/.");
+          }
+
+          global.window = {};
+          try {
+            require("./posts-data.js");
+          } catch (error) {
+            fail("posts-data.js could not be parsed: " + error.message);
+          }
+          const posts = global.window.POSTS;
+          if (!Array.isArray(posts)) fail("window.POSTS is not an array.");
+
+          const slugs = new Set();
+          for (const p of posts) {
+            if (!p.slug || !p.title || !p.date || !p.category) {
+              fail("Missing required metadata field in posts-data.js.");
+            }
+            if (slugs.has(p.slug)) fail("Duplicate slug: " + p.slug);
+            slugs.add(p.slug);
+            if (!fs.existsSync(`posts/${p.slug}.md`)) {
+              fail("Metadata has no matching Markdown file: " + p.slug);
+            }
+          }
+
+          const slug = createdPosts[0].replace(/^posts\//, "").replace(/\.md$/, "");
           const post = posts.find(p => p.slug === slug);
-          if (!post || post.date !== process.env.TODAY) {
-            throw new Error(
-              "Today's new article is not indexed correctly"
-            );
+          if (!post || post.date !== process.env.TODAY || post.lang !== "ar") {
+            fail("New article metadata must match today's date, slug and Arabic language.");
           }
+          const article = fs.readFileSync(createdPosts[0], "utf8");
+          if (article.length < 3500) fail("Article is too short.");
+          const articleLinks = article.match(/\]\(https?:\/\/[^)\s]+\)/g) || [];
+          if (articleLinks.length < 3) fail("Article needs at least 3 direct source links.");
+          if (!/[\u0600-\u06FF]/.test(article)) fail("Article content is not Arabic.");
 
-          const article = fs.readFileSync(newFiles[0], "utf8");
-          if (article.length < 3500) {
-            throw new Error("Article is too short");
-          }
-
-          const links = article.match(/\]\(https?:\/\//g) || [];
-          if (links.length < 3) {
-            throw new Error("Article needs at least 3 source links");
-          }
-
-          console.log("Blog validation passed:", slug);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, "publish=true\n");
+          console.log("Research audit and article validation passed: " + slug);
           NODE
 
-      - name: Commit and publish
+      - name: Commit and publish approved article
+        if: steps.validate.outputs.publish == 'true'
         env:
           TODAY: ${{ steps.date.outputs.today }}
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add posts/ posts-data.js
-
           if git diff --cached --quiet; then
-            echo "No changes to publish."
-            exit 0
+            echo "No article changes to publish."
+            exit 1
           fi
-
-          git commit -m "content: publish daily article $TODAY"
+          git commit -m "content: publish researched article $TODAY"
           git push
