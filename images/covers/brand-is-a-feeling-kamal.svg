@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Brand identity as an emotional signature</title><desc id="d">A refined perfume bottle with scent ribbons, abstract emotion waves, and a deliberate palette.</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#F8F0E3"/><stop offset="1" stop-color="#E4D6C2"/></linearGradient>
+ <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".55" stop-color="#C7D8D4" stop-opacity=".75"/><stop offset="1" stop-color="#B59C72" stop-opacity=".85"/></linearGradient>
+ <linearGradient id="gold" x2="1" y2="1"><stop stop-color="#F8D98D"/><stop offset="1" stop-color="#B98436"/></linearGradient>
+ <linearGradient id="ink" x2="1" y2="1"><stop stop-color="#1E4962"/><stop offset="1" stop-color="#0B2339"/></linearGradient>
+ <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#4D3D2B" flood-opacity=".24"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/><circle cx="1240" cy="180" r="270" fill="#D4B879" opacity=".2"/><circle cx="230" cy="760" r="250" fill="#6FBAB0" opacity=".14"/>
+<path d="M0 710Q330 640 650 740T1200 720T1600 690V900H0Z" fill="#D7C8B3"/>
+<g opacity=".75" fill="none" stroke-linecap="round"><path d="M920 210c170-95 280 55 205 125-58 53-160 3-104-51 44-43 110-5 83 24" stroke="#1A8E91" stroke-width="12"/><path d="M840 280c-95-125-225-75-190 20 20 53 103 52 103 1 0-38-50-42-58-13" stroke="#DCA64B" stroke-width="12"/><path d="M885 390c150-35 180 90 93 119-67 22-102-36-60-62 32-20 60 9 42 26" stroke="#D96066" stroke-width="12"/></g>
+<g filter="url(#shadow)">
+ <rect x="420" y="300" width="490" height="410" rx="82" fill="url(#glass)" stroke="#FFFFFF" stroke-width="10"/>
+ <path d="M505 320v370M550 318v375" stroke="#FFFFFF" stroke-width="18" opacity=".43" stroke-linecap="round"/>
+ <rect x="545" y="230" width="240" height="85" rx="17" fill="#C2A36F"/><rect x="565" y="175" width="200" height="70" rx="16" fill="url(#ink)"/><rect x="582" y="188" width="166" height="40" rx="9" fill="#D9C28D"/>
+ <rect x="510" y="435" width="310" height="170" rx="20" fill="#FCF8EE" opacity=".91"/><path d="M548 469h235" stroke="#D2B57A" stroke-width="7" stroke-linecap="round"/><path d="M548 497h185" stroke="#B0B9B2" stroke-width="6" stroke-linecap="round"/><path d="M548 524h213" stroke="#B0B9B2" stroke-width="6" stroke-linecap="round"/>
+ <circle cx="665" cy="566" r="17" fill="#D3A64A"/><circle cx="712" cy="566" r="17" fill="#D96E70"/><circle cx="759" cy="566" r="17" fill="#4CB5A8"/>
+</g>
+<g filter="url(#shadow)"><rect x="1035" y="540" width="130" height="155" rx="18" fill="#1A354B"/><rect x="1185" y="505" width="130" height="190" rx="18" fill="#D5B46C"/><rect x="1335" y="565" width="130" height="130" rx="18" fill="#5DAEA4"/><path d="M1065 575h70M1065 600h50M1215 540h70M1215 565h50M1365 598h70M1365 623h50" stroke="#FFF" stroke-width="8" stroke-linecap="round" opacity=".72"/></g>
+<path d="M280 250l21 42 47 7-34 33 8 47-42-22-42 22 8-47-34-33 47-7Z" fill="#D8AE55"/><circle cx="1125" cy="240" r="32" fill="#5AB4A7"/><circle cx="1210" cy="330" r="18" fill="#D95C68"/><circle cx="335" cy="575" r="12" fill="#1B6270"/>
+</svg>

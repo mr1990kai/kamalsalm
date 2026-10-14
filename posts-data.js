@@ -1,4 +1,5 @@
-/* بيانات المقالات. أضف المقال الجديد هنا بعد إنشاء ملفه داخل مجلد posts. */
+/* تصنيفات المدونة مختصرة: الميديا باينج، البراندينج، التجارة الإلكترونية.
+   column مخصص للمقالات الأصلية التي يكتبها كمال بنفسه. */
 window.POSTS = [
   {
     slug: 'google-ai-mode-ads-2026',
@@ -8,62 +9,78 @@ window.POSTS = [
     category: 'الميديا باينج',
     lang: 'ar',
     read: 6,
-    cover: 'images/ai-mode-search-cover.webp'
+    cover: 'images/covers/google-ai-mode-ads-2026.svg'
   },
   {
     slug: 'discounts-profit-not-sales-2026',
     title: 'الخصم اللي بيجيب طلبات ممكن يخسّرك: إزاي تحسب المكسب الحقيقي من العرض؟',
     excerpt: 'بحث جديد من IPA يوضح ليه ارتفاع الطلبات وقت الخصم مش دليل كافي على الربحية، وإزاي تراجع تكلفة الطلب والمبيعات الإضافية قبل تكرار العرض.',
     date: '2026-10-13',
-    category: 'التسويق والربحية',
+    category: 'التجارة الإلكترونية',
     lang: 'ar',
     read: 7,
-    cover: 'images/promotion-profit-cover.webp'
+    cover: 'images/covers/discounts-profit-not-sales-2026.svg'
   },
   {
     slug: 'delivered-orders-not-order-count-2026',
     title: 'الإعلان جاب 200 أوردر… بس مين فيهم وصل؟ مقياس «سلسلة الحقيقة» للتجارة بالـCOD',
     excerpt: 'ليه الحملة اللي بتجيب طلبات أرخص ممكن تكون أقل ربحًا؟ نموذج عملي يربط الإعلان بالتأكيد والشحن والاستلام والمساهمة المالية، مع مثال حسابي قابل للتطبيق.',
     date: '2026-10-13',
-    category: 'الميديا باينج والتجارة الإلكترونية',
+    category: 'الميديا باينج',
     lang: 'ar',
-    read: 9
+    read: 9,
+    cover: 'images/covers/delivered-orders-not-order-count-2026.svg'
   },
   {
     slug: 'shoppertainment-everyday-products-egypt-2026',
     title: 'الناس مش داخلة تتفرج على إعلان منظف: الدرس الجديد من Reckitt في الصين وإزاي تطبّقه في مصر',
     excerpt: 'قراءة عربية لتقرير أجنبي حديث عن تحويل المنتجات اليومية لفيديوهات تحكي موقفًا بدل ما تكرر مواصفات المنتج، مع طريقة اختبار بسيطة تناسب المتاجر المصرية.',
     date: '2026-10-13',
-    category: 'التسويق وصناعة المحتوى',
+    category: 'البراندينج',
     lang: 'ar',
-    read: 8
+    read: 8,
+    cover: 'images/covers/shoppertainment-everyday-products-egypt-2026.svg'
   },
   {
     slug: 'hotel-room-product-demo-egypt-2026',
     title: 'شركة تكييفات بتحوّل أوضة فندق لإعلان… بس من غير إعلان: حكاية تسويق تستاهل التجربة في مصر',
     excerpt: 'شركة Quilt وضعت أنظمة التكييف في غرف فندقية، ثم حوّلت التجربة إلى محتوى وشراكات. كيف تختبر الفكرة محليًا لمنتجات يصعب شرح فائدتها بالصور؟',
     date: '2026-10-13',
-    category: 'البراندينج والتسويق التجريبي',
+    category: 'البراندينج',
     lang: 'ar',
-    read: 9
+    read: 9,
+    cover: 'images/covers/hotel-room-product-demo-egypt-2026.svg'
   },
   {
     slug: 'what-to-do-with-10000-egp-ecommerce-test-2026',
     title: 'تعمل إيه لو معاك ١٠ آلاف جنيه؟ متشتريش بضاعة الأول… اسمع الحكاية دي من أمريكا',
     excerpt: 'تجربة Pizza Party في الطلبات المسبقة بتكشف إزاي تختبر رغبة الناس في الشراء قبل ما تحبس رأس مالك في المخزون. خطة عملية لميزانية 10,000 جنيه تراعي السوق المصري.',
     date: '2026-10-14',
-    category: 'التجارة الإلكترونية وتجربة المنتجات',
+    category: 'التجارة الإلكترونية',
     lang: 'ar',
-    read: 10
+    read: 10,
+    cover: 'images/covers/what-to-do-with-10000-egp-ecommerce-test-2026.svg'
   },
   {
-    slug: "tiktok-algorithm-update-2026-conversion-egypt",
-    title: "تأثير تحديث خوارزمية تيك توك 2026 على معدلات التحويل في التجارة الإلكترونية بالمملكة",
-    excerpt: "تحديث خوارزمية تيك توك 2026 يغير طريقة الإعلانات التجارية في مصر، مع تركيز على الفيديو القصير وتكامل SDK للتجارة. كيف تؤثر على معدلات التحويل؟",
-    date: "2026-10-14",
-    category: "الميديا باينج والتجارة الإلكترونية",
-    lang: "ar",
+    slug: 'tiktok-algorithm-update-2026-conversion-egypt',
+    title: 'تأثير تحديث خوارزمية تيك توك 2026 على معدلات التحويل في التجارة الإلكترونية بالمملكة',
+    excerpt: 'مقال عن إعلانات الفيديو القصير وقياس التحويلات في التجارة الإلكترونية.',
+    date: '2026-10-14',
+    category: 'الميديا باينج',
+    lang: 'ar',
     read: 15,
     cover: 'images/covers/tiktok-algorithm-update-2026-conversion-egypt.svg'
+  },
+  {
+    slug: 'brand-is-a-feeling-kamal-2026',
+    title: 'البراند مش اللوجو… البراند هو الإحساس اللي بيفضل جواك',
+    excerpt: 'رؤية كمال النحراوي عن معنى البراند، وليه الاسم والألوان مجرد أدوات، وإن أهم سؤال قبل بناء أي علامة هو: عايز الناس تحس بإيه؟',
+    date: '2026-10-14',
+    category: 'البراندينج',
+    lang: 'ar',
+    read: 12,
+    cover: 'images/covers/brand-is-a-feeling-kamal.svg',
+    author: 'كمال النحراوي',
+    column: 'دفتر كمال'
   }
 ];

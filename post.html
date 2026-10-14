@@ -82,7 +82,7 @@
   <p class="cp">© 2026 Kamal Elnhrawy</p>
 </footer>
 <script src="md.js"></script>
-<script src="posts-data.js?v=6"></script>
+<script src="posts-data.js?v=7"></script>
 <script>
 (function(){
   'use strict';
@@ -91,7 +91,8 @@
   function setMeta(selector,content){var node=document.querySelector(selector);if(node)node.setAttribute('content',content)}
   function card(p){
     var cover=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.remove()">':esc((p.title||'م').slice(0,1));
-    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx"><div class="ct">'+esc(p.category||'')+'</div><h3>'+esc(p.title||'')+'</h3><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
+    var labels='<div class="card-labels"><span class="ct">'+esc(p.category||'')+'</span>'+(p.column?'<span class="writer">بقلم كمال النحراوي</span>':'')+'</div>';
+    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx">'+labels+'<h3>'+esc(p.title||'')+'</h3><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
   }
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   var slug=new URLSearchParams(location.search).get('p')||'';
@@ -111,7 +112,7 @@
       $('#art').hidden=false;$('#ctab').hidden=false;
       $('#cat').textContent=P.category||'';
       $('#ttl').textContent=P.title||'';
-      $('#info').textContent=fmt(P.date)+' · '+(P.read||'')+' دقائق قراءة';
+      $('#info').textContent=fmt(P.date)+' · '+(P.read||'')+' دقائق قراءة'+(P.column?' · بقلم '+(P.author||'كمال النحراوي'):'');
       $('#art').dir=P.lang==='ar'?'rtl':'ltr';
       $('#body').className='body '+(P.lang==='ar'?'ar':'en');
       $('#body').innerHTML=window.md(source);

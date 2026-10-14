@@ -33,10 +33,16 @@
 <main>
   <section class="wrap hero">
     <h1>المقالات</h1>
-    <p class="tag">تحليلات عملية في التصميم والبراندينج والميديا باينج والتسويق. كل مقال بيرجع لمصادره الأصلية ويفصل بين المعلومة والرأي.</p>
+    <p class="tag">مقالات عملية مبنية على تجارب وأبحاث من برّه، وقراءة للسوق، وكتابات أصلية من كمال النحراوي.</p>
+    <div class="column-intro" id="column-intro">
+      <div class="column-mark" aria-hidden="true">ك</div>
+      <div class="column-copy"><span class="column-kicker">مقالات أصلية</span><h2>دفتر كمال النحراوي</h2><p>مساحة للأفكار والمقالات اللي بكتبها بنفسي، بصوتي ورؤيتي، جنب المقالات البحثية والتجارب العالمية.</p></div>
+      <button type="button" class="column-button" id="column-jump">اقرأ كتاباتي</button>
+    </div>
     <div class="chips" id="chips" aria-label="تصفية حسب المجال"></div>
   </section>
   <div class="wrap">
+    <h2 class="list-title" id="list-title">كل المقالات</h2>
     <div class="bgrid" id="grid" aria-live="polite"></div>
     <p class="empty" id="empty" hidden>لسه مفيش مقالات في التصنيف ده.</p>
     <p class="empty" id="error" hidden>حصلت مشكلة في تحميل بيانات المقالات. جرّب تحدّث الصفحة.</p>
@@ -49,7 +55,7 @@
   </div>
   <p class="cp">© 2026 Kamal Elnhrawy</p>
 </footer>
-<script src="posts-data.js?v=6"></script>
+<script src="posts-data.js?v=7"></script>
 <script>
 (function(){
   'use strict';
@@ -59,25 +65,40 @@
   function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
   function card(p){
     var cover=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.remove()">':esc((p.title||'م').slice(0,1));
-    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx"><div class="ct">'+esc(p.category||'')+'</div><h2>'+esc(p.title||'')+'</h2><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
+    var labels='<div class="card-labels"><span class="ct">'+esc(p.category||'')+'</span>'+(p.column?'<span class="writer">بقلم كمال النحراوي</span>':'')+'</div>';
+    return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx">'+labels+'<h2>'+esc(p.title||'')+'</h2><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
   }
   function render(){
-    var items=list.filter(function(p){return current==='all'||p.category===current});
+    var items=list.filter(function(p){
+      if(current==='column')return p.column==='دفتر كمال';
+      return current==='all'||p.category===current;
+    });
     $('#grid').innerHTML=items.map(card).join('');
     $('#empty').hidden=items.length!==0;
+    $('#list-title').textContent=current==='all'?'كل المقالات':(current==='column'?'دفتر كمال النحراوي':current);
+  }
+  function selectFilter(value){
+    current=value;
+    $('#chips').querySelectorAll('button[data-f]').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-f')===value)});
+    render();
   }
   function drawChips(){
-    var cats=[];
-    list.forEach(function(p){if(p.category&&cats.indexOf(p.category)===-1)cats.push(p.category)});
-    $('#chips').hidden=cats.length<2;
-    if(cats.length<2)return;
-    $('#chips').innerHTML='<button type="button" class="on" data-f="all">الكل</button>'+cats.map(function(c){return '<button type="button" data-f="'+esc(c)+'">'+esc(c)+'</button>'}).join('');
+    var preferred=['الميديا باينج','البراندينج','التجارة الإلكترونية'];
+    var cats=preferred.filter(function(c){return list.some(function(p){return p.category===c})});
+    var hasColumn=list.some(function(p){return p.column==='دفتر كمال'});
+    $('#chips').innerHTML='<button type="button" class="on" data-f="all">كل المقالات</button>'+
+      cats.map(function(c){return '<button type="button" data-f="'+esc(c)+'">'+esc(c)+'</button>'}).join('')+
+      (hasColumn?'<button type="button" data-f="column">دفتر كمال</button>':'');
     $('#chips').addEventListener('click',function(e){
       var b=e.target.closest('button[data-f]');if(!b)return;
-      current=b.getAttribute('data-f');
-      $('#chips').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
-      render();
+      selectFilter(b.getAttribute('data-f'));
     });
+    var jump=$('#column-jump');
+    if(jump&&hasColumn)jump.addEventListener('click',function(){
+      selectFilter('column');
+      $('#grid').scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    else if(jump)jump.hidden=true;
   }
   if(!Array.isArray(window.POSTS))$('#error').hidden=false;
   list.sort(function(a,b){return String(a.date)<String(b.date)?1:-1});
