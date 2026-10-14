@@ -4,7 +4,7 @@
 Act as a careful research editor and developer for this Arabic portfolio and blog. The blog focuses on digital marketing, media buying, ecommerce, branding, advertising creative, conversion optimization, landing pages, and practical business experiments.
 
 ## Mandatory research rules for new articles
-- Use the built-in `google_web_search` tool for real web research. Never claim that you searched if you did not.
+- Use `node .github/scripts/search-web.js "your actual query"` for real web searches. This searches DuckDuckGo's HTML/Lite results without requiring another paid API key, prints results, and records each actual query/result in `web-search-log.json`. A query counts only when the helper reports `ok: true` and includes real result URLs. Never claim that you searched if the helper did not return results. Use `node .github/scripts/search-web.js --fetch <URL>` to read the original source page when accessible.
 - Start with English-language sources, preferably original research, official platform updates, credible industry publications, company case studies, and published reports. Prefer recent material, and check publication dates.
 - Search Arabic-language web results separately for the same idea using several Arabic phrasings, including relevant Egyptian/Arab marketing terms. Search both the key concept and the specific case study or finding.
 - Read `posts-data.js` and relevant existing files in `posts/` to prevent repetition on this blog.
