@@ -223,7 +223,7 @@ jobs:
               const url = new URL(String(value).replace(/[.,;]+$/, ""));
               url.hash = "";
               url.search = "";
-              url.pathname = url.pathname.replace(/\\/+$/, "") || "/";
+              url.pathname = url.pathname.replace(/\/+$/, "") || "/";
               return url.origin.toLowerCase() + url.pathname;
             } catch (_) {
               return String(value).replace(/[.,;]+$/, "");
