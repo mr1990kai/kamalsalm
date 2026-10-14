@@ -26,7 +26,7 @@ function unwrapUrl(value, base) {
     const url = new URL(decodeEntities(value), base);
     if (url.hostname.includes("duckduckgo.com")) {
       const target = url.searchParams.get("uddg") || url.searchParams.get("url");
-      if (target) return decodeURIComponent(target);
+      if (target) return target;
     }
     return url.toString();
   } catch (_) {
@@ -36,14 +36,16 @@ function unwrapUrl(value, base) {
 function extractResults(html, base) {
   const matches = Array.from(html.matchAll(/<a\b[^>]*class=["'][^"']*(?:result__a|result-link)[^"']*["'][^>]*>[\s\S]*?<\/a>/gi));
   const results = [];
-  for (const match of matches) {
+  for (let matchIndex = 0; matchIndex < matches.length; matchIndex++) {
+    const match = matches[matchIndex];
     const anchor = match[0];
     const hrefMatch = anchor.match(/\bhref=["']([^"']+)["']/i);
     const url = hrefMatch ? unwrapUrl(hrefMatch[1], base) : "";
     const title = plainHtml(anchor.replace(/^<a\b[^>]*>/i, "").replace(/<\/a>$/i, ""));
-    const next = html.indexOf(match[0], match.index + 1);
-    const start = Math.max(html.lastIndexOf('<div class="result', match.index), match.index);
-    const end = next > 0 ? next : Math.min(html.length, match.index + 6000);
+    const previousResult = html.lastIndexOf('<div class="result', match.index);
+    const nextResult = html.indexOf('<div class="result', match.index + match[0].length);
+    const start = previousResult >= 0 ? previousResult : match.index;
+    const end = nextResult > start ? nextResult : Math.min(html.length, match.index + 6000);
     const chunk = html.slice(start, end);
     const snippetMatch = chunk.match(/<(?:div|a|span|td)[^>]*class=["'][^"']*result__snippet[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|a|span|td)>/i);
     const snippet = snippetMatch ? plainHtml(snippetMatch[1]) : "";
