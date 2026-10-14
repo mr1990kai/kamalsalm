@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Tracking ecommerce orders through delivery</title><desc id="d">A phone with order status milestones, parcels, and a delivery vehicle.</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0F2344"/><stop offset="1" stop-color="#183E65"/></linearGradient>
+ <linearGradient id="blue" x2="1" y2="1"><stop stop-color="#57D6D0"/><stop offset="1" stop-color="#168EA7"/></linearGradient>
+ <linearGradient id="box" x2="1" y2="1"><stop stop-color="#E9C79C"/><stop offset="1" stop-color="#BB8254"/></linearGradient>
+ <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="20" stdDeviation="23" flood-color="#030C19" flood-opacity=".4"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/><circle cx="1300" cy="150" r="330" fill="#1D84A1" opacity=".18"/><circle cx="240" cy="780" r="300" fill="#F1B956" opacity=".09"/>
+<path d="M0 715 Q300 650 610 735 T1180 710 T1600 690 V900H0Z" fill="#0A1A32" opacity=".7"/>
+<g filter="url(#shadow)" transform="rotate(-5 520 460)">
+ <rect x="315" y="110" width="430" height="665" rx="58" fill="#07111F" stroke="#7190A4" stroke-width="5"/>
+ <rect x="339" y="145" width="382" height="596" rx="36" fill="#F7FBFF"/>
+ <rect x="452" y="160" width="155" height="22" rx="11" fill="#07111F"/>
+ <rect x="372" y="218" width="316" height="92" rx="22" fill="#E6F2FA"/>
+ <circle cx="414" cy="264" r="20" fill="#1CA58F"/><path d="M404 264l8 8 14-17" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+ <rect x="451" y="246" width="190" height="14" rx="7" fill="#7D9AAF"/><rect x="451" y="272" width="151" height="10" rx="5" fill="#C1D1DE"/>
+ <rect x="372" y="330" width="316" height="92" rx="22" fill="#E6F2FA"/>
+ <circle cx="414" cy="376" r="20" fill="#2679D5"/><path d="M404 376l8 8 14-17" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+ <rect x="451" y="358" width="190" height="14" rx="7" fill="#7D9AAF"/><rect x="451" y="384" width="151" height="10" rx="5" fill="#C1D1DE"/>
+ <rect x="372" y="442" width="316" height="92" rx="22" fill="#E6F2FA"/>
+ <circle cx="414" cy="488" r="20" fill="#2679D5"/><path d="M404 488l8 8 14-17" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+ <rect x="451" y="470" width="190" height="14" rx="7" fill="#7D9AAF"/><rect x="451" y="496" width="151" height="10" rx="5" fill="#C1D1DE"/>
+ <rect x="372" y="554" width="316" height="92" rx="22" fill="#DDF7ED"/>
+ <circle cx="414" cy="600" r="20" fill="#1CA58F"/><path d="M404 600l8 8 14-17" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+ <rect x="451" y="582" width="190" height="14" rx="7" fill="#489888"/><rect x="451" y="608" width="151" height="10" rx="5" fill="#90CFC2"/>
+</g>
+<g filter="url(#shadow)">
+ <rect x="900" y="480" width="250" height="185" rx="14" fill="url(#box)"/><path d="M900 521h250M1025 480v185" stroke="#A86C43" stroke-width="7"/><path d="M900 480l125 40 125-40" fill="#E7C396" stroke="#A86C43" stroke-width="4"/>
+ <rect x="1115" y="390" width="205" height="275" rx="14" fill="#D5AD7B"/><path d="M1115 445h205M1218 390v275" stroke="#A86C43" stroke-width="7"/>
+ <g transform="translate(1170 595)"><path d="M0 0h215v-104l-55-54H70L35-104H0Z" fill="url(#blue)"/><rect x="95" y="-142" width="58" height="42" rx="6" fill="#C5F5F1"/><rect x="172" y="-138" width="22" height="34" rx="6" fill="#C5F5F1"/><circle cx="50" cy="6" r="29" fill="#071A32"/><circle cx="50" cy="6" r="13" fill="#93B1C3"/><circle cx="173" cy="6" r="29" fill="#071A32"/><circle cx="173" cy="6" r="13" fill="#93B1C3"/><rect x="12" y="-74" width="46" height="22" rx="8" fill="#F7C65B"/></g>
+</g>
+<circle cx="1290" cy="225" r="65" fill="#E8F7F8" opacity=".12"/><path d="M1262 222l18 18 38-44" fill="none" stroke="#58D7C6" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
