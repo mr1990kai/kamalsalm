@@ -63,7 +63,7 @@ jobs:
           }
 
           if (!fs.existsSync("research-audit.md")) {
-            fail("Gemini did not create research-audit.md; research cannot be verified.");
+            fail("Article generator did not create research-audit.md; research cannot be verified.");
           }
           const audit = fs.readFileSync("research-audit.md", "utf8");
           const decisionMatch = audit.match(/DECISION:\s*(PUBLISH|SKIP)\b/i);
