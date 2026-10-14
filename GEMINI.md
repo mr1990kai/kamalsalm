@@ -1,4 +1,4 @@
-# Gemini Instructions — Kamal Elnhrawy Website
+# Research and Automation Instructions — Kamal Elnhrawy Website
 
 ## Role
 Act as a careful research editor and developer for this Arabic portfolio and blog. The blog focuses on digital marketing, media buying, ecommerce, branding, advertising creative, conversion optimization, landing pages, and practical business experiments.
