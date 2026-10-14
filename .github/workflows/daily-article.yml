@@ -218,10 +218,21 @@ jobs:
             fail("At least 3 successful English and 3 successful Arabic web searches are required.");
           }
 
+          function normalizeSourceUrl(value) {
+            try {
+              const url = new URL(String(value).replace(/[.,;]+$/, ""));
+              url.hash = "";
+              url.search = "";
+              url.pathname = url.pathname.replace(/\\/+$/, "") || "/";
+              return url.origin.toLowerCase() + url.pathname;
+            } catch (_) {
+              return String(value).replace(/[.,;]+$/, "");
+            }
+          }
           const foundUrls = new Set(successfulSearches.flatMap(item =>
-            item.results.map(result => String(result.url || "").replace(/[.,;]+$/, ""))
+            item.results.map(result => normalizeSourceUrl(result.url || ""))
           ));
-          const auditSourceUrls = sourceLinks.map(url => url.replace(/[.,;]+$/, ""));
+          const auditSourceUrls = sourceLinks.map(normalizeSourceUrl);
           if (auditSourceUrls.filter(url => foundUrls.has(url)).length < 2) {
             fail("At least 2 English sources in the audit must come from actual logged search results.");
           }
