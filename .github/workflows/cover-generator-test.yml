@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".github/scripts/generate-cover.js"
+      - ".github/scripts/generate-article-groq.js"
       - ".github/scripts/search-web.js"
       - ".github/workflows/cover-generator-test.yml"
   pull_request:
@@ -26,6 +27,7 @@ jobs:
         run: |
           node --check .github/scripts/generate-cover.js
           node --check .github/scripts/search-web.js
+          node --check .github/scripts/generate-article-groq.js
 
       - name: Test live free web search helper
         run: |
