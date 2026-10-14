@@ -1,0 +1,155 @@
+
+name: Daily Blog Article
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+      timezone: "Africa/Cairo"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-blog-article
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get today's Cairo date
+        id: date
+        run: |
+          echo "today=$(TZ=Africa/Cairo date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Generate article using Gemini
+        uses: google-github-actions/run-gemini-cli@v0
+        env:
+          GEMINI_CLI_TRUST_WORKSPACE: "true"
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          prompt: |
+            You are the content editor for Kamal Elnhrawy's
+            Arabic marketing, branding, ecommerce and design blog.
+
+            Today's date in Egypt is ${{ steps.date.outputs.today }}.
+
+            Read GEMINI.md, posts-data.js and existing articles
+            in posts/ before doing anything.
+
+            Create exactly one new, original Arabic article.
+
+            Research the topic using reliable original sources.
+            Include direct source links in the article.
+            Never invent statistics, case studies, quotes or citations.
+            Clearly distinguish facts from your analysis.
+
+            Avoid repeating existing article topics.
+            Write natural, clear Egyptian-friendly Arabic.
+            Include a strong title, useful practical examples,
+            clear headings, and an actionable conclusion.
+
+            Create posts/<unique-slug>.md.
+            Add exactly one matching metadata object to posts-data.js.
+
+            Keep the existing window.POSTS format.
+            Set the date to today's date, category, lang: "ar",
+            read time, title, excerpt and slug correctly.
+
+            Only edit the new article and posts-data.js.
+            Do not rewrite existing articles or site templates.
+            Do not reference a cover image unless that file exists.
+            Do not commit or push changes yourself.
+            The workflow will validate and publish the changes.
+
+      - name: Validate blog files
+        env:
+          TODAY: ${{ steps.date.outputs.today }}
+        run: |
+          node <<'NODE'
+          const fs = require("fs");
+          const cp = require("child_process");
+
+          global.window = {};
+          require("./posts-data.js");
+          const posts = window.POSTS;
+
+          if (!Array.isArray(posts)) {
+            throw new Error("posts-data.js is invalid");
+          }
+
+          const slugs = new Set();
+
+          for (const p of posts) {
+            if (!p.slug || !p.title || !p.date || !p.category) {
+              throw new Error("Missing required post metadata");
+            }
+
+            if (slugs.has(p.slug)) {
+              throw new Error("Duplicate slug: " + p.slug);
+            }
+            slugs.add(p.slug);
+
+            const file = `posts/${p.slug}.md`;
+            if (!fs.existsSync(file)) {
+              throw new Error("Missing article file: " + file);
+            }
+          }
+
+          const newFiles = cp.execSync(
+            "git ls-files --others --exclude-standard -- 'posts/*.md'",
+            { encoding: "utf8" }
+          ).trim().split("\n").filter(Boolean);
+
+          if (newFiles.length !== 1) {
+            throw new Error(
+              "Expected exactly one new Markdown article"
+            );
+          }
+
+          const slug = newFiles[0]
+            .replace(/^posts\//, "")
+            .replace(/\.md$/, "");
+
+          const post = posts.find(p => p.slug === slug);
+          if (!post || post.date !== process.env.TODAY) {
+            throw new Error(
+              "Today's new article is not indexed correctly"
+            );
+          }
+
+          const article = fs.readFileSync(newFiles[0], "utf8");
+          if (article.length < 3500) {
+            throw new Error("Article is too short");
+          }
+
+          const links = article.match(/\]\(https?:\/\//g) || [];
+          if (links.length < 3) {
+            throw new Error("Article needs at least 3 source links");
+          }
+
+          console.log("Blog validation passed:", slug);
+          NODE
+
+      - name: Commit and publish
+        env:
+          TODAY: ${{ steps.date.outputs.today }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add posts/ posts-data.js
+
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+
+          git commit -m "content: publish daily article $TODAY"
+          git push
