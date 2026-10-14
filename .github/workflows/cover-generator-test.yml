@@ -1,0 +1,76 @@
+name: Test Article Cover Generator
+
+on:
+  push:
+    paths:
+      - ".github/scripts/generate-cover.js"
+      - ".github/workflows/cover-generator-test.yml"
+  pull_request:
+    paths:
+      - ".github/scripts/generate-cover.js"
+      - ".github/workflows/cover-generator-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-cover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Check script syntax
+        run: node --check .github/scripts/generate-cover.js
+
+      - name: Test generated cover and metadata update
+        shell: bash
+        run: |
+          set -euo pipefail
+          TEST_DIR="$RUNNER_TEMP/cover-generator-test"
+          mkdir -p "$TEST_DIR/.github/scripts" "$TEST_DIR/posts"
+          cp .github/scripts/generate-cover.js "$TEST_DIR/.github/scripts/generate-cover.js"
+
+          cat > "$TEST_DIR/posts-data.js" <<'EOF'
+          window.POSTS = [
+            {
+              slug: 'cover-test-unique',
+              title: 'اختبار غلاف الميديا باينج والإعلانات',
+              excerpt: 'مقال تجريبي لاختبار إنشاء الغلاف.',
+              date: '2026-10-14',
+              category: 'الميديا باينج',
+              lang: 'ar',
+              read: 5
+            }
+          ];
+          EOF
+
+          git -C "$TEST_DIR" init
+          git -C "$TEST_DIR" config user.name "Cover Generator Test"
+          git -C "$TEST_DIR" config user.email "cover-test@example.com"
+          git -C "$TEST_DIR" add .github/scripts/generate-cover.js posts-data.js
+          git -C "$TEST_DIR" commit -m "prepare isolated cover test"
+
+          cat > "$TEST_DIR/research-audit.md" <<'EOF'
+          ## Decision
+
+          DECISION: PUBLISH — synthetic test only
+          EOF
+          echo "محتوى تجريبي للاختبار فقط." > "$TEST_DIR/posts/cover-test-unique.md"
+
+          (
+            cd "$TEST_DIR"
+            node .github/scripts/generate-cover.js
+            test -s images/covers/cover-test-unique.svg
+            grep -q "<svg" images/covers/cover-test-unique.svg
+            grep -q "cover: 'images/covers/cover-test-unique.svg'" posts-data.js
+            node -e '
+              global.window = {};
+              require("./posts-data.js");
+              const p = window.POSTS[0];
+              if (p.cover !== "images/covers/cover-test-unique.svg") process.exit(1);
+              if (!require("fs").existsSync(p.cover)) process.exit(2);
+              console.log("Cover path and post metadata validated.");
+            '
+          )
