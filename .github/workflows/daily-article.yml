@@ -33,6 +33,11 @@ jobs:
           GEMINI_CLI_TRUST_WORKSPACE: "true"
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          gemini_model: gemini-3.5-flash-lite
+          settings: |-
+            {
+              "model": { "maxSessionTurns": 24 }
+            }
           prompt: |
             Today's date in Egypt is ${{ steps.date.outputs.today }}.
 
@@ -90,6 +95,10 @@ jobs:
                 Do not commit or push; the workflow validates and publishes.
 
             Return a brief summary of the decision and why. Never reveal secrets.
+
+      - name: Generate unique topic-specific cover
+        if: success()
+        run: node .github/scripts/generate-cover.js
 
       - name: Validate research and article
         id: validate
@@ -222,7 +231,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add posts/ posts-data.js
+          git add posts/ posts-data.js images/covers/
           if git diff --cached --quiet; then
             echo "No article changes to publish."
             exit 1
