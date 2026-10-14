@@ -217,6 +217,13 @@ jobs:
           if (articleLinks.length < 3) fail("Article needs at least 3 direct source links.");
           if (!/[\u0600-\u06FF]/.test(article)) fail("Article content is not Arabic.");
 
+          if (!post.cover || !post.cover.startsWith("images/covers/") || !fs.existsSync(post.cover)) {
+            fail("Generated cover is missing or not linked in the post metadata.");
+          }
+          if (!fs.readFileSync(post.cover, "utf8").includes("<svg")) {
+            fail("Generated cover SVG is invalid.");
+          }
+
           fs.appendFileSync(process.env.GITHUB_OUTPUT, "publish=true\n");
           console.log("Research audit and article validation passed: " + slug);
           NODE
