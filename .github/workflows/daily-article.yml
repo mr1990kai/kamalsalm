@@ -2,7 +2,7 @@ name: Daily Blog Article
 
 on:
   schedule:
-    - cron: "17 8 * * *"
+    - cron: "7 9 * * *"
       timezone: "Africa/Cairo"
   workflow_dispatch:
 
