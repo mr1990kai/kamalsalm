@@ -99,7 +99,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
 <meta property="og:site_name" content="Kamal Elnhrawy">
 <meta property="og:locale" content="ar_AR">
 <meta property="og:title" content="باقات تصميم EasyOrders وShopify في مصر بالجنيه المصري | كمال النحراوي">
-<meta property="og:description" content="باقات واضحة لتصميم متجر أو صفحة هبوط على Shopify وEasy Order، بسعر ثابت وتسليم سريع وضمان جودة 7 أيام.">
+<meta property="og:description" content="باقات تصميم صفحات بيع ومتاجر EasyOrders وShopify بأسعار واضحة بالجنيه المصري، مع نطاق عمل محدد وخطوات طلب ودفع واضحة.">
 <meta property="og:url" content="https://kamalsalm.vercel.app/packages.html">
 <meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -167,6 +167,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
     <fieldset>
       <legend data-ar="الدفع" data-en="Payment">الدفع</legend>
       <div class="sum"><span id="sumName"></span><span id="sumPrice" dir="ltr"></span></div>
+      <div class="pay" id="depositSummary"></div>
       <div class="f"><label for="method" data-ar="طريقة الدفع" data-en="Payment method">طريقة الدفع</label><select id="method"></select></div>
       <div class="pay" id="payBox"></div>
       <div class="f"><label for="payref" data-ar="اسم المُحوِّل أو رقم العملية (اختياري)" data-en="Sender name or transaction reference (optional)">اسم المُحوِّل أو رقم العملية (اختياري)</label><input id="payref"></div>
@@ -219,17 +220,31 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;
 
 function renderGrid(){
   var g=$('#grid');g.innerHTML='';
-  PACKAGES.forEach(function(p){
-    var c=el('article','card'+(p.pop?' pop':''));
-    if(p.pop)c.appendChild(el('div','badge',lang==='ar'?'الأكثر طلبًا':'Most popular'));
-    c.appendChild(el('h3','',esc(L(p.name))));
-    c.appendChild(el('p','sub',esc(L(p.sub))));
-    var price=el('div','price',formatPrice(p.price));price.dir='ltr';c.appendChild(price);
-    c.appendChild(el('div','days',esc(L(p.days))));
-    var ul=el('ul');L(p.items).forEach(function(i){ul.appendChild(el('li','',esc(i)))});c.appendChild(ul);
-    var b=el('button','btn',lang==='ar'?'اختر هذه الباقة':'Choose this package');b.type='button';
-    b.onclick=function(){$('#pkg').value=p.id;updateSummary();$('#order').scrollIntoView({behavior:'smooth'})};
-    c.appendChild(b);g.appendChild(c);
+  var groups=[
+    {id:'easy',title:{ar:'باقات EasyOrders',en:'EasyOrders packages'},lead:{ar:'مناسبة لصفحات البيع والمتاجر المبنية على EasyOrders، من منتج واحد لحد متجر صغير.',en:'For EasyOrders sales pages and stores, from one product to a small catalogue.'}},
+    {id:'shopify',title:{ar:'باقات Shopify',en:'Shopify packages'},lead:{ar:'من إطلاق متجر بقالب جاهز إلى تخصيصات تصميم وكود محددة النطاق.',en:'From a theme-based launch to clearly scoped design and code customisation.'}}
+  ];
+  groups.forEach(function(group){
+    var section=el('section','package-group');
+    var head=el('div','group-head');
+    head.appendChild(el('h2','',esc(L(group.title))));
+    head.appendChild(el('p','',esc(L(group.lead))));
+    section.appendChild(head);
+    var grid=el('div','package-grid');
+    PACKAGES.filter(function(p){return p.platform.id===group.id}).forEach(function(p){
+      var c=el('article','card'+(p.pop?' pop':''));
+      if(p.pop)c.appendChild(el('div','badge',lang==='ar'?'اختيار متوازن':'Balanced choice'));
+      c.appendChild(el('h3','',esc(L(p.name))));
+      c.appendChild(el('p','sub',esc(L(p.sub))));
+      var price=el('div','price',formatPrice(p.price));price.dir='ltr';c.appendChild(price);
+      c.appendChild(el('div','days',esc(L(p.days))));
+      c.appendChild(el('p','scope',esc(L(p.scope))));
+      var ul=el('ul');L(p.items).forEach(function(i){ul.appendChild(el('li','',esc(i)))});c.appendChild(ul);
+      var b=el('button','btn',lang==='ar'?'اختار الباقة':'Choose package');b.type='button';
+      b.onclick=function(){$('#pkg').value=p.id;updateSummary();$('#order').scrollIntoView({behavior:'smooth'})};
+      c.appendChild(b);grid.appendChild(c);
+    });
+    section.appendChild(grid);g.appendChild(section);
   });
 }
 function fillSelect(sel,list,withPrice){
