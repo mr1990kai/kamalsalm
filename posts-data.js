@@ -82,5 +82,15 @@ window.POSTS = [
     cover: 'images/covers/brand-is-a-feeling-kamal.svg',
     author: 'كمال النحراوي',
     column: 'دفتر كمال'
+  },
+  {
+    slug: "meta-creative-optimization-impact-on-roas",
+    title: "تأثير ميزة تحسين الإبداع في ميتا 2026 على عائد الإنفاق الإعلاني: دراسة حالة مصرية",
+    excerpt: "دراسة حديثة توضح كيف ساعدت ميزة تحسين الإبداع التلقائي في ميتا على رفع عائد الإنفاق الإعلاني للعلامات التجارية المصرية في عام 2026، مع خطوات عملية لاختبارها في السوق المحلي.",
+    date: "2026-10-15",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 12,
+    cover: 'images/covers/meta-creative-optimization-impact-on-roas.svg'
   }
 ];
