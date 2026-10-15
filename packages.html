@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>باقات تصميم EasyOrders وShopify في مصر بالجنيه المصري | كمال النحراوي</title>
-<meta name="description" content="باقات تصميم صفحات بيع ومتاجر EasyOrders وShopify بأسعار واضحة بالجنيه المصري، مع نطاق عمل محدد وخطوات طلب ودفع واضحة.">
+<title>باقات تصميم EasyOrders وShopify في مصر والخليج | كمال النحراوي</title>
+<meta name="description" content="باقات تصميم EasyOrders وShopify بنظامين واضحين للأسعار: جنيه مصري للعملاء داخل مصر ودولار أمريكي للعملاء خارج مصر.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .hero{padding:64px 0 36px;text-align:center}
 .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.25;margin-bottom:14px}
 .hero p{color:var(--muted);max-width:40em;margin:0 auto;font-weight:300}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;align-items:stretch;padding-top:8px}
+.grid{display:flex;flex-direction:column;gap:46px;padding-top:8px}.package-group{display:flex;flex-direction:column;gap:18px}.group-head h2{font-size:clamp(1.35rem,3vw,2rem);line-height:1.3;margin-bottom:4px}.group-head p{font-size:.88rem;color:var(--muted);max-width:42em}.package-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;align-items:stretch}.eyebrow{display:inline-block;font-size:.78rem;color:var(--muted);border:1px solid var(--line);padding:5px 13px;border-radius:99px;margin-bottom:18px}.market-picker{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px auto 0}.market-option{border:1px solid var(--line);background:#fff;color:var(--ink);font:600 .9rem var(--ar);padding:11px 18px;border-radius:6px;cursor:pointer}.market-option.active{background:var(--brown);border-color:var(--brown);color:#fff}.market-hint{font-size:.82rem;color:var(--muted);margin:10px auto 0!important}.scope{font-size:.82rem;color:var(--muted);padding:12px 0 16px;border-bottom:1px solid var(--line);margin-bottom:16px}.card.pop .scope{color:rgba(255,255,255,.78);border-bottom-color:rgba(255,255,255,.22)}.extras{margin:46px auto 0;padding:24px 28px;border:1px solid var(--line);border-radius:10px;background:#faf8f6}.extras h2{font-size:1.2rem;margin-bottom:14px}.extras-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.extras-grid p{font-size:.88rem;color:var(--muted)}.proof-preview{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:10px;min-width:0}.proof-preview img{width:86px;height:86px;object-fit:cover;border-radius:5px;background:#eee}.proof-preview span{display:block;font-size:.82rem;overflow-wrap:anywhere}.remove-proof{background:none;border:0;color:#a32d23;text-decoration:underline;cursor:pointer;font:inherit;font-size:.82rem;margin-top:7px}.copy-account{margin-top:8px;border:1px solid var(--brown);background:#fff;color:var(--brown);font:600 .82rem var(--ar);border-radius:4px;padding:6px 12px;cursor:pointer}
 .card{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;padding:30px 24px 26px;background:#fff;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
 .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
 .card.pop{background:var(--brown);color:#fff;border-color:var(--brown)}
@@ -65,34 +65,7 @@ textarea{min-height:96px;resize:vertical}
 #done .btn{display:inline-block;width:auto;padding:13px 30px}
 footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-align:center;color:var(--muted);font-size:.8rem}
 [hidden]{display:none!important}
-.eyebrow{display:inline-block;font-size:.78rem;color:var(--muted);border:1px solid var(--line);padding:5px 13px;border-radius:99px;margin-bottom:18px}
-.market-picker{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px auto 0}
-.market-option{border:1px solid var(--line);background:#fff;color:var(--ink);font:600 .9rem var(--ar);padding:11px 18px;border-radius:6px;cursor:pointer}
-.market-option.active{background:var(--brown);border-color:var(--brown);color:#fff}
-.market-hint{font-size:.82rem;color:var(--muted);margin:10px auto 0!important}
-.package-groups{display:flex;flex-direction:column;gap:48px;padding-top:8px}
-.package-group{min-width:0}
-.group-head{margin-bottom:18px;display:flex;align-items:end;justify-content:space-between;gap:18px}
-.group-head h2{font-size:clamp(1.35rem,3vw,2rem);line-height:1.3}
-.group-head p{color:var(--muted);font-size:.88rem;max-width:36em}
-.package-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px;align-items:stretch}
-.scope{font-size:.82rem;color:var(--muted);padding:12px 0 16px;border-bottom:1px solid var(--line);margin-bottom:16px}
-.card.pop .scope{color:rgba(255,255,255,.78);border-bottom-color:rgba(255,255,255,.22)}
-.card .price{font-size:clamp(1.8rem,3vw,2.4rem);white-space:nowrap}
-.extras{margin:48px auto 0;padding:25px 28px;border:1px solid var(--line);border-radius:10px;background:#faf8f6}
-.extras h2{font-size:1.2rem;margin-bottom:14px}
-.extras-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.extras-grid p{font-size:.88rem;color:var(--muted)}
-#pkgScope{padding:10px 12px;background:#faf8f6;border-radius:6px}
-#depositSummary{background:#f7f4f0;border:1px solid var(--line);line-height:2}
-.copy-account{margin-top:8px;border:1px solid var(--brown);background:#fff;color:var(--brown);font:600 .82rem var(--ar);border-radius:4px;padding:6px 12px;cursor:pointer}
-.proof-preview{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:10px;min-width:0}
-.proof-preview img{width:86px;height:86px;object-fit:cover;border-radius:5px;background:#eee}
-.proof-preview span{display:block;font-size:.82rem;overflow-wrap:anywhere}
-.remove-proof{background:none;border:0;color:#a32d23;text-decoration:underline;cursor:pointer;font:inherit;font-size:.82rem;margin-top:7px}
-#waBtn{font-family:inherit}
-@media (max-width:640px){.row{grid-template-columns:1fr}.hero{padding-top:44px}.group-head{display:block}.group-head p{margin-top:7px}.package-grid{grid-template-columns:1fr}.card{padding:27px 20px 22px}.extras{padding:20px 17px}.price{text-align:right}}
-@media (max-width:640px){.row{grid-template-columns:1fr}.hero{padding-top:44px}}
+@media (max-width:640px){.row{grid-template-columns:1fr}.hero{padding-top:44px}.package-grid{grid-template-columns:1fr}.extras{padding:20px 17px}.market-option{flex:1 1 100%}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -103,8 +76,8 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kamal Elnhrawy">
 <meta property="og:locale" content="ar_AR">
-<meta property="og:title" content="باقات تصميم EasyOrders وShopify في مصر بالجنيه المصري | كمال النحراوي">
-<meta property="og:description" content="باقات تصميم صفحات بيع ومتاجر EasyOrders وShopify بأسعار واضحة بالجنيه المصري، مع نطاق عمل محدد وخطوات طلب ودفع واضحة.">
+<meta property="og:title" content="باقات تصميم EasyOrders وShopify في مصر والخليج | كمال النحراوي">
+<meta property="og:description" content="باقات تصميم EasyOrders وShopify بنظامين واضحين للأسعار: جنيه مصري للعملاء داخل مصر ودولار أمريكي للعملاء خارج مصر.">
 <meta property="og:url" content="https://kamalsalm.vercel.app/packages.html">
 <meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -121,15 +94,15 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
 <section class="wrap hero">
   <span class="eyebrow" data-ar="تصميم متاجر وصفحات بيع" data-en="Storefronts & sales pages">تصميم متاجر وصفحات بيع</span>
   <h1 data-ar="اختار الباقة المناسبة لمشروعك." data-en="Choose the right package for your project.">اختار الباقة المناسبة لمشروعك.</h1>
-  <p data-ar="مصر بالجنيه المصري، والعملاء خارج مصر بالدولار الأمريكي، بنفس نطاق الخدمة المحدد من البداية." data-en="Egyptian clients pay in EGP; clients outside Egypt pay in USD, with a clearly defined scope from the start.">مصر بالجنيه المصري، والعملاء خارج مصر بالدولار الأمريكي، بنفس نطاق الخدمة المحدد من البداية.</p>
-  <div class="market-picker" role="group" aria-label="Pricing market"><button type="button" id="marketEG" class="market-option active" aria-pressed="true"><span data-ar="داخل مصر · جنيه مصري" data-en="Inside Egypt · EGP">داخل مصر · جنيه مصري</span></button><button type="button" id="marketINTL" class="market-option" aria-pressed="false"><span data-ar="خارج مصر · دولار أمريكي" data-en="Outside Egypt · USD">خارج مصر · دولار أمريكي</span></button></div>
-  <p class="market-hint" id="marketHint" aria-live="polite">أسعار الدولار مخصصة لكل العملاء خارج مصر، بما فيهم الخليج.</p>
+  <p data-ar="مصر بالجنيه المصري، وأي عميل خارج مصر — بما فيهم الخليج — بالدولار الأمريكي. نفس معايير الشغل، وتسعير مختلف حسب السوق." data-en="Clients in Egypt pay in EGP. Everyone outside Egypt, including the Gulf, pays in USD. Same standards, pricing tailored to each market.">مصر بالجنيه المصري، وأي عميل خارج مصر — بما فيهم الخليج — بالدولار الأمريكي. نفس معايير الشغل، وتسعير مختلف حسب السوق.</p>
+  <div class="market-picker" role="group" aria-label="Pricing market"><button type="button" id="marketEG" class="market-option active" aria-pressed="true" data-ar="داخل مصر · جنيه مصري" data-en="Inside Egypt · EGP">داخل مصر · جنيه مصري</button><button type="button" id="marketINTL" class="market-option" aria-pressed="false" data-ar="خارج مصر · دولار أمريكي" data-en="Outside Egypt · USD">خارج مصر · دولار أمريكي</button></div>
+  <p class="market-hint" id="marketHint" aria-live="polite">الأسعار بالجنيه للعملاء داخل مصر. اختار «خارج مصر» لو العميل من الخليج أو أي دولة تانية.</p>
 </section>
 
 <section class="wrap">
-  <div class="package-groups" id="grid"></div>
-  <div class="extras"><h2 data-ar="إضافات اختيارية" data-en="Optional add-ons">إضافات اختيارية</h2><div class="extras-grid"><p data-ar="شعار وهوية بصرية مبدئية: 500 جنيه." data-en="Logo and starter visual identity: EGP 500.">شعار وهوية بصرية مبدئية: 500 جنيه.</p><p data-ar="إضافة 10 منتجات أخرى: تبدأ من 300 جنيه حسب البيانات والمتغيرات." data-en="Adding 10 more products: from EGP 300, depending on product details and variants.">إضافة 10 منتجات أخرى: تبدأ من 300 جنيه حسب البيانات والمتغيرات.</p><p data-ar="أي برمجة أو تكامل خارج نطاق الباقة يتحدد سعره بعد مراجعة المطلوب وقبل التنفيذ." data-en="Custom coding or integrations outside the package are quoted after review and before work begins.">أي برمجة أو تكامل خارج نطاق الباقة يتحدد سعره بعد مراجعة المطلوب وقبل التنفيذ.</p></div></div>
-  <p class="note" data-ar="الأسعار لا تشمل اشتراك Shopify أو الدومين أو القوالب والتطبيقات المدفوعة. العميل يوفّر صور المنتجات وأسعارها والمعلومات الأساسية. عربون 50% لبدء التنفيذ، والمتبقي بعد المعاينة وقبل التسليم النهائي. أي إضافة خارج النطاق يتم الاتفاق عليها مسبقًا." data-en="Prices exclude Shopify subscriptions, domains, and paid themes/apps. Clients supply product photos, prices and core details. A 50% deposit starts work; the balance is due after preview and before final handover. Any extra scope is agreed in advance.">الأسعار لا تشمل اشتراك Shopify أو الدومين أو القوالب والتطبيقات المدفوعة. العميل يوفّر صور المنتجات وأسعارها والمعلومات الأساسية. عربون 50% لبدء التنفيذ، والمتبقي بعد المعاينة وقبل التسليم النهائي. أي إضافة خارج النطاق يتم الاتفاق عليها مسبقًا.</p>
+  <div class="grid" id="grid"></div>
+  <div class="extras"><h2 data-ar="إضافات اختيارية" data-en="Optional add-ons">إضافات اختيارية</h2><div class="extras-grid"><p data-ar="شعار وهوية بصرية مبدئية: 500 جنيه داخل مصر، ويُسعّر بالدولار للعملاء خارج مصر." data-en="Logo and starter visual identity: EGP 500 inside Egypt; USD quote outside Egypt.">شعار وهوية بصرية مبدئية: 500 جنيه داخل مصر، ويُسعّر بالدولار للعملاء خارج مصر.</p><p data-ar="إضافة 10 منتجات أخرى: تبدأ من 300 جنيه داخل مصر، أو ما يتم الاتفاق عليه بالدولار خارج مصر." data-en="Adding 10 more products starts at EGP 300 in Egypt; an agreed USD price applies outside Egypt.">إضافة 10 منتجات أخرى: تبدأ من 300 جنيه داخل مصر، أو ما يتم الاتفاق عليه بالدولار خارج مصر.</p><p data-ar="أي برمجة أو تكامل خارج نطاق الباقة يتحدد سعره قبل التنفيذ." data-en="Custom coding or integrations outside package scope are quoted before work starts.">أي برمجة أو تكامل خارج نطاق الباقة يتحدد سعره قبل التنفيذ.</p></div></div>
+  <p class="note" data-ar="الأسعار لا تشمل اشتراكات المنصة أو الدومين أو القوالب والتطبيقات المدفوعة. العميل يوفّر صور المنتجات وأسعارها ومعلوماتها الأساسية. عربون 50% لبدء التنفيذ، والمتبقي بعد المعاينة وقبل التسليم النهائي. أي إضافة خارج النطاق يتم الاتفاق عليها مسبقًا." data-en="Prices exclude platform subscriptions, domains, and paid themes/apps. Clients supply product images, prices and core details. A 50% deposit starts work; the balance is due after preview and before final handover. Extra scope is agreed in advance.">الأسعار لا تشمل اشتراكات المنصة أو الدومين أو القوالب والتطبيقات المدفوعة. العميل يوفّر صور المنتجات وأسعارها ومعلوماتها الأساسية. عربون 50% لبدء التنفيذ، والمتبقي بعد المعاينة وقبل التسليم النهائي. أي إضافة خارج النطاق يتم الاتفاق عليها مسبقًا.</p>
 </section>
 
 <section id="order">
@@ -138,9 +111,12 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
 
   <form id="form" novalidate>
     <fieldset>
-      <legend data-ar="الباقة ونطاق التنفيذ" data-en="Package and scope">الباقة ونطاق التنفيذ</legend>
+      <legend data-ar="الباقة ونوع المشروع" data-en="Package and project type">الباقة ونوع المشروع</legend>
       <div class="f"><label for="pkg" data-ar="الباقة" data-en="Package">الباقة</label><select id="pkg" required></select></div>
-      <p class="hint" id="pkgScope" aria-live="polite"></p>
+      <div class="f"><label data-ar="ماذا تريد أن نبني؟" data-en="What should I build?">ماذا تريد أن نبني؟</label>
+        <div class="choices" id="type"></div></div>
+      <div class="f"><label data-ar="المنصة" data-en="Platform">المنصة</label>
+        <div class="choices" id="platform"></div></div>
     </fieldset>
 
     <fieldset>
@@ -178,9 +154,9 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
       <div class="pay" id="depositSummary"></div>
       <div class="f"><label for="method" data-ar="طريقة الدفع" data-en="Payment method">طريقة الدفع</label><select id="method"></select></div>
       <div class="pay" id="payBox"></div>
-      <div class="f"><label for="payref" data-ar="اسم المُحوِّل أو رقم العملية (اختياري)" data-en="Sender name or transaction reference (optional)">اسم المُحوِّل أو رقم العملية (اختياري)</label><input id="payref"></div>
-      <div class="f"><label for="proof" data-ar="صورة إيصال التحويل (اختياري)" data-en="Payment receipt screenshot (optional)">صورة إيصال التحويل (اختياري)</label><input id="proof" type="file" accept="image/*"><p class="hint" data-ar="تقدر تختار صورة الإيصال من الموبايل. بعد تسجيل بيانات الطلب، هتشارك الصورة مع رسالة الطلب على واتساب. الحد الأقصى 8 ميجابايت." data-en="Choose the receipt image from your device. After your order details are recorded, share the image with your WhatsApp message. Maximum 8 MB.">تقدر تختار صورة الإيصال من الموبايل. بعد تسجيل بيانات الطلب، هتشارك الصورة مع رسالة الطلب على واتساب. الحد الأقصى 8 ميجابايت.</p><div id="proofPreview" class="proof-preview" hidden><img id="proofImage" alt="Payment receipt preview"><div><span id="proofName"></span><button type="button" id="removeProof" class="remove-proof" data-ar="إزالة الصورة" data-en="Remove image">إزالة الصورة</button></div></div></div>
-      <p class="hint" data-ar="يتم تسجيل بيانات الطلب في Google Forms. ملف الصورة نفسه يتم إرساله من خلال مشاركة واتساب، لأن رابط الفورم الحالي لا يستقبل المرفقات من صفحة الموقع مباشرة." data-en="Order details are recorded in Google Forms. The image file itself is shared through WhatsApp because the current form-response endpoint does not accept file uploads directly from this page.">يتم تسجيل بيانات الطلب في Google Forms. ملف الصورة نفسه يتم إرساله من خلال مشاركة واتساب، لأن رابط الفورم الحالي لا يستقبل المرفقات من صفحة الموقع مباشرة.</p>
+      <div class="f"><label for="payref" data-ar="اسم المُحوِّل أو رقم العملية (اختياري)" data-en="Sender name or transaction number (optional)">اسم المُحوِّل أو رقم العملية (اختياري)</label><input id="payref"></div>
+      <div class="f"><label for="proof" data-ar="صورة إيصال التحويل (اختياري)" data-en="Payment receipt screenshot (optional)">صورة إيصال التحويل (اختياري)</label><input id="proof" type="file" accept="image/*"><p class="hint" data-ar="تقدر تختار صورة الإيصال من جهازك وتراجعها قبل الإرسال. بعد تسجيل الطلب تقدر تشاركها على واتساب. الحد الأقصى 8 ميجابايت." data-en="Choose and preview your receipt image. After registering your order, you can share it on WhatsApp. Maximum 8 MB.">تقدر تختار صورة الإيصال من جهازك وتراجعها قبل الإرسال. بعد تسجيل الطلب تقدر تشاركها على واتساب. الحد الأقصى 8 ميجابايت.</p><div id="proofPreview" class="proof-preview" hidden><img id="proofImage" alt="Payment receipt preview"><div><span id="proofName"></span><button type="button" id="removeProof" class="remove-proof" data-ar="إزالة الصورة" data-en="Remove image">إزالة الصورة</button></div></div></div>
+      <p class="hint" data-ar="بيانات الطلب بتتسجل في Google Forms. صورة الإيصال نفسها بتتبعت من خلال مشاركة واتساب، لأن الفورم الحالي مش بيستقبل صور من صفحة الموقع مباشرة." data-en="Order details go to Google Forms. The receipt image itself is shared through WhatsApp because the current form endpoint cannot accept file uploads directly from this page.">بيانات الطلب بتتسجل في Google Forms. صورة الإيصال نفسها بتتبعت من خلال مشاركة واتساب، لأن الفورم الحالي مش بيستقبل صور من صفحة الموقع مباشرة.</p>
     </fieldset>
 
     <p class="err" id="err" role="alert"></p>
@@ -191,7 +167,7 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
 <section id="done" hidden>
   <h2 data-ar="تم استلام طلبك" data-en="Order received">تم استلام طلبك</h2>
   <div class="id" id="orderId"></div>
-  <p data-ar="بيانات طلبك اتسجلت. اضغط الزر لمشاركة تفاصيل الطلب، ومعاها صورة الإيصال لو اخترتها. لو جهازك مش بيدعم مشاركة الصور، هيفتح واتساب وتقدر تضيف الصورة يدويًا." data-en="Your order details have been recorded. Use the button to share the order and your selected receipt image. If your device cannot share files, WhatsApp will open so you can attach the image manually.">بيانات طلبك اتسجلت. اضغط الزر لمشاركة تفاصيل الطلب، ومعاها صورة الإيصال لو اخترتها. لو جهازك مش بيدعم مشاركة الصور، هيفتح واتساب وتقدر تضيف الصورة يدويًا.</p>
+  <p data-ar="بيانات الطلب اتسجلت. اضغط لمشاركة الطلب وصورة الإيصال لو اخترتها. لو جهازك لا يدعم مشاركة الصور، هيفتح واتساب وتقدر تضيف الصورة يدويًا." data-en="Your order details are recorded. Share the order and receipt if selected. If your device cannot share files, WhatsApp will open and you can attach the image manually.">بيانات الطلب اتسجلت. اضغط لمشاركة الطلب وصورة الإيصال لو اخترتها. لو جهازك لا يدعم مشاركة الصور، هيفتح واتساب وتقدر تضيف الصورة يدويًا.</p>
   <button class="btn" id="waBtn" type="button" data-ar="مشاركة الطلب والإيصال" data-en="Share order and receipt">مشاركة الطلب والإيصال</button>
   <p class="hint" id="shareHint" aria-live="polite"></p>
 </section>
@@ -200,406 +176,155 @@ footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 5%;text-ali
 
 <script src="packages-data.js"></script>
 <script>
-/* ============ الإعدادات (الأسعار والباقات في packages-data.js) ============ */
 var CONFIG={
-  WHATSAPP:'201123449977',
-  GOOGLE_FORM:{
-    action:'https://docs.google.com/forms/d/e/1FAIpQLSfz5Y0U_pupWTPpkBcoU_0VtsG8O4T2QZR16XfJERygG67uzQ/formResponse',
-    entries:{order:'entry.1734407784',pkg:'entry.1302079246',name:'entry.1941246449',whatsapp:'entry.303333652',payment:'entry.868042015',details:'entry.405186789'}
-  },
-  /* بيانات حساب الدفع تظهر للعميل. اتركها فارغة وسيطلب منك الدفع على واتساب */
-  PAY:{instapay:'01123449977',wallet:'01015992534'}
+ WHATSAPP:'201123449977',
+ GOOGLE_FORM:{action:'https://docs.google.com/forms/d/e/1FAIpQLSfz5Y0U_pupWTPpkBcoU_0VtsG8O4T2QZR16XfJERygG67uzQ/formResponse',entries:{order:'entry.1734407784',pkg:'entry.1302079246',name:'entry.1941246449',whatsapp:'entry.303333652',payment:'entry.868042015',details:'entry.405186789'}},
+ PAY:{instapay:'01123449977',wallet:'01015992534'}
 };
 var TYPES=[{id:'store',ar:'متجر كامل',en:'Full store'},{id:'landing',ar:'صفحة هبوط',en:'Landing page'},{id:'both',ar:'الاثنان',en:'Both'}];
-var PLATFORMS=[{id:'shopify',ar:'Shopify',en:'Shopify'},{id:'easy',ar:'Easy Order',en:'Easy Order'},{id:'unsure',ar:'لا أعرف، أريد نصيحتك',en:"Not sure, advise me"}];
+var PLATFORMS=[{id:'shopify',ar:'Shopify',en:'Shopify'},{id:'easy',ar:'EasyOrders',en:'EasyOrders'},{id:'unsure',ar:'لا أعرف، أريد نصيحتك',en:'Not sure, advise me'}];
 var LOGO=[{id:'need',ar:'نعم، أحتاج شعارًا',en:'Yes, I need a logo'},{id:'have',ar:'لا، لدي شعار',en:'No, I have one'},{id:'unsure',ar:'لست متأكدًا',en:'Not sure'}];
-var EGYPT_METHODS=[
- {id:'instapay',ar:'إنستا باي — 01123449977',en:'InstaPay — 01123449977'},
- {id:'wallet',ar:'محفظة فودافون كاش — 01015992534',en:'Vodafone Cash wallet — 01015992534'},
- {id:'ask',ar:'طريقة أخرى — تواصل على واتساب',en:'Other method — contact on WhatsApp'}
-];
+var EGYPT_METHODS=[{id:'instapay',ar:'إنستا باي — 01123449977',en:'InstaPay — 01123449977'},{id:'wallet',ar:'محفظة فودافون كاش — 01015992534',en:'Vodafone Cash wallet — 01015992534'},{id:'ask',ar:'وسيلة أخرى — تواصل على واتساب',en:'Other method — contact on WhatsApp'}];
 var INTERNATIONAL_METHODS=[{id:'international',ar:'تأكيد وسيلة الدفع بالدولار عبر واتساب',en:'Confirm USD payment method on WhatsApp'}];
-var market='eg';
+var lang='ar',market='eg',$=function(s){return document.querySelector(s)},L=function(o){return o[lang]};
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function pkgById(id){return PACKAGES.find(function(p){return p.id===id})}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function getMethods(){return market==='eg'?EGYPT_METHODS:INTERNATIONAL_METHODS}
 function currentPrice(p){return market==='eg'?p.price:p.usd}
-function formatPrice(n){var value=new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(n);return market==='eg'?(lang==='ar'?value+' جنيه':'EGP '+value):'
-/* ============ نهاية الإعدادات ============ */
-
-var lang='ar',$=function(s){return document.querySelector(s)};
-var L=function(o){return o[lang]};
-function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
-function pkgById(id){return PACKAGES.filter(function(p){return p.id===id})[0]}
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-
+function formatPrice(n){var v=new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(n);return market==='eg'?(lang==='ar'?v+' جنيه':'EGP '+v):'$'+v}
 function renderGrid(){
-  var g=$('#grid');g.innerHTML='';
-  var groups=[
-    {id:'easy',title:{ar:'باقات EasyOrders',en:'EasyOrders packages'},lead:{ar:'مناسبة لصفحات البيع والمتاجر المبنية على EasyOrders، من منتج واحد لحد متجر صغير.',en:'For EasyOrders sales pages and stores, from one product to a small catalogue.'}},
-    {id:'shopify',title:{ar:'باقات Shopify',en:'Shopify packages'},lead:{ar:'من إطلاق متجر بقالب جاهز إلى تخصيصات تصميم وكود محددة النطاق.',en:'From a theme-based launch to clearly scoped design and code customisation.'}}
-  ];
-  groups.forEach(function(group){
-    var section=el('section','package-group');
-    var head=el('div','group-head');
-    head.appendChild(el('h2','',esc(L(group.title))));
-    head.appendChild(el('p','',esc(L(group.lead))));
-    section.appendChild(head);
-    var grid=el('div','package-grid');
-    PACKAGES.filter(function(p){return p.platform.id===group.id}).forEach(function(p){
-      var c=el('article','card'+(p.pop?' pop':''));
-      if(p.pop)c.appendChild(el('div','badge',lang==='ar'?'اختيار متوازن':'Balanced choice'));
-      c.appendChild(el('h3','',esc(L(p.name))));
-      c.appendChild(el('p','sub',esc(L(p.sub))));
-      var price=el('div','price',formatPrice(p.price));price.dir='ltr';c.appendChild(price);
-      c.appendChild(el('div','days',esc(L(p.days))));
-      c.appendChild(el('p','scope',esc(L(p.scope))));
-      var ul=el('ul');L(p.items).forEach(function(i){ul.appendChild(el('li','',esc(i)))});c.appendChild(ul);
-      var b=el('button','btn',lang==='ar'?'اختار الباقة':'Choose package');b.type='button';
-      b.onclick=function(){$('#pkg').value=p.id;updateSummary();$('#order').scrollIntoView({behavior:'smooth'})};
-      c.appendChild(b);grid.appendChild(c);
-    });
-    section.appendChild(grid);g.appendChild(section);
+ var g=$('#grid');g.innerHTML='';
+ var groups=[
+  {id:'easy',title:{ar:'باقات EasyOrders',en:'EasyOrders packages'},lead:{ar:'لصفحات البيع والمتاجر المبنية على EasyOrders، من منتج واحد لحد متجر صغير.',en:'For EasyOrders sales pages and stores, from one product to a small catalogue.'}},
+  {id:'shopify',title:{ar:'باقات Shopify',en:'Shopify packages'},lead:{ar:'من إطلاق متجر بقالب جاهز لحد تخصيصات التصميم والكود.',en:'From a theme-based launch to tailored design and custom code.'}}
+ ];
+ groups.forEach(function(group){
+  var section=el('section','package-group');
+  section.appendChild(el('div','group-head','<h2>'+esc(L(group.title))+'</h2><p>'+esc(L(group.lead))+'</p>'));
+  var grid=el('div','package-grid');
+  PACKAGES.filter(function(p){return p.platform.id===group.id}).forEach(function(p){
+   var c=el('article','card'+(p.pop?' pop':''));
+   if(p.pop)c.appendChild(el('div','badge',lang==='ar'?'اختيار متوازن':'Balanced choice'));
+   c.appendChild(el('h3','',esc(L(p.name))));c.appendChild(el('p','sub',esc(L(p.sub))));
+   var price=el('div','price',formatPrice(currentPrice(p)));price.dir='ltr';c.appendChild(price);
+   c.appendChild(el('div','days',esc(L(p.days))));c.appendChild(el('p','scope',esc(L(p.scope))));
+   var ul=el('ul');L(p.items).forEach(function(i){ul.appendChild(el('li','',esc(i)))});c.appendChild(ul);
+   var b=el('button','btn',lang==='ar'?'اختار الباقة':'Choose package');b.type='button';
+   b.onclick=function(){$('#pkg').value=p.id;updateSummary();$('#order').scrollIntoView({behavior:'smooth'})};
+   c.appendChild(b);grid.appendChild(c);
   });
+  section.appendChild(grid);g.appendChild(section);
+ });
 }
 function fillSelect(sel,list,withPrice){
-  var v=sel.value;sel.innerHTML='';
-  list.forEach(function(o){var op=document.createElement('option');op.value=o.id;
-    op.textContent=withPrice?L(o.platform)+' — '+L(o.name)+' — '+formatPrice(o.price):L(o);if(o.soon)op.disabled=true;sel.appendChild(op)});
-  if(v)sel.value=v;
+ var v=sel.value;sel.innerHTML='';
+ list.forEach(function(o){var op=document.createElement('option');op.value=o.id;op.textContent=withPrice?L(o.platform)+' — '+L(o.name)+' — '+formatPrice(currentPrice(o)):L(o);if(o.soon)op.disabled=true;sel.appendChild(op)});
+ if(v)sel.value=v;
 }
-function formatPrice(n){return (lang==='ar'?new Intl.NumberFormat('en-US').format(n)+' جنيه':'EGP '+new Intl.NumberFormat('en-US').format(n))}
-
 function fillChoices(box,name,list){
-  var cur=(box.querySelector('input:checked')||{}).value||list[0].id;box.innerHTML='';
-  list.forEach(function(o){var l=el('label');var i=document.createElement('input');i.type='radio';i.name=name;i.value=o.id;i.checked=o.id===cur;
-    l.appendChild(i);l.appendChild(document.createTextNode(L(o)));box.appendChild(l)});
+ var cur=(box.querySelector('input:checked')||{}).value||list[0].id;box.innerHTML='';
+ list.forEach(function(o){var l=el('label'),i=document.createElement('input');i.type='radio';i.name=name;i.value=o.id;i.checked=o.id===cur;l.appendChild(i);l.appendChild(document.createTextNode(L(o)));box.appendChild(l)});
 }
-function updateSummary(){
-  var p=pkgById($('#pkg').value);if(!p)return;
-  var total=p.price,deposit=Math.round(total/2),remaining=total-deposit;
-  $('#sumName').textContent=L(p.platform)+' — '+L(p.name);$('#sumPrice').textContent=formatPrice(total);
-  $('#pkgScope').textContent=L(p.scope);
-  $('#depositSummary').innerHTML=(lang==='ar'?'<b>إجمالي الباقة:</b> '+formatPrice(total)+'<br><b>عربون بدء التنفيذ (50%):</b> '+formatPrice(deposit)+'<br><b>المتبقي بعد المعاينة وقبل التسليم:</b> '+formatPrice(remaining):'<b>Package total:</b> '+formatPrice(total)+'<br><b>Deposit to start (50%):</b> '+formatPrice(deposit)+'<br><b>Balance after preview, before handover:</b> '+formatPrice(remaining));
-  var m=METHODS.filter(function(x){return x.id===$('#method').value})[0],t='';
-  if(!m)m=METHODS[0];
-  if(m.id==='ask'){
-    t=lang==='ar'?'طرق الدفع المتاحة: إنستا باي <b dir="ltr">01123449977</b> أو محفظة فودافون كاش <b dir="ltr">01015992534</b>. تقدر تتواصل على واتساب لو محتاج وسيلة تانية.':'Available: InstaPay <b dir="ltr">01123449977</b> or Vodafone Cash wallet <b dir="ltr">01015992534</b>. Contact me on WhatsApp for another method.';
-  }else{
-    var acc=CONFIG.PAY[m.id];
-    t=(lang==='ar'?'حوّل عربون البداية فقط الآن: ':'Transfer only the starting deposit now: ')+'<b dir="ltr">'+formatPrice(deposit)+'</b><br>'+
-      (lang==='ar'?'رقم التحويل: ':'Transfer number: ')+'<b dir="ltr">'+esc(acc)+'</b><br>'+
-      (lang==='ar'?'المتبقي '+formatPrice(remaining)+' بعد معاينة الشغل وقبل التسليم النهائي. يبدأ التنفيذ بعد تأكيد وصول العربون.':'The remaining '+formatPrice(remaining)+' is due after preview and before final handover. Work starts once the deposit is confirmed.')+
-      '<br><button type="button" class="copy-account" id="copyAccount">'+(lang==='ar'?'نسخ رقم التحويل':'Copy transfer number')+'</button>';
-  }
-  $('#payBox').innerHTML=t;
-  var cb=$('#copyAccount');if(cb)cb.onclick=function(){var val=CONFIG.PAY[m.id];if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(val).then(function(){cb.textContent=lang==='ar'?'تم النسخ':'Copied'}).catch(function(){prompt(lang==='ar'?'انسخ الرقم':'Copy the number',val)});else prompt(lang==='ar'?'انسخ الرقم':'Copy the number',val)};
-}
-function applyLang(){
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
-  document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
-  document.querySelectorAll('[data-ar]').forEach(function(e){e.innerHTML=e.getAttribute('data-'+lang)});
-  document.title=lang==='ar'?'باقات تصميم EasyOrders وShopify في مصر بالجنيه المصري | كمال النحراوي':'EasyOrders & Shopify Design Packages in EGP | Kamal Elnhrawy';
-  renderGrid();fillSelect($('#pkg'),PACKAGES,true);fillSelect($('#logo'),LOGO);fillSelect($('#method'),METHODS);updateSummary();
-}
-$('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';applyLang()};
-$('#pkg').addEventListener('change',updateSummary);
-$('#method').addEventListener('change',updateSummary);
-$('#pkg').value='easy-sales-plus';applyLang();$('#pkg').value='easy-sales-plus';updateSummary();
-
-function pick(name){var c=document.querySelector('input[name="'+name+'"]:checked');return c?c.parentNode.textContent:''}
-function sendToGoogle(d){
-  var g=CONFIG.GOOGLE_FORM,e=g.entries;
-  if(!g.action||!e.order)return Promise.resolve(false);
-  var b=new URLSearchParams();
-  b.append(e.order,d.order);b.append(e.pkg,d.pkg);b.append(e.name,d.name);b.append(e.whatsapp,d.whatsapp);b.append(e.payment,d.payment);b.append(e.details,d.details);
-  return fetch(g.action,{method:'POST',mode:'no-cors',body:b}).then(function(){return true}).catch(function(){return false});
-}
-
-var pendingProofFile=null,pendingMessage='',proofPreviewUrl='';
-$('#proof').addEventListener('change',function(){
-  var file=this.files&&this.files[0];$('#err').textContent='';
-  if(proofPreviewUrl){URL.revokeObjectURL(proofPreviewUrl);proofPreviewUrl='';}
-  if(!file){$('#proofPreview').hidden=true;return}
-  if(!file.type||file.type.indexOf('image/')!==0){this.value='';$('#err').textContent=lang==='ar'?'اختار صورة بصيغة صورة عادية.':'Please choose a valid image file.';$('#proofPreview').hidden=true;return}
-  if(file.size>8*1024*1024){this.value='';$('#err').textContent=lang==='ar'?'حجم الصورة أكبر من 8 ميجابايت. اختار صورة أصغر.':'Image is larger than 8 MB. Choose a smaller file.';$('#proofPreview').hidden=true;return}
-  proofPreviewUrl=URL.createObjectURL(file);$('#proofImage').src=proofPreviewUrl;$('#proofName').textContent=file.name;$('#proofPreview').hidden=false;
-});
-$('#removeProof').addEventListener('click',function(){
-  $('#proof').value='';pendingProofFile=null;$('#proofPreview').hidden=true;
-  if(proofPreviewUrl){URL.revokeObjectURL(proofPreviewUrl);proofPreviewUrl='';}
-});
-$('#form').addEventListener('submit',function(ev){
-  ev.preventDefault();
-  var err=$('#err');err.textContent='';
-  var need=['name','wa','brand','activity'],bad=need.filter(function(i){return !$('#'+i).value.trim()});
-  if(bad.length){err.textContent=lang==='ar'?'من فضلك املأ الحقول المطلوبة: الاسم، رقم واتساب، اسم المتجر، ونشاطك.':'Please fill the required fields: name, WhatsApp, brand name and your business.';$('#'+bad[0]).focus();return}
-  if(!/^[+\d][\d\s\-()]{6,}$/.test($('#wa').value.trim())){err.textContent=lang==='ar'?'رقم واتساب غير صحيح. اكتبه مع رمز الدولة.':'Invalid WhatsApp number. Include the country code.';$('#wa').focus();return}
-  var p=pkgById($('#pkg').value),m=METHODS.filter(function(x){return x.id===$('#method').value})[0];
-  if(!p||!m){err.textContent=lang==='ar'?'اختار الباقة وطريقة الدفع.':'Choose a package and payment method.';return}
-  var proof=$('#proof').files&&$('#proof').files[0];
-  if(proof&&(!proof.type||proof.type.indexOf('image/')!==0||proof.size>8*1024*1024)){err.textContent=lang==='ar'?'صورة الإيصال غير صالحة أو أكبر من 8 ميجابايت.':'Receipt image is invalid or larger than 8 MB.';return}
-  var order='KN-'+Date.now().toString(36).toUpperCase().slice(-6);
-  var deposit=Math.round(p.price/2),remaining=p.price-deposit;
-  var details=[
-    'Package: '+p.name.en,
-    'Platform: '+p.platform.en,
-    'Included scope: '+p.scope.en,
-    'Brand: '+$('#brand').value,
-    'Market: '+$('#market').value,
-    'Activity: '+$('#activity').value,
-    'Idea: '+$('#idea').value,
-    'Site: '+$('#site').value,
-    'Social page: '+$('#page').value,
-    'Products: '+$('#count').value,
-    'Logo: '+$('#logo').selectedOptions[0].textContent,
-    'References: '+$('#refs').value,
-    'Notes: '+$('#notes').value,
-    'Email: '+$('#email').value,
-    'Payment method: '+m.en,
-    'Transfer reference: '+$('#payref').value,
-    'Package total: EGP '+p.price,
-    'Starting deposit: EGP '+deposit,
-    'Remaining before final handover: EGP '+remaining,
-    'Receipt image selected: '+(proof?'Yes — '+proof.name:'No'),
-    'Language: '+lang
-  ].join('\n');
-  var data={order:order,pkg:p.name.en+' (EGP '+p.price+')',name:$('#name').value,whatsapp:$('#wa').value,payment:m.en+' | '+$('#payref').value,details:details};
-  var btn=$('#submit');btn.disabled=true;btn.textContent=lang==='ar'?'جارٍ تسجيل الطلب…':'Recording order…';
-  sendToGoogle(data).then(function(sent){
-    pendingProofFile=proof||null;
-    var msg=(lang==='ar'?'مرحبًا كمال، ده طلب خدمة جديد.':'Hello Kamal, this is a new service order.')+'\n'+
-      (lang==='ar'?'رقم الطلب: ':'Order ID: ')+order+'\n'+
-      (lang==='ar'?'الباقة: ':'Package: ')+L(p.platform)+' — '+L(p.name)+'\n'+
-      (lang==='ar'?'الإجمالي: ':'Total: ')+formatPrice(p.price)+'\n'+
-      (lang==='ar'?'عربون البداية 50%: ':'Starting deposit (50%): ')+formatPrice(deposit)+'\n'+
-      (lang==='ar'?'المتبقي قبل التسليم النهائي: ':'Balance before final handover: ')+formatPrice(remaining)+'\n'+
-      (lang==='ar'?'الاسم: ':'Name: ')+data.name+'\n'+
-      (lang==='ar'?'واتساب العميل: ':'Client WhatsApp: ')+data.whatsapp+'\n'+
-      (lang==='ar'?'طريقة الدفع: ':'Payment method: ')+L(m)+'\n'+
-      (lang==='ar'?'اسم المتجر: ':'Brand: ')+$('#brand').value+'\n'+
-      (lang==='ar'?'سأرسل تفاصيل المشروع كاملة من نموذج الطلب.':'I will share the full project details from the order form.');
-    if(proof)msg+='\n'+(lang==='ar'?'اخترت صورة إيصال للتحويل، ومرفقة مع المشاركة لو جهازك بيدعم ذلك.':'I selected a transfer receipt image; it will be attached if file sharing is supported.');
-    if(!sent)msg+='\n\n'+details;
-    pendingMessage=msg;
-    $('#orderId').textContent=order;
-    $('#shareHint').textContent=proof?(lang==='ar'?'عند الضغط على الزر، اختار WhatsApp من قائمة المشاركة وابعت الصورة لرقم 01123449977.':'When you tap the button, choose WhatsApp from the share sheet and send the image to 01123449977.'): (lang==='ar'?'هتفتح رسالة واتساب جاهزة ببيانات الطلب.':'A WhatsApp message will open with the order details.');
-    $('#waBtn').textContent=proof?(lang==='ar'?'مشاركة الطلب وصورة الإيصال':'Share order and receipt'):(lang==='ar'?'فتح واتساب ببيانات الطلب':'Open WhatsApp with order details');
-    $('#order').hidden=true;$('#done').hidden=false;$('#done').scrollIntoView({behavior:'smooth'});
-    btn.disabled=false;btn.textContent=lang==='ar'?'إرسال الطلب':'Send order';
-  }).catch(function(){
-    btn.disabled=false;btn.textContent=lang==='ar'?'إرسال الطلب':'Send order';
-    err.textContent=lang==='ar'?'حصل خطأ أثناء تسجيل الطلب. حاول تاني أو تواصل على واتساب.':'There was a problem recording the order. Try again or contact me on WhatsApp.';
-  });
-});
-$('#waBtn').addEventListener('click',function(){
-  var proof=pendingProofFile;
-  if(proof&&navigator.share&&navigator.canShare){
-    try{
-      if(navigator.canShare({files:[proof]})){
-        navigator.share({files:[proof],title:lang==='ar'?'إيصال دفع — طلب '+$('#orderId').textContent:'Payment receipt — order '+$('#orderId').textContent,text:pendingMessage+'\n\n'+(lang==='ar'?'أرسل الصورة إلى واتساب رقم 01123449977.':'Send the image to WhatsApp number 01123449977.')});
-        return;
-      }
-    }catch(e){}
-  }
-  var fallback=pendingMessage;
-  if(proof)fallback+='\n\n'+(lang==='ar'?'ملاحظة: الصورة لم تُرفق تلقائيًا. من فضلك افتح علامة المرفقات في واتساب واختار صورة الإيصال من جهازك.':'Note: the image was not attached automatically. Use WhatsApp attachments to select the receipt from your device.');
-  window.open('https://wa.me/'+CONFIG.WHATSAPP+'?text='+encodeURIComponent(fallback),'_blank','noopener');
-});
-
-</script>
-</body>
-</html>
-+value}
 function setMarket(next){
  market=next==='intl'?'intl':'eg';
  $('#marketEG').classList.toggle('active',market==='eg');$('#marketINTL').classList.toggle('active',market==='intl');
  $('#marketEG').setAttribute('aria-pressed',market==='eg'?'true':'false');$('#marketINTL').setAttribute('aria-pressed',market==='intl'?'true':'false');
- $('#marketHint').textContent=market==='eg'?(lang==='ar'?'الأسعار بالجنيه المصري للعملاء داخل مصر.':'Prices in EGP for clients in Egypt.'):(lang==='ar'?'أسعار الدولار لكل العملاء خارج مصر، بما فيهم الخليج. وسيلة الدفع الدولية تتأكد على واتساب.':'USD prices apply to all clients outside Egypt, including the Gulf. International payment is confirmed on WhatsApp.');
- renderGrid();var selected=$('#pkg').value;fillSelect($('#pkg'),PACKAGES,true);$('#pkg').value=selected||PACKAGES[0].id;
- var prev=$('#method').value;fillSelect($('#method'),getMethods());if(getMethods().some(function(x){return x.id===prev}))$('#method').value=prev;
+ $('#marketHint').textContent=market==='eg'?(lang==='ar'?'الأسعار بالجنيه المصري للعملاء داخل مصر.':'Prices in EGP for clients in Egypt.'):(lang==='ar'?'أسعار الدولار لكل العملاء خارج مصر، بما فيهم الخليج. الدفع الدولي يتم الاتفاق عليه على واتساب.':'USD prices apply to everyone outside Egypt, including the Gulf. International payment is agreed over WhatsApp.');
+ var selected=$('#pkg').value;renderGrid();fillSelect($('#pkg'),PACKAGES,true);$('#pkg').value=selected||PACKAGES[0].id;
+ var method=$('#method').value;fillSelect($('#method'),getMethods());if(getMethods().some(function(x){return x.id===method}))$('#method').value=method;
  updateSummary();
 }
-/* ============ نهاية الإعدادات ============ */
-
-var lang='ar',$=function(s){return document.querySelector(s)};
-var L=function(o){return o[lang]};
-function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
-function pkgById(id){return PACKAGES.filter(function(p){return p.id===id})[0]}
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-
-function renderGrid(){
-  var g=$('#grid');g.innerHTML='';
-  var groups=[
-    {id:'easy',title:{ar:'باقات EasyOrders',en:'EasyOrders packages'},lead:{ar:'مناسبة لصفحات البيع والمتاجر المبنية على EasyOrders، من منتج واحد لحد متجر صغير.',en:'For EasyOrders sales pages and stores, from one product to a small catalogue.'}},
-    {id:'shopify',title:{ar:'باقات Shopify',en:'Shopify packages'},lead:{ar:'من إطلاق متجر بقالب جاهز إلى تخصيصات تصميم وكود محددة النطاق.',en:'From a theme-based launch to clearly scoped design and code customisation.'}}
-  ];
-  groups.forEach(function(group){
-    var section=el('section','package-group');
-    var head=el('div','group-head');
-    head.appendChild(el('h2','',esc(L(group.title))));
-    head.appendChild(el('p','',esc(L(group.lead))));
-    section.appendChild(head);
-    var grid=el('div','package-grid');
-    PACKAGES.filter(function(p){return p.platform.id===group.id}).forEach(function(p){
-      var c=el('article','card'+(p.pop?' pop':''));
-      if(p.pop)c.appendChild(el('div','badge',lang==='ar'?'اختيار متوازن':'Balanced choice'));
-      c.appendChild(el('h3','',esc(L(p.name))));
-      c.appendChild(el('p','sub',esc(L(p.sub))));
-      var price=el('div','price',formatPrice(p.price));price.dir='ltr';c.appendChild(price);
-      c.appendChild(el('div','days',esc(L(p.days))));
-      c.appendChild(el('p','scope',esc(L(p.scope))));
-      var ul=el('ul');L(p.items).forEach(function(i){ul.appendChild(el('li','',esc(i)))});c.appendChild(ul);
-      var b=el('button','btn',lang==='ar'?'اختار الباقة':'Choose package');b.type='button';
-      b.onclick=function(){$('#pkg').value=p.id;updateSummary();$('#order').scrollIntoView({behavior:'smooth'})};
-      c.appendChild(b);grid.appendChild(c);
-    });
-    section.appendChild(grid);g.appendChild(section);
-  });
-}
-function fillSelect(sel,list,withPrice){
-  var v=sel.value;sel.innerHTML='';
-  list.forEach(function(o){var op=document.createElement('option');op.value=o.id;
-    op.textContent=withPrice?L(o.platform)+' — '+L(o.name)+' — '+formatPrice(o.price):L(o);if(o.soon)op.disabled=true;sel.appendChild(op)});
-  if(v)sel.value=v;
-}
-function formatPrice(n){return (lang==='ar'?new Intl.NumberFormat('en-US').format(n)+' جنيه':'EGP '+new Intl.NumberFormat('en-US').format(n))}
-
-function fillChoices(box,name,list){
-  var cur=(box.querySelector('input:checked')||{}).value||list[0].id;box.innerHTML='';
-  list.forEach(function(o){var l=el('label');var i=document.createElement('input');i.type='radio';i.name=name;i.value=o.id;i.checked=o.id===cur;
-    l.appendChild(i);l.appendChild(document.createTextNode(L(o)));box.appendChild(l)});
-}
 function updateSummary(){
-  var p=pkgById($('#pkg').value);if(!p)return;
-  var total=p.price,deposit=Math.round(total/2),remaining=total-deposit;
-  $('#sumName').textContent=L(p.platform)+' — '+L(p.name);$('#sumPrice').textContent=formatPrice(total);
-  $('#pkgScope').textContent=L(p.scope);
-  $('#depositSummary').innerHTML=(lang==='ar'?'<b>إجمالي الباقة:</b> '+formatPrice(total)+'<br><b>عربون بدء التنفيذ (50%):</b> '+formatPrice(deposit)+'<br><b>المتبقي بعد المعاينة وقبل التسليم:</b> '+formatPrice(remaining):'<b>Package total:</b> '+formatPrice(total)+'<br><b>Deposit to start (50%):</b> '+formatPrice(deposit)+'<br><b>Balance after preview, before handover:</b> '+formatPrice(remaining));
-  var m=METHODS.filter(function(x){return x.id===$('#method').value})[0],t='';
-  if(!m)m=METHODS[0];
-  if(m.id==='ask'){
-    t=lang==='ar'?'طرق الدفع المتاحة: إنستا باي <b dir="ltr">01123449977</b> أو محفظة فودافون كاش <b dir="ltr">01015992534</b>. تقدر تتواصل على واتساب لو محتاج وسيلة تانية.':'Available: InstaPay <b dir="ltr">01123449977</b> or Vodafone Cash wallet <b dir="ltr">01015992534</b>. Contact me on WhatsApp for another method.';
-  }else{
-    var acc=CONFIG.PAY[m.id];
-    t=(lang==='ar'?'حوّل عربون البداية فقط الآن: ':'Transfer only the starting deposit now: ')+'<b dir="ltr">'+formatPrice(deposit)+'</b><br>'+
-      (lang==='ar'?'رقم التحويل: ':'Transfer number: ')+'<b dir="ltr">'+esc(acc)+'</b><br>'+
-      (lang==='ar'?'المتبقي '+formatPrice(remaining)+' بعد معاينة الشغل وقبل التسليم النهائي. يبدأ التنفيذ بعد تأكيد وصول العربون.':'The remaining '+formatPrice(remaining)+' is due after preview and before final handover. Work starts once the deposit is confirmed.')+
-      '<br><button type="button" class="copy-account" id="copyAccount">'+(lang==='ar'?'نسخ رقم التحويل':'Copy transfer number')+'</button>';
-  }
-  $('#payBox').innerHTML=t;
-  var cb=$('#copyAccount');if(cb)cb.onclick=function(){var val=CONFIG.PAY[m.id];if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(val).then(function(){cb.textContent=lang==='ar'?'تم النسخ':'Copied'}).catch(function(){prompt(lang==='ar'?'انسخ الرقم':'Copy the number',val)});else prompt(lang==='ar'?'انسخ الرقم':'Copy the number',val)};
+ var p=pkgById($('#pkg').value);if(!p)return;
+ var total=currentPrice(p),deposit=Math.round(total/2),remaining=total-deposit;
+ $('#sumName').textContent=L(p.platform)+' — '+L(p.name);$('#sumPrice').textContent=formatPrice(total);
+ $('#depositSummary').innerHTML=(lang==='ar'?'<b>إجمالي الباقة:</b> '+formatPrice(total)+'<br><b>العربون (50%) لبدء التنفيذ:</b> '+formatPrice(deposit)+'<br><b>المتبقي بعد المعاينة وقبل التسليم:</b> '+formatPrice(remaining):'<b>Package total:</b> '+formatPrice(total)+'<br><b>50% deposit to start:</b> '+formatPrice(deposit)+'<br><b>Balance after preview, before handover:</b> '+formatPrice(remaining));
+ var m=getMethods().find(function(x){return x.id===$('#method').value})||getMethods()[0],t='';
+ if(m.id==='international'){
+  t=lang==='ar'?'السعر بالدولار الأمريكي. بعد إرسال الطلب هنتواصل معاك على واتساب لتأكيد وسيلة الدفع الدولية المناسبة. ما تحوّلش قبل ما تتأكد من بيانات الدفع ونطاق الشغل.':'Price is in USD. We will confirm the international payment method by WhatsApp after your request. Do not transfer funds before payment details and project scope are confirmed.';
+ }else if(m.id==='ask'){
+  t=lang==='ar'?'وسائل الدفع المتاحة داخل مصر: إنستا باي <b dir="ltr">01123449977</b> أو محفظة فودافون كاش <b dir="ltr">01015992534</b>.':'Egypt payment options: InstaPay <b dir="ltr">01123449977</b> or Vodafone Cash wallet <b dir="ltr">01015992534</b>.';
+ }else{
+  var acc=CONFIG.PAY[m.id];
+  t=(lang==='ar'?'حوّل العربون فقط: ':'Transfer the deposit only: ')+'<b dir="ltr">'+formatPrice(deposit)+'</b><br>'+
+   (lang==='ar'?'رقم التحويل: ':'Transfer number: ')+'<b dir="ltr">'+esc(acc)+'</b><br>'+
+   (lang==='ar'?'المتبقي '+formatPrice(remaining)+' بعد المعاينة وقبل التسليم النهائي. التنفيذ يبدأ بعد تأكيد وصول العربون.':'The remaining '+formatPrice(remaining)+' is due after preview and before final handover. Work starts when the deposit is confirmed.')+
+   '<br><button type="button" class="copy-account" id="copyAccount">'+(lang==='ar'?'نسخ رقم التحويل':'Copy number')+'</button>';
+ }
+ $('#payBox').innerHTML=t;
+ var copy=$('#copyAccount');if(copy)copy.onclick=function(){var v=CONFIG.PAY[m.id];if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(function(){copy.textContent=lang==='ar'?'تم النسخ':'Copied'}).catch(function(){prompt('Copy',v)});else prompt('Copy',v)};
 }
 function applyLang(){
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
-  document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
-  document.querySelectorAll('[data-ar]').forEach(function(e){e.innerHTML=e.getAttribute('data-'+lang)});
-  document.title=lang==='ar'?'باقات تصميم EasyOrders وShopify في مصر بالجنيه المصري | كمال النحراوي':'EasyOrders & Shopify Design Packages in EGP | Kamal Elnhrawy';
-  renderGrid();fillSelect($('#pkg'),PACKAGES,true);fillSelect($('#logo'),LOGO);fillSelect($('#method'),METHODS);updateSummary();
+ document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
+ document.querySelectorAll('[data-ar]').forEach(function(e){e.innerHTML=e.getAttribute('data-'+lang)});
+ document.title=lang==='ar'?'باقات تصميم EasyOrders وShopify في مصر والخليج | كمال النحراوي':'EasyOrders & Shopify Packages | Kamal Elnhrawy';
+ renderGrid();fillSelect($('#pkg'),PACKAGES,true);fillSelect($('#logo'),LOGO);fillSelect($('#method'),getMethods());fillChoices($('#type'),'type',TYPES);fillChoices($('#platform'),'platform',PLATFORMS);updateSummary();
 }
 $('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';applyLang()};
-$('#pkg').addEventListener('change',updateSummary);
-$('#method').addEventListener('change',updateSummary);
+$('#marketEG').onclick=function(){setMarket('eg')};$('#marketINTL').onclick=function(){setMarket('intl')};
+$('#pkg').addEventListener('change',updateSummary);$('#method').addEventListener('change',updateSummary);
 $('#pkg').value='easy-sales-plus';applyLang();$('#pkg').value='easy-sales-plus';updateSummary();
-
 function pick(name){var c=document.querySelector('input[name="'+name+'"]:checked');return c?c.parentNode.textContent:''}
 function sendToGoogle(d){
-  var g=CONFIG.GOOGLE_FORM,e=g.entries;
-  if(!g.action||!e.order)return Promise.resolve(false);
-  var b=new URLSearchParams();
-  b.append(e.order,d.order);b.append(e.pkg,d.pkg);b.append(e.name,d.name);b.append(e.whatsapp,d.whatsapp);b.append(e.payment,d.payment);b.append(e.details,d.details);
-  return fetch(g.action,{method:'POST',mode:'no-cors',body:b}).then(function(){return true}).catch(function(){return false});
+ var g=CONFIG.GOOGLE_FORM,e=g.entries;if(!g.action||!e.order)return Promise.resolve(false);
+ var b=new URLSearchParams();b.append(e.order,d.order);b.append(e.pkg,d.pkg);b.append(e.name,d.name);b.append(e.whatsapp,d.whatsapp);b.append(e.payment,d.payment);b.append(e.details,d.details);
+ return fetch(g.action,{method:'POST',mode:'no-cors',body:b}).then(function(){return true}).catch(function(){return false});
 }
-
 var pendingProofFile=null,pendingMessage='',proofPreviewUrl='';
 $('#proof').addEventListener('change',function(){
-  var file=this.files&&this.files[0];$('#err').textContent='';
-  if(proofPreviewUrl){URL.revokeObjectURL(proofPreviewUrl);proofPreviewUrl='';}
-  if(!file){$('#proofPreview').hidden=true;return}
-  if(!file.type||file.type.indexOf('image/')!==0){this.value='';$('#err').textContent=lang==='ar'?'اختار صورة بصيغة صورة عادية.':'Please choose a valid image file.';$('#proofPreview').hidden=true;return}
-  if(file.size>8*1024*1024){this.value='';$('#err').textContent=lang==='ar'?'حجم الصورة أكبر من 8 ميجابايت. اختار صورة أصغر.':'Image is larger than 8 MB. Choose a smaller file.';$('#proofPreview').hidden=true;return}
-  proofPreviewUrl=URL.createObjectURL(file);$('#proofImage').src=proofPreviewUrl;$('#proofName').textContent=file.name;$('#proofPreview').hidden=false;
+ var file=this.files&&this.files[0];$('#err').textContent='';
+ if(proofPreviewUrl){URL.revokeObjectURL(proofPreviewUrl);proofPreviewUrl='';}
+ if(!file){$('#proofPreview').hidden=true;return}
+ if(!file.type||file.type.indexOf('image/')!==0){this.value='';$('#err').textContent=lang==='ar'?'اختار ملف صورة صالح.':'Choose a valid image file.';$('#proofPreview').hidden=true;return}
+ if(file.size>8*1024*1024){this.value='';$('#err').textContent=lang==='ar'?'حجم الصورة أكبر من 8 ميجابايت.':'Image must be 8 MB or less.';$('#proofPreview').hidden=true;return}
+ proofPreviewUrl=URL.createObjectURL(file);$('#proofImage').src=proofPreviewUrl;$('#proofName').textContent=file.name;$('#proofPreview').hidden=false;
 });
-$('#removeProof').addEventListener('click',function(){
-  $('#proof').value='';pendingProofFile=null;$('#proofPreview').hidden=true;
-  if(proofPreviewUrl){URL.revokeObjectURL(proofPreviewUrl);proofPreviewUrl='';}
-});
+$('#removeProof').addEventListener('click',function(){$('#proof').value='';$('#proofPreview').hidden=true;pendingProofFile=null;if(proofPreviewUrl){URL.revokeObjectURL(proofPreviewUrl);proofPreviewUrl='';}});
 $('#form').addEventListener('submit',function(ev){
-  ev.preventDefault();
-  var err=$('#err');err.textContent='';
-  var need=['name','wa','brand','activity'],bad=need.filter(function(i){return !$('#'+i).value.trim()});
-  if(bad.length){err.textContent=lang==='ar'?'من فضلك املأ الحقول المطلوبة: الاسم، رقم واتساب، اسم المتجر، ونشاطك.':'Please fill the required fields: name, WhatsApp, brand name and your business.';$('#'+bad[0]).focus();return}
-  if(!/^[+\d][\d\s\-()]{6,}$/.test($('#wa').value.trim())){err.textContent=lang==='ar'?'رقم واتساب غير صحيح. اكتبه مع رمز الدولة.':'Invalid WhatsApp number. Include the country code.';$('#wa').focus();return}
-  var p=pkgById($('#pkg').value),m=METHODS.filter(function(x){return x.id===$('#method').value})[0];
-  if(!p||!m){err.textContent=lang==='ar'?'اختار الباقة وطريقة الدفع.':'Choose a package and payment method.';return}
-  var proof=$('#proof').files&&$('#proof').files[0];
-  if(proof&&(!proof.type||proof.type.indexOf('image/')!==0||proof.size>8*1024*1024)){err.textContent=lang==='ar'?'صورة الإيصال غير صالحة أو أكبر من 8 ميجابايت.':'Receipt image is invalid or larger than 8 MB.';return}
-  var order='KN-'+Date.now().toString(36).toUpperCase().slice(-6);
-  var deposit=Math.round(p.price/2),remaining=p.price-deposit;
-  var details=[
-    'Package: '+p.name.en,
-    'Platform: '+p.platform.en,
-    'Included scope: '+p.scope.en,
-    'Brand: '+$('#brand').value,
-    'Market: '+$('#market').value,
-    'Activity: '+$('#activity').value,
-    'Idea: '+$('#idea').value,
-    'Site: '+$('#site').value,
-    'Social page: '+$('#page').value,
-    'Products: '+$('#count').value,
-    'Logo: '+$('#logo').selectedOptions[0].textContent,
-    'References: '+$('#refs').value,
-    'Notes: '+$('#notes').value,
-    'Email: '+$('#email').value,
-    'Payment method: '+m.en,
-    'Transfer reference: '+$('#payref').value,
-    'Package total: EGP '+p.price,
-    'Starting deposit: EGP '+deposit,
-    'Remaining before final handover: EGP '+remaining,
-    'Receipt image selected: '+(proof?'Yes — '+proof.name:'No'),
-    'Language: '+lang
-  ].join('\n');
-  var data={order:order,pkg:p.name.en+' (EGP '+p.price+')',name:$('#name').value,whatsapp:$('#wa').value,payment:m.en+' | '+$('#payref').value,details:details};
-  var btn=$('#submit');btn.disabled=true;btn.textContent=lang==='ar'?'جارٍ تسجيل الطلب…':'Recording order…';
-  sendToGoogle(data).then(function(sent){
-    pendingProofFile=proof||null;
-    var msg=(lang==='ar'?'مرحبًا كمال، ده طلب خدمة جديد.':'Hello Kamal, this is a new service order.')+'\n'+
-      (lang==='ar'?'رقم الطلب: ':'Order ID: ')+order+'\n'+
-      (lang==='ar'?'الباقة: ':'Package: ')+L(p.platform)+' — '+L(p.name)+'\n'+
-      (lang==='ar'?'الإجمالي: ':'Total: ')+formatPrice(p.price)+'\n'+
-      (lang==='ar'?'عربون البداية 50%: ':'Starting deposit (50%): ')+formatPrice(deposit)+'\n'+
-      (lang==='ar'?'المتبقي قبل التسليم النهائي: ':'Balance before final handover: ')+formatPrice(remaining)+'\n'+
-      (lang==='ar'?'الاسم: ':'Name: ')+data.name+'\n'+
-      (lang==='ar'?'واتساب العميل: ':'Client WhatsApp: ')+data.whatsapp+'\n'+
-      (lang==='ar'?'طريقة الدفع: ':'Payment method: ')+L(m)+'\n'+
-      (lang==='ar'?'اسم المتجر: ':'Brand: ')+$('#brand').value+'\n'+
-      (lang==='ar'?'سأرسل تفاصيل المشروع كاملة من نموذج الطلب.':'I will share the full project details from the order form.');
-    if(proof)msg+='\n'+(lang==='ar'?'اخترت صورة إيصال للتحويل، ومرفقة مع المشاركة لو جهازك بيدعم ذلك.':'I selected a transfer receipt image; it will be attached if file sharing is supported.');
-    if(!sent)msg+='\n\n'+details;
-    pendingMessage=msg;
-    $('#orderId').textContent=order;
-    $('#shareHint').textContent=proof?(lang==='ar'?'عند الضغط على الزر، اختار WhatsApp من قائمة المشاركة وابعت الصورة لرقم 01123449977.':'When you tap the button, choose WhatsApp from the share sheet and send the image to 01123449977.'): (lang==='ar'?'هتفتح رسالة واتساب جاهزة ببيانات الطلب.':'A WhatsApp message will open with the order details.');
-    $('#waBtn').textContent=proof?(lang==='ar'?'مشاركة الطلب وصورة الإيصال':'Share order and receipt'):(lang==='ar'?'فتح واتساب ببيانات الطلب':'Open WhatsApp with order details');
-    $('#order').hidden=true;$('#done').hidden=false;$('#done').scrollIntoView({behavior:'smooth'});
-    btn.disabled=false;btn.textContent=lang==='ar'?'إرسال الطلب':'Send order';
-  }).catch(function(){
-    btn.disabled=false;btn.textContent=lang==='ar'?'إرسال الطلب':'Send order';
-    err.textContent=lang==='ar'?'حصل خطأ أثناء تسجيل الطلب. حاول تاني أو تواصل على واتساب.':'There was a problem recording the order. Try again or contact me on WhatsApp.';
-  });
+ ev.preventDefault();var err=$('#err');err.textContent='';
+ var required=['name','wa','brand','activity'],missing=required.filter(function(id){return !$('#'+id).value.trim()});
+ if(missing.length){err.textContent=lang==='ar'?'من فضلك املأ الاسم ورقم واتساب واسم المتجر ونشاطه.':'Fill in name, WhatsApp, brand and business details.';$('#'+missing[0]).focus();return}
+ if(!/^[+\d][\d\s\-()]{6,}$/.test($('#wa').value.trim())){err.textContent=lang==='ar'?'رقم واتساب غير صحيح. استخدم رمز الدولة.':'Enter a valid WhatsApp number with country code.';$('#wa').focus();return}
+ var p=pkgById($('#pkg').value),m=getMethods().find(function(x){return x.id===$('#method').value});if(!p||!m){err.textContent=lang==='ar'?'اختار الباقة وطريقة الدفع.':'Choose a package and payment method.';return}
+ var proof=$('#proof').files&&$('#proof').files[0];if(proof&&(!proof.type||proof.type.indexOf('image/')!==0||proof.size>8*1024*1024)){err.textContent=lang==='ar'?'صورة الإيصال غير صالحة أو أكبر من 8 ميجابايت.':'Receipt image is invalid or too large.';return}
+ var order='KN-'+Date.now().toString(36).toUpperCase().slice(-6),total=currentPrice(p),deposit=Math.round(total/2),remaining=total-deposit;
+ var currency=market==='eg'?'EGP':'USD',details=[
+  'Order: '+order,'Pricing region: '+(market==='eg'?'Egypt':'Outside Egypt'),'Currency: '+currency,'Package: '+p.name.en,'Platform: '+p.platform.en,'Price: '+formatPrice(total),'Deposit: '+formatPrice(deposit),'Balance: '+formatPrice(remaining),
+  'Project type: '+pick('type'),'Brand: '+$('#brand').value,'Client country/market: '+$('#market').value,'Business: '+$('#activity').value,'Project idea: '+$('#idea').value,'Current site: '+$('#site').value,'Social page: '+$('#page').value,'Products: '+$('#count').value,'Logo: '+$('#logo').selectedOptions[0].textContent,'References: '+$('#refs').value,'Notes: '+$('#notes').value,'Email: '+$('#email').value,'Payment method: '+m.en,'Transfer reference: '+$('#payref').value,'Receipt selected: '+(proof?'Yes - '+proof.name:'No'),'Language: '+lang
+ ].join('\n');
+ var data={order:order,pkg:p.name.en+' ('+currency+' '+currentPrice(p)+')',name:$('#name').value,whatsapp:$('#wa').value,payment:m.en+' | '+$('#payref').value,details:details};
+ var btn=$('#submit');btn.disabled=true;btn.textContent=lang==='ar'?'جارٍ تسجيل الطلب…':'Recording order…';
+ sendToGoogle(data).then(function(sent){
+  pendingProofFile=proof||null;
+  var msg=(lang==='ar'?'أهلًا كمال، ده طلب جديد.':'Hello Kamal, this is a new service request.')+'\n'+
+   'Order: '+order+'\n'+
+   (lang==='ar'?'السوق: ':'Pricing market: ')+(market==='eg'?(lang==='ar'?'مصر بالجنيه المصري':'Egypt — EGP'):(lang==='ar'?'خارج مصر بالدولار الأمريكي':'Outside Egypt — USD'))+'\n'+
+   (lang==='ar'?'الباقة: ':'Package: ')+L(p.platform)+' — '+L(p.name)+'\n'+
+   (lang==='ar'?'الإجمالي: ':'Total: ')+formatPrice(total)+'\n'+
+   (lang==='ar'?'العربون 50%: ':'Deposit (50%): ')+formatPrice(deposit)+'\n'+
+   (lang==='ar'?'المتبقي: ':'Remaining: ')+formatPrice(remaining)+'\n'+
+   (lang==='ar'?'الاسم: ':'Name: ')+data.name+'\n'+
+   (lang==='ar'?'رقم واتساب: ':'Client WhatsApp: ')+data.whatsapp+'\n'+
+   (lang==='ar'?'طريقة الدفع: ':'Payment method: ')+L(m)+'\n'+
+   (lang==='ar'?'اسم المتجر: ':'Brand: ')+$('#brand').value+'\n'+
+   (lang==='ar'?'تفاصيل المشروع مسجلة في نموذج الطلب.':'Project details are recorded in the order form.');
+  if(proof)msg+='\n'+(lang==='ar'?'اخترت صورة إيصال للتحويل، هشاركها مع الرسالة لو جهازك بيدعم ذلك.':'A payment receipt image was selected and will be shared if supported.');
+  if(!sent)msg+='\n\n'+details;
+  pendingMessage=msg;$('#orderId').textContent=order;
+  $('#shareHint').textContent=proof?(lang==='ar'?'اضغط مشاركة الطلب، وبعدها اختار واتساب. لو الصورة ما اترفعتش تلقائيًا، أرفقها يدويًا.':'Tap share order and choose WhatsApp. Attach the image manually if it is not included.'):(lang==='ar'?'هتفتح رسالة واتساب فيها تفاصيل الطلب.':'WhatsApp will open with your order details.');
+  $('#waBtn').textContent=proof?(lang==='ar'?'مشاركة الطلب والإيصال':'Share order and receipt'):(lang==='ar'?'فتح واتساب ببيانات الطلب':'Open WhatsApp with order details');
+  $('#order').hidden=true;$('#done').hidden=false;$('#done').scrollIntoView({behavior:'smooth'});btn.disabled=false;btn.textContent=lang==='ar'?'إرسال الطلب':'Send order';
+ }).catch(function(){btn.disabled=false;btn.textContent=lang==='ar'?'إرسال الطلب':'Send order';err.textContent=lang==='ar'?'حصل خطأ في تسجيل الطلب. حاول تاني أو تواصل على واتساب.':'Error recording order. Please retry or contact WhatsApp.'});
 });
 $('#waBtn').addEventListener('click',function(){
-  var proof=pendingProofFile;
-  if(proof&&navigator.share&&navigator.canShare){
-    try{
-      if(navigator.canShare({files:[proof]})){
-        navigator.share({files:[proof],title:lang==='ar'?'إيصال دفع — طلب '+$('#orderId').textContent:'Payment receipt — order '+$('#orderId').textContent,text:pendingMessage+'\n\n'+(lang==='ar'?'أرسل الصورة إلى واتساب رقم 01123449977.':'Send the image to WhatsApp number 01123449977.')});
-        return;
-      }
-    }catch(e){}
-  }
-  var fallback=pendingMessage;
-  if(proof)fallback+='\n\n'+(lang==='ar'?'ملاحظة: الصورة لم تُرفق تلقائيًا. من فضلك افتح علامة المرفقات في واتساب واختار صورة الإيصال من جهازك.':'Note: the image was not attached automatically. Use WhatsApp attachments to select the receipt from your device.');
-  window.open('https://wa.me/'+CONFIG.WHATSAPP+'?text='+encodeURIComponent(fallback),'_blank','noopener');
+ var proof=pendingProofFile;
+ if(proof&&navigator.share&&navigator.canShare){
+  try{if(navigator.canShare({files:[proof]})){navigator.share({files:[proof],title:'Order '+$('#orderId').textContent,text:pendingMessage});return;}}catch(e){}
+ }
+ var msg=pendingMessage;if(proof)msg+='\n\n'+(lang==='ar'?'الصورة مش مرفقة تلقائيًا على جهازك؛ افتح المرفقات في واتساب واختار صورة الإيصال.':'The receipt could not be attached automatically; use WhatsApp attachments to select it.');
+ window.open('https://wa.me/'+CONFIG.WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener');
 });
-
 </script>
 </body>
 </html>
