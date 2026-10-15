@@ -24,10 +24,10 @@ function host(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch(_){re
 function sources(ss){const o=[],seen=new Set();for(const s of ss)for(const r of s.entry.results||[]){if(!/^https?:\/\//i.test(r.url||""))continue;const k=norm(r.url);if(!seen.has(k)){seen.add(k);o.push({title:clean(r.title,180),url:r.url,snippet:clean(r.snippet,250)})}}return o}
 function isForeignEvidence(s){
  const h=host(s.url), title=String(s.title||"");
- const arabicCountryTld=/(^|\\.)(?:eg|sa|ae|qa|kw|bh|om|jo|lb|iq|ma|dz|tn|ly|sd|ye|ps)(?:\\.|$)/i;
+ const arabicCountryTld=/(^|\.)(?:eg|sa|ae|qa|kw|bh|om|jo|lb|iq|ma|dz|tn|ly|sd|ye|ps)(?:\.|$)/i;
  const localPublisher=/(^|[.-])(?:egypt|cairo|middleeast|middle-east|mena|arabnews|arabic|alarabiya|dailynewsegypt|egypttoday|egyptindependent|gulfnews|khaleejtimes|zawya|wam|thenational|thepeninsula|youm7|masrawy)([.-]|$)/i;
- const localTitle=/\\b(?:Egypt|Egyptian|Cairo|MENA|Middle East|North Africa|Arab world|Saudi Arabia|Saudi|UAE|United Arab Emirates|Dubai|Abu Dhabi|Qatar|Kuwait|Bahrain|Oman|Jordan|Lebanon|Iraq|Morocco|Algeria|Tunisia|Libya|Sudan|Yemen|Palestine|Riyadh|Jeddah|Doha|Casablanca|Rabat|Amman|Beirut|Muscat|Manama)\\b/i;
- return !!h && !/[\\u0600-\\u06FF]/.test(title) && !arabicCountryTld.test(h) && !localPublisher.test(h) && !localTitle.test(title);
+ const localTitle=/\b(?:Egypt|Egyptian|Cairo|MENA|Middle East|North Africa|Arab world|Saudi Arabia|Saudi|UAE|United Arab Emirates|Dubai|Abu Dhabi|Qatar|Kuwait|Bahrain|Oman|Jordan|Lebanon|Iraq|Morocco|Algeria|Tunisia|Libya|Sudan|Yemen|Palestine|Riyadh|Jeddah|Doha|Casablanca|Rabat|Amman|Beirut|Muscat|Manama)\b/i;
+ return !!h && !/[\u0600-\u06FF]/.test(title) && !arabicCountryTld.test(h) && !localPublisher.test(h) && !localTitle.test(title);
 }
 function foreignSources(ss){return sources(ss).filter(isForeignEvidence)}
 function fetchPage(u){const r=spawnSync(process.execPath,[SEARCH,"--fetch",u],{cwd:ROOT,encoding:"utf8",timeout:25000,maxBuffer:2*1024*1024});if(r.status!==0)return null;try{const x=JSON.parse(r.stdout);return{url:x.url||u,title:clean(x.title,180),text:clean(x.text,2600)}}catch(_){return null}}
