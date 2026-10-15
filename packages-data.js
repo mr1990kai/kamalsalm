@@ -25,3 +25,24 @@ var PACKAGES=[
   scope:{ar:'حتى 40 منتجًا، مع تخصيص كود محدود وواضح النطاق داخل القالب، وليس بناء ثيم كامل من الصفر.',en:'Up to 40 products with a defined scope of custom code inside the theme, not a full theme built from scratch.'},
   items:{ar:['كل أساسيات باقة الهوية','تعديلات Liquid/CSS لما يصل إلى 3 أقسام أو مكونات محددة','تحسين شكل صفحات المنتج والمجموعات والموبايل','إعدادات SEO أساسية وربط البيكسل عند توفير البيانات','مراجعة قبل التسليم و3 جولات تعديل','تحديد نطاق الكود قبل البدء لتجنب المفاجآت'],en:['Everything in the Branded Store package','Liquid/CSS customisation for up to 3 defined sections or components','Polish product, collection and mobile views','Basic SEO and pixel connection when details are provided','Pre-handover review and three revision rounds','Agree the code scope before work begins']}}
 ];
+
+
+/* أسعار ونطاق الباقات الدولية القديمة بالدولار محفوظة كما هي للعملاء خارج مصر. */
+var INTERNATIONAL_PACKAGES=[
+ {id:'intl-landing',price:40,usd:40,platform:{id:'both',ar:'Shopify أو EasyOrders',en:'Shopify or EasyOrders'},days:{ar:'التسليم خلال 2 إلى 3 أيام',en:'Delivered in 2–3 days'},
+  name:{ar:'صفحة هبوط',en:'Landing Page'},sub:{ar:'لمنتج واحد وحملة مباشرة',en:'For one product and a direct campaign'},
+  scope:{ar:'صفحة بيع لمنتج واحد، بتصميم متجاوب ونموذج طلب وربط البيكسل حسب إمكانيات المنصة.',en:'One-product sales page with responsive design, an order form, and pixel connection where supported.'},
+  items:{ar:['تصميم صفحة بيع لمنتج واحد','متجاوبة مع الجوال','نموذج طلب حسب المنصة','جاهزة للإعلانات وربط البيكسل'],en:['Sales page design for one product','Mobile responsive','Platform-appropriate order form','Ad-ready and pixel connected']}},
+ {id:'intl-starter',price:55,usd:55,platform:{id:'both',ar:'Shopify أو EasyOrders',en:'Shopify or EasyOrders'},days:{ar:'التسليم خلال 4 أيام',en:'Delivered in 4 days'},
+  name:{ar:'متجر أساسي',en:'Starter Store'},sub:{ar:'انطلاقة منظمة حتى 10 منتجات',en:'A clean start for up to 10 products'},
+  scope:{ar:'متجر أساسي حتى 10 منتجات مع تنظيم الأقسام وربط الدومين الموجود.',en:'Starter store for up to 10 products, with organised categories and an existing domain connection.'},
+  items:{ar:['إضافة حتى 10 منتجات من بيانات العميل','تنظيم الأقسام والقوائم','تصميم متجاوب بهوية لونية واضحة','إعدادات المتجر الأساسية وربط الدومين'],en:['Add up to 10 products using client-supplied details','Organise collections and menus','Responsive design with clear visual identity','Core store setup and existing domain connection']}},
+ {id:'intl-pro',price:79,usd:79,platform:{id:'both',ar:'Shopify أو EasyOrders',en:'Shopify or EasyOrders'},days:{ar:'التسليم خلال 4 إلى 5 أيام',en:'Delivered in 4–5 days'},pop:true,
+  name:{ar:'متجر احترافي',en:'Pro Store'},sub:{ar:'متجر كامل مع صفحة هبوط وتتبع',en:'Full store with a landing page and tracking'},
+  scope:{ar:'حتى 30 منتجًا، مع صفحة هبوط واحدة وتجهيز بصري وربط التتبع المتاح على المنصة.',en:'Up to 30 products, one landing page, storefront visuals and the tracking supported by the platform.'},
+  items:{ar:['متجر حتى 30 منتجًا','صفحة هبوط لمنتج واحد','بانرات وتنسيق بصري للمتجر','ربط Meta Pixel وTikTok Pixel حسب المنصة','إعداد SEO أساسي','ربط الدومين'],en:['Store with up to 30 products','One product landing page','Store banners and visual styling','Meta and TikTok Pixel setup where supported','Basic SEO setup','Domain connection']}},
+ {id:'intl-premium',price:99,usd:99,platform:{id:'both',ar:'Shopify أو EasyOrders',en:'Shopify or EasyOrders'},days:{ar:'التسليم خلال 5 إلى 7 أيام',en:'Delivered in 5–7 days'},
+  name:{ar:'متجر متكامل',en:'Premium Store'},sub:{ar:'من الفكرة حتى الإطلاق مع دعم بعد التسليم',en:'From idea to launch, with post-handover support'},
+  scope:{ar:'حتى 50 منتجًا مع شعار وهوية بصرية وصفحتي هبوط ودعم 30 يومًا.',en:'Up to 50 products with logo and visual identity, two landing pages and 30 days of support.'},
+  items:{ar:['متجر حتى 50 منتجًا','شعار وهوية بصرية','صفحتا هبوط','تتبع إعلاني متقدم حسب المنصة (Pixel وCAPI عند توفره)','جلسة شرح لإدارة المتجر','دعم 30 يومًا بعد التسليم'],en:['Store with up to 50 products','Logo and visual identity','Two landing pages','Advanced platform-supported ad tracking (Pixel/CAPI where available)','Store management walkthrough','30 days of support after handover']}}
+];
