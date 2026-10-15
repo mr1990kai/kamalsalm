@@ -47,9 +47,14 @@ if(NEXT)h+='<a class="next rv" href="'+esc(NEXT.href)+'"><small>'+(NEXT.label?B(
 h+='</div>';
 $('#app').innerHTML=h;
 
-/* بطاقات الباقات من packages-data.js */
-if(window.PACKAGES){$('#pg').innerHTML=window.PACKAGES.map(function(p){
-  return '<a class="pt'+(p.pop?' pop':'')+'" href="packages.html">'+B(p.name,'b')+'<span class="pr price-pair">'+T(p.price+' جنيه','EGP '+p.price,'span','pr-egp')+'<span class="price-divider">/</span>'+T('$'+p.usd,'$'+p.usd,'span','pr-usd')+'</span><small>'+B(p.days)+'</small></a>'}).join('')}
+/* ملخص نطاق الأسعار لكلا السوقين؛ صفحة الباقات تعرض التفاصيل الكاملة لكل سوق. */
+if(window.PACKAGES&&window.INTERNATIONAL_PACKAGES){
+ var egpPrices=window.PACKAGES.map(function(p){return p.price}),usdPrices=window.INTERNATIONAL_PACKAGES.map(function(p){return p.usd});
+ var egpRange=Math.min.apply(null,egpPrices).toLocaleString('en-US')+'–'+Math.max.apply(null,egpPrices).toLocaleString('en-US')+' جنيه';
+ var usdRange='$'+Math.min.apply(null,usdPrices)+'–$'+Math.max.apply(null,usdPrices);
+ $('#pg').innerHTML='<div class="pt price-summary">'+T('داخل مصر','Inside Egypt','b')+'<span class="pr price-range">'+T(egpRange,'EGP '+egpRange.replace(' جنيه',''),'span')+'</span><small>'+T('أسعار بالجنيه المصري','Prices in Egyptian pounds','span')+'</small></div>'+
+  '<div class="pt price-summary">'+T('خارج مصر والخليج','Outside Egypt & Gulf','b')+'<span class="pr price-range">'+T(usdRange,usdRange,'span')+'</span><small>'+T('أسعار بالدولار الأمريكي','Prices in US dollars','span')+'</small></div>';
+}
 
 function apply(){
   document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
