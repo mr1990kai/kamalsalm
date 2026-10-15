@@ -49,7 +49,7 @@ $('#app').innerHTML=h;
 
 /* بطاقات الباقات من packages-data.js */
 if(window.PACKAGES){$('#pg').innerHTML=window.PACKAGES.map(function(p){
-  return '<a class="pt'+(p.pop?' pop':'')+'" href="packages.html">'+B(p.name,'b')+'<span class="pr">$'+p.price+'</span><small>'+B(p.days)+'</small></a>'}).join('')}
+  return '<a class="pt'+(p.pop?' pop':'')+'" href="packages.html">'+B(p.name,'b')+'<span class="pr price-pair">'+T(p.price+' جنيه','EGP '+p.price,'span','pr-egp')+'<span class="price-divider">/</span>'+T('$'+p.usd,'$'+p.usd,'span','pr-usd')+'</span><small>'+B(p.days)+'</small></a>'}).join('')}
 
 function apply(){
   document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
