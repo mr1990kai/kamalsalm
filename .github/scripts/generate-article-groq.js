@@ -41,7 +41,18 @@ function auditText(x){
 function slug(v){return clean(v,100).normalize("NFKD").toLowerCase().replace(/['’]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,72).replace(/-+$/g,"")||"marketing-insight"}
 function uniqueSlug(v,posts){let s=slug(v),used=new Set(posts.map(p=>p.slug));if(!used.has(s))return s;s+="-"+TODAY;if(!used.has(s))return s;let i=2;while(used.has(s+"-"+i))i++;return s+"-"+i}
 function addPost(p,posts){const file=path.join(ROOT,"posts-data.js");let s=fs.readFileSync(file,"utf8"),end=s.lastIndexOf("];");if(end<0)stop("posts-data.js does not end with ];");if(posts.some(x=>x.slug===p.slug))stop("Duplicate slug.");const item="  {\n    slug: "+JSON.stringify(p.slug)+",\n    title: "+JSON.stringify(p.title)+",\n    excerpt: "+JSON.stringify(p.excerpt)+",\n    date: "+JSON.stringify(TODAY)+",\n    category: "+JSON.stringify(p.category)+",\n    lang: \"ar\",\n    read: "+p.read+"\n  }\n";s=s.slice(0,end).replace(/\s*$/,"")+(posts.length?",":"")+"\n"+item+s.slice(end);fs.writeFileSync(file,s,"utf8")}
-function validateArticle(a,urls){if(typeof a!=="string"||a.length<3500)throw Error("Article is shorter than 3,500 characters");if(!/[\u0600-\u06FF]/.test(a))throw Error("Article isn't Arabic");const links=a.match(/\]\(https?:\/\/[^)\s]+\)/g)||[];if(links.length<3)throw Error("Article needs at least 3 direct source links");const known=new Set(urls.map(norm)),used=[...a.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map(m=>norm(m[1]));if(new Set(used.filter(u=>known.has(u))).size<2)throw Error("Article must cite at least two URLs from actual English search results")}
+function validateArticle(a,openedUrls,searchUrls){
+ if(typeof a!=="string"||a.length<3500)throw Error("Article is shorter than 3,500 characters");
+ if(!/[\u0600-\u06FF]/.test(a))throw Error("Article isn't Arabic");
+ const links=a.match(/\]\(https?:\/\/[^)\s]+\)/g)||[];
+ if(links.length<3)throw Error("Article needs at least 3 direct source links");
+ const opened=new Set(openedUrls.map(norm));
+ const allowed=new Set([...(searchUrls||[]),...(openedUrls||[])].map(norm));
+ const used=[...a.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map(m=>norm(m[1]));
+ if(used.some(u=>!allowed.has(u)))throw Error("Every citation must come from an actual foreign English search result or an opened source page");
+ if(new Set(used.filter(u=>allowed.has(u))).size<3)throw Error("Article must cite at least three distinct verified foreign source URLs");
+ if(new Set(used.filter(u=>opened.has(u))).size<2)throw Error("Article must cite at least two opened and verified source pages");
+}
 async function main(){
  if(!fs.existsSync(SEARCH))stop("Missing .github/scripts/search-web.js");fs.writeFileSync(LOG,"[]\n","utf8");const posts=readPosts(),existing=oldPosts(posts);
  console.log("1/3: Groq proposes three candidates.");
@@ -69,7 +80,7 @@ async function main(){
  if(decision==="SKIP"){console.log("Editorial decision: SKIP — "+reason);out("publish","false");return}
  const title=clean(result.title),excerpt=clean(result.excerpt,220),category=clean(result.category||chosen.category,80),readTime=Math.max(3,Math.min(30,parseInt(result.read,10)||7));
  if(!title||!excerpt||!category)stop("Missing title/excerpt/category.");if(category!==chosen.category)stop("Article category must match the selected editorial branch: "+chosen.category);
- const article=String(result.articleMarkdown||"").trim();try{validateArticle(article,opened.map(s=>s.url))}catch(e){stop(e.message)}
+ const article=String(result.articleMarkdown||"").trim();try{validateArticle(article,opened.map(s=>s.url),enSources.map(s=>s.url))}catch(e){stop(e.message)}
  const id=uniqueSlug(result.slug||title,posts),pathName=path.join(ROOT,"posts",id+".md");if(fs.existsSync(pathName))stop("Refusing to overwrite an existing article "+id);
  fs.writeFileSync(pathName,article+"\n","utf8");addPost({slug:id,title,excerpt,category,read:readTime},posts);out("publish","true");console.log("Prepared article "+id+" for validation and cover generation.");
 }
