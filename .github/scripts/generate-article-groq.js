@@ -64,8 +64,8 @@ async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
    clean(c.topic+" "+c.country+" site:shopify.com OR site:hubspot.com OR site:thinkwithgoogle.com OR site:semrush.com OR site:bigcommerce.com",220)
   ];
   const arabicQueries=[
-   clean(c.aq+" شرح تجربة تطبيق نصائح "+c.topic+" مصر",220),
-   clean(c.aq+" التسويق الإلكتروني التجارة الإلكترونية البراندينج",220)
+   clean("بحث تطبيقي: "+c.aq+" "+c.topic+" مصر",220),
+   clean("أمثلة عملية: "+c.aq+" "+c.topic+" التسويق الرقمي",220)
   ];
   for(const q of englishQueries)en.push(await search(q,"en"));
   for(const q of arabicQueries)ar.push(await search(q,"ar"));
