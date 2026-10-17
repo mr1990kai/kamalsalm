@@ -92,5 +92,15 @@ window.POSTS = [
     lang: "ar",
     read: 12,
     cover: 'images/covers/meta-creative-optimization-impact-on-roas.svg'
+  },
+  {
+    slug: "youtube-ads-optimization-egypt",
+    title: "دليل خطوة بخطوة لتحسين إعلانات يوتيوب لزيادة المبيعات الإلكترونية في مصر",
+    excerpt: "تعرف على كيفية استهداف، إبداع، ومزايدة إعلانات يوتيوب لتحويل المشاهدين إلى مشترين. دليل عملي مع خطوات تطبيقية ومثال مصرى يوضح كل مرحلة.",
+    date: "2026-10-17",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/youtube-ads-optimization-egypt.svg'
   }
 ];
