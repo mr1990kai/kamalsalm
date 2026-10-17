@@ -70,8 +70,7 @@ async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
   for(const q of englishQueries)en.push(await search(q,"en"));
   for(const q of arabicQueries)ar.push(await search(q,"ar"));
   if(en.some(x=>!x.entry.ok)||ar.some(x=>!x.entry.ok)){
-   console.log("Alternate candidate "+c.id+" skipped because one of its searches returned no usable results.");
-   continue;
+   console.log("One follow-up search for alternate candidate "+c.id+" returned no results; checking the sources that did work.");
   }
   const enSources=foreignSources(en),opened=[],openedHosts=new Set();
   // Prefer well-known specialist publishers, but do not require a quantified case study.
@@ -151,7 +150,7 @@ async function main(){
  const e2=(choose.english_followup_queries||[]).slice(0,2).map(q=>{const query=clean(q,200);return query.toLowerCase().includes(chosen.country.toLowerCase())?query:clean(query+" "+chosen.country,200)}),a2=(choose.arabic_followup_queries||[]).slice(0,2).map(q=>{const query=clean(q,200);return /(مصر|مصري|المصري)/.test(query)?query:clean(query+" مصر",200)});
  if(e2.length!==2||a2.length!==2||a2.some(q=>!/[\u0600-\u06FF]/.test(q)))stop("Invalid follow-up searches.");
  const en=[chosen.en],ar=[chosen.ar];for(const q of e2)en.push(await search(q,"en"));for(const q of a2)ar.push(await search(q,"ar"));
- if(en.some(s=>!s.entry.ok)||ar.some(s=>!s.entry.ok))stop("A required English/Arabic search failed; nothing will be published.");
+ if(en.some(s=>!s.entry.ok)||ar.some(s=>!s.entry.ok))console.log("One or more follow-up searches returned no results; continuing with successful searches and available sources.");
  const enSources=foreignSources(en),opened=[],openedHosts=new Set();for(const s of enSources.slice(0,8)){const p=fetchPage(s.url);if(p?.text&&p.text.length>500&&isForeignEvidence({url:p.url||s.url,title:p.title||s.title})){const h=host(p.url||s.url);if(!openedHosts.has(h)){opened.push(p);openedHosts.add(h)}}if(opened.length>=3)break} if(new Set(enSources.map(s=>host(s.url))).size<2||openedHosts.size<2){console.log("Primary candidate lacks enough open source pages; trying alternatives.");if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;const reason="لم يتم العثور على صفحتين أصليتين قابلتين للفتح من مصدرين أجنبيين مستقلين خارج مصر والمنطقة العربية؛ تم إيقاف النشر بدل الاعتماد على مصادر ضعيفة أو غير قابلة للتحقق.";fs.writeFileSync(AUDIT,auditText({en,ar,sources:enSources,topic:chosen.topic+" — السوق الأصلي: "+chosen.country,decision:"SKIP",reason,arSummary:"تم تنفيذ بحث عربي عن الفكرة المحددة ومراجعة النتائج الظاهرة، لكن لم تتوفر أدلة أجنبية مستقلة كافية ومفتوحة للتحقق من تفاصيل الحالة. لذلك لم يتم إنشاء مقال أو نشره.",duplicate:"تمت مقارنة الفكرة بالعناوين والملخصات الموجودة في posts-data.js؛ قرار التخطي هنا سببه عدم كفاية المصادر الأجنبية القابلة للتحقق."}),"utf8");out("publish","false");console.log("Editorial decision: SKIP — not enough verifiable foreign source pages.");return}
  const research={candidate:{topic:chosen.topic,angle:chosen.angle,category:chosen.category,foreignCountry:chosen.country,sourceType:chosen.sourceType},englishSearches:en.map(s=>({query:s.entry.query,language:"en",ok:s.entry.ok,results:(s.entry.results||[]).filter(isForeignEvidence).slice(0,3).map(r=>({title:clean(r.title,180),url:r.url,snippet:clean(r.snippet,250)}))})),arabicSearches:ar.map(s=>pack(s,3)),openedOriginalEnglishPages:opened};
  console.log("3/3: Groq makes the publication decision and drafts the article.");
