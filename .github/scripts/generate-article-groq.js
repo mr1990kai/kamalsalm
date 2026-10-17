@@ -54,6 +54,46 @@ function validateArticle(a,openedUrls,searchUrls){
  if(new Set(used.filter(u=>opened.has(u))).size<2)throw Error("Article must cite at least two opened and verified source pages");
 }
 
+
+function prepareArticleCitations(article,openedUrls,searchUrls){
+ const canonical=new Map();
+ for(const url of [...(openedUrls||[]),...(searchUrls||[])]){
+  if(/^https?:\/\//i.test(String(url||""))&&!canonical.has(norm(url)))canonical.set(norm(url),String(url));
+ }
+ let body=String(article||"").replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,(whole,label,url)=>{
+  const actual=canonical.get(norm(url));
+  return actual?"["+label+"]("+actual+")":label;
+ });
+ const candidates=[],seen=new Set();
+ for(const url of [...(openedUrls||[]),...(searchUrls||[])]){
+  const key=norm(url);
+  if(/^https?:\/\//i.test(String(url||""))&&key&&!seen.has(key)){seen.add(key);candidates.push(String(url))}
+ }
+ if(candidates.length<3)throw Error("Fewer than three usable source URLs were found in the real search results.");
+ const current=[...body.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map(m=>norm(m[1]));
+ const openKeys=new Set((openedUrls||[]).map(norm));
+ const currentlyOpened=new Set(current.filter(url=>openKeys.has(url)));
+ const add=[];
+ for(const url of openedUrls||[]){
+  if(currentlyOpened.size>=2)break;
+  const key=norm(url);
+  if(!currentlyOpened.has(key)){
+   add.push(url);currentlyOpened.add(key);
+  }
+ }
+ const used=new Set([...current,...add.map(norm)]);
+ for(const url of candidates){
+  if(used.size>=3)break;
+  const key=norm(url);
+  if(!used.has(key)){add.push(url);used.add(key)}
+ }
+ // Append real source links, so the article remains useful even when the model formats a URL incorrectly.
+ if(add.length){
+  body=body.trim()+"\n\n## مصادر وروابط للرجوع\n\n"+add.map(url=>"- ["+host(url)+"]("+url+")").join("\n");
+ }
+ return body.trim();
+}
+
 async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
  const specialistSites="Shopify HubSpot Think with Google Meta Business TikTok for Business Google Ads Semrush Ahrefs BigCommerce Adobe Marketing Week WARC Nielsen McKinsey Harvard Business Review";
  for(const c of candidates.filter(x=>x.id!==excludeId)){
@@ -114,7 +154,7 @@ async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
    console.log("Alternate candidate "+c.id+" skipped because article metadata is incomplete or category changed.");
    continue;
   }
-  const article=String(draft.articleMarkdown||"").trim();
+  const article=prepareArticleCitations(String(draft.articleMarkdown||"").trim(),opened.map(x=>x.url),enSources.map(x=>x.url));
   try{validateArticle(article,opened.map(x=>x.url),enSources.map(x=>x.url));}
   catch(error){console.log("Alternate candidate "+c.id+" failed link/length checks: "+clean(error.message,220));continue;}
   const id=uniqueSlug(draft.slug||title,posts);
@@ -151,7 +191,7 @@ async function main(){
  if(e2.length!==2||a2.length!==2||a2.some(q=>!/[\u0600-\u06FF]/.test(q)))stop("Invalid follow-up searches.");
  const en=[chosen.en],ar=[chosen.ar];for(const q of e2)en.push(await search(q,"en"));for(const q of a2)ar.push(await search(q,"ar"));
  if(en.some(s=>!s.entry.ok)||ar.some(s=>!s.entry.ok))console.log("One or more follow-up searches returned no results; continuing with successful searches and available sources.");
- const enSources=foreignSources(en),opened=[],openedHosts=new Set();for(const s of enSources.slice(0,8)){const p=fetchPage(s.url);if(p?.text&&p.text.length>500&&isForeignEvidence({url:p.url||s.url,title:p.title||s.title})){const h=host(p.url||s.url);if(!openedHosts.has(h)){opened.push(p);openedHosts.add(h)}}if(opened.length>=3)break} if(new Set(enSources.map(s=>host(s.url))).size<2||openedHosts.size<2){console.log("Primary candidate lacks enough open source pages; trying alternatives.");if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;const reason="لم يتم العثور على صفحتين أصليتين قابلتين للفتح من مصدرين أجنبيين مستقلين خارج مصر والمنطقة العربية؛ تم إيقاف النشر بدل الاعتماد على مصادر ضعيفة أو غير قابلة للتحقق.";fs.writeFileSync(AUDIT,auditText({en,ar,sources:enSources,topic:chosen.topic+" — السوق الأصلي: "+chosen.country,decision:"SKIP",reason,arSummary:"تم تنفيذ بحث عربي عن الفكرة المحددة ومراجعة النتائج الظاهرة، لكن لم تتوفر أدلة أجنبية مستقلة كافية ومفتوحة للتحقق من تفاصيل الحالة. لذلك لم يتم إنشاء مقال أو نشره.",duplicate:"تمت مقارنة الفكرة بالعناوين والملخصات الموجودة في posts-data.js؛ قرار التخطي هنا سببه عدم كفاية المصادر الأجنبية القابلة للتحقق."}),"utf8");out("publish","false");console.log("Editorial decision: SKIP — not enough verifiable foreign source pages.");return}
+ const enSources=foreignSources(en),opened=[],openedHosts=new Set();const preferred=/(shopify|hubspot|thinkwithgoogle|google\\.com|meta\\.com|facebook\\.com|tiktok\\.com|semrush|ahrefs|bigcommerce|adobe|marketingweek|warc|nielsen|mckinsey|hbr\\.org|forrester|salesforce|mailchimp|klaviyo|qualtrics|sproutsocial|searchenginejournal|searchengineland)/i;enSources.sort((a,b)=>Number(preferred.test(host(b.url)))-Number(preferred.test(host(a.url))));for(const s of enSources.slice(0,8)){const p=fetchPage(s.url);if(p?.text&&p.text.length>500&&isForeignEvidence({url:p.url||s.url,title:p.title||s.title})){const h=host(p.url||s.url);if(!openedHosts.has(h)){opened.push(p);openedHosts.add(h)}}if(opened.length>=3)break} if(new Set(enSources.map(s=>host(s.url))).size<2||openedHosts.size<2){console.log("Primary candidate lacks enough open source pages; trying alternatives.");if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;const reason="لم يتم العثور على صفحتين أصليتين قابلتين للفتح من مصدرين أجنبيين مستقلين خارج مصر والمنطقة العربية؛ تم إيقاف النشر بدل الاعتماد على مصادر ضعيفة أو غير قابلة للتحقق.";fs.writeFileSync(AUDIT,auditText({en,ar,sources:enSources,topic:chosen.topic+" — السوق الأصلي: "+chosen.country,decision:"SKIP",reason,arSummary:"تم تنفيذ بحث عربي عن الفكرة المحددة ومراجعة النتائج الظاهرة، لكن لم تتوفر أدلة أجنبية مستقلة كافية ومفتوحة للتحقق من تفاصيل الحالة. لذلك لم يتم إنشاء مقال أو نشره.",duplicate:"تمت مقارنة الفكرة بالعناوين والملخصات الموجودة في posts-data.js؛ قرار التخطي هنا سببه عدم كفاية المصادر الأجنبية القابلة للتحقق."}),"utf8");out("publish","false");console.log("Editorial decision: SKIP — not enough verifiable foreign source pages.");return}
  const research={candidate:{topic:chosen.topic,angle:chosen.angle,category:chosen.category,foreignCountry:chosen.country,sourceType:chosen.sourceType},englishSearches:en.map(s=>({query:s.entry.query,language:"en",ok:s.entry.ok,results:(s.entry.results||[]).filter(isForeignEvidence).slice(0,3).map(r=>({title:clean(r.title,180),url:r.url,snippet:clean(r.snippet,250)}))})),arabicSearches:ar.map(s=>pack(s,3)),openedOriginalEnglishPages:opened};
  console.log("3/3: Groq makes the publication decision and drafts the article.");
  await wait(61000);
@@ -176,7 +216,7 @@ async function main(){
      out("publish","false");return;
    }
    result.decision="PUBLISH";result.decisionReason=retry.decisionReason;result.arabicMarketSummary=retry.arabicMarketSummary;result.duplicateCheck=retry.duplicateCheck;result.title=retry.title;result.slug=retry.slug;result.excerpt=retry.excerpt;result.category=retry.category;result.read=retry.read;result.articleMarkdown=retry.articleMarkdown;
-   const retryArticle=String(result.articleMarkdown||"").trim();
+   const retryArticle=prepareArticleCitations(String(result.articleMarkdown||"").trim(),opened.map(s=>s.url),enSources.map(s=>s.url));
    try { validateArticle(retryArticle,opened.map(s=>s.url),enSources.map(s=>s.url)); }
    catch(error) { fs.appendFileSync(AUDIT,"\\n## Final Review\\n- فشل المقال البديل في التحقق: "+clean(error.message,300)+"\\n");out("publish","false");return; }
    fs.writeFileSync(AUDIT,auditText({en,ar,sources:enSources,topic:chosen.topic+" — السوق الأصلي: "+chosen.country,decision:"PUBLISH",reason:"اجتاز مراجعة تحريرية إضافية باستخدام نفس الأدلة الأجنبية المفتوحة.",arSummary:result.arabicMarketSummary||"تم فحص نتائج البحث العربية المحددة فقط.",duplicate:result.duplicateCheck||"تمت مقارنة الفكرة بالمقالات الحالية."}),"utf8");
@@ -187,7 +227,7 @@ async function main(){
  }
  const title=clean(result.title),excerpt=clean(result.excerpt,220),category=clean(result.category||chosen.category,80),readTime=Math.max(3,Math.min(30,parseInt(result.read,10)||7));
  if(!title||!excerpt||!category)stop("Missing title/excerpt/category.");if(category!==chosen.category)stop("Article category must match the selected editorial branch: "+chosen.category);
- const article=String(result.articleMarkdown||"").trim();try{validateArticle(article,opened.map(s=>s.url),enSources.map(s=>s.url))}catch(e){stop(e.message)}
+ const article=prepareArticleCitations(String(result.articleMarkdown||"").trim(),opened.map(s=>s.url),enSources.map(s=>s.url));try{validateArticle(article,opened.map(s=>s.url),enSources.map(s=>s.url))}catch(e){stop(e.message)}
  const id=uniqueSlug(result.slug||title,posts),pathName=path.join(ROOT,"posts",id+".md");if(fs.existsSync(pathName))stop("Refusing to overwrite an existing article "+id);
  fs.writeFileSync(pathName,article+"\n","utf8");addPost({slug:id,title,excerpt,category,read:readTime},posts);out("publish","true");console.log("Prepared article "+id+" for validation and cover generation.");
 }
