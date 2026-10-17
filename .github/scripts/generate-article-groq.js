@@ -8,10 +8,32 @@ function json(s){try{return JSON.parse(String(s||"").trim())}catch(e){throw Erro
 function clean(v,n=240){return String(v??"").replace(/\s+/g," ").trim().slice(0,n)}
 async function ask(messages,maxTokens){
  const key=process.env.GROQ_API_KEY;if(!key)stop("Missing GROQ_API_KEY secret. Add it under GitHub Settings > Secrets and variables > Actions.");
- const res=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{authorization:"Bearer "+key,"content-type":"application/json"},body:JSON.stringify({model:MODEL,messages,temperature:.25,max_completion_tokens:maxTokens,response_format:{type:"json_object"},stream:false}),signal:AbortSignal.timeout(180000)});
- const raw=await res.text();let b;try{b=JSON.parse(raw)}catch(_){}
- if(!res.ok)throw Error("Groq API HTTP "+res.status+": "+(b?.error?.message||raw.slice(0,500)));
- const c=b?.choices?.[0]?.message?.content;if(!c)throw Error("Groq returned empty response");return json(c);
+ let lastError;
+ for(let attempt=0;attempt<2;attempt++){
+  const res=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{authorization:"Bearer "+key,"content-type":"application/json"},body:JSON.stringify({model:MODEL,messages,temperature:attempt===0?.25:0,max_completion_tokens:maxTokens,response_format:{type:"json_object"},stream:false}),signal:AbortSignal.timeout(180000)});
+  const raw=await res.text();let b;try{b=JSON.parse(raw)}catch(_){}
+  if(!res.ok){
+   const message="Groq API HTTP "+res.status+": "+(b?.error?.message||raw.slice(0,500));
+   lastError=Error(message);
+   if(attempt===0&&res.status===400&&/validate JSON|failed_generation|invalid json/i.test(message)){
+    console.log("Groq rejected one structured response; retrying once with lower temperature.");
+    await wait(1500);continue;
+   }
+   throw lastError;
+  }
+  const c=b?.choices?.[0]?.message?.content;
+  if(!c){
+   lastError=Error("Groq returned empty response");
+   if(attempt===0){await wait(1500);continue}
+   throw lastError;
+  }
+  try{return json(c)}catch(error){
+   lastError=error;
+   if(attempt===0){console.log("Groq returned malformed JSON; retrying once.");await wait(1500);continue}
+   throw error;
+  }
+ }
+ throw lastError||Error("Groq response failed after automatic retry");
 }
 function readPosts(){global.window={};try{require(path.join(ROOT,"posts-data.js"))}catch(e){stop("Cannot read posts-data.js: "+e.message)}if(!Array.isArray(global.window.POSTS))stop("posts-data.js has no window.POSTS array");return global.window.POSTS}
 function oldPosts(posts){return posts.slice(0,30).map(p=>({slug:p.slug,title:p.title,category:p.category,excerpt:clean(p.excerpt,140)}))}
@@ -185,8 +207,15 @@ async function main(){
  const evidence=cs.map(c=>({id:c.id,topic:c.topic,angle:c.angle,english:pack(c.en),arabic:pack(c.ar)}));
  console.log("2/3: Groq selects a candidate based on the initial market check.");
  await wait(61000);
- const choose=await ask([{role:"system",content:"Return JSON only. Compare the search results and existing site coverage. Choose a genuinely useful, writable topic supported by well-known marketing/ecommerce specialist publishers. Do not require a specific country case study, ROAS numbers, experiments or numerical outcomes. Core links must be from foreign non-Arab websites. Prefer practical topics with clear application over overly narrow stories."},{role:"user",content:"Existing articles "+JSON.stringify(existing)+"\nCandidate search results "+JSON.stringify(evidence)+"\nReturn {selected_id:'A',reason:'...',english_followup_queries:['...','...'],arabic_followup_queries:['...','...']}. Select one supplied ID and give exactly two additional nonduplicate queries per language. English follow-ups should find practical guidance or analysis from established specialist sites and may use broader industry sources. Arabic follow-ups are a quick duplicate check only; they must not block a useful topic just because similar general advice exists. Arabic queries must contain Arabic characters."}],1800);
- const chosen=cs.find(c=>c.id===String(choose.selected_id||"").trim());if(!chosen)stop("No selected topic.");
+ let choose;
+ try{
+  choose=await ask([{role:"system",content:"Return JSON only. Compare the search results and existing site coverage. Choose a genuinely useful, writable topic supported by well-known marketing/ecommerce specialist publishers. Do not require a specific country case study, ROAS numbers, experiments or numerical outcomes. Core links must be from foreign non-Arab websites. Prefer practical topics with clear application over overly narrow stories."},{role:"user",content:"Existing articles "+JSON.stringify(existing)+"\nCandidate search results "+JSON.stringify(evidence)+"\nReturn {selected_id:'A',reason:'...',english_followup_queries:['...','...'],arabic_followup_queries:['...','...']}. Select one supplied ID and give exactly two additional nonduplicate queries per language. English follow-ups should find practical guidance or analysis from established specialist sites and may use broader industry sources. Arabic follow-ups are a quick duplicate check only; they must not block a useful topic just because similar general advice exists. Arabic queries must contain Arabic characters."}],1800);
+ }catch(error){
+  const fallback=[...cs].sort((a,b)=>(Number(!!b.en.entry.ok)+Number(!!b.ar.entry.ok))-(Number(!!a.en.entry.ok)+Number(!!a.ar.entry.ok)))[0]||cs[0];
+  console.log("Candidate selector failed after automatic retry; using the best candidate from the successful initial searches: "+fallback.id);
+  choose={selected_id:fallback.id,reason:"Fallback to successful initial search results",english_followup_queries:[clean(fallback.topic+" "+fallback.country+" Shopify HubSpot practical guide",180),clean(fallback.topic+" "+fallback.country+" industry advice",180)],arabic_followup_queries:[clean("بحث تطبيقي عن "+fallback.topic+" في مصر",180),clean("شرح عملي وأمثلة عن "+fallback.topic+" مصر",180)]};
+ }
+ let chosen=cs.find(c=>c.id===String(choose.selected_id||"").trim());if(!chosen){chosen=[...cs].sort((a,b)=>(Number(!!b.en.entry.ok)+Number(!!b.ar.entry.ok))-(Number(!!a.en.entry.ok)+Number(!!a.ar.entry.ok)))[0]||cs[0];console.log("Selector returned an unknown ID; using candidate "+chosen.id+".") }
  const e2=(choose.english_followup_queries||[]).slice(0,2).map(q=>{const query=clean(q,200);return query.toLowerCase().includes(chosen.country.toLowerCase())?query:clean(query+" "+chosen.country,200)}),a2=(choose.arabic_followup_queries||[]).slice(0,2).map(q=>{const query=clean(q,200);return /(مصر|مصري|المصري)/.test(query)?query:clean(query+" مصر",200)});
  if(e2.length!==2||a2.length!==2||a2.some(q=>!/[\u0600-\u06FF]/.test(q)))stop("Invalid follow-up searches.");
  const en=[chosen.en],ar=[chosen.ar];for(const q of e2)en.push(await search(q,"en"));for(const q of a2)ar.push(await search(q,"ar"));
@@ -195,7 +224,14 @@ async function main(){
  const research={candidate:{topic:chosen.topic,angle:chosen.angle,category:chosen.category,foreignCountry:chosen.country,sourceType:chosen.sourceType},englishSearches:en.map(s=>({query:s.entry.query,language:"en",ok:s.entry.ok,results:(s.entry.results||[]).filter(isForeignEvidence).slice(0,3).map(r=>({title:clean(r.title,180),url:r.url,snippet:clean(r.snippet,250)}))})),arabicSearches:ar.map(s=>pack(s,3)),openedOriginalEnglishPages:opened};
  console.log("3/3: Groq makes the publication decision and drafts the article.");
  await wait(61000);
- const result=await ask([{role:"system",content:"Return JSON only. You are the lead practical editor for Kamal Elnhrawy's Arabic marketing blog. Use well-known specialist marketing/ecommerce publishers and the actual source pages/search results supplied. A how-to guide, official platform explanation, industry framework or expert analysis is perfectly publishable; numerical results or an experimental case study are not required. Never invent companies, statistics, quotes, sources or URLs. Do not overstate a source's claims. Write original, easy-to-understand Arabic analysis, not a translation, and turn the idea into practical steps and an example suitable for Egypt. Skip only if sources are unusable, topic is irrelevant, or the same core topic is already covered by the site."},{role:"user",content:"Egypt date "+TODAY+"\nExisting articles "+JSON.stringify(existing)+"\nActual research results "+JSON.stringify(research)+"\nReturn JSON fields decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title (Arabic), slug (English kebab case), excerpt (Arabic <=220 chars), category (Arabic), read (integer), articleMarkdown.\nPUBLISH when at least two useful foreign specialist source pages can be opened and the article is practically helpful. Do not require quantified results, a measured case study, or proof that the whole Arabic internet lacks the idea. Check existing posts to avoid an exact duplicate, but general overlap is acceptable. Never claim absolute uniqueness or say \"first in Egypt\"; describe the limited search scope honestly.\nIf PUBLISH, category must match the chosen candidate and be exactly one of الميديا باينج، البراندينج، التجارة الإلكترونية. Article must exceed 3500 characters, explain the main idea from the foreign specialist sources simply, include a concrete example and give practical steps to apply it in Egypt. A quantified foreign case is optional. Include at least 3 direct Markdown source links; at least 2 MUST be URLs from openedOriginalEnglishPages. Cite stats only if shown in those opened pages. No fabricated sources, numbers, citations or cover path."}],6000);
+ let result;
+ try{
+  result=await ask([{role:"system",content:"Return JSON only. You are the lead practical editor for Kamal Elnhrawy's Arabic marketing blog. Use well-known specialist marketing/ecommerce publishers and the actual source pages/search results supplied. A how-to guide, official platform explanation, industry framework or expert analysis is perfectly publishable; numerical results or an experimental case study are not required. Never invent companies, statistics, quotes, sources or URLs. Do not overstate a source's claims. Write original, easy-to-understand Arabic analysis, not a translation, and turn the idea into practical steps and an example suitable for Egypt. Skip only if sources are unusable, topic is irrelevant, or the same core topic is already covered by the site."},{role:"user",content:"Egypt date "+TODAY+"\nExisting articles "+JSON.stringify(existing)+"\nActual research results "+JSON.stringify(research)+"\nReturn JSON fields decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title (Arabic), slug (English kebab case), excerpt (Arabic <=220 chars), category (Arabic), read (integer), articleMarkdown.\nPUBLISH when at least two useful foreign specialist source pages can be opened and the article is practically helpful. Do not require quantified results, a measured case study, or proof that the whole Arabic internet lacks the idea. Check existing posts to avoid an exact duplicate, but general overlap is acceptable. Never claim absolute uniqueness or say \"first in Egypt\"; describe the limited search scope honestly.\nIf PUBLISH, category must match the chosen candidate and be exactly one of الميديا باينج، البراندينج، التجارة الإلكترونية. Article must exceed 3500 characters, explain the main idea from the foreign specialist sources simply, include a concrete example and give practical steps to apply it in Egypt. A quantified foreign case is optional. Include at least 3 direct Markdown source links; at least 2 MUST be URLs from openedOriginalEnglishPages. Cite stats only if shown in those opened pages. No fabricated sources, numbers, citations or cover path."}],6000);
+ }catch(error){
+  console.log("Primary article drafting failed after automatic retry; trying alternate topics: "+clean(error.message,180));
+  if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;
+  stop("Article drafting failed after trying the alternate candidates: "+clean(error.message,300));
+ }
  const decision=String(result.decision||"").toUpperCase()==="PUBLISH"?"PUBLISH":"SKIP",reason=clean(result.decisionReason||"الأدلة غير كافية للنشر.",450);
  fs.writeFileSync(AUDIT,auditText({en,ar,sources:enSources,topic:chosen.topic+" — السوق الأصلي: "+chosen.country,decision,reason,arSummary:result.arabicMarketSummary||"تمت مراجعة النتائج العربية المعروضة فقط؛ لا يمكن ضمان تغطية كل مواقع الإنترنت.",duplicate:result.duplicateCheck||"تمت مقارنة الفكرة بالعناوين والملخصات الموجودة في posts-data.js."}),"utf8");
  if(decision==="SKIP"){
