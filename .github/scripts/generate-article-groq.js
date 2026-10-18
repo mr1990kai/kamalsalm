@@ -78,44 +78,24 @@ function validateArticle(a,openedUrls,searchUrls){
 
 
 function prepareArticleCitations(article,openedUrls,searchUrls){
- const canonical=new Map();
- for(const url of [...(openedUrls||[]),...(searchUrls||[])]){
-  if(/^https?:\/\//i.test(String(url||""))&&!canonical.has(norm(url)))canonical.set(norm(url),String(url));
- }
- let body=String(article||"").replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,(whole,label,url)=>{
-  const actual=canonical.get(norm(url));
-  return actual?"["+label+"]("+actual+")":label;
- });
- const candidates=[],seen=new Set();
- for(const url of [...(openedUrls||[]),...(searchUrls||[])]){
-  const key=norm(url);
-  if(/^https?:\/\//i.test(String(url||""))&&key&&!seen.has(key)){seen.add(key);candidates.push(String(url))}
- }
- if(candidates.length<3)throw Error("Fewer than three usable source URLs were found in the real search results.");
- const current=[...body.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map(m=>norm(m[1]));
- const openKeys=new Set((openedUrls||[]).map(norm));
- const currentlyOpened=new Set(current.filter(url=>openKeys.has(url)));
- const add=[];
- for(const url of openedUrls||[]){
-  if(currentlyOpened.size>=2)break;
-  const key=norm(url);
-  if(!currentlyOpened.has(key)){
-   add.push(url);currentlyOpened.add(key);
-  }
- }
- const used=new Set([...current,...add.map(norm)]);
- for(const url of candidates){
-  if(used.size>=3)break;
-  const key=norm(url);
-  if(!used.has(key)){add.push(url);used.add(key)}
- }
- // Append real source links, so the article remains useful even when the model formats a URL incorrectly.
- if(add.length){
-  body=body.trim()+"\n\n## مصادر وروابط للرجوع\n\n"+add.map(url=>"- ["+host(url)+"]("+url+")").join("\n");
- }
- return body.trim();
+ const allowed=new Map();
+ for(const url of [...(openedUrls||[]),...(searchUrls||[])])if(/^https?:\/\//i.test(String(url||""))&&!allowed.has(norm(url)))allowed.set(norm(url),String(url));
+ const sources=[],seen=new Set();
+ function add(label,url){const actual=allowed.get(norm(url));if(!actual)return;const key=norm(actual);if(seen.has(key))return;seen.add(key);sources.push({label:clean(label||host(actual),180),url:actual})}
+ let lines=String(article||"").replace(/\r\n?/g,"\n").split("\n");
+ if(lines.length&&/^#\s+/.test(lines[0].trim()))lines=lines.slice(1);
+ const isHeader=line=>{const t=line.trim().replace(/^>\s*/,"").replace(/^#{1,3}\s*/,"").replace(/^\*\*(.*?)\*\*$/,"$1").replace(/:$/,"").trim();return /^(?:المصادر(?:\s|$)|المراجع(?:\s|$)|مصادر وقراءات إضافية(?:\s|$)|Sources(?:\s+and\s+.*)?|References|Further Reading)/i.test(t)};
+ const footer=lines.findIndex(isHeader),bodyLines=footer>=0?lines.slice(0,footer):lines,footerLines=footer>=0?lines.slice(footer+1):[];
+ const linkRe=/\[\[([^\]]+)\]\]\((https?:\/\/[^)\s]+)\)|\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+ for(const line of footerLines)for(const m of line.matchAll(linkRe))add(m[1]||m[3],m[2]||m[4]);
+ const body=bodyLines.join("\n").replace(linkRe,(_m,a,u,b,v)=>{add(a||b,u||v);return a||b}).replace(/^\s*>\s*\*\*(?:المصدر|المصادر|المراجع|Source|Sources)[^*]*\*\*\s*$/gim,"").replace(/(?:\n\s*---+\s*)+$/g,"").replace(/\n{3,}/g,"\n\n").trim();
+ const opened=[...(openedUrls||[])].filter(u=>allowed.has(norm(u))).map(u=>allowed.get(norm(u)));
+ const openedAdded=new Set(sources.map(x=>norm(x.url)).filter(u=>opened.some(o=>norm(o)===u)));
+ for(const url of opened){if(openedAdded.size>=2)break;if(!seen.has(norm(url))){add(host(url),url);openedAdded.add(norm(url))}}
+ for(const url of [...(openedUrls||[]),...(searchUrls||[])]){if(sources.length>=3)break;if(!seen.has(norm(url)))add(host(url),url)}
+ if(sources.length<3)throw Error("Fewer than three usable source URLs were found in the real search results.");
+ return body+"\n\n## المصادر\n\n"+sources.map(x=>"- ["+x.label+"]("+x.url+")").join("\n")+"\n";
 }
-
 async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
  const specialistSites="Shopify HubSpot Think with Google Meta Business TikTok for Business Google Ads Semrush Ahrefs BigCommerce Adobe Marketing Week WARC Nielsen McKinsey Harvard Business Review";
  for(const c of candidates.filter(x=>x.id!==excludeId)){
@@ -161,7 +141,7 @@ async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
   try{
    draft=await ask([
     {role:"system",content:"Return JSON only. You are an experienced Arabic marketing editor. Write useful, clear, original practical guidance based on well-known specialist marketing and ecommerce publishers and the source pages actually provided. A quantified case study, ROAS uplift, experiment or measured result is NOT required. A reputable how-to guide, platform documentation, expert analysis, buyer-behavior insight or practical framework is sufficient. Do not fabricate statistics, quotes, studies, URLs or claims. If a source makes a claim, attribute it to that source and do not exaggerate it. Primary sources must be non-Arab foreign-market publishers; use the Arabic searches only to avoid an obvious duplicate, not to demand proof that no similar article exists anywhere."},
-    {role:"user",content:"Date "+TODAY+"\nExisting posts: "+JSON.stringify(existing)+"\nAlternate candidate and real searches: "+JSON.stringify(research)+"\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title in Arabic, slug in English kebab-case, excerpt in Arabic <=220 characters, category, read integer, articleMarkdown.\nPublish a practical article unless its sources are unusable, the topic is clearly unrelated to the site, or the same topic already exists in our posts. No need for numerical proof or a measurable case study. Prefer insights from known specialist sites such as Shopify, HubSpot, Think with Google, Meta Business, TikTok for Business, Google Ads, Semrush, Ahrefs, BigCommerce, Adobe, WARC, Marketing Week, Nielsen, McKinsey, HBR or other established industry publishers when the actual search results support that choice. Do not claim novelty is proven; note the search scope honestly. Category must exactly equal "+JSON.stringify(c.category)+". Article must exceed 3500 characters in Egyptian-friendly Arabic, explain the foreign-source idea simply, show a concrete example and practical steps for applying it in Egypt, and clearly distinguish source facts from your recommendations. Include at least 3 direct Markdown source links; at least 2 must be from openedOriginalEnglishPages and every link must be from supplied search results or opened pages. If one candidate is unsuitable, SKIP and let the system try the next candidate."}
+    {role:"user",content:"Date "+TODAY+"\nExisting posts: "+JSON.stringify(existing)+"\nAlternate candidate and real searches: "+JSON.stringify(research)+"\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title in Arabic, slug in English kebab-case, excerpt in Arabic <=220 characters, category, read integer, articleMarkdown.\nPublish a practical article unless its sources are unusable, the topic is clearly unrelated to the site, or the same topic already exists in our posts. No need for numerical proof or a measurable case study. Prefer insights from known specialist sites such as Shopify, HubSpot, Think with Google, Meta Business, TikTok for Business, Google Ads, Semrush, Ahrefs, BigCommerce, Adobe, WARC, Marketing Week, Nielsen, McKinsey, HBR or other established industry publishers when the actual search results support that choice. Do not claim novelty is proven; note the search scope honestly. Category must exactly equal "+JSON.stringify(c.category)+". Article must exceed 3500 characters in Egyptian-friendly Arabic, open with a lively hook, explain the foreign-source idea simply, include a concrete example, practical steps, a short checklist or decision guide, and common mistakes for applying it in Egypt. Keep the writing conversational and useful, not academic or repetitive. Do not require statistics, ROAS figures, quantified results, or a measured case study. Do not repeat the article title as an H1. Do not include source links or inline citations in the article body. Put all source links together in exactly one final section named ## المصادر, with at least 3 links; at least 2 must be from openedOriginalEnglishPages and every link must be from supplied search results or opened pages. If one candidate is unsuitable, SKIP and let the system try the next candidate."}
    ],6000);
   }catch(error){
    console.log("Drafting alternate candidate "+c.id+" failed: "+clean(error.message,180));
@@ -226,7 +206,7 @@ async function main(){
  await wait(61000);
  let result;
  try{
-  result=await ask([{role:"system",content:"Return JSON only. You are the lead practical editor for Kamal Elnhrawy's Arabic marketing blog. Use well-known specialist marketing/ecommerce publishers and the actual source pages/search results supplied. A how-to guide, official platform explanation, industry framework or expert analysis is perfectly publishable; numerical results or an experimental case study are not required. Never invent companies, statistics, quotes, sources or URLs. Do not overstate a source's claims. Write original, easy-to-understand Arabic analysis, not a translation, and turn the idea into practical steps and an example suitable for Egypt. Skip only if sources are unusable, topic is irrelevant, or the same core topic is already covered by the site."},{role:"user",content:"Egypt date "+TODAY+"\nExisting articles "+JSON.stringify(existing)+"\nActual research results "+JSON.stringify(research)+"\nReturn JSON fields decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title (Arabic), slug (English kebab case), excerpt (Arabic <=220 chars), category (Arabic), read (integer), articleMarkdown.\nPUBLISH when at least two useful foreign specialist source pages can be opened and the article is practically helpful. Do not require quantified results, a measured case study, or proof that the whole Arabic internet lacks the idea. Check existing posts to avoid an exact duplicate, but general overlap is acceptable. Never claim absolute uniqueness or say \"first in Egypt\"; describe the limited search scope honestly.\nIf PUBLISH, category must match the chosen candidate and be exactly one of الميديا باينج، البراندينج، التجارة الإلكترونية. Article must exceed 3500 characters, explain the main idea from the foreign specialist sources simply, include a concrete example and give practical steps to apply it in Egypt. A quantified foreign case is optional. Include at least 3 direct Markdown source links; at least 2 MUST be URLs from openedOriginalEnglishPages. Cite stats only if shown in those opened pages. No fabricated sources, numbers, citations or cover path."}],6000);
+  result=await ask([{role:"system",content:"Return JSON only. You are the lead practical editor for Kamal Elnhrawy's Arabic marketing blog. Use well-known specialist marketing/ecommerce publishers and the actual source pages/search results supplied. A how-to guide, official platform explanation, industry framework or expert analysis is perfectly publishable; numerical results or an experimental case study are not required. Never invent companies, statistics, quotes, sources or URLs. Do not overstate a source's claims. Write original, easy-to-understand Arabic analysis, not a translation, and turn the idea into practical steps and an example suitable for Egypt. Skip only if sources are unusable, topic is irrelevant, or the same core topic is already covered by the site."},{role:"user",content:"Egypt date "+TODAY+"\nExisting articles "+JSON.stringify(existing)+"\nActual research results "+JSON.stringify(research)+"\nReturn JSON fields decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title (Arabic), slug (English kebab case), excerpt (Arabic <=220 chars), category (Arabic), read (integer), articleMarkdown.\nPUBLISH when at least two useful foreign specialist source pages can be opened and the article is practically helpful. Do not require quantified results, a measured case study, or proof that the whole Arabic internet lacks the idea. Check existing posts to avoid an exact duplicate, but general overlap is acceptable. Never claim absolute uniqueness or say \"first in Egypt\"; describe the limited search scope honestly.\nIf PUBLISH, category must match the chosen candidate and be exactly one of الميديا باينج، البراندينج، التجارة الإلكترونية. Article must exceed 3500 characters, use engaging conversational Egyptian Arabic, explain the main idea from the foreign specialist sources simply, include a concrete example, practical steps, a short checklist or decision guide, and common mistakes. Do not require statistics or a quantified case study. Do not repeat the title as an H1, and do not put source links inside the body; all links must be together in one final ## المصادر section. Cite only URLs from opened or searched foreign specialist pages; never invent sources, quotes, or numbers."}],6000);
  }catch(error){
   console.log("Primary article drafting failed after automatic retry; trying alternate topics: "+clean(error.message,180));
   if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;
