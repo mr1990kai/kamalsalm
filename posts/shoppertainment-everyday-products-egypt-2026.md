@@ -1,5 +1,3 @@
-# الناس مش داخلة تتفرج على إعلان منظف: الدرس الجديد من Reckitt في الصين وإزاي تطبّقه في مصر
-
 تخيّل إنك فاتح ريلز بعد يوم طويل. هل هتوقف السكرول عشان تشوف عبوة منظف واقفة قدام خلفية بيضا، وصوت بيقول: «أقوى جودة، وأفضل نتيجة، اطلب الآن»؟
 
 غالبًا لأ.
@@ -10,7 +8,7 @@
 
 **الفكرة اللي تستحق النقل لمصر مش إننا نقلّد الاستوديوهات الصينية؛ الفكرة إننا نتوقف عن تصوير المنتج كأنه مواصفات على رف، ونبدأ نوضّح دوره في حياة الشخص.**
 
-[التقرير الأصلي في The Wall Street Journal: Where Shoppertainment Turns Supermarket Staples Into Impulse Buys](https://www.wsj.com/cmo-today/where-shoppertainment-turns-supermarket-staples-into-impulse-buys-e02fabf6)
+التقرير الأصلي في The Wall Street Journal: Where Shoppertainment Turns Supermarket Staples Into Impulse Buys
 
 ## الحكاية بدأت من سؤال بسيط: الناس بتشتري وهي بتتفرج على إيه؟
 
@@ -20,7 +18,7 @@
 
 خلال مكالمة نتائج النصف الأول من 2026، قالت إدارة Reckitt إن الصين حققت الربع الثاني عشر على التوالي من النمو السنوي مزدوج الرقم. لكن مهم جدًا ما ننسبش النمو كله للفيديوهات: الإدارة نفسها ربطت الأداء بعوامل متعددة، منها ابتكارات المنتجات، خصوصًا Dettol Activ Botany ومحفظة الفيتامينات والمكملات، إلى جانب قوة التنفيذ الرقمي. يعني المحتوى جزء من طريقة البيع، مش دليل إن فيديوهات مضحكة وحدها صنعت النتيجة.
 
-[مصدر نتائج الشركة ومكالمة المستثمرين — 29 يوليو 2026](https://www.marketbeat.com/earnings/reports/2026-7-29-reckitt-benckiser-group-plc-stock-2/)
+مصدر نتائج الشركة ومكالمة المستثمرين — 29 يوليو 2026
 
 طيب، إيه علاقة شركة عالمية عندها 18 استوديو بمتجر مصري بيصوّر المنتجات بالموبايل؟
 
@@ -134,11 +132,11 @@
 
 السؤال ده مش هيضمن مبيعات، لكنه هيمنحك فكرة محتوى أوضح، وبداية أقرب لحياة الجمهور بدل إعلان بيكرر إن منتجك ممتاز وخلاص.
 
-## المصادر الأصلية
+*دي قراءة عربية تطبيقية مبنية على تقارير أجنبية، مش ترجمة حرفية. نتائج Reckitt تخص الشركة والسوق الصيني، ولا تثبت وحدها إن نفس التكتيك هيحقق النتيجة نفسها في مصر. أمثلة الفيديوهات المصرية المقترحة للتجربة، ونجاحها يتحدد من بيانات الجمهور والمبيعات الفعلية.*
+
+## المصادر
 
 - [The Wall Street Journal — Where Shoppertainment Turns Supermarket Staples Into Impulse Buys، 12 أكتوبر 2026](https://www.wsj.com/cmo-today/where-shoppertainment-turns-supermarket-staples-into-impulse-buys-e02fabf6)
 - [The Wall Street Journal — How a Western Consumer Giant Is Thriving on China’s Social-Media Shoppers، أكتوبر 2026](https://www.wsj.com/business/retail/how-a-western-consumer-giant-is-thriving-on-chinas-social-media-shoppers-386dccc3)
 - [Reckitt — نتائج النصف الأول ومكالمة المستثمرين، 29 يوليو 2026](https://www.marketbeat.com/earnings/reports/2026-7-29-reckitt-benckiser-group-plc-stock-2/)
 - [TikTok Shoppertainment — تقرير واتجاهات محتوى التجارة](https://www.tiktokshoppertainment.com/)
-
-*دي قراءة عربية تطبيقية مبنية على تقارير أجنبية، مش ترجمة حرفية. نتائج Reckitt تخص الشركة والسوق الصيني، ولا تثبت وحدها إن نفس التكتيك هيحقق النتيجة نفسها في مصر. أمثلة الفيديوهات المصرية المقترحة للتجربة، ونجاحها يتحدد من بيانات الجمهور والمبيعات الفعلية.*
