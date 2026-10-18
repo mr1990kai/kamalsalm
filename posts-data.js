@@ -102,5 +102,15 @@ window.POSTS = [
     lang: "ar",
     read: 6,
     cover: 'images/covers/youtube-ads-optimization-egypt.svg'
+  },
+  {
+    slug: "youtube-shopping-ads-optimization-egypt",
+    title: "تحسين إعلانات يوتيوب Shopping لزيادة العائد على الإنفاق في مصر",
+    excerpt: "دليل عملي خطوة بخطوة لإعداد حملات YouTube Shopping في مصر، مع أمثلة تطبيقية، واستراتيجيات تحسين ROAS مستندة إلى مصادر مختصة.",
+    date: "2026-10-18",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 12,
+    cover: 'images/covers/youtube-shopping-ads-optimization-egypt.svg'
   }
 ];
