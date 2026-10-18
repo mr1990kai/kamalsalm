@@ -1,5 +1,3 @@
-# البراند مش اللوجو… البراند هو الإحساس اللي بيفضل جواك
-
 خلّيني أسألك سؤال بسيط.
 
 لو دخلت محلين بيبيعوا نفس نوع البرفان، والأسعار قريبة، والاتنين شكلهم حلو… ليه ممكن تخرج من واحد فيهم وإنت حاسس إنك لقيت حاجة شبهك، ومن التاني تحس إنك شوفت منتج عادي وتنساه بعد خمس دقايق؟
@@ -82,7 +80,7 @@
 
 وده متفق مع فكرة مهمة في إدارة العلامات التجارية: الانطباعات والمشاعر اللي بتنتج عن تصرفات الشركة بتشارك في تكوين معناها عند العملاء، والتحدي هو خلق تجربة مختلفة بشكل له قيمة وتستحق التكرار.
 
-[اقرأ: Marketing’s Mission — Make it Meaningfully Different، Harvard Business Review](https://hbr.org/2013/10/marketings-mission-make-it-meaningfully-different)
+اقرأ: Marketing’s Mission — Make it Meaningfully Different، Harvard Business Review
 
 ## استحالة تميّز براندك لو كل قراراتك نسخة من المنافس
 
@@ -106,7 +104,7 @@
 
 الـBlue Ocean مش تصريح إنك تتجاهل المنافسين، ومش ضمان إن السوق الجديد هيفضل من غير منافسة. هو طريقة تفكير تساعدك تدور على قيمة مختلفة بدل ما تفضل تقلّد الموجود.
 
-[المصدر الرسمي: Blue Ocean Strategy — Value Innovation](https://www.blueoceanstrategy.com/tools/value-innovation/)
+المصدر الرسمي: Blue Ocean Strategy — Value Innovation
 
 ## مفيش براند محتاج ياكل التورتة كلها
 
@@ -180,10 +178,10 @@
 
 ودي بالنسبة لي بداية بناء براند له شخصية… مش مجرد اسم جديد على السوق.
 
-## مصادر وقراءات إضافية
-
-- [American Marketing Association — Branding](https://www.ama.org/topics/brand-and-branding/) — تعريف العلامة التجارية والهوية والتموضع والقيمة في ذهن العميل.
-- [Harvard Business Review — Marketing’s Mission: Make it Meaningfully Different](https://hbr.org/2013/10/marketings-mission-make-it-meaningfully-different) — عن المشاعر والمعاني التي تتكون لدى العملاء من تصرفات العلامة وتجاربها.
-- [Blue Ocean Strategy — Value Innovation](https://www.blueoceanstrategy.com/tools/value-innovation/) — عن التميّز وخلق قيمة للعميل بدل الاكتفاء بمنافسة الموجودين على نفس المعايير.
-
 *المقال ده من «دفتر كمال»: قراءة شخصية في بناء العلامات التجارية، تجمع بين رؤيتي العملية ومفاهيم منشورة في مراجع متخصصة. الأمثلة توضيحية، ومش معناها إن كل العملاء بيحسوا بنفس الإحساس تجاه كل علامة تجارية.*
+
+## المصادر
+
+- [American Marketing Association — Branding](https://www.ama.org/topics/brand-and-branding/)
+- [Harvard Business Review — Marketing’s Mission: Make it Meaningfully Different](https://hbr.org/2013/10/marketings-mission-make-it-meaningfully-different)
+- [Blue Ocean Strategy — Value Innovation](https://www.blueoceanstrategy.com/tools/value-innovation/)
