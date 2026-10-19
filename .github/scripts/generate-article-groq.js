@@ -63,6 +63,20 @@ function auditText(x){
 function slug(v){return clean(v,100).normalize("NFKD").toLowerCase().replace(/['’]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,72).replace(/-+$/g,"")||"marketing-insight"}
 function uniqueSlug(v,posts){let s=slug(v),used=new Set(posts.map(p=>p.slug));if(!used.has(s))return s;s+="-"+TODAY;if(!used.has(s))return s;let i=2;while(used.has(s+"-"+i))i++;return s+"-"+i}
 function addPost(p,posts){const file=path.join(ROOT,"posts-data.js");let s=fs.readFileSync(file,"utf8"),end=s.lastIndexOf("];");if(end<0)stop("posts-data.js does not end with ];");if(posts.some(x=>x.slug===p.slug))stop("Duplicate slug.");const item="  {\n    slug: "+JSON.stringify(p.slug)+",\n    title: "+JSON.stringify(p.title)+",\n    excerpt: "+JSON.stringify(p.excerpt)+",\n    date: "+JSON.stringify(TODAY)+",\n    category: "+JSON.stringify(p.category)+",\n    lang: \"ar\",\n    read: "+p.read+"\n  }\n";s=s.slice(0,end).replace(/\s*$/,"")+(posts.length?",":"")+"\n"+item+s.slice(end);fs.writeFileSync(file,s,"utf8")}
+
+async function ensureArticleLength(article, research, category){
+ if(String(article||"").length>=4200)return String(article);
+ console.log("Draft is short; requesting one expansion pass before rejecting it.");
+ const expanded=await ask([
+  {role:"system",content:"You are an experienced Egyptian-Arabic editor. Expand the supplied article into a genuinely useful practical guide. Do not invent statistics, quotes, studies or URLs. Preserve meaning and source links, add practical explanation, an Egypt-specific example, steps, checklist and common mistakes. Return JSON only with articleMarkdown."},
+  {role:"user",content:"Expand this article to at least 4500 characters. Keep conversational Egyptian Arabic, avoid repetition and filler, and keep all source links together in one final ## المصادر section. Category: "+category+"\nVerified research context: "+JSON.stringify(research)+"\nCurrent draft:\n"+String(article)}
+ ],6000);
+ const result=String(expanded.articleMarkdown||"").trim();
+ if(result.length>=3500)return result;
+ console.log("Expansion pass remained too short; continuing to the next researched candidate.");
+ return "";
+}
+
 function validateArticle(a,openedUrls,searchUrls){
  if(typeof a!=="string"||a.length<3500)throw Error("Article is shorter than 3,500 characters");
  if(!/[\u0600-\u06FF]/.test(a))throw Error("Article isn't Arabic");
@@ -156,7 +170,10 @@ async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
    console.log("Alternate candidate "+c.id+" skipped because article metadata is incomplete or category changed.");
    continue;
   }
-  const article=prepareArticleCitations(String(draft.articleMarkdown||"").trim(),opened.map(x=>x.url),enSources.map(x=>x.url));
+  let rawArticle=String(draft.articleMarkdown||"").trim();
+  if(rawArticle.length<4200){try{rawArticle=await ensureArticleLength(rawArticle,research,c.category)}catch(error){console.log("Expansion attempt failed: "+clean(error.message,180));continue;}}
+  if(!rawArticle){console.log("Alternate candidate "+c.id+" skipped after short draft and failed expansion.");continue;}
+  const article=prepareArticleCitations(rawArticle,opened.map(x=>x.url),enSources.map(x=>x.url));
   try{validateArticle(article,opened.map(x=>x.url),enSources.map(x=>x.url));}
   catch(error){console.log("Alternate candidate "+c.id+" failed link/length checks: "+clean(error.message,220));continue;}
   const id=uniqueSlug(draft.slug||title,posts);
@@ -232,7 +249,7 @@ async function main(){
      out("publish","false");return;
    }
    result.decision="PUBLISH";result.decisionReason=retry.decisionReason;result.arabicMarketSummary=retry.arabicMarketSummary;result.duplicateCheck=retry.duplicateCheck;result.title=retry.title;result.slug=retry.slug;result.excerpt=retry.excerpt;result.category=retry.category;result.read=retry.read;result.articleMarkdown=retry.articleMarkdown;
-   const retryArticle=prepareArticleCitations(String(result.articleMarkdown||"").trim(),opened.map(s=>s.url),enSources.map(s=>s.url));
+   let retryRaw=String(result.articleMarkdown||"").trim();if(retryRaw.length<4200){try{retryRaw=await ensureArticleLength(retryRaw,research,chosen.category)}catch(e){console.log("Final expansion attempt failed: "+clean(e.message,180));retryRaw=""}}if(!retryRaw){out("publish","false");return;}const retryArticle=prepareArticleCitations(retryRaw,opened.map(s=>s.url),enSources.map(s=>s.url));
    try { validateArticle(retryArticle,opened.map(s=>s.url),enSources.map(s=>s.url)); }
    catch(error) { fs.appendFileSync(AUDIT,"\\n## Final Review\\n- فشل المقال البديل في التحقق: "+clean(error.message,300)+"\\n");out("publish","false");return; }
    fs.writeFileSync(AUDIT,auditText({en,ar,sources:enSources,topic:chosen.topic+" — السوق الأصلي: "+chosen.country,decision:"PUBLISH",reason:"اجتاز مراجعة تحريرية إضافية باستخدام نفس الأدلة الأجنبية المفتوحة.",arSummary:result.arabicMarketSummary||"تم فحص نتائج البحث العربية المحددة فقط.",duplicate:result.duplicateCheck||"تمت مقارنة الفكرة بالمقالات الحالية."}),"utf8");
@@ -243,7 +260,7 @@ async function main(){
  }
  const title=clean(result.title),excerpt=clean(result.excerpt,220),category=clean(result.category||chosen.category,80),readTime=Math.max(3,Math.min(30,parseInt(result.read,10)||7));
  if(!title||!excerpt||!category)stop("Missing title/excerpt/category.");if(category!==chosen.category)stop("Article category must match the selected editorial branch: "+chosen.category);
- const article=prepareArticleCitations(String(result.articleMarkdown||"").trim(),opened.map(s=>s.url),enSources.map(s=>s.url));try{validateArticle(article,opened.map(s=>s.url),enSources.map(s=>s.url))}catch(e){stop(e.message)}
+ let rawArticle=String(result.articleMarkdown||"").trim();if(rawArticle.length<4200){try{rawArticle=await ensureArticleLength(rawArticle,research,chosen.category)}catch(e){console.log("Expansion attempt failed: "+clean(e.message,180));rawArticle=""}}if(!rawArticle){console.log("Primary article remained too short after expansion; trying alternate candidates.");if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;stop("Article remained too short after expansion and no alternate candidate passed.");}const article=prepareArticleCitations(rawArticle,opened.map(s=>s.url),enSources.map(s=>s.url));try{validateArticle(article,opened.map(s=>s.url),enSources.map(s=>s.url))}catch(e){stop(e.message)}
  const id=uniqueSlug(result.slug||title,posts),pathName=path.join(ROOT,"posts",id+".md");if(fs.existsSync(pathName))stop("Refusing to overwrite an existing article "+id);
  fs.writeFileSync(pathName,article+"\n","utf8");addPost({slug:id,title,excerpt,category,read:readTime},posts);out("publish","true");console.log("Prepared article "+id+" for validation and cover generation.");
 }
