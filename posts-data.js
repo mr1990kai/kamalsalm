@@ -122,5 +122,15 @@ window.POSTS = [
     lang: "ar",
     read: 8,
     cover: 'images/covers/youtube-shopping-ads-optimization-egypt.svg'
+  },
+  {
+    slug: "how-to-optimize-google-ads-seasonal-smart-bidding",
+    title: "كيف تستغل مزايدة الذكاء الاصطناعي في حملات جوجل الموسمية لزيادة العائد على الإنفاق",
+    excerpt: "دليل عملي لتطبيق مزايدة الذكاء الاصطناعي في حملات جوجل خلال فترات العطلات، مع خطوات محددة، مثال مصر، ونصائح لتفادي الأخطاء الشائعة.",
+    date: "2026-10-19",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/how-to-optimize-google-ads-seasonal-smart-bidding.svg'
   }
 ];
