@@ -152,5 +152,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/building-brand-loyalty-through-storytelling-on-tiktok.svg'
+  },
+  {
+    slug: "alibaba-live-commerce-conversion",
+    title: "دمج البث المباشر على علي بابا لزيادة معدلات التحويل",
+    excerpt: "دليل عملي لدمج ميزات التجارة المباشرة على علي بابا لزيادة معدلات التحويل، مع خطوات تطبيقية وأمثلة واقعية.",
+    date: "2026-10-21",
+    category: "التجارة الإلكترونية",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/alibaba-live-commerce-conversion.svg'
   }
 ];
