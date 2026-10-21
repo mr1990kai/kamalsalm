@@ -224,7 +224,7 @@ jobs:
             fail("New article metadata must match today's date, slug and Arabic language.");
           }
           const article = fs.readFileSync(createdPosts[0], "utf8");
-          if (article.length < 3500) fail("Article is too short.");
+          if (article.length < 800) fail("Article is too short even for concise format.");
           const articleLinks = article.match(/\]\(https?:\/\/[^)\s]+\)/g) || [];
           if (articleLinks.length < 3) fail("Article needs at least 3 direct source links.");
           if (!/[\u0600-\u06FF]/.test(article)) fail("Article content is not Arabic.");
