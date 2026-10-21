@@ -142,5 +142,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/how-to-optimize-google-ads-seasonal-smart-bidding.svg'
+  },
+  {
+    slug: "building-brand-loyalty-through-storytelling-on-tiktok",
+    title: "بناء ولاء العلامة التجارية عبر قصص تيك توك لجيل زد",
+    excerpt: "تعرف على إطار عملي لبناء ولاء العلامة التجارية مع جيل زد عبر تيك توك، مع خطوات تطبيقية وأمثلة حقيقية من السوق البريطاني.",
+    date: "2026-10-21",
+    category: "البراندينج",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/building-brand-loyalty-through-storytelling-on-tiktok.svg'
   }
 ];
