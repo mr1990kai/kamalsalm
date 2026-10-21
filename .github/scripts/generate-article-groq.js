@@ -2,6 +2,15 @@ const fs=require("fs"), path=require("path"), {spawnSync}=require("child_process
 const ROOT=process.cwd(), SEARCH=path.join(ROOT,".github/scripts/search-web.js"), LOG=path.join(ROOT,"web-search-log.json"), AUDIT=path.join(ROOT,"research-audit.md");
 const TODAY=process.env.TODAY||new Date().toISOString().slice(0,10), MODEL=process.env.GROQ_MODEL||"openai/gpt-oss-20b";
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function retryDelayMs(res){
+ const after=Number(res.headers.get("retry-after"));
+ if(Number.isFinite(after)&&after>0)return Math.max(1500,Math.min(90000,after*1000+1200));
+ const reset=String(res.headers.get("x-ratelimit-reset-tokens")||res.headers.get("x-ratelimit-reset-requests")||"");
+ const minutes=Number((reset.match(/(\d+(?:\.\d+)?)m/i)||[])[1]||0);
+ const seconds=Number((reset.match(/(\d+(?:\.\d+)?)s/i)||[])[1]||0);
+ const total=minutes*60+seconds;
+ return total>0?Math.max(1500,Math.min(90000,total*1000+1500)):65000;
+}
 function stop(m){console.error("ARTICLE GENERATOR ERROR: "+m);process.exit(1)}
 function out(k,v){if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,k+"="+v+"\n")}
 function json(s){try{return JSON.parse(String(s||"").trim())}catch(e){throw Error("Groq response wasn't valid JSON: "+e.message+"; "+String(s).slice(0,200))}}
@@ -9,18 +18,25 @@ function clean(v,n=240){return String(v??"").replace(/\s+/g," ").trim().slice(0,
 async function ask(messages,maxTokens){
  const key=process.env.GROQ_API_KEY;if(!key)stop("Missing GROQ_API_KEY secret. Add it under GitHub Settings > Secrets and variables > Actions.");
  let lastError;
- for(let attempt=0;attempt<2;attempt++){
+ for(let attempt=0;attempt<3;attempt++){
   const res=await fetch("https://api.groq.com/openai/v1/chat/completions",{method:"POST",headers:{authorization:"Bearer "+key,"content-type":"application/json"},body:JSON.stringify({model:MODEL,messages,temperature:attempt===0?.25:0,max_completion_tokens:maxTokens,response_format:{type:"json_object"},stream:false}),signal:AbortSignal.timeout(180000)});
   const raw=await res.text();let b;try{b=JSON.parse(raw)}catch(_){}
   if(!res.ok){
    const message="Groq API HTTP "+res.status+": "+(b?.error?.message||raw.slice(0,500));
    lastError=Error(message);
+   if(res.status===429&&attempt<2){
+    const delay=retryDelayMs(res);
+    console.log("Groq rate limit (429); waiting "+Math.ceil(delay/1000)+"s before retry "+(attempt+2)+"/3.");
+    await wait(delay);
+    continue;
+   }
    if(attempt===0&&res.status===400&&/validate JSON|failed_generation|invalid json/i.test(message)){
     console.log("Groq rejected one structured response; retrying once with lower temperature.");
     await wait(1500);continue;
    }
    throw lastError;
   }
+  if(b?.usage)console.log("Groq token usage — prompt: "+(b.usage.prompt_tokens??"?")+", completion: "+(b.usage.completion_tokens??"?")+", total: "+(b.usage.total_tokens??"?"));
   const c=b?.choices?.[0]?.message?.content;
   if(!c){
    lastError=Error("Groq returned empty response");
@@ -36,7 +52,7 @@ async function ask(messages,maxTokens){
  throw lastError||Error("Groq response failed after automatic retry");
 }
 function readPosts(){global.window={};try{require(path.join(ROOT,"posts-data.js"))}catch(e){stop("Cannot read posts-data.js: "+e.message)}if(!Array.isArray(global.window.POSTS))stop("posts-data.js has no window.POSTS array");return global.window.POSTS}
-function oldPosts(posts){return posts.slice(0,30).map(p=>({slug:p.slug,title:p.title,category:p.category,excerpt:clean(p.excerpt,140)}))}
+function oldPosts(posts){return posts.slice(0,18).map(p=>({slug:p.slug,title:clean(p.title,110),category:p.category,excerpt:clean(p.excerpt,90)}))}
 function log(){try{const a=JSON.parse(fs.readFileSync(LOG,"utf8"));return Array.isArray(a)?a:[]}catch(_){return []}}
 function runSearch(q){const r=spawnSync(process.execPath,[SEARCH,q],{cwd:ROOT,encoding:"utf8",timeout:45000,maxBuffer:2*1024*1024});const entries=log().filter(x=>x.type==="search"&&x.query===q);const e=entries.at(-1);return e?.ok&&e.results?.length?e:{type:"search",query:q,language:/[\u0600-\u06FF]/.test(q)?"ar":"en",ok:false,results:[],error:clean(r.stderr||r.stdout||e?.error||"No results",300)}}
 async function search(q,lang){q=clean(q,220);let e=runSearch(q);if(e.ok)return{asked:q,query:q,entry:e};const retry=q+(lang==="ar"?" التسويق الرقمي":" original international case study outside MENA US Europe Japan China South Korea");e=runSearch(retry);return{asked:q,query:retry,entry:e}}
@@ -52,6 +68,15 @@ function isForeignEvidence(s){
  return !!h && !/[\u0600-\u06FF]/.test(title) && !arabicCountryTld.test(h) && !localPublisher.test(h) && !localTitle.test(title);
 }
 function foreignSources(ss){return sources(ss).filter(isForeignEvidence)}
+function compactResearch(r){
+ const c=r?.candidate||{};
+ return {
+  candidate:{topic:clean(c.topic,140),angle:clean(c.angle,180),category:clean(c.category,60),foreignCountry:clean(c.foreignCountry,50),sourceType:clean(c.sourceType,70)},
+  englishSearches:(r?.englishSearches||[]).slice(0,5).map(s=>({query:clean(s.query,90),results:(s.results||[]).slice(0,2).map(x=>({title:clean(x.title,100),url:x.url,snippet:clean(x.snippet,130)}))})),
+  arabicSearches:(r?.arabicSearches||[]).slice(0,3).map(s=>({query:clean(s.query,90),results:(s.results||[]).slice(0,2).map(x=>({title:clean(x.title,90)}))})),
+  openedOriginalEnglishPages:(r?.openedOriginalEnglishPages||[]).slice(0,3).map(x=>({url:x.url,title:clean(x.title,120),text:clean(x.text,850)}))
+ };
+}
 function fetchPage(u){const r=spawnSync(process.execPath,[SEARCH,"--fetch",u],{cwd:ROOT,encoding:"utf8",timeout:25000,maxBuffer:2*1024*1024});if(r.status!==0)return null;try{const x=JSON.parse(r.stdout);return{url:x.url||u,title:clean(x.title,180),text:clean(x.text,2600)}}catch(_){return null}}
 function auditText(x){
  const qEn=x.en.map(s=>"- query: "+s.query).join("\n"),qAr=x.ar.map(s=>"- query: "+s.query).join("\n");
@@ -64,21 +89,15 @@ function slug(v){return clean(v,100).normalize("NFKD").toLowerCase().replace(/['
 function uniqueSlug(v,posts){let s=slug(v),used=new Set(posts.map(p=>p.slug));if(!used.has(s))return s;s+="-"+TODAY;if(!used.has(s))return s;let i=2;while(used.has(s+"-"+i))i++;return s+"-"+i}
 function addPost(p,posts){const file=path.join(ROOT,"posts-data.js");let s=fs.readFileSync(file,"utf8"),end=s.lastIndexOf("];");if(end<0)stop("posts-data.js does not end with ];");if(posts.some(x=>x.slug===p.slug))stop("Duplicate slug.");const item="  {\n    slug: "+JSON.stringify(p.slug)+",\n    title: "+JSON.stringify(p.title)+",\n    excerpt: "+JSON.stringify(p.excerpt)+",\n    date: "+JSON.stringify(TODAY)+",\n    category: "+JSON.stringify(p.category)+",\n    lang: \"ar\",\n    read: "+p.read+"\n  }\n";s=s.slice(0,end).replace(/\s*$/,"")+(posts.length?",":"")+"\n"+item+s.slice(end);fs.writeFileSync(file,s,"utf8")}
 
-async function ensureArticleLength(article, research, category){
- if(String(article||"").length>=4200)return String(article);
- console.log("Draft is short; requesting one expansion pass before rejecting it.");
- const expanded=await ask([
-  {role:"system",content:"You are an experienced Egyptian-Arabic editor. Expand the supplied article into a genuinely useful practical guide. Do not invent statistics, quotes, studies or URLs. Preserve meaning and source links, add practical explanation, an Egypt-specific example, steps, checklist and common mistakes. Return JSON only with articleMarkdown."},
-  {role:"user",content:"Expand this article to at least 4500 characters. Keep conversational Egyptian Arabic, avoid repetition and filler, and keep all source links together in one final ## المصادر section. Category: "+category+"\nVerified research context: "+JSON.stringify(research)+"\nCurrent draft:\n"+String(article)}
- ],6000);
- const result=String(expanded.articleMarkdown||"").trim();
- if(result.length>=3500)return result;
- console.log("Expansion pass remained too short; continuing to the next researched candidate.");
+async function ensureArticleLength(article){
+ const draft=String(article||"").trim();
+ if(draft.length>=700){console.log("Accepting concise article draft; skipping quota-heavy expansion.");return draft;}
+ console.log("Draft is too short to be useful; skipping expansion rather than burning quota on another long request.");
  return "";
 }
 
 function validateArticle(a,openedUrls,searchUrls){
- if(typeof a!=="string"||a.length<3500)throw Error("Article is shorter than 3,500 characters");
+ if(typeof a!=="string"||a.length<800)throw Error("Article is shorter than 800 characters");
  if(!/[\u0600-\u06FF]/.test(a))throw Error("Article isn't Arabic");
  const links=a.match(/\]\(https?:\/\/[^)\s]+\)/g)||[];
  if(links.length<3)throw Error("Article needs at least 3 direct source links");
@@ -155,8 +174,8 @@ async function tryAlternateCandidates({candidates,excludeId,posts,existing}){
   try{
    draft=await ask([
     {role:"system",content:"Return JSON only. You are an experienced Arabic marketing editor. Write useful, clear, original practical guidance based on well-known specialist marketing and ecommerce publishers and the source pages actually provided. A quantified case study, ROAS uplift, experiment or measured result is NOT required. A reputable how-to guide, platform documentation, expert analysis, buyer-behavior insight or practical framework is sufficient. Do not fabricate statistics, quotes, studies, URLs or claims. If a source makes a claim, attribute it to that source and do not exaggerate it. Primary sources must be non-Arab foreign-market publishers; use the Arabic searches only to avoid an obvious duplicate, not to demand proof that no similar article exists anywhere."},
-    {role:"user",content:"Date "+TODAY+"\nExisting posts: "+JSON.stringify(existing)+"\nAlternate candidate and real searches: "+JSON.stringify(research)+"\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title in Arabic, slug in English kebab-case, excerpt in Arabic <=220 characters, category, read integer, articleMarkdown.\nPublish a practical article unless its sources are unusable, the topic is clearly unrelated to the site, or the same topic already exists in our posts. No need for numerical proof or a measurable case study. Prefer insights from known specialist sites such as Shopify, HubSpot, Think with Google, Meta Business, TikTok for Business, Google Ads, Semrush, Ahrefs, BigCommerce, Adobe, WARC, Marketing Week, Nielsen, McKinsey, HBR or other established industry publishers when the actual search results support that choice. Do not claim novelty is proven; note the search scope honestly. Category must exactly equal "+JSON.stringify(c.category)+". Article must exceed 3500 characters in Egyptian-friendly Arabic, open with a lively hook, explain the foreign-source idea simply, include a concrete example, practical steps, a short checklist or decision guide, and common mistakes for applying it in Egypt. Keep the writing conversational and useful, not academic or repetitive. Do not require statistics, ROAS figures, quantified results, or a measured case study. Do not repeat the article title as an H1. Do not include source links or inline citations in the article body. Put all source links together in exactly one final section named ## المصادر, with at least 3 links; at least 2 must be from openedOriginalEnglishPages and every link must be from supplied search results or opened pages. If one candidate is unsuitable, SKIP and let the system try the next candidate."}
-   ],6000);
+    {role:"user",content:"Date "+TODAY+"\nExisting posts: "+JSON.stringify(existing)+"\nAlternate candidate and real searches: "+JSON.stringify(compactResearch(research))+"\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title in Arabic, slug in English kebab-case, excerpt in Arabic <=220 characters, category, read integer, articleMarkdown.\nPublish a practical article unless its sources are unusable, the topic is clearly unrelated to the site, or the same topic already exists in our posts. No need for numerical proof or a measurable case study. Prefer insights from known specialist sites such as Shopify, HubSpot, Think with Google, Meta Business, TikTok for Business, Google Ads, Semrush, Ahrefs, BigCommerce, Adobe, WARC, Marketing Week, Nielsen, McKinsey, HBR or other established industry publishers when the actual search results support that choice. Do not claim novelty is proven; note the search scope honestly. Category must exactly equal "+JSON.stringify(c.category)+". Article should be concise (about 900–1800 characters before the source footer) in Egyptian-friendly Arabic, open with a lively hook, explain the foreign-source idea simply, include a concrete example, practical steps, a short checklist or decision guide, and common mistakes for applying it in Egypt. Keep the writing conversational and useful, not academic or repetitive. Do not require statistics, ROAS figures, quantified results, or a measured case study. Do not repeat the article title as an H1. Do not include source links or inline citations in the article body. Put all source links together in exactly one final section named ## المصادر, with at least 3 links; at least 2 must be from openedOriginalEnglishPages and every link must be from supplied search results or opened pages. If one candidate is unsuitable, SKIP and let the system try the next candidate."}
+   ],1800);
   }catch(error){
    console.log("Drafting alternate candidate "+c.id+" failed: "+clean(error.message,180));
    continue;
@@ -223,7 +242,7 @@ async function main(){
  await wait(61000);
  let result;
  try{
-  result=await ask([{role:"system",content:"Return JSON only. You are the lead practical editor for Kamal Elnhrawy's Arabic marketing blog. Use well-known specialist marketing/ecommerce publishers and the actual source pages/search results supplied. A how-to guide, official platform explanation, industry framework or expert analysis is perfectly publishable; numerical results or an experimental case study are not required. Never invent companies, statistics, quotes, sources or URLs. Do not overstate a source's claims. Write original, easy-to-understand Arabic analysis, not a translation, and turn the idea into practical steps and an example suitable for Egypt. Skip only if sources are unusable, topic is irrelevant, or the same core topic is already covered by the site."},{role:"user",content:"Egypt date "+TODAY+"\nExisting articles "+JSON.stringify(existing)+"\nActual research results "+JSON.stringify(research)+"\nReturn JSON fields decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title (Arabic), slug (English kebab case), excerpt (Arabic <=220 chars), category (Arabic), read (integer), articleMarkdown.\nPUBLISH when at least two useful foreign specialist source pages can be opened and the article is practically helpful. Do not require quantified results, a measured case study, or proof that the whole Arabic internet lacks the idea. Check existing posts to avoid an exact duplicate, but general overlap is acceptable. Never claim absolute uniqueness or say \"first in Egypt\"; describe the limited search scope honestly.\nIf PUBLISH, category must match the chosen candidate and be exactly one of الميديا باينج، البراندينج، التجارة الإلكترونية. Article must exceed 3500 characters, use engaging conversational Egyptian Arabic, explain the main idea from the foreign specialist sources simply, include a concrete example, practical steps, a short checklist or decision guide, and common mistakes. Do not require statistics or a quantified case study. Do not repeat the title as an H1, and do not put source links inside the body; all links must be together in one final ## المصادر section. Cite only URLs from opened or searched foreign specialist pages; never invent sources, quotes, or numbers."}],6000);
+  result=await ask([{role:"system",content:"Return JSON only. You are the lead practical editor for Kamal Elnhrawy's Arabic marketing blog. Use well-known specialist marketing/ecommerce publishers and the actual source pages/search results supplied. A how-to guide, official platform explanation, industry framework or expert analysis is perfectly publishable; numerical results or an experimental case study are not required. Never invent companies, statistics, quotes, sources or URLs. Do not overstate a source's claims. Write a concise, easy-to-understand Egyptian-Arabic summary/adaptation of the foreign idea, then explain how to apply it locally. Do not translate whole pages verbatim, invent details, or pad the article to hit a character count. Skip only if sources are unusable, topic is irrelevant, or the same core topic is already covered by the site."},{role:"user",content:"Egypt date "+TODAY+"\nExisting articles "+JSON.stringify(existing)+"\nActual research results "+JSON.stringify(compactResearch(research))+"\nReturn JSON fields decision ('PUBLISH'/'SKIP'), decisionReason, arabicMarketSummary, duplicateCheck, title (Arabic), slug (English kebab case), excerpt (Arabic <=220 chars), category (Arabic), read (integer), articleMarkdown.\nPUBLISH when at least two useful foreign specialist source pages can be opened and the article is practically helpful. Do not require quantified results, a measured case study, or proof that the whole Arabic internet lacks the idea. Check existing posts to avoid an exact duplicate, but general overlap is acceptable. Never claim absolute uniqueness or say \"first in Egypt\"; describe the limited search scope honestly.\nIf PUBLISH, category must match the chosen candidate and be exactly one of الميديا باينج، البراندينج، التجارة الإلكترونية. Article should be concise (about 900–1800 characters before the source footer), use engaging conversational Egyptian Arabic, explain the main idea from the foreign specialist sources simply, include a concrete example, practical steps, a short checklist or decision guide, and common mistakes. Do not require statistics or a quantified case study. A concise article is acceptable when that is all the verified source supports. Do not repeat the title as an H1, and do not put source links inside the body; all links must be together in one final ## المصادر section. Cite only URLs from opened or searched foreign specialist pages; never invent sources, quotes, or numbers."}],1800);
  }catch(error){
   console.log("Primary article drafting failed after automatic retry; trying alternate topics: "+clean(error.message,180));
   if(await tryAlternateCandidates({candidates:cs,excludeId:chosen.id,posts,existing}))return;
@@ -241,8 +260,8 @@ async function main(){
    try {
      retry=await ask([
        {role:"system",content:"Return JSON only. Reconsider whether the same topic can become a useful, original practical article based on the supplied major specialist sources. Do not invent facts, statistics or URLs; measured outcomes are not required. If this candidate is unsuitable, return SKIP so another candidate can be tried. Cite only supplied source URLs. Never claim absolute uniqueness."},
-       {role:"user",content:"The first draft chose SKIP. Give one final independent editorial review. Date "+TODAY+". Existing posts: "+JSON.stringify(existing)+"\\nVerified evidence: "+JSON.stringify(research)+"\\nReturn decision, decisionReason, arabicMarketSummary, duplicateCheck, title, slug, excerpt, category, read, articleMarkdown. If PUBLISH, article must be over 3500 characters, cite at least 3 direct URLs from supplied sources, at least 2 URLs must be from openedOriginalEnglishPages, and category must exactly equal "+JSON.stringify(chosen.category)+". Do not publish if evidence is insufficient."}
-     ],6000);
+       {role:"user",content:"The first draft chose SKIP. Give one final independent editorial review. Date "+TODAY+". Existing posts: "+JSON.stringify(existing)+"\\nVerified evidence: "+JSON.stringify(compactResearch(research))+"\\nReturn decision, decisionReason, arabicMarketSummary, duplicateCheck, title, slug, excerpt, category, read, articleMarkdown. If PUBLISH, article should be concise (about 900–1800 characters before the source footer), cite at least 3 direct URLs from supplied sources, at least 2 URLs must be from openedOriginalEnglishPages, and category must exactly equal "+JSON.stringify(chosen.category)+". Do not publish if evidence is insufficient."}
+     ],1800);
    } catch(error) { console.log("Final evidence review failed: "+clean(error.message,180)); }
    if(String(retry?.decision||"").toUpperCase()!=="PUBLISH"){
      fs.appendFileSync(AUDIT,"\\n## Final Review\\n- أُعيد تقييم الأدلة مرة أخيرة؛ لم تتوفر أدلة كافية للنشر دون اختلاق معلومات.\\n");
