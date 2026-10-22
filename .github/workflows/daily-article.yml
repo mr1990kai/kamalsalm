@@ -241,6 +241,37 @@ jobs:
           console.log("Research audit and article validation passed: " + slug);
           NODE
 
+      - name: Update sitemap with published article
+        if: steps.validate.outputs.publish == 'true'
+        env:
+          TODAY: ${{ steps.date.outputs.today }}
+        run: |
+          node <<'NODE'
+          const fs = require("fs");
+          const cp = require("child_process");
+          global.window = {};
+          require("./posts-data.js");
+          const posts = global.window.POSTS;
+          const created = cp.execSync(
+            "git ls-files --others --exclude-standard -- 'posts/*.md'",
+            { encoding: "utf8" }
+          ).trim().split("\n").filter(Boolean);
+          const file = "sitemap.xml";
+          let xml = fs.readFileSync(file, "utf8");
+          for (const path of created) {
+            const slug = path.replace(/^posts\//, "").replace(/\.md$/, "");
+            const post = posts.find(item => item.slug === slug);
+            if (!post) throw new Error("No metadata found for sitemap entry: " + slug);
+            const url = "https://kamalsalm.vercel.app/post.html?p=" + slug;
+            if (!xml.includes("<loc>" + url + "</loc>")) {
+              const entry = "  <url><loc>" + url + "</loc><lastmod>" +
+                (post.date || process.env.TODAY) + "</lastmod></url>\n";
+              xml = xml.replace(/<\/urlset>\s*$/, entry + "</urlset>\n");
+            }
+          }
+          fs.writeFileSync(file, xml, "utf8");
+          NODE
+
       - name: Commit and publish approved article
         if: steps.validate.outputs.publish == 'true'
         env:
@@ -248,7 +279,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add posts/ posts-data.js images/covers/
+          git add posts/ posts-data.js images/covers/ sitemap.xml
           if git diff --cached --quiet; then
             echo "No article changes to publish."
             exit 1

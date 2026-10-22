@@ -2,6 +2,36 @@
    column مخصص للمقالات الأصلية التي يكتبها كمال بنفسه. */
 window.POSTS = [
   {
+    slug: 'break-even-roas-contribution-margin-egypt-2026',
+    title: 'ROAS كويس لكن البيزنس بيخسر: نحسب نقطة التعادل إزاي؟',
+    excerpt: 'طريقة عملية لحساب نقطة تعادل ROAS من هامش المساهمة بعد تكلفة المنتج والشحن والعمولات والمرتجعات، مع مثال بالجنيه المصري وشرح الفرق بين عائد الإعلان والربح الحقيقي.',
+    date: '2026-10-22',
+    category: 'الميديا باينج',
+    lang: 'ar',
+    read: 9,
+    cover: 'images/covers/break-even-roas-contribution-margin-egypt-2026.svg'
+  },
+  {
+    slug: 'media-mix-confidence-kantar-2026',
+    title: 'تقرير Kantar 2026: ليه اختيار المنصات بقى أصعب رغم إن عندنا بيانات أكتر؟',
+    excerpt: 'قراءة عملية في تقرير Kantar Media Reactions 2026 عن ثقة المسوقين في المزيج الإعلامي، وقياس تأثير القنوات مع بعض، وطريقة تحويل البيانات إلى قرارات ميزانية تناسب المتاجر المصرية.',
+    date: '2026-10-22',
+    category: 'الميديا باينج',
+    lang: 'ar',
+    read: 9,
+    cover: 'images/covers/media-mix-confidence-kantar-2026.svg'
+  },
+  {
+    slug: 'conversion-lift-incrementality-egypt-2026',
+    title: 'هل الإعلان جاب مبيعات جديدة فعلًا، ولا أخد الفضل على مبيعات كانت هتحصل؟ (Conversion Lift)',
+    excerpt: 'إزاي تفرّق بين المبيعات اللي منصة الإعلان بتنسبها للحملة والمبيعات الإضافية اللي ماكنتش هتحصل من غيرها؟ شرح Conversion Lift، ومثال حسابي، وطرق اختبار تناسب أحجام مختلفة من المتاجر.',
+    date: '2026-10-21',
+    category: 'الميديا باينج',
+    lang: 'ar',
+    read: 9,
+    cover: 'images/covers/conversion-lift-incrementality-egypt-2026.svg'
+  },
+  {
     slug: 'contagious-brands-report-2026-egypt',
     title: '45 براند عالمي في تقرير واحد: إيه اللي نتعلمه من العلامات اللي لفتت الانتباه في 2026؟',
     excerpt: 'قراءة عملية في تقرير Contagious Brands Report 2026: إزاي نستفيد من أفكار التجربة والتغليف وتصميم المنتج وبناء المجتمع، ونختبرها في السوق المصري من غير تقليد أعمى أو تعميم لنتائج الأسواق العالمية.',
