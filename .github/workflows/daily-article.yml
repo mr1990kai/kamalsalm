@@ -224,7 +224,8 @@ jobs:
             fail("New article metadata must match today's date, slug and Arabic language.");
           }
           const article = fs.readFileSync(createdPosts[0], "utf8");
-          if (article.length < 800) fail("Article is too short even for concise format.");
+          const articleBody = article.split(/\n\s*##\s*(?:المصادر|المراجع|sources|references)\b/i)[0].trim();
+          if (articleBody.length < 2600) fail("Article body is too short; expected at least 2,600 characters before sources.");
           const articleLinks = article.match(/\]\(https?:\/\/[^)\s]+\)/g) || [];
           if (articleLinks.length < 3) fail("Article needs at least 3 direct source links.");
           if (!/[\u0600-\u06FF]/.test(article)) fail("Article content is not Arabic.");
