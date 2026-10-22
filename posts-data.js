@@ -146,11 +146,11 @@ window.POSTS = [
   {
     slug: "building-brand-loyalty-through-storytelling-on-tiktok",
     title: "بناء ولاء العلامة التجارية عبر قصص تيك توك لجيل زد",
-    excerpt: "تعرف على إطار عملي لبناء ولاء العلامة التجارية مع جيل زد عبر تيك توك، مع خطوات تطبيقية وأمثلة حقيقية من السوق البريطاني.",
+    excerpt: "إزاي تستخدم قصص المنتج والكواليس والإجابات عن أسئلة العملاء عشان تبني ثقة مستمرة على تيك توك، بخطة محتوى عملية تناسب البراندات المصرية.",
     date: "2026-10-21",
     category: "البراندينج",
     lang: "ar",
-    read: 5,
+    read: 7,
     cover: 'images/covers/building-brand-loyalty-through-storytelling-on-tiktok.svg'
   },
   {
@@ -160,7 +160,7 @@ window.POSTS = [
     date: "2026-10-21",
     category: "التجارة الإلكترونية",
     lang: "ar",
-    read: 5,
+    read: 7,
     cover: 'images/covers/alibaba-live-commerce-conversion.svg'
   }
 ];
