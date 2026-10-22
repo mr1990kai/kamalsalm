@@ -2,6 +2,26 @@
    column مخصص للمقالات الأصلية التي يكتبها كمال بنفسه. */
 window.POSTS = [
   {
+    slug: 'break-even-roas-contribution-margin-egypt-2026',
+    title: 'ROAS كويس لكن البيزنس بيخسر: نحسب نقطة التعادل إزاي؟',
+    excerpt: 'طريقة عملية لحساب نقطة تعادل ROAS من هامش المساهمة بعد تكلفة المنتج والشحن والعمولات والمرتجعات، مع مثال بالجنيه المصري وشرح الفرق بين عائد الإعلان والربح الحقيقي.',
+    date: '2026-10-22',
+    category: 'الميديا باينج',
+    lang: 'ar',
+    read: 9,
+    cover: 'images/covers/break-even-roas-contribution-margin-egypt-2026.svg'
+  },
+  {
+    slug: 'media-mix-confidence-kantar-2026',
+    title: 'تقرير Kantar 2026: ليه اختيار المنصات بقى أصعب رغم إن عندنا بيانات أكتر؟',
+    excerpt: 'قراءة عملية في تقرير Kantar Media Reactions 2026 عن ثقة المسوقين في المزيج الإعلامي، وقياس تأثير القنوات مع بعض، وطريقة تحويل البيانات إلى قرارات ميزانية تناسب المتاجر المصرية.',
+    date: '2026-10-22',
+    category: 'الميديا باينج',
+    lang: 'ar',
+    read: 9,
+    cover: 'images/covers/media-mix-confidence-kantar-2026.svg'
+  },
+  {
     slug: 'conversion-lift-incrementality-egypt-2026',
     title: 'هل الإعلان جاب مبيعات جديدة فعلًا، ولا أخد الفضل على مبيعات كانت هتحصل؟ (Conversion Lift)',
     excerpt: 'إزاي تفرّق بين المبيعات اللي منصة الإعلان بتنسبها للحملة والمبيعات الإضافية اللي ماكنتش هتحصل من غيرها؟ شرح Conversion Lift، ومثال حسابي، وطرق اختبار تناسب أحجام مختلفة من المتاجر.',
@@ -152,5 +172,25 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/how-to-optimize-google-ads-seasonal-smart-bidding.svg'
+  },
+  {
+    slug: "building-brand-loyalty-through-storytelling-on-tiktok",
+    title: "بناء ولاء العلامة التجارية عبر قصص تيك توك لجيل زد",
+    excerpt: "إزاي تستخدم قصص المنتج والكواليس والإجابات عن أسئلة العملاء عشان تبني ثقة مستمرة على تيك توك، بخطة محتوى عملية تناسب البراندات المصرية.",
+    date: "2026-10-21",
+    category: "البراندينج",
+    lang: "ar",
+    read: 7,
+    cover: 'images/covers/building-brand-loyalty-through-storytelling-on-tiktok.svg'
+  },
+  {
+    slug: "alibaba-live-commerce-conversion",
+    title: "الدرس من علي بابا: إزاي تستخدم البث المباشر عشان تبيع بثقة أكبر؟",
+    excerpt: "إزاي تحوّل البث المباشر من كلام عن المنتج لعرض عملي يجاوب على أسئلة العميل، مع خطوات قبل وأثناء وبعد اللايف تناسب المتاجر المصرية.",
+    date: "2026-10-21",
+    category: "التجارة الإلكترونية",
+    lang: "ar",
+    read: 7,
+    cover: 'images/covers/alibaba-live-commerce-conversion.svg'
   }
 ];
