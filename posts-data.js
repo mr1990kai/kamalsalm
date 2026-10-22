@@ -192,5 +192,15 @@ window.POSTS = [
     lang: "ar",
     read: 7,
     cover: 'images/covers/alibaba-live-commerce-conversion.svg'
+  },
+  {
+    slug: "tiktok-shopping-ads-brand-awareness-egypt",
+    title: "إعلانات تيك توك للتسوق: كيف تبني وعي العلامة التجارية في مصر؟",
+    excerpt: "اكتشف كيف تستخدم إعلانات تيك توك للتسوق لبناء وعي العلامة التجارية في مصر، مع خطوات عملية، أمثلة حية، ونصائح لتجنب الأخطاء الشائعة.",
+    date: "2026-10-22",
+    category: "البراندينج",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/tiktok-shopping-ads-brand-awareness-egypt.svg'
   }
 ];
