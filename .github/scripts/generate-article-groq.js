@@ -93,33 +93,46 @@ function articleBodyLength(article){
  return String(article||"").split(/\n\s*##\s*(?:المصادر|المراجع|sources|references)\b/i)[0].trim().length;
 }
 async function ensureArticleLength(article,research,category){
- let best=String(article||"").trim();
- if(articleBodyLength(best)>=2800){console.log("Article body length passed: "+articleBodyLength(best)+" characters.");return best;}
- console.log("Article body is short ("+articleBodyLength(best)+" chars); starting a spaced expansion/translation fallback.");
+ const original=String(article||"").trim();
+ const marker=/\n\s*##\s*(?:المصادر|المراجع|sources|references)\b/i;
+ const cut=original.search(marker);
+ let body=cut>=0?original.slice(0,cut).trim():original;
+ const sourceFooter=cut>=0?original.slice(cut).trim():"";
+ if(body.length>=2800)return original;
+ console.log("Article body is short ("+body.length+" chars); adding distinct sections from verified research.");
  const brief=JSON.stringify(compactResearch(research));
- const prompts=[
+ const plans=[
   {
-   system:"You are a senior Egyptian-Arabic editor. Expand a short draft into a substantial, practical article without padding or repeating paragraphs. Do not invent any company stories, statistics, customer results, quotations or technical claims. You may translate and explain the verified English sources in your own Egyptian Arabic when the draft lacks detail. Give clear context, explain the mechanism, practical application in Egypt, one explicitly hypothetical example, a step-by-step plan, measurement suggestions and mistakes to avoid. Output JSON only with articleMarkdown.",
-   user:"Rewrite and expand this article into a useful 3000–4200 character article body BEFORE the sources footer. Keep Egyptian Arabic conversational. Include 5 or more meaningful sections with concrete details; do not repeat the same advice. Preserve verified source URLs if present and keep all links together in one final ## المصادر section. If the current article is thin, use the verified source-page excerpts to explain the underlying idea more thoroughly rather than making up facts. Category: "+category+"\nResearch: "+brief+"\nCurrent article:\n"+best
+   system:"You are an Egyptian-Arabic practical editor. The supplied draft is too short. Write additional, non-repetitive sections that can be appended to it, not a replacement article. Use only verified source context for factual claims. Never invent statistics, named companies, customer success stories, quotes or URLs. A local example must be explicitly hypothetical. Return JSON only with one key: additionalSections.",
+   user:"Write 3 useful new sections in conversational Egyptian Arabic totaling at least 1400 characters. Do not repeat the introduction, summary, or points already covered in the existing draft. Deepen the idea with a worked hypothetical example relevant to Egypt, a practical step-by-step checklist, how to measure results, and mistakes to avoid. Every factual claim must be supported by the research below or phrased as advice, not fact. Do not include source links or a sources heading; sources will be appended separately. Category: "+category+"\nVerified research (compact): "+brief+"\nExisting article body — avoid repeating it:\n"+body
   },
   {
-   system:"You are an accurate translator and practical editor. Write a substantial Egyptian-Arabic article based on the actual supplied English source excerpts. Translation/adaptation of the source idea is allowed; do not translate blindly or add unsourced data. Never invent figures, companies, case studies, quotations or URLs. Return JSON only with articleMarkdown.",
-   user:"The previous draft was too short. Create a genuinely helpful 3000–4200 character Arabic article body before the sources footer, explaining the main idea from the foreign source pages in plain Egyptian Arabic and showing how a business in Egypt can adapt it. Include the source's main lessons, a realistic example clearly labeled as hypothetical, implementation steps, what to measure, and common mistakes. Use at least 5 informative sections; avoid filler and repetition. Put all source links in one final ## المصادر section; use only URLs included in the research. Category: "+category+"\nVerified research excerpts:\n"+brief+"\nShort draft to build on:\n"+best
+   system:"You are a careful translator and editor for a useful Egyptian-Arabic marketing blog. Add new sections by paraphrasing and explaining relevant information from the provided foreign English sources. This is a source-adaptation fallback, not an invitation to invent facts. Never invent figures, case studies, company results, quotations or URLs. Return JSON only with one key: additionalSections.",
+   user:"The article still needs more depth. Write 3 DIFFERENT new headed sections in conversational Egyptian Arabic, at least 1400 characters total, to append to the draft. Translate/adapt the verified foreign-source ideas into plain Arabic if necessary, then explain the practical steps an Egyptian business can take, a clearly hypothetical example, what to measure, and common errors. Do not repeat the draft, do not include a conclusion, and do not include links or a sources heading. Category: "+category+"\nVerified foreign research excerpts: "+brief+"\nSections already in article:\n"+body
   }
  ];
- for(let i=0;i<prompts.length;i++){
+ for(let i=0;i<plans.length;i++){
   await wait(62000);
   try{
-   const generated=await ask([{role:"system",content:prompts[i].system},{role:"user",content:prompts[i].user}],3200);
-   const candidate=String(generated.articleMarkdown||"").trim();
-   console.log("Expansion fallback "+(i+1)+" body length: "+articleBodyLength(candidate)+" characters.");
-   if(articleBodyLength(candidate)>articleBodyLength(best))best=candidate;
-   if(articleBodyLength(best)>=2800)return best;
+   const generated=await ask([{role:"system",content:plans[i].system},{role:"user",content:plans[i].user}],1800);
+   let addition=String(generated.additionalSections||"").trim();
+   if(!addition&&generated.articleMarkdown){
+    const whole=String(generated.articleMarkdown).trim();
+    const wholeCut=whole.search(marker);
+    const wholeBody=wholeCut>=0?whole.slice(0,wholeCut).trim():whole;
+    if(wholeBody.length>body.length)body=wholeBody;
+   }else if(addition){
+    const addCut=addition.search(marker);
+    if(addCut>=0)addition=addition.slice(0,addCut).trim();
+    if(addition.length>250)body=body+"\n\n"+addition;
+   }
+   console.log("Article body after fallback "+(i+1)+": "+body.length+" characters.");
+   if(body.length>=2800)return body+(sourceFooter?"\n\n"+sourceFooter:"");
   }catch(error){
-   console.log("Expansion fallback "+(i+1)+" failed: "+clean(error.message,200));
+   console.log("Additional-section pass "+(i+1)+" failed: "+clean(error.message,200));
   }
  }
- if(articleBodyLength(best)>=2600){console.log("Using best expanded draft at "+articleBodyLength(best)+" characters.");return best;}
+ if(body.length>=2600){console.log("Using expanded body at "+body.length+" characters.");return body+(sourceFooter?"\n\n"+sourceFooter:"");}
  console.log("No draft reached the minimum quality length; refusing to publish an extremely short article.");
  return "";
 }
