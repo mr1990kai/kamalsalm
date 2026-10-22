@@ -90,11 +90,11 @@ function uniqueSlug(v,posts){let s=slug(v),used=new Set(posts.map(p=>p.slug));if
 function addPost(p,posts){const file=path.join(ROOT,"posts-data.js");let s=fs.readFileSync(file,"utf8"),end=s.lastIndexOf("];");if(end<0)stop("posts-data.js does not end with ];");if(posts.some(x=>x.slug===p.slug))stop("Duplicate slug.");const item="  {\n    slug: "+JSON.stringify(p.slug)+",\n    title: "+JSON.stringify(p.title)+",\n    excerpt: "+JSON.stringify(p.excerpt)+",\n    date: "+JSON.stringify(TODAY)+",\n    category: "+JSON.stringify(p.category)+",\n    lang: \"ar\",\n    read: "+p.read+"\n  }\n";s=s.slice(0,end).replace(/\s*$/,"")+(posts.length?",":"")+"\n"+item+s.slice(end);fs.writeFileSync(file,s,"utf8")}
 
 function articleBodyLength(article){
- return String(article||"").split(/\n\s*##\s*(?:المصادر|المراجع|sources|references)\b/i)[0].trim().length;
+ return String(article||"").split(/\n\s*##\s*(?:المصادر|المراجع|sources|references)(?=\s|$)/i)[0].trim().length;
 }
 async function ensureArticleLength(article,research,category){
  const original=String(article||"").trim();
- const marker=/\n\s*##\s*(?:المصادر|المراجع|sources|references)\b/i;
+ const marker=/\n\s*##\s*(?:المصادر|المراجع|sources|references)(?=\s|$)/i;
  const cut=original.search(marker);
  let body=cut>=0?original.slice(0,cut).trim():original;
  const sourceFooter=cut>=0?original.slice(cut).trim():"";
