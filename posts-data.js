@@ -202,5 +202,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/tiktok-shopping-ads-brand-awareness-egypt.svg'
+  },
+  {
+    slug: "leveraging-alibaba-live-commerce-features-to-increase-conversion",
+    title: "دليل عملي لتفعيل التجارة المباشرة على منصة علي بابا في مصر",
+    excerpt: "دليل عملي لتفعيل التجارة المباشرة على منصة علي بابا في مصر، خطوة بخطوة من إعداد الحدث إلى قياس العائد، مع نصائح عملية وأمثلة حية.",
+    date: "2026-10-22",
+    category: "التجارة الإلكترونية",
+    lang: "ar",
+    read: 6,
+    cover: 'images/covers/leveraging-alibaba-live-commerce-features-to-increase-conversion.svg'
   }
 ];
