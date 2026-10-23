@@ -212,5 +212,15 @@ window.POSTS = [
     lang: "ar",
     read: 6,
     cover: 'images/covers/leveraging-alibaba-live-commerce-features-to-increase-conversion.svg'
+  },
+  {
+    slug: "wechat-mini-program-ecommerce-egypt",
+    title: "كيف تستخدم برنامج WeChat Mini Program لتسويق منتجاتك في مصر",
+    excerpt: "إزاي تستخدم برنامج WeChat Mini Program لتسويق منتجاتك في مصر، خطوة بخطوة، مع مثال عملي، قائمة مراجعة، وأخطاء شائعة تتجنبها.",
+    date: "2026-10-23",
+    category: "التجارة الإلكترونية",
+    lang: "ar",
+    read: 8,
+    cover: 'images/covers/wechat-mini-program-ecommerce-egypt.svg'
   }
 ];
