@@ -222,5 +222,15 @@ window.POSTS = [
     lang: "ar",
     read: 8,
     cover: 'images/covers/wechat-mini-program-ecommerce-egypt.svg'
+  },
+  {
+    slug: "how-to-leverage-shopify-multi-channel-fulfillment",
+    title: "كيف تستغل خدمة التلبية المتعددة القنوات في Shopify لتوسيع تجارتك الإلكترونية في الصين",
+    excerpt: "دليل عملي يشرح إزاي تستخدم خدمة التلبية المتعددة القنوات في Shopify وتدمجها مع الأسواق الصينية، مع خطوات واضحة، أمثلة عملية، ونصائح لتفادي الأخطاء الشائعة.",
+    date: "2026-10-23",
+    category: "التجارة الإلكترونية",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/how-to-leverage-shopify-multi-channel-fulfillment.svg'
   }
 ];
