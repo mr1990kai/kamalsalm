@@ -252,5 +252,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/how-to-leverage-shopify-multi-channel-fulfillment.svg'
+  },
+  {
+    slug: "building-brand-trust-through-transparent-packaging-uk",
+    title: "بناء ثقة العلامة التجارية عبر التغليف الشفاف في المملكة المتحدة",
+    excerpt: "كيف يمكن لتغليف الشفاف أن يعزز ثقة المستهلك ويقوي صورة العلامة التجارية في السوق البريطاني، مع خطوات عملية تناسب العلامات التجارية المصرية؟",
+    date: "2026-10-24",
+    category: "البراندينج",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/building-brand-trust-through-transparent-packaging-uk.svg'
   }
 ];
