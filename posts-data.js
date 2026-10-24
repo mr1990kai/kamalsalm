@@ -262,5 +262,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/building-brand-trust-through-transparent-packaging-uk.svg'
+  },
+  {
+    slug: "building-brand-equity-through-storytelling-in-digital-content",
+    title: "بناء هوية العلامة التجارية عبر السرد القصصي في المحتوى الرقمي",
+    excerpt: "إزاي تستخدم السرد القصصي لبناء هوية قوية للعلامة التجارية في مصر؟ دليل عملي مبني على أفضل الممارسات البريطانية، مع خطوات واضحة، مثال عملي، وتفادي الأخطاء الشائعة.",
+    date: "2026-10-24",
+    category: "البراندينج",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/building-brand-equity-through-storytelling-in-digital-content.svg'
   }
 ];
