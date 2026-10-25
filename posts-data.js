@@ -282,5 +282,15 @@ window.POSTS = [
     lang: "ar",
     read: 12,
     cover: 'images/covers/how-to-optimize-meta-advantage-plus-campaigns-2026.svg'
+  },
+  {
+    slug: "data-driven-media-mix-modeling-egypt",
+    title: "نموذج مزيج إعلامي مستند للبيانات: دليل خطوة بخطوة لدمج بيانات جوجل أدز وميتا في مصر",
+    excerpt: "إزاي تجمع بيانات جوجل أدز وميتا وتستخدمها لتحديد الإنفاق الأمثل في مصر؟ دليل عملي خطوة بخطوة مع مثال عملي وقائمة تحقق لتطبيق النموذج في عملك.",
+    date: "2026-10-25",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 8,
+    cover: 'images/covers/data-driven-media-mix-modeling-egypt.svg'
   }
 ];
