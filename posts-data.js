@@ -272,5 +272,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/building-brand-equity-through-storytelling-in-digital-content.svg'
+  },
+  {
+    slug: "how-to-optimize-meta-advantage-plus-campaigns-2026",
+    title: "كيف تحسن عائد الإنفاق الإعلاني مع حملات Advantage+ على ميتا؟",
+    excerpt: "تعرف على خطوات إعداد وتحسين حملات Meta Advantage+ لزيادة ROAS في مصر، مع أمثلة عملية، قائمة تحقق، وأخطاء شائعة يجب تجنبها.",
+    date: "2026-10-25",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 12,
+    cover: 'images/covers/how-to-optimize-meta-advantage-plus-campaigns-2026.svg'
   }
 ];
