@@ -302,5 +302,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/meta-advantage-plus-campaigns-optimization-guide-egypt.svg'
+  },
+  {
+    slug: "storytelling-video-checklist-egypt",
+    title: "قائمة التحقق القصصية للفيديو: كيف تبني هوية علامة تجارية قوية عبر السرد في مصر",
+    excerpt: "تعرف على دليل عملي خطوة بخطوة لبناء هوية علامة تجارية قوية عبر الفيديو القصصي، مع أمثلة مصرية، خطوات عملية، قائمة التحقق، وأخطاء شائعة تتجنبها.",
+    date: "2026-10-26",
+    category: "البراندينج",
+    lang: "ar",
+    read: 8,
+    cover: 'images/covers/storytelling-video-checklist-egypt.svg'
   }
 ];
