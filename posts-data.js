@@ -292,5 +292,15 @@ window.POSTS = [
     lang: "ar",
     read: 8,
     cover: 'images/covers/data-driven-media-mix-modeling-egypt.svg'
+  },
+  {
+    slug: "meta-advantage-plus-campaigns-optimization-guide-egypt",
+    title: "تحسين حملات Meta Advantage+ للROAS في التجارة الإلكترونية المصرية",
+    excerpt: "دليل عملي خطوة بخطوة لتحسين حملات Meta Advantage+ في التجارة الإلكترونية المصرية، مع خطوات إعداد، اختبار إبداع، تحديد الجمهور، وتحقيق ROAS أعلى بدون خسارة الربحية.",
+    date: "2026-10-26",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/meta-advantage-plus-campaigns-optimization-guide-egypt.svg'
   }
 ];
