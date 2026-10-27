@@ -224,32 +224,32 @@ const CATEGORIES = [
     name: "البراندينج",
     topic: "branding brand strategy identity rebrand brand campaigns",
     queries: [
-      "latest branding and brand strategy articles October 2026 WARC Contagious Brand New",
-      "site:contagious.com OR site:underconsideration.com OR site:warc.com branding identity rebrand 2026"
+      "latest branding and brand strategy articles WARC Contagious Brand New",
+      "site:contagious.com OR site:underconsideration.com OR site:warc.com branding identity rebrand news"
     ]
   },
   {
     name: "التصميم",
     topic: "graphic design visual identity packaging typography art direction",
     queries: [
-      "latest graphic design visual identity packaging articles October 2026 Adobe The Dieline Brand New",
-      "site:thedieline.com OR site:adobe.com OR site:underconsideration.com OR site:itsnicethat.com design packaging typography 2026"
+      "latest graphic design visual identity packaging articles Adobe The Dieline Brand New",
+      "site:thedieline.com OR site:adobe.com OR site:underconsideration.com OR site:itsnicethat.com design packaging typography news"
     ]
   },
   {
     name: "التسويق",
     topic: "marketing strategy campaigns consumer behavior content creators",
     queries: [
-      "latest marketing strategy campaigns consumer trends articles October 2026 Digiday HubSpot WARC",
-      "site:digiday.com OR site:hubspot.com OR site:warc.com OR site:marketingweek.com marketing strategy campaign 2026"
+      "latest marketing strategy campaigns consumer trends articles Digiday HubSpot WARC",
+      "site:digiday.com OR site:hubspot.com OR site:warc.com OR site:marketingweek.com marketing strategy campaign news"
     ]
   },
   {
     name: "الميديا باينج",
     topic: "media buying paid media advertising PPC search social ads",
     queries: [
-      "latest paid media media buying advertising platform articles October 2026 Search Engine Land IAB",
-      "site:searchengineland.com OR site:iab.com OR site:thinkwithgoogle.com OR site:ads.tiktok.com paid ads media buying 2026"
+      "latest paid media media buying advertising platform articles Search Engine Land IAB",
+      "site:searchengineland.com OR site:iab.com OR site:thinkwithgoogle.com OR site:ads.tiktok.com paid ads media buying news"
     ]
   }
 ];
@@ -265,7 +265,9 @@ async function main() {
   for (const category of order) {
     console.log("Searching recent international articles in random category: " + category.name);
     const searches = [];
-    for (const query of category.queries) searches.push(await search(query));
+    const dateAnchor = new Date(TODAY + "T12:00:00Z");
+    const searchWindow = dateAnchor.toLocaleString("en-US", { month: "long", timeZone: "UTC" }) + " " + dateAnchor.getUTCFullYear();
+    for (const query of category.queries) searches.push(await search(clean(query + " " + searchWindow + " latest", 290)));
     const candidates = collectSources(searches);
     const opened = [];
     const usedHosts = new Set();
