@@ -1,6 +1,36 @@
-/* تصنيفات المدونة مختصرة: الميديا باينج، البراندينج، التجارة الإلكترونية.
-   column مخصص للمقالات الأصلية التي يكتبها كمال بنفسه. */
+/* تصنيفات المدونة: البراندينج، التصميم، التسويق، الميديا باينج، التجارة الإلكترونية.
+   مقالات كمال الأصلية تُشار إليها بحقل column عند الحاجة. */
 window.POSTS = [
+  {
+    slug: "influencer-engagement-vs-business-results-2026",
+    title: "تسويق المؤثرين: إمتى التفاعل مؤشر مفيد وإمتى بيضللنا؟",
+    excerpt: "قراءة عربية لتقرير Creator Effectiveness Playbook عن علاقة إعلانات صُنّاع المحتوى بذاكرة العلامة التجارية، وليه معدل التفاعل مش بديل عن قياس الهدف المقصود من الحملة.",
+    date: "2026-10-27",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 7,
+    cover: "images/covers/influencer-engagement-vs-business-results-2026.svg"
+  },
+  {
+    slug: "content-for-people-not-algorithms-2026",
+    title: "لو محتواك معمول عشان يرضي الخوارزمية بس، إزاي هيبقى مفيد للناس؟",
+    excerpt: "تلخيص عربي لإرشادات المحتوى المفيد من Google وطريقة شرح المنصات لأنظمة التوصية، والفرق بين تحسين الاكتشاف وتقديم محتوى يفي بوعده.",
+    date: "2026-10-26",
+    category: "التسويق",
+    lang: "ar",
+    read: 6,
+    cover: "images/covers/content-for-people-not-algorithms-2026.svg"
+  },
+  {
+    slug: "tiktok-next-2026-behavior-insights-egypt",
+    title: "تقرير TikTok Next 2026 بيقول إيه عن السلوك، وإيه اللي ماينفعش نستنتجه منه؟",
+    excerpt: "ملخص عربي لاتجاهات Reali-TEA وCuriosity Detours وEmotional ROI في تقرير TikTok Next 2026، مع شرح الأفكار الأساسية الواردة فيه.",
+    date: "2026-10-25",
+    category: "التسويق",
+    lang: "ar",
+    read: 6,
+    cover: "images/covers/tiktok-next-2026-behavior-insights-egypt.svg"
+  },
   {
     slug: 'packaging-design-shape-material-clarity-2026',
     title: 'تصميم العبوة مش لقطة حلوة: إزاي الشكل والخامة ووضوح المنتج يخدموا قرار الشراء؟',
@@ -224,16 +254,6 @@ window.POSTS = [
     cover: 'images/covers/tiktok-shopping-ads-brand-awareness-egypt.svg'
   },
   {
-    slug: "leveraging-alibaba-live-commerce-features-to-increase-conversion",
-    title: "دليل عملي لتفعيل التجارة المباشرة على منصة علي بابا في مصر",
-    excerpt: "دليل عملي لتفعيل التجارة المباشرة على منصة علي بابا في مصر، خطوة بخطوة من إعداد الحدث إلى قياس العائد، مع نصائح عملية وأمثلة حية.",
-    date: "2026-10-22",
-    category: "التجارة الإلكترونية",
-    lang: "ar",
-    read: 6,
-    cover: 'images/covers/leveraging-alibaba-live-commerce-features-to-increase-conversion.svg'
-  },
-  {
     slug: "wechat-mini-program-ecommerce-egypt",
     title: "كيف تستخدم برنامج WeChat Mini Program لتسويق منتجاتك في مصر",
     excerpt: "إزاي تستخدم برنامج WeChat Mini Program لتسويق منتجاتك في مصر، خطوة بخطوة، مع مثال عملي، قائمة مراجعة، وأخطاء شائعة تتجنبها.",
@@ -274,16 +294,6 @@ window.POSTS = [
     cover: 'images/covers/building-brand-equity-through-storytelling-in-digital-content.svg'
   },
   {
-    slug: "how-to-optimize-meta-advantage-plus-campaigns-2026",
-    title: "كيف تحسن عائد الإنفاق الإعلاني مع حملات Advantage+ على ميتا؟",
-    excerpt: "تعرف على خطوات إعداد وتحسين حملات Meta Advantage+ لزيادة ROAS في مصر، مع أمثلة عملية، قائمة تحقق، وأخطاء شائعة يجب تجنبها.",
-    date: "2026-10-25",
-    category: "الميديا باينج",
-    lang: "ar",
-    read: 12,
-    cover: 'images/covers/how-to-optimize-meta-advantage-plus-campaigns-2026.svg'
-  },
-  {
     slug: "data-driven-media-mix-modeling-egypt",
     title: "نموذج مزيج إعلامي مستند للبيانات: دليل خطوة بخطوة لدمج بيانات جوجل أدز وميتا في مصر",
     excerpt: "إزاي تجمع بيانات جوجل أدز وميتا وتستخدمها لتحديد الإنفاق الأمثل في مصر؟ دليل عملي خطوة بخطوة مع مثال عملي وقائمة تحقق لتطبيق النموذج في عملك.",
@@ -292,16 +302,6 @@ window.POSTS = [
     lang: "ar",
     read: 8,
     cover: 'images/covers/data-driven-media-mix-modeling-egypt.svg'
-  },
-  {
-    slug: "meta-advantage-plus-campaigns-optimization-guide-egypt",
-    title: "تحسين حملات Meta Advantage+ للROAS في التجارة الإلكترونية المصرية",
-    excerpt: "دليل عملي خطوة بخطوة لتحسين حملات Meta Advantage+ في التجارة الإلكترونية المصرية، مع خطوات إعداد، اختبار إبداع، تحديد الجمهور، وتحقيق ROAS أعلى بدون خسارة الربحية.",
-    date: "2026-10-26",
-    category: "الميديا باينج",
-    lang: "ar",
-    read: 5,
-    cover: 'images/covers/meta-advantage-plus-campaigns-optimization-guide-egypt.svg'
   },
   {
     slug: "storytelling-video-checklist-egypt",
