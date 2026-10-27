@@ -312,5 +312,15 @@ window.POSTS = [
     lang: "ar",
     read: 8,
     cover: 'images/covers/storytelling-video-checklist-egypt.svg'
+  },
+  {
+    slug: "how-to-exploit-meta-advantage-plus-for-roas-in-egypt",
+    title: "كيف تستغل حملات Meta Advantage+ لتحسين ROAS في مصر",
+    excerpt: "Meta Advantage+ مش بس أداة جديدة، ده طريقة مختلفة تماماً لتسويق المنتجات على فيسبوك وإنستجرام. المقال ده هيوضحلك خطوة بخطوة إزاي تختبر الإبداع والجمهور وتحقق أعلى ROAS ممكن في السوق المصري.",
+    date: "2026-10-27",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/how-to-exploit-meta-advantage-plus-for-roas-in-egypt.svg'
   }
 ];
