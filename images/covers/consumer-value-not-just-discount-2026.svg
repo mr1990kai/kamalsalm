@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">المستهلك بيدور على القيمة مش الخصم بس</title>
+<desc id="desc">غلاف لمقال عن شرح قيمة البراند وإثباتها بدل الاعتماد المستمر على الخصومات.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07182b"/><stop offset="1" stop-color="#123764"/></linearGradient>
+  <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#ffffff" opacity=".08"/></pattern>
+  <linearGradient id="tag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#27b9bd"/><stop offset="1" stop-color="#14979d"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<rect width="1200" height="630" fill="url(#dots)"/>
+<circle cx="1060" cy="65" r="230" fill="#ffc51a" opacity=".11"/>
+<circle cx="60" cy="600" r="220" fill="#27b9bd" opacity=".12"/>
+<path d="M0 475 C180 410 270 540 450 470 L450 630 L0 630 Z" fill="#f23d6b" opacity=".11"/>
+<rect x="62" y="62" width="490" height="506" rx="32" fill="#071426" stroke="#ffffff" stroke-opacity=".12"/>
+<rect x="96" y="97" width="422" height="436" rx="24" fill="#f4f4ef"/>
+<text x="477" y="143" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="18" font-weight="700" fill="#123764">القيمة اللي العميل يقدر يشوفها</text>
+<path d="M150 192 L444 192" stroke="#123764" stroke-width="2" opacity=".13"/>
+<g transform="translate(145 220)">
+  <path d="M20 24 L174 24 L174 132 L20 132 Z" fill="#ffffff" stroke="#123764" stroke-width="3"/>
+  <path d="M20 24 L54 0 L202 0 L174 24 Z" fill="#d8e5e3" stroke="#123764" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M174 24 L202 0 L202 104 L174 132 Z" fill="#c1d6d3" stroke="#123764" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="45" y="54" width="80" height="10" rx="5" fill="#27b9bd"/>
+  <rect x="45" y="75" width="105" height="7" rx="3.5" fill="#123764" opacity=".19"/>
+  <rect x="45" y="91" width="72" height="7" rx="3.5" fill="#123764" opacity=".19"/>
+</g>
+<g transform="translate(352 220)">
+  <path d="M0 18 L109 18 L109 130 L0 130 Z" fill="#ffffff" stroke="#123764" stroke-width="3"/>
+  <path d="M0 18 L25 0 L134 0 L109 18 Z" fill="#f8e4a0" stroke="#123764" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M109 18 L134 0 L134 112 L109 130 Z" fill="#e9d18a" stroke="#123764" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="54" cy="61" r="24" fill="#ffc51a"/>
+  <path d="M42 61 L51 70 L68 50" fill="none" stroke="#123764" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="132" y="402" width="340" height="86" rx="18" fill="#123764"/>
+<circle cx="166" cy="433" r="7" fill="#ffc51a"/><text x="442" y="439" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="20" font-weight="700" fill="#ffffff">ميزة واضحة + دليل</text>
+<circle cx="166" cy="462" r="7" fill="#27b9bd"/><text x="442" y="468" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="18" fill="#ffffff">ثقة قبل قرار الشراء</text>
+<rect x="640" y="98" width="410" height="46" rx="23" fill="#27b9bd" opacity=".16" stroke="#27b9bd" stroke-opacity=".7"/>
+<text x="1025" y="127" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="18" font-weight="700" fill="#9cf2ed">البراندينج والتسويق</text>
+<text x="1110" y="243" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="48" font-weight="700" fill="#ffffff">المستهلك بيدور على</text>
+<text x="1110" y="307" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="54" font-weight="700" fill="#ffc51a">القيمة، مش الخصم بس</text>
+<text x="1110" y="363" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="28" fill="#d5e5f2">إزاي تشرح قيمة البراند؟</text>
+<line x1="765" y1="415" x2="1110" y2="415" stroke="#ffffff" stroke-width="2" opacity=".2"/>
+<text x="1110" y="462" text-anchor="end" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#d5e5f2">KAMAL ELNHRAWY</text>
+<text x="1110" y="494" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="16" fill="#9bb6cb">أفكار تسويقية من الواقع</text>
+<circle cx="1070" cy="548" r="7" fill="#27b9bd"/><circle cx="1092" cy="548" r="7" fill="#ffc51a"/><circle cx="1114" cy="548" r="7" fill="#f23d6b"/>
+</svg>
