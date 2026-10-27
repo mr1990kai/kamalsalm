@@ -334,7 +334,7 @@ async function main(){
  }
  const title=clean(result.title,180),excerpt=clean(result.excerpt,220);
  let body=String(result.articleMarkdown||"").trim();
- if(!title||!excerpt||bodyLength(body)<2600||!/[\\u0600-\\u06ff]/.test(body)){
+ if(!title||!excerpt||bodyLength(body)<2600||!/[\u0600-\u06ff]/.test(body)){
   console.log("The first draft was short; requesting one focused expansion without adding local examples.");
   const expansion=await ask([
    {role:"system",content:"Return JSON only. Expand an Arabic translation digest using only the supplied original source text. Do not add local examples, new analysis, opinions, fact checks, unsupported claims, or a generic conclusion. Do not copy source paragraphs verbatim. Preserve meaning. Return one key: articleMarkdown."},
@@ -342,7 +342,7 @@ async function main(){
   ],5000);
   body=String(expansion.articleMarkdown||body).trim();
  }
- if(bodyLength(body)<2600||!/[\\u0600-\\u06ff]/.test(body))stop("Article remained too short after the translation-only expansion. Nothing was written.");
+ if(bodyLength(body)<2600||!/[\u0600-\u06ff]/.test(body))stop("Article remained too short after the translation-only expansion. Nothing was written.");
  let used=Array.isArray(result.sourceIds)?result.sourceIds.map(id=>opened[Number(id)-1]).filter(Boolean):[];
  if(!used.length)used=[opened[0]];
  used=used.filter((p,i,a)=>a.findIndex(x=>norm(x.url)===norm(p.url))===i).slice(0,4);
