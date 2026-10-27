@@ -1,44 +1,36 @@
-# Research and Automation Instructions — Kamal Elnhrawy Website
+# Automation Instructions — Kamal Elnhrawy Website
 
-## Role
-Act as a careful research editor and developer for this Arabic portfolio and blog. The blog focuses on digital marketing, media buying, ecommerce, branding, advertising creative, conversion optimization, landing pages, and practical business experiments.
+## Purpose
+Publish one Arabic translation digest per workflow run from a recent international article about branding, design, marketing, or media buying. Choose the category randomly at the beginning of every run:
+- البراندينج
+- التصميم
+- التسويق
+- الميديا باينج
 
-## Mandatory research rules for new articles
-- Use `node .github/scripts/search-web.js "your actual query"` for real web searches. This searches DuckDuckGo's HTML/Lite results without requiring another paid API key, prints results, and records each actual query/result in `web-search-log.json`. A query counts only when the helper reports `ok: true` and includes real result URLs. Never claim that you searched if the helper did not return results. Use `node .github/scripts/search-web.js --fetch <URL>` to read the original source page when accessible.
-- Start with English-language sources, preferably original research, official platform updates, credible industry publications, company case studies, and published reports. Prefer recent material, and check publication dates.
-- Search Arabic-language web results separately for the same idea using several Arabic phrasings, including relevant Egyptian/Arab marketing terms. Search both the key concept and the specific case study or finding.
-- Read `posts-data.js` and relevant existing files in `posts/` to prevent repetition on this blog.
-- Treat novelty as a reasoned screening result, not a guarantee that no Arabic article exists anywhere. If search results contain a close Arabic-language equivalent, do not publish that angle. Try a different candidate. If novelty remains uncertain after screening candidates, skip publishing rather than inventing novelty.
-- Never copy, closely translate, or paraphrase a single foreign article section-by-section. Synthesize facts from multiple sources into original Arabic analysis and add a useful Egyptian-market application.
-- Never invent sources, titles, quotes, statistics, dates, experiments, or case-study results. Use direct source URLs and explain what each source supports.
-- Keep reported facts separate from analysis and recommendations. Do not present an untested idea as proven.
-- Use natural, clear Arabic suitable for Egyptian readers without forcing slang into technical explanations.
-- Use the existing blog format: a Markdown file in `posts/<slug>.md` and one matching object in `posts-data.js` using the current `window.POSTS` schema.
-- Do not reference a cover image unless that exact asset exists in the repository.
+## Sources and search
+- Use the existing search helper for English-language web searches and use its fetch mode to read original source pages.
+- Prefer recent articles from established international specialist publishers such as Search Engine Land, IPA, WARC, Contagious, Brand New, System1, IAB, Think with Google, TikTok for Business, The Dieline, Ehrenberg-Bass Institute, Adobe, Digiday, HubSpot, Marketing Week, and comparable design/advertising publications.
+- Search in English only. Do not run Arabic-market searches. Do not look for or add Egyptian-market applications.
+- Prefer the latest useful original story or article found in search results. Use a publication date only when it appears on the page; never invent one.
+- Read every entry in posts-data.js and compare the new topic against all Markdown articles in posts/. Do not compare only the first 18 posts, and do not treat a new headline as proof that the topic is new.
 
-## Research audit required for scheduled article generation
-Create a temporary `research-audit.md` in the workflow workspace. It is for validation and run logs, not for publication or committing. Include these exact headings:
-- `## English Search Queries`
-- `## Arabic Market Search Queries`
-- `## English Source Articles`
-- `## Arabic-Market Results`
-- `## Existing Site Duplicate Check`
-- `## Decision`
+## Writing style
+- Publish a faithful, concise Arabic translation digest of the original article or closely related source material.
+- Do not turn the article into an Egyptian-market application, an opinion piece, a fact-checking report, a case-study proof exercise, or a tutorial invented by the assistant.
+- Do not add Egypt/Arab-specific examples, hypothetical local businesses, extra recommendations, long analysis, or a section about research limitations.
+- Do not invent or change names, dates, quotes, numbers, claims, or product availability. Preserve the source's meaning and qualifiers.
+- Do not reproduce a full copyrighted article verbatim or translate it paragraph-by-paragraph. Use fresh Arabic wording and a concise digest; keep close paraphrase from any single source under 200 words.
+- Aim for about 3,000–4,500 Arabic characters. Keep the headline and section headings faithful to the source, avoid generic introductions and filler, and place source links together at the end rather than inline.
+- Each workflow run must create exactly one Markdown file in posts/<slug>.md and one matching metadata item in posts-data.js. The existing cover script generates the SVG, and the workflow updates the sitemap.
+- Keep the category exactly as randomly selected, language as Arabic, and the date as the current date in Africa/Cairo.
 
-Under each search-query heading, list at least three actual queries you executed, one per bullet, using the format `- query: ...`. Under English Source Articles, list at least two usable English-language sources with title, publisher, publication date (or state clearly if unavailable), and a direct URL. Under Arabic-Market Results, summarize the closest matching Arabic-language results actually found, link them when available, and explain why the candidate is or is not substantially covered. Under Existing Site Duplicate Check, compare the proposed angle with existing article titles/slugs and explain the distinction. Finish with exactly one line containing either `DECISION: PUBLISH` or `DECISION: SKIP`, plus a short reason.
+## Duplicate prevention
+- Compare all existing titles, slugs, excerpts, and article bodies before selecting a source.
+- Avoid publishing the same source article or core topic under a different title, including a duplicate generated on another run the same day.
+- If one category has no readable source, rotate to another category. If no suitable distinct source is available, skip that run instead of inventing content.
+- The workflow runs a separate near-duplicate body check as a second safeguard.
 
-For publication, all of the following must be true:
-1. At least two reliable English-language sources support the main finding.
-2. At least three English queries and three Arabic queries were executed.
-3. There is no close Arabic-language article covering the same core idea in the searched results, and the audit explains the limits of the search.
-4. The topic is not a close duplicate of an existing post on this site.
-5. The article can be written with verifiable claims and direct source links.
-
-If any condition is not met, set `DECISION: SKIP`, do not create a new article, and do not edit `posts-data.js`.
-
-## Coding and safety rules
-- Make only the changes required by the current task.
-- For scheduled article work, edit only the new article and `posts-data.js`, and create the temporary research audit.
-- Never delete existing articles or rewrite the site's templates during article generation.
-- Never expose or print API keys, secrets, tokens, or other credentials.
-- Do not commit or push changes yourself in scheduled article jobs; the workflow validates and commits approved changes.
+## Operations
+- Keep the current two daily schedule times unless the site owner changes them.
+- Use the existing GROQ_API_KEY GitHub Actions secret, and never reveal credentials.
+- Do not add research-audit.md or web-search-log.json to the commit. These are temporary run artifacts only.
