@@ -40,8 +40,9 @@ jobs:
         if: steps.article.outputs.publish == 'true'
         run: node .github/scripts/generate-cover.js
 
-      - name: Validate research and article
+      - name: Validate translation and prevent near-duplicates
         id: validate
+        if: steps.article.outputs.publish == 'true'
         env:
           TODAY: ${{ steps.date.outputs.today }}
         run: |
@@ -53,192 +54,102 @@ jobs:
             console.error("Validation failed: " + message);
             process.exit(1);
           }
-          function section(markdown, heading, nextHeading) {
-            const start = markdown.indexOf(heading);
-            if (start < 0) return [];
-            const from = start + heading.length;
-            const end = nextHeading ? markdown.indexOf(nextHeading, from) : -1;
-            return markdown.slice(from, end < 0 ? undefined : end)
-              .split(/\r?\n/)
-              .map(line => line.trim())
-              .filter(line => line.startsWith("- "));
+          function normalize(text) {
+            return String(text || "")
+              .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
+              .replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه")
+              .toLowerCase().replace(/[^a-z0-9\u0600-\u06ff]+/g, " ")
+              .split(/\s+/).filter(Boolean);
+          }
+          function shingles(text, size) {
+            const words = normalize(text), set = new Set();
+            for (let i = 0; i <= words.length - size; i++) set.add(words.slice(i, i + size).join(" "));
+            return set;
+          }
+          function similarity(a, b) {
+            const A = shingles(a, 5), B = shingles(b, 5);
+            if (!A.size || !B.size) return 0;
+            let intersection = 0;
+            for (const item of A) if (B.has(item)) intersection++;
+            return intersection / (A.size + B.size - intersection);
+          }
+          function bodyOf(text) {
+            return String(text || "")
+              .split(/\n\s*##\s*(?:المصادر|المراجع|المصدر الأصلي|المصادر الأصلية|sources|references)(?=\s|$)/i)[0]
+              .replace(/^#\s+.*$/m, "").trim();
           }
 
-          if (!fs.existsSync("research-audit.md")) {
-            fail("Article generator did not create research-audit.md; research cannot be verified.");
-          }
-          const audit = fs.readFileSync("research-audit.md", "utf8");
-          const decisionMatch = audit.match(/DECISION:\s*(PUBLISH|SKIP)\b/i);
-          if (!decisionMatch) fail("Audit must include DECISION: PUBLISH or DECISION: SKIP.");
-          const decision = decisionMatch[1].toUpperCase();
-
-          fs.appendFileSync(
-            process.env.GITHUB_STEP_SUMMARY,
-            "## Daily article research audit\n\n" + audit + "\n"
-          );
-
-          const createdPosts = cp.execSync(
+          const audit = fs.existsSync("research-audit.md") ? fs.readFileSync("research-audit.md", "utf8") : "";
+          if (!/DECISION:\s*PUBLISH\b/i.test(audit)) fail("No PUBLISH decision in source log.");
+          const created = cp.execSync(
             "git ls-files --others --exclude-standard -- 'posts/*.md'",
             { encoding: "utf8" }
-          ).trim().split("\n").filter(Boolean);
-
-          const headings = [
-            "## English Search Queries",
-            "## Arabic Market Search Queries",
-            "## English Source Articles",
-            "## Arabic-Market Results",
-            "## Existing Site Duplicate Check",
-            "## Decision"
-          ];
-          for (const heading of headings) {
-            if (!audit.includes(heading)) fail("Missing audit heading: " + heading);
-          }
-
-          const enQueries = section(audit, headings[0], headings[1]);
-          const arQueries = section(audit, headings[1], headings[2]);
-          const enSources = section(audit, headings[2], headings[3]);
-          const arFindings = section(audit, headings[3], headings[4]);
-          const duplicateCheck = section(audit, headings[4], headings[5]);
-
-          if (enQueries.length < 3 || !enQueries.every(line => /query:/i.test(line))) {
-            fail("Audit must list at least 3 executed English search queries.");
-          }
-          if (arQueries.length < 3 ||
-              !arQueries.every(line => /query:/i.test(line) && /[\u0600-\u06FF]/.test(line))) {
-            fail("Audit must list at least 3 executed Arabic search queries.");
-          }
-          const sourceLinks = enSources.join("\n").match(/https?:\/\/[^\s)]+/g) || [];
-          if (decision === "PUBLISH" && sourceLinks.length < 2) fail("Audit needs at least 2 direct English source URLs.");
-          if (decision === "PUBLISH") {
-            const forbiddenMarketTitle = /\b(?:Egypt|Egyptian|Cairo|MENA|Middle East|North Africa|Arab world|Saudi Arabia|Saudi|UAE|United Arab Emirates|Dubai|Abu Dhabi|Qatar|Kuwait|Bahrain|Oman|Jordan|Lebanon|Iraq|Morocco|Algeria|Tunisia|Libya|Sudan|Yemen|Palestine|Riyadh|Jeddah|Doha|Casablanca|Rabat|Amman|Beirut|Muscat|Manama)\b/i;
-            const forbiddenHost = /(?:^|[.-])(?:egypt|cairo|middleeast|middle-east|mena|arabnews|arabic|alarabiya|dailynewsegypt|egypttoday|egyptindependent|gulfnews|khaleejtimes|zawya|wam|thenational|thepeninsula|youm7|masrawy)(?:[.-]|$)/i;
-            const arabicCountryTld = /\.(?:eg|sa|ae|qa|kw|bh|om|jo|lb|iq|ma|dz|tn|ly|sd|ye|ps)$/i;
-            for (const line of enSources) {
-              const title = line.split(" — الناشر:")[0];
-              const match = line.match(/https?:\/\/[^\s)]+/i);
-              const url = match ? match[0].replace(/[.,;]+$/, "") : "";
-              let hostname = "";
-              try { hostname = new URL(url).hostname.replace(/^www\./i, ""); } catch (_) {}
-              if (!url || /[\u0600-\u06FF]/.test(title) || forbiddenMarketTitle.test(title) || forbiddenHost.test(hostname) || arabicCountryTld.test(hostname)) {
-                fail("Primary article evidence must come from verifiable non-Arab foreign-market sources; blocked source: " + (url || title));
-              }
-            }
-          }
-          if (arFindings.join("\n").trim().length < 100) {
-            fail("Arabic-market results and search limitations are not documented.");
-          }
-          if (duplicateCheck.join("\n").trim().length < 80) {
-            fail("The comparison with existing blog articles is too brief.");
-          }
-
-          if (!fs.existsSync("web-search-log.json")) {
-            fail("No web-search-log.json was created; real web research is unverified.");
-          }
-          let searchLog;
-          try {
-            searchLog = JSON.parse(fs.readFileSync("web-search-log.json", "utf8"));
-          } catch (error) {
-            fail("web-search-log.json is invalid: " + error.message);
-          }
-          if (!Array.isArray(searchLog)) fail("Web search log must be an array.");
-
-          const successfulSearches = searchLog.filter(item =>
-            item.type === "search" && item.ok === true &&
-            Array.isArray(item.results) && item.results.some(r => r.url && /^https?:\/\//i.test(r.url))
-          );
-          const normalizeQueryLine = line => line.replace(/^- query:\s*/i, "").trim();
-          const englishAuditQueries = enQueries.map(normalizeQueryLine);
-          const arabicAuditQueries = arQueries.map(normalizeQueryLine);
-          const successfulEnglish = new Set(successfulSearches
-            .filter(item => item.language === "en").map(item => item.query));
-          const successfulArabic = new Set(successfulSearches
-            .filter(item => item.language === "ar").map(item => item.query));
-
-          // Keep an audit trail of the queries, but do not block publishing because query
-          // labels differ from the actual query after the search helper's retry.
-          // The successful-search count below still requires real English and Arabic searches.
-          if (successfulEnglish.size < 3 || successfulArabic.size < 3) {
-            fail("At least 3 successful English and 3 successful Arabic web searches are required.");
-          }
-
-          function normalizeSourceUrl(value) {
-            try {
-              const url = new URL(String(value).replace(/[.,;]+$/, ""));
-              url.hash = "";
-              url.search = "";
-              url.pathname = url.pathname.replace(/\/+$/, "") || "/";
-              return url.origin.toLowerCase() + url.pathname;
-            } catch (_) {
-              return String(value).replace(/[.,;]+$/, "");
-            }
-          }
-          const foundUrls = new Set(successfulSearches.flatMap(item =>
-            item.results.map(result => normalizeSourceUrl(result.url || ""))
-          ));
-          const auditSourceUrls = sourceLinks.map(normalizeSourceUrl);
-          if (decision === "PUBLISH" && auditSourceUrls.filter(url => foundUrls.has(url)).length < 2) {
-            fail("At least 2 English sources in the audit must come from actual logged search results.");
-          }
-
-          if (decision === "SKIP") {
-            if (createdPosts.length !== 0) {
-              fail("Audit says SKIP, but a new article was also created.");
-            }
-            const changedMetadata = cp.spawnSync("git", ["diff", "--quiet", "--", "posts-data.js"]);
-            if (changedMetadata.status !== 0) {
-              fail("Audit says SKIP, but posts-data.js was modified.");
-            }
-            fs.appendFileSync(process.env.GITHUB_OUTPUT, "publish=false\n");
-            console.log("No article published: research/novelty checks did not pass.");
-            process.exit(0);
-          }
-
-          if (createdPosts.length !== 1) {
-            fail("Expected exactly one new Markdown article in posts/.");
-          }
+          ).trim().split(/\r?\n/).filter(Boolean);
+          if (created.length !== 1) fail("Expected exactly one new Markdown article per run.");
 
           global.window = {};
-          try {
-            require("./posts-data.js");
-          } catch (error) {
-            fail("posts-data.js could not be parsed: " + error.message);
-          }
+          try { require("./posts-data.js"); }
+          catch (error) { fail("posts-data.js could not be parsed: " + error.message); }
           const posts = global.window.POSTS;
           if (!Array.isArray(posts)) fail("window.POSTS is not an array.");
-
           const slugs = new Set();
           for (const p of posts) {
-            if (!p.slug || !p.title || !p.date || !p.category) {
-              fail("Missing required metadata field in posts-data.js.");
-            }
-            if (slugs.has(p.slug)) fail("Duplicate slug: " + p.slug);
+            if (!p.slug || !p.title || !p.date || !p.category) fail("Post metadata is incomplete.");
+            if (slugs.has(p.slug)) fail("Duplicate post slug: " + p.slug);
             slugs.add(p.slug);
-            if (!fs.existsSync(`posts/${p.slug}.md`)) {
-              fail("Metadata has no matching Markdown file: " + p.slug);
-            }
+            if (!fs.existsSync("posts/" + p.slug + ".md")) fail("Metadata points to a missing Markdown file: " + p.slug);
           }
 
-          const slug = createdPosts[0].replace(/^posts\//, "").replace(/\.md$/, "");
+          const slug = created[0].replace(/^posts\//, "").replace(/\.md$/, "");
           const post = posts.find(p => p.slug === slug);
-          if (!post || post.date !== process.env.TODAY || post.lang !== "ar") {
-            fail("New article metadata must match today's date, slug and Arabic language.");
+          if (!post) fail("The new article has no matching metadata.");
+          if (post.date !== process.env.TODAY || post.lang !== "ar") fail("Incorrect date or language metadata.");
+          if (!new Set(["البراندينج", "التصميم", "التسويق", "الميديا باينج"]).has(post.category)) {
+            fail("Unexpected article category: " + post.category);
           }
-          const article = fs.readFileSync(createdPosts[0], "utf8");
-          const articleBody = article.split(/\n\s*##\s*(?:المصادر|المراجع|sources|references)(?=\s|$)/i)[0].trim();
-          if (articleBody.length < 2600) fail("Article body is too short; expected at least 2,600 characters before sources.");
-          const articleLinks = article.match(/\]\(https?:\/\/[^)\s]+\)/g) || [];
-          if (articleLinks.length < 3) fail("Article needs at least 3 direct source links.");
-          if (!/[\u0600-\u06FF]/.test(article)) fail("Article content is not Arabic.");
+
+          const article = fs.readFileSync(created[0], "utf8");
+          if (bodyOf(article).length < 2600) fail("The Arabic translation digest is too short.");
+          if (!/[\u0600-\u06ff]/.test(article)) fail("The article body is not Arabic.");
+          const links = [...article.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map(match => match[1]);
+          if (!links.length) fail("Add the original source link(s) at the end of the article.");
+
+          let log;
+          try { log = JSON.parse(fs.readFileSync("web-search-log.json", "utf8")); }
+          catch (error) { fail("Search log is missing or invalid: " + error.message); }
+          if (!Array.isArray(log) || !log.some(item => item.type === "search" && item.ok === true && item.language === "en")) {
+            fail("No successful English-language search was recorded.");
+          }
+          function urlKey(value) {
+            try {
+              const url = new URL(value);
+              url.hash = ""; url.search = "";
+              url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+              return url.origin.toLowerCase() + url.pathname;
+            } catch (_) { return ""; }
+          }
+          const found = new Set(log.flatMap(item => (item.results || []).map(result => urlKey(result.url))));
+          if (!links.some(link => found.has(urlKey(link)))) fail("At least one source link must come from the actual search results.");
+
+          const tracked = cp.execSync("git ls-files -- 'posts/*.md'", { encoding: "utf8" })
+            .trim().split(/\r?\n/).filter(Boolean).filter(file => file !== created[0]);
+          const newBody = bodyOf(article);
+          for (const file of tracked) {
+            let oldText = "";
+            try { oldText = cp.execFileSync("git", ["show", "HEAD:" + file], { encoding: "utf8", maxBuffer: 2 * 1024 * 1024 }); }
+            catch (_) { continue; }
+            const ratio = similarity(newBody, bodyOf(oldText));
+            if (ratio > 0.62) fail("Near-duplicate body detected against " + file + " (similarity " + ratio.toFixed(2) + ").");
+          }
 
           if (!post.cover || !post.cover.startsWith("images/covers/") || !fs.existsSync(post.cover)) {
-            fail("Generated cover is missing or not linked in the post metadata.");
+            fail("Generated cover is missing or not linked in posts-data.js.");
           }
-          if (!fs.readFileSync(post.cover, "utf8").includes("<svg")) {
-            fail("Generated cover SVG is invalid.");
-          }
-
+          if (!fs.readFileSync(post.cover, "utf8").includes("<svg")) fail("Generated cover SVG is invalid.");
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+            "## Arabic translation digest\n\nCategory: " + post.category + "\n\nOriginal source links are at the end of the post.\n");
           fs.appendFileSync(process.env.GITHUB_OUTPUT, "publish=true\n");
-          console.log("Research audit and article validation passed: " + slug);
+          console.log("Translation and duplicate checks passed: " + slug);
           NODE
 
       - name: Update sitemap with published article
