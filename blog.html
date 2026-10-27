@@ -83,7 +83,7 @@
     render();
   }
   function drawChips(){
-    var preferred=['الميديا باينج','البراندينج','التجارة الإلكترونية'];
+    var preferred=['الميديا باينج','البراندينج','التصميم','التسويق','التجارة الإلكترونية'];
     var cats=preferred.filter(function(c){return list.some(function(p){return p.category===c})});
     var hasColumn=list.some(function(p){return p.column==='دفتر كمال'});
     $('#chips').innerHTML='<button type="button" class="on" data-f="all">كل المقالات</button>'+
