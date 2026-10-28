@@ -65,7 +65,7 @@
   function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
   function card(p){
     var coverPath=p.cover||'images/covers/default-article-cover.svg';
-    var cover='<img src="'+esc(coverPath)+'" alt="" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=\\'1\\';this.src=\\'images/covers/default-article-cover.svg\\'}else{this.style.display=\\'none\\'}">';
+    var cover='<img src="'+esc(coverPath)+'" alt="" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=&#39;1&#39;;this.src=&#39;images/covers/default-article-cover.svg&#39;}else{this.style.display=&#39;none&#39;}" >';
     var labels='<div class="card-labels"><span class="ct">'+esc(p.category||'')+'</span>'+(p.column?'<span class="writer">بقلم كمال النحراوي</span>':'')+'</div>';
     return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx">'+labels+'<h2>'+esc(p.title||'')+'</h2><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
   }
