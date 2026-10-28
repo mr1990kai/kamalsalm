@@ -82,7 +82,7 @@
   <p class="cp">© 2026 Kamal Elnhrawy</p>
 </footer>
 <script src="md.js"></script>
-<script src="posts-data.js?v=9"></script>
+<script src="posts-data.js?v=10"></script>
 <script>
 (function(){
   'use strict';
@@ -90,7 +90,8 @@
   function fmt(d){try{return new Intl.DateTimeFormat('ar-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'}).format(new Date(d+'T00:00:00'))}catch(e){return d||''}}
   function setMeta(selector,content){var node=document.querySelector(selector);if(node)node.setAttribute('content',content)}
   function card(p){
-    var cover=p.cover?'<img src="'+esc(p.cover)+'" alt="" loading="lazy" onerror="this.remove()">':esc((p.title||'م').slice(0,1));
+    var coverPath=p.cover||'images/covers/default-article-cover.svg';
+    var cover='<img src="'+esc(coverPath)+'" alt="" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback=&#39;1&#39;;this.src=&#39;images/covers/default-article-cover.svg&#39;}else{this.style.display=&#39;none&#39;}" >';
     var labels='<div class="card-labels"><span class="ct">'+esc(p.category||'')+'</span>'+(p.column?'<span class="writer">بقلم كمال النحراوي</span>':'')+'</div>';
     return '<a class="bcard" href="post.html?p='+encodeURIComponent(p.slug)+'"><div class="cv">'+cover+'</div><div class="tx">'+labels+'<h3>'+esc(p.title||'')+'</h3><p>'+esc(p.excerpt||'')+'</p><div class="mt">'+fmt(p.date)+' · '+esc(p.read||'')+' دقائق قراءة</div></div></a>';
   }
@@ -116,7 +117,7 @@
       $('#art').dir=P.lang==='ar'?'rtl':'ltr';
       $('#body').className='body '+(P.lang==='ar'?'ar':'en');
       $('#body').innerHTML=window.md(source);
-      if(P.cover){$('#cov').src=P.cover;$('#cov').alt=P.title||'';$('#cov').hidden=false;$('#cov').onerror=function(){this.hidden=true}}
+      var coverPath=P.cover||'images/covers/default-article-cover.svg';$('#cov').src=coverPath;$('#cov').alt=P.title||'';$('#cov').hidden=false;$('#cov').onerror=function(){if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/covers/default-article-cover.svg'}else{this.hidden=true}}
       var url=location.origin+location.pathname+'?p='+encodeURIComponent(P.slug);
       var canonical=document.querySelector('link[rel="canonical"]');
       if(canonical)canonical.href=url;
@@ -128,7 +129,7 @@
       setMeta('meta[name="twitter:title"]',(P.title||'مقال')+' | كمال النحراوي');
       setMeta('meta[name="twitter:description"]',P.excerpt||P.title||'');
       var ld={'@context':'https://schema.org','@type':'Article',headline:P.title||'',description:P.excerpt||'',datePublished:P.date||'',inLanguage:P.lang||'ar',author:{'@type':'Person',name:'Kamal Elnhrawy'},mainEntityOfPage:url};
-      if(P.cover){var imageUrl=new URL(P.cover,location.href).href;setMeta('meta[property="og:image"]',imageUrl);setMeta('meta[name="twitter:image"]',imageUrl);ld.image=imageUrl}
+      var imageUrl=new URL(coverPath,location.href).href;setMeta('meta[property="og:image"]',imageUrl);setMeta('meta[name="twitter:image"]',imageUrl);ld.image=imageUrl
       var old=document.querySelector('script[type="application/ld+json"]');if(old)old.remove();
       var schema=document.createElement('script');schema.type='application/ld+json';schema.textContent=JSON.stringify(ld);document.head.appendChild(schema);
       $('#wa').href='https://wa.me/?text='+encodeURIComponent((P.title||'')+' '+url);
