@@ -342,5 +342,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/dieline-awards-2026-winners-revealed.svg'
+  },
+  {
+    slug: "brand-new-conference-speakers-announced",
+    title: "Brand New: مؤتمر 2026 – أسماء المتحدثين معلنة",
+    excerpt: "أعلنت شركة UnderConsideration عن أسماء المتحدثين لمؤتمر Brand New 2026 في ناشفيل، TN، في 17-18 سبتمبر. الأسعار المتقدمة تنتهي في 26 يونيو، ولا توجد رعاة، مع إمكانية الوصول عن بُعد بعد الحدث.",
+    date: "2026-10-28",
+    category: "البراندينج",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/brand-new-conference-speakers-announced.svg'
   }
 ];
