@@ -332,5 +332,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/how-to-exploit-meta-advantage-plus-for-roas-in-egypt.svg'
+  },
+  {
+    slug: "dieline-awards-2026-winners-revealed",
+    title: "جوائز DIELINE لعام 2026: الفائزون المعلنون",
+    excerpt: "في مايو 2026، أعلن DIELINE عن فائزين جوائز DIELINE لعام 2026، مع 170 فائزًا عبر 41 فئة، و14 فائزًا رئيسيًا، من أكثر من 1,500 مشاركة من 90+ دولة.",
+    date: "2026-10-28",
+    category: "التصميم",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/dieline-awards-2026-winners-revealed.svg'
   }
 ];
