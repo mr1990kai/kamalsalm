@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">في عصر نتائج البحث اللي بتجاوب من غير نقرة، هل الظهور أهم من الزيارات؟</title>
+<desc id="desc">غلاف تحريري عن إجابات الذكاء الاصطناعي في البحث والفرق بين الظهور والنقرات.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07182b"/><stop offset="1" stop-color="#123764"/></linearGradient>
+  <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39d1ca"/><stop offset="1" stop-color="#159da6"/></linearGradient>
+  <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".08"/></pattern>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<rect width="1200" height="630" fill="url(#dots)"/>
+<circle cx="1070" cy="40" r="215" fill="#ffc51a" opacity=".12"/>
+<circle cx="50" cy="620" r="220" fill="#27b9bd" opacity=".12"/>
+<path d="M0 510 C180 430 310 570 480 485 L480 630 L0 630 Z" fill="#f23d6b" opacity=".12"/>
+<rect x="62" y="64" width="500" height="502" rx="34" fill="#061426" stroke="#fff" stroke-opacity=".12"/>
+<rect x="92" y="94" width="440" height="442" rx="26" fill="#f4f7f6"/>
+<rect x="112" y="114" width="400" height="52" rx="17" fill="#e6edf1"/>
+<circle cx="138" cy="140" r="8" fill="none" stroke="#123764" stroke-width="4"/>
+<path d="M144 146l9 9" stroke="#123764" stroke-width="4" stroke-linecap="round"/>
+<rect x="168" y="132" width="180" height="7" rx="4" fill="#123764" opacity=".22"/>
+<rect x="112" y="183" width="400" height="153" rx="18" fill="#fff" stroke="#dce5e9"/>
+<rect x="132" y="204" width="35" height="35" rx="10" fill="url(#teal)"/>
+<path d="M144 222l7 7 13-16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="181" y="207" width="185" height="9" rx="4" fill="#123764" opacity=".72"/>
+<rect x="181" y="226" width="286" height="7" rx="4" fill="#123764" opacity=".15"/>
+<rect x="132" y="255" width="355" height="7" rx="4" fill="#123764" opacity=".15"/>
+<rect x="132" y="275" width="320" height="7" rx="4" fill="#123764" opacity=".15"/>
+<rect x="132" y="294" width="245" height="7" rx="4" fill="#123764" opacity=".15"/>
+<rect x="112" y="353" width="400" height="155" rx="18" fill="#fff" stroke="#dce5e9"/>
+<text x="476" y="382" text-anchor="end" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#123764">SEARCH VISIBILITY</text>
+<path d="M145 466 L204 440 L263 453 L322 411 L381 421 L448 391" fill="none" stroke="#27b9bd" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="448" cy="391" r="7" fill="#f23d6b"/>
+<path d="M145 484H468" stroke="#123764" stroke-opacity=".12" stroke-width="2"/>
+<path d="M145 432V484M204 432V484M263 432V484M322 432V484M381 432V484M440 432V484" stroke="#123764" stroke-opacity=".08"/>
+<circle cx="489" cy="184" r="13" fill="#ffc51a"/>
+<path d="M489 171v26M476 184h26" stroke="#123764" stroke-width="3" stroke-linecap="round"/>
+<text x="1110" y="235" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="23" font-weight="700" fill="#27b9bd">البحث بيتغير</text>
+<text x="1110" y="302" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="38" font-weight="700" fill="#fff">الظهور من غير نقرة</text>
+<text x="1110" y="358" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="31" font-weight="700" fill="#fff">هل أهم من الزيارات؟</text>
+<path d="M730 400H1110" stroke="#fff" stroke-opacity=".16" stroke-width="2"/>
+<rect x="875" y="430" width="235" height="44" rx="22" fill="#27b9bd"/>
+<text x="992" y="458" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#07182b">ZERO-CLICK SEARCH</text>
+<text x="1110" y="550" text-anchor="end" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="3" fill="#fff">KAMAL ELNHRAWY</text>
+<text x="1110" y="579" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Arial,sans-serif" font-size="15" fill="#fff" opacity=".72">أفكار تسويقية من الواقع</text>
+</svg>
