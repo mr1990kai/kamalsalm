@@ -98,6 +98,15 @@ jobs:
             if (slugs.has(p.slug)) fail("Duplicate post slug: " + p.slug);
             slugs.add(p.slug);
             if (!fs.existsSync("posts/" + p.slug + ".md")) fail("Metadata points to a missing Markdown file: " + p.slug);
+            if (!p.cover || !fs.existsSync(p.cover)) fail("Post cover is missing for: " + p.slug);
+            if (!fs.readFileSync(p.cover, "utf8").includes("<svg")) fail("Post cover SVG is invalid for: " + p.slug);
+          }
+
+          const trackedPosts = cp.execSync("git ls-files -- 'posts/*.md'", { encoding: "utf8" })
+            .trim().split(/\r?\n/).filter(Boolean);
+          for (const file of new Set(trackedPosts.concat(created))) {
+            const fileSlug = file.replace(/^posts\//, "").replace(/\.md$/, "");
+            if (!slugs.has(fileSlug)) fail("Markdown article has no posts-data.js metadata: " + file);
           }
 
           const slug = created[0].replace(/^posts\//, "").replace(/\.md$/, "");
@@ -183,6 +192,23 @@ jobs:
           fs.writeFileSync(file, xml, "utf8");
           NODE
 
+      - name: Bump article metadata cache version
+        if: steps.validate.outputs.publish == 'true'
+        run: |
+          node <<'NODE'
+          const fs = require("fs");
+          for (const file of ["blog.html", "post.html"]) {
+            const source = fs.readFileSync(file, "utf8");
+            let count = 0;
+            const updated = source.replace(/posts-data[.]js[?]v=([0-9]+)/g, function(match, version) {
+              count++;
+              return "posts-data.js?v=" + (Number(version) + 1);
+            });
+            if (!count) throw new Error("No posts-data.js cache version found in " + file);
+            fs.writeFileSync(file, updated, "utf8");
+          }
+          NODE
+
       - name: Commit and publish approved article
         if: steps.validate.outputs.publish == 'true'
         env:
@@ -190,7 +216,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add posts/ posts-data.js images/covers/ sitemap.xml
+          git add posts/ posts-data.js images/covers/ sitemap.xml blog.html post.html
           if git diff --cached --quiet; then
             echo "No article changes to publish."
             exit 1
