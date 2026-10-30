@@ -362,5 +362,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/brand-new-conference-speakers-announced.svg'
+  },
+  {
+    slug: "brand-new",
+    title: "Brand New – آراء حول الهوية المؤسسية والعلامة التجارية",
+    excerpt: "موقع Brand New، جزء من UnderConsideration، يقدّم آراءً ومراجعات حول عمل الهوية المؤسسية والعلامة التجارية، مع فهرس واسع للمواضيع والوسوم، وتحديثات يومية في أكتوبر 2026.",
+    date: "2026-10-30",
+    category: "التصميم",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/brand-new.svg'
   }
 ];
