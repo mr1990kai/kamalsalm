@@ -372,5 +372,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/brand-new.svg'
+  },
+  {
+    slug: "nol-beers-strategic-growth-drivers",
+    title: "البييرات منخفضة الكحول تصبح محركًا استراتيجيًا للنمو",
+    excerpt: "البييرات منخفضة الكحول (NoLo) تشهد نموًا بمعدل مزدوج الأرقام، تجذب مستهلكين جدد وتفتح مناسبات استهلاك جديدة، ما يجعلها محركًا استراتيجيًا للنمو.",
+    date: "2026-10-30",
+    category: "البراندينج",
+    lang: "ar",
+    read: 7,
+    cover: 'images/covers/nol-beers-strategic-growth-drivers.svg'
   }
 ];
