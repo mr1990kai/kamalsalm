@@ -382,5 +382,15 @@ window.POSTS = [
     lang: "ar",
     read: 7,
     cover: 'images/covers/nol-beers-strategic-growth-drivers.svg'
+  },
+  {
+    slug: "apple-safari-block-hands-wpp-a-fresh-case-for-infosem",
+    title: "حظر Safari من Apple يمنح WPP حالة جديدة لـ InfoSum",
+    excerpt: "Apple حظر Safari على تتبع المستخدمين يفتح فرصة جديدة لشركة InfoSum في WPP لتطوير حلول الخصوصية. يركز المقال على تأثير الحظر على الإعلانات، وتحديات تتبع الهوية، وكيف يمكن للشركات التكيف مع القوانين الجديدة.",
+    date: "2026-10-31",
+    category: "التسويق",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/apple-safari-block-hands-wpp-a-fresh-case-for-infosem.svg'
   }
 ];
