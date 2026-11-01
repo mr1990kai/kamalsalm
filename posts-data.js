@@ -392,5 +392,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/apple-safari-block-hands-wpp-a-fresh-case-for-infosem.svg'
+  },
+  {
+    slug: "dieline-best-halloween-packaging-2026",
+    title: "أفضل تغليف هالوين لعام 2026 حسب DIELINE",
+    excerpt: "DIELINE يسلط الضوء على حزم هالوين المميزة لعام 2026، بما في ذلك كؤوس Tavern المعلبة ومجموعة A24 للذرة المقرمشة ذات التصميم الشفاف، مع تفاصيل عن الابتكار والجوائز المحتملة.",
+    date: "2026-11-01",
+    category: "التصميم",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/dieline-best-halloween-packaging-2026.svg'
   }
 ];
