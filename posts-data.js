@@ -402,5 +402,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/dieline-best-halloween-packaging-2026.svg'
+  },
+  {
+    slug: "contagious-brands-report-2026",
+    title: "تقرير العلامات التجارية المدمجة 2026",
+    excerpt: "يستعرض التقرير 25 سبتمبر 2026 أبرز العلامات التجارية الأكثر إبداعاً وتفرداً، مع تحليل لأسباب نجاحها في السوق العالمي، مع أمثلة على الحملات التي أحدثت تأثيراً ملحوظاً.",
+    date: "2026-11-01",
+    category: "البراندينج",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/contagious-brands-report-2026.svg'
   }
 ];
