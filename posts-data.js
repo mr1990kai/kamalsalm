@@ -422,5 +422,15 @@ window.POSTS = [
     lang: "ar",
     read: 4,
     cover: 'images/covers/logo-design-tips-trends-2026.svg'
+  },
+  {
+    slug: "your-brand-is-known-but-is-it-trusted",
+    title: "اسم علامتك معروف، لكن هل يثق الناس بها؟",
+    excerpt: "المعرفة بالعلامة لا تساوي الثقة. يتطلب بناء الثقة اتصالات ذات معنى مع المستهلكين، وليس مجرد التعرف السريع. المقال يوضح الفرق بين الظهور والثقة وكيف يؤثر ذلك على النتائج التجارية.",
+    date: "2026-11-03",
+    category: "البراندينج",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/your-brand-is-known-but-is-it-trusted.svg'
   }
 ];
