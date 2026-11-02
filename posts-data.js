@@ -412,5 +412,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/contagious-brands-report-2026.svg'
+  },
+  {
+    slug: "logo-design-tips-trends-2026",
+    title: "نصائح وتوجهات تصميم الشعارات لعام 2026",
+    excerpt: "مقال يستعرض أهم اتجاهات تصميم الشعارات لعام 2026، مع التركيز على البساطة، علم الألوان، وتوجه إزالة العلامة، مستندًا إلى استطلاع 285 مصممًا.",
+    date: "2026-11-02",
+    category: "التصميم",
+    lang: "ar",
+    read: 4,
+    cover: 'images/covers/logo-design-tips-trends-2026.svg'
   }
 ];
