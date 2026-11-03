@@ -432,5 +432,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/your-brand-is-known-but-is-it-trusted.svg'
+  },
+  {
+    slug: "news-ppc-tiktok-search-ads-adds-brand-and-category-keyword-packs-by-matt-g",
+    title: "أخبار PPC: إعلانات TikTok للبحث تضيف حزم كلمات مفتاحية للعلامة التجارية والفئة",
+    excerpt: "تقدم TikTok للبحث إعلانات جديدة تضيف حزم كلمات مفتاحية موجهة للعلامة التجارية والفئة، مع مؤشرات مشاركة الانطباعات الجديدة. يوضح المقال كيف يمكن للمعلنين الاستفادة من هذه الحزم لتحسين الوصول والفعالية.",
+    date: "2026-11-03",
+    category: "الميديا باينج",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/news-ppc-tiktok-search-ads-adds-brand-and-category-keyword-packs-by-matt-g.svg'
   }
 ];
