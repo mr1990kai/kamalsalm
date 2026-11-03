@@ -193,6 +193,7 @@
       var targetX = 0;
       var targetY = 0;
       var active = false;
+      var intersecting = false;
       var frame = 0;
       var resizeObserver;
 
@@ -281,17 +282,21 @@
         window.addEventListener("resize", resize, { passive: true });
       }
 
-      var observer = new IntersectionObserver(function (entries) {
-        active = !!entries[0].isIntersecting;
+      function syncActivity() {
+        var sceneRoot = visual.closest(".scene");
+        var opacity = sceneRoot ? parseFloat(window.getComputedStyle(sceneRoot).opacity || "1") : 1;
+        active = intersecting && opacity > 0.82 && !document.hidden;
         if (active) start();
         else stop();
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        intersecting = !!entries[0].isIntersecting;
+        syncActivity();
       }, { threshold: 0.01 });
       observer.observe(visual);
-
-      document.addEventListener("visibilitychange", function () {
-        if (document.hidden) stop();
-        else start();
-      });
+      window.addEventListener("scroll", syncActivity, { passive: true });
+      document.addEventListener("visibilitychange", syncActivity);
 
       visual.classList.add("is-3d");
       renderer.render(scene, camera);
