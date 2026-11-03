@@ -188,6 +188,8 @@
   transform: translateY(-3px);
 }
 @media (max-width: 899px) {
+  #about .about > div:first-child { position: relative; z-index: 4; }
+  #about .ph { z-index: 0; }
   #about.s1 {
     background: #17110e;
   }
