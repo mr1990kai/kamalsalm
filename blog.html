@@ -24,11 +24,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Noto+Naskh+Arabic:wght@400;600&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project.css">
 <link rel="stylesheet" href="blog.css">
+<link rel="stylesheet" href="portfolio-site.css">
+<link rel="stylesheet" href="portfolio-content.css">
 </head>
-<body>
-<header>
-  <a class="back" href="design.html">← الرئيسية</a>
-  <a class="logo" href="index.html">Kamal Elnhrawy</a>
+<body class="content-page">
+<header class="site-header">
+  <a class="brand" href="design.html">KAMAL ELNHAWRY</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="design.html">الرئيسية</a><a href="projects.html">المشاريع</a><a href="packages.html">الباقات</a><a href="blog.html">المقالات</a>
+  </nav>
+  <div class="site-actions"><a class="content-back" href="design.html">العودة للرئيسية ↗</a></div>
 </header>
 <main>
   <section class="wrap hero">
@@ -48,12 +53,10 @@
     <p class="empty" id="error" hidden>حصلت مشكلة في تحميل بيانات المقالات. جرّب تحدّث الصفحة.</p>
   </div>
 </main>
-<footer>
-  <div class="soc">
-    <a href="https://wa.me/201123449977" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-  </div>
-  <p class="cp">© 2026 Kamal Elnhrawy</p>
+<footer class="site-footer">
+  <span class="footer-brand">KAMAL ELNHAWRY</span>
+  <div class="footer-links"><a href="design.html">الرئيسية</a><a href="projects.html">المشاريع</a><a href="packages.html">الباقات</a><a href="https://wa.me/201123449977" target="_blank" rel="noopener">WhatsApp</a></div>
+  <span>© 2026 Kamal Elnhrawy</span>
 </footer>
 <script src="posts-data.js?v=17"></script>
 <script>

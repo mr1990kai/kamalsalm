@@ -56,12 +56,17 @@
 .nf{padding:90px 5%;text-align:center;color:var(--muted)}
 @media(max-width:760px){.art{padding-top:34px}.body.ar{font-size:1.12rem}.body h2{font-size:1.3rem}.ctab>div{padding:22px}}
 </style>
+<link rel="stylesheet" href="portfolio-site.css">
+<link rel="stylesheet" href="portfolio-content.css">
 </head>
-<body>
+<body class="content-page">
 <div id="bar"></div>
-<header>
-  <a class="back" id="back" href="blog.html">← المقالات</a>
-  <a class="logo" href="index.html">Kamal Elnhrawy</a>
+<header class="site-header">
+  <a class="brand" href="design.html">KAMAL ELNHAWRY</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="design.html">الرئيسية</a><a href="projects.html">المشاريع</a><a href="packages.html">الباقات</a><a href="blog.html">المقالات</a>
+  </nav>
+  <div class="site-actions"><a class="content-back" id="back" href="blog.html">← المقالات</a></div>
 </header>
 <main>
   <article class="art" id="art" hidden>
@@ -74,12 +79,10 @@
   <div class="ctab" id="ctab" hidden><div><h2>عندك متجر أو مشروع وعايز تطوره؟</h2><p>شوف المشاريع والباقات المتاحة أو تواصل مباشرة.</p><a href="packages.html">الباقات والأسعار</a></div></div>
   <section class="more" id="more" hidden><h2>مقالات تانية</h2><div class="bgrid" id="mg"></div></section>
 </main>
-<footer>
-  <div class="soc">
-    <a href="https://wa.me/201123449977" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-  </div>
-  <p class="cp">© 2026 Kamal Elnhrawy</p>
+<footer class="site-footer">
+  <span class="footer-brand">KAMAL ELNHAWRY</span>
+  <div class="footer-links"><a href="design.html">الرئيسية</a><a href="projects.html">المشاريع</a><a href="packages.html">الباقات</a><a href="https://wa.me/201123449977" target="_blank" rel="noopener">WhatsApp</a></div>
+  <span>© 2026 Kamal Elnhrawy</span>
 </footer>
 <script src="md.js"></script>
 <script src="posts-data.js?v=17"></script>
