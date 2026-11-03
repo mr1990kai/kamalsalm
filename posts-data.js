@@ -442,5 +442,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/news-ppc-tiktok-search-ads-adds-brand-and-category-keyword-packs-by-matt-g.svg'
+  },
+  {
+    slug: "top-10-graphic-design-trends-for-2026",
+    title: "أفضل 10 اتجاهات تصميم جرافيكي لعام 2026",
+    excerpt: "تستعرض المقالة أهم عشرة اتجاهات تصميم جرافيكي لعام 2026، مع تركيز على الاستفادة من الحواس، والكتابة المبالغ فيها، والخيال السريالي، والتصميم العضوي، والتخطيطات القصصية، والأنماط الدافئة، والنكهات المحلية، والتجميع، والتخ",
+    date: "2026-11-04",
+    category: "التصميم",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/top-10-graphic-design-trends-for-2026.svg'
   }
 ];
