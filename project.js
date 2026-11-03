@@ -11,7 +11,8 @@
   var UI = {
     case: ["دراسة مشروع", "CASE STUDY"],
     client: ["العميل", "CLIENT"],
-    services: ["نطاق العمل", "SCOPE"],
+    services: ["الخدمات", "SERVICES"],
+    workType: ["نوع المشروع", "PROJECT TYPE"],
     platform: ["المنصة", "PLATFORM"],
     year: ["سنة التنفيذ", "YEAR"],
     live: ["زيارة المتجر", "VISIT STORE"],
@@ -47,6 +48,7 @@
   var projectIndex = 0;
   var nextProject = null;
   var allProjects = window.PROJECTS || [];
+  var projectRecord = allProjects.find(function (item) { return item.slug === P.slug; });
   allProjects.forEach(function (project, index) {
     if (project.slug === P.slug) projectIndex = index;
   });
@@ -76,6 +78,7 @@
       '<div><dt>' + label("client") + '</dt><dd>' + paired(P.client) + '</dd></div>',
       '<div><dt>' + label("services") + '</dt><dd>' + paired(P.services) + '</dd></div>'
     ];
+    if (projectRecord && projectRecord.workType) meta.push('<div><dt>' + label("workType") + '</dt><dd>' + paired(projectRecord.workType) + '</dd></div>');
     if (P.platform) meta.push('<div><dt>' + label("platform") + '</dt><dd>' + esc(P.platform) + '</dd></div>');
     if (P.year) meta.push('<div><dt>' + label("year") + '</dt><dd>' + esc(P.year) + '</dd></div>');
     if (P.live) meta.push('<div><dt></dt><dd><a href="' + esc(P.live) + '" target="_blank" rel="noopener">' + label("live") + ' ↗</a></dd></div>');
@@ -108,7 +111,6 @@
   function renderShowcase() {
     var videos = (P.video || []).filter(Boolean);
     var gallery = (P.gallery || []).filter(Boolean);
-    var projectRecord = allProjects.find(function (item) { return item.slug === P.slug; });
     var cardCover = projectRecord && projectRecord.cover;
     if (cardCover && cardCover !== P.hero && gallery.indexOf(cardCover) === -1) {
       gallery.unshift(cardCover);

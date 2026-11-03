@@ -22,7 +22,7 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="design.html" aria-label="Kamal Elnhrawy home">KAMAL ELNHAWRY</a>
+  <a class="brand" href="index.html" aria-label="Kamal Elnhrawy home">KAMAL ELNHAWRY</a>
   <nav class="site-nav" aria-label="Main navigation">
     <a href="design.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a>
     <a href="design.html#work" data-ar="مختارات" data-en="Selected work">مختارات</a>
@@ -62,9 +62,10 @@
   <section class="wrap" aria-label="Project gallery">
     <div class="project-controls">
       <div class="filter-list" id="project-filters" role="group" aria-label="Filter projects">
-        <button class="filter-button is-active" type="button" data-filter="all" data-ar="كل المشاريع" data-en="All projects">كل المشاريع</button>
+        <button class="filter-button is-active" type="button" data-filter="all" data-ar="كل المشاريع" data-en="All projects" aria-pressed="true">كل المشاريع</button>
         <button class="filter-button" type="button" data-filter="Shopify">Shopify</button>
-        <button class="filter-button" type="button" data-filter="Easy Order">Easy Order</button>
+        <button class="filter-button" type="button" data-filter="Easy Order" aria-pressed="false">Easy Order</button>
+        <button class="filter-button" type="button" data-filter="landing" data-ar="صفحات الهبوط" data-en="Landing pages" aria-pressed="false">صفحات الهبوط</button>
       </div>
       <span class="project-count" id="project-count" aria-live="polite">10 / 10 PROJECTS</span>
     </div>
@@ -90,7 +91,7 @@
 <footer class="site-footer">
   <span class="footer-brand">KAMAL ELNHAWRY</span>
   <div class="footer-links">
-    <a href="design.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+    <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
     <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
     <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
     <a href="https://wa.me/201123449977" target="_blank" rel="noopener">WhatsApp</a>
@@ -120,10 +121,12 @@
       var number = String(index + 1).padStart(2, "0");
       var featured = index === 0 ? " project-card--featured" : "";
       var coverLoading = index < 2 ? "eager" : "lazy";
-      return '<a class="project-card reveal' + featured + '" href="' + escapeHtml(project.href) + '" data-platform="' + escapeHtml(project.platform) + '">' +
+      var workType = project.workType || { ar: "متجر إلكتروني", en: "Online store" };
+      return '<a class="project-card reveal' + featured + '" href="' + escapeHtml(project.href) + '" data-platform="' + escapeHtml(project.platform) + '" data-kind="' + escapeHtml(project.kind || "store") + '">' +
         '<div class="project-card-visual"><span class="project-card-index">' + number + ' / ' + String(list.length).padStart(2, "0") + '</span>' +
         '<img src="' + escapeHtml(project.cover) + '" alt="' + escapeHtml(project.title.en) + '" loading="' + coverLoading + '"' + (index === 0 ? ' fetchpriority="high"' : '') + ' onerror="this.remove()"></div>' +
         '<div class="project-card-body"><div class="project-card-meta"><span>' + escapeHtml(project.platform) + '</span>' +
+        '<span data-ar="' + escapeHtml(workType.ar) + '" data-en="' + escapeHtml(workType.en) + '">' + escapeHtml(workType.ar) + '</span>' +
         (project.year ? '<span>' + escapeHtml(project.year) + '</span>' : '') + '</div>' +
         '<h2 data-ar="' + escapeHtml(project.title.ar) + '" data-en="' + escapeHtml(project.title.en) + '">' + escapeHtml(project.title.ar) + '</h2>' +
         '<p data-ar="' + escapeHtml(project.desc.ar) + '" data-en="' + escapeHtml(project.desc.en) + '">' + escapeHtml(project.desc.ar) + '</p>' +
@@ -138,6 +141,7 @@
     var visible = 0;
     document.querySelectorAll(".project-card").forEach(function (card) {
       var show = activeFilter === "all" || card.getAttribute("data-platform") === activeFilter;
+      if (activeFilter === "landing") show = card.getAttribute("data-kind") === "landing";
       card.hidden = !show;
       if (show) visible += 1;
     });
