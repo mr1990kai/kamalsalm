@@ -11,7 +11,9 @@
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) {
+  var saveData = navigator.connection && navigator.connection.saveData;
+  var lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 2;
+  if (reduceMotion || saveData || lowMemory) {
     visual.classList.add("is-static-visual");
     return;
   }
@@ -84,7 +86,12 @@
       orbit2.position.z = -1.3;
       stage.add(orbit2);
 
-      var projects = (window.PROJECTS || []).slice(0, 3);
+      var allProjects = window.PROJECTS || [];
+      var preferredSlugs = ["vamilano", "kenz", "nmkids"];
+      var projects = preferredSlugs.map(function (slug) {
+        return allProjects.find(function (project) { return project.slug === slug; });
+      }).filter(Boolean);
+      if (!projects.length) projects = allProjects.slice(0, 3);
       if (!projects.length) {
         projects = [
           { cover: "06.jpg", title: { ar: "Ladyland", en: "Ladyland" } },
@@ -193,11 +200,37 @@
         var rect = host.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
 
+        var compact = rect.width < 500;
         renderer.setSize(rect.width, rect.height, false);
         camera.aspect = rect.width / rect.height;
-        camera.position.z = rect.width < 500 ? 7.15 : 6.2;
+        camera.position.z = compact ? 8.5 : 6.2;
         camera.updateProjectionMatrix();
-        stage.scale.setScalar(rect.width < 500 ? 0.87 : 1);
+        stage.scale.setScalar(compact ? 0.88 : 1);
+
+        if (compact) {
+          var mobileLayout = [
+            { x: 0, y: -0.02, scale: 0.94 },
+            { x: -0.82, y: 0.34, scale: 0.66 },
+            { x: 0.82, y: -0.34, scale: 0.66 }
+          ];
+          panels.forEach(function (panel, index) {
+            var item = mobileLayout[index];
+            if (!item) return;
+            panel.position.x = item.x;
+            panel.scale.setScalar(item.scale);
+          });
+        } else {
+          panels.forEach(function (panel, index) {
+            var desktopLayout = [
+              { x: 0.02, scale: 1.04 },
+              { x: -1.24, scale: 0.78 },
+              { x: 1.22, scale: 0.8 }
+            ][index];
+            if (!desktopLayout) return;
+            panel.position.x = desktopLayout.x;
+            panel.scale.setScalar(desktopLayout.scale);
+          });
+        }
       }
 
       function animate(time) {
