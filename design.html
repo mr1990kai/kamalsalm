@@ -105,6 +105,7 @@ nav.m{display:none}#menu{display:block}#dots{display:none}
 @media (min-width:900px) and (max-height:700px){.ph{height:min(60vh,460px)}.about h1{font-size:clamp(1.8rem,3.4vw,3rem)}.facts{margin-top:18px}.sv ul{gap:8px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<link rel="stylesheet" href="portfolio-3d.css">
 <!-- seo -->
 <link rel="canonical" href="https://kamalsalm.vercel.app/design.html">
 <meta property="og:type" content="website">
@@ -163,7 +164,7 @@ nav.m{display:none}#menu{display:block}#dots{display:none}
           <div><b>2–7</b><span data-ar="أيام للتسليم" data-en="Days to deliver">أيام للتسليم</span></div>
         </div>
       </div>
-      <div class="ph rv"><img src="1.jpg" alt="Kamal Elnhrawy"></div>
+      <div class="ph rv"><img src="1.jpg" alt="Kamal Elnhrawy" loading="eager"><div id="hero3d" aria-hidden="true"></div><span class="hero-visual-tag" aria-hidden="true">KAMAL ELNHAWRY / DIGITAL STOREFRONTS</span></div>
     </div>
   </section>
 
@@ -273,5 +274,6 @@ if(scenes){
 }
 apply();
 </script>
+<script type="module" src="portfolio-3d.js"></script>
 </body>
 </html>
