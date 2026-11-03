@@ -108,6 +108,11 @@
   function renderShowcase() {
     var videos = (P.video || []).filter(Boolean);
     var gallery = (P.gallery || []).filter(Boolean);
+    var projectRecord = allProjects.find(function (item) { return item.slug === P.slug; });
+    var cardCover = projectRecord && projectRecord.cover;
+    if (cardCover && cardCover !== P.hero && gallery.indexOf(cardCover) === -1) {
+      gallery.unshift(cardCover);
+    }
     if (!videos.length && !gallery.length) return "";
 
     var out = '<section class="case-showcase"><div class="wrap">' +
