@@ -3,107 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>معرض أعمال تصميم المتاجر الإلكترونية | كمال النحراوي</title>
-<meta name="description" content="معرض متاجر وعلامات تجارية صمّمتها على Shopify وEasy Order لأسواق مصر والخليج.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="project.css">
-<style>
-.banner{margin-top:26px;border-radius:14px;overflow:hidden;background:#eceae6}
-.banner img{width:100%;aspect-ratio:21/9;max-height:520px;object-fit:cover;object-position:50% 45%;display:block}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-.chips button{background:#fff;border:1px solid #cfcbc6;border-radius:99px;padding:7px 18px;font:inherit;font-size:.88rem;cursor:pointer;transition:.25s}
-.chips button.on,.chips button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px;padding-bottom:30px}
-.pcard{display:block;text-decoration:none;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
-.pcard:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(0,0,0,.08)}
-.pcard .im{aspect-ratio:16/10;background:#f1eee9;overflow:hidden}
-.pcard .im img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .6s}
-.pcard:hover .im img{transform:scale(1.03)}
-.pcard .tx{padding:18px 20px 22px}
-.pcard .mt{display:flex;gap:10px;font-size:.74rem;color:var(--muted);margin-bottom:6px;direction:ltr;justify-content:flex-start}
-html[dir=rtl] .pcard .mt{justify-content:flex-end}
-.pcard h3{font-size:1.15rem;margin-bottom:8px}
-.pcard p{font-size:.86rem;color:var(--muted);line-height:1.75;margin-bottom:12px}
-.pcard .lk{font-size:.84rem;font-weight:700}
-.cta{margin:30px 0 0;padding:44px 0 10px;border-top:1px solid var(--line);text-align:center}
-.cta h2{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:8px}
-.cta p{color:var(--muted);font-weight:300;margin-bottom:22px}
-.cta .btn+.btn{margin-inline-start:10px;background:#fff;color:var(--ink);border:1px solid #cfcbc6}
-@media (max-width:760px){.banner img{aspect-ratio:16/10}.banner{border-radius:10px;margin-top:16px}}
-.hero{padding-top:36px}
-</style>
-<link rel="stylesheet" href="portfolio-3d.css">
-<!-- seo -->
+<title>المشاريع | كمال النحراوي</title>
+<meta name="description" content="مجموعة من متاجر Shopify وEasy Order والهويات البصرية وصفحات الهبوط التي نفذها كمال النحراوي.">
 <link rel="canonical" href="https://kamalsalm.vercel.app/projects.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kamal Elnhrawy">
 <meta property="og:locale" content="ar_AR">
-<meta property="og:title" content="معرض أعمال تصميم المتاجر الإلكترونية | كمال النحراوي">
-<meta property="og:description" content="معرض متاجر وعلامات تجارية صمّمتها على Shopify وEasy Order لأسواق مصر والخليج.">
+<meta property="og:title" content="المشاريع | كمال النحراوي">
+<meta property="og:description" content="متاجر وهويات وصفحات بيع منفذة لعلامات حقيقية.">
 <meta property="og:url" content="https://kamalsalm.vercel.app/projects.html">
 <meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2b1810">
-<!-- /seo -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="portfolio-site.css">
 </head>
 <body>
-<header>
-  <a class="back" href="design.html" data-ar="← الرئيسية" data-en="← Home">← الرئيسية</a>
-  <a class="logo" href="index.html">Kamal Elnhrawy</a>
-  <button id="lang" aria-label="Language">EN</button>
-</header>
-<main>
-  <div class="wrap"><div class="banner rv"><img src="3.jpg" alt="Kamal Elnhrawy" onerror="this.parentNode.hidden=true"></div></div>
-  <section class="wrap hero">
-    <span class="gallery-kicker rv">SELECTED WORK / 2025—2026</span>
-    <h1 class="rv" data-ar="المشروعات" data-en="Projects">المشروعات</h1>
-    <p class="tag rv" data-ar="متاجر وعلامات تجارية صمّمتها، لأسواق مصر والخليج." data-en="Stores and brands I've designed, for Egypt and the Gulf.">متاجر وعلامات تجارية صمّمتها، لأسواق مصر والخليج.</p>
-    <div class="chips rv" id="chips"></div>
-  </section>
-  <div class="wrap"><div class="pgrid" id="pgrid"><a class="pcard" href="ladyland.html"><div class="im"><img src="06.jpg" alt="Ladyland Stores"></div><div class="tx"><h3>ليدي لاند ستورز</h3><p>متجر ملابس نسائية على Shopify بهوية أبيض وأسود راقية وتصميم مخصص، مع إصلاح بطء الموقع السابق.</p></div></a><a class="pcard" href="kenz.html"><div class="im"><img src="02.jpg" alt="Kenz Store"></div><div class="tx"><h3>كنز ستور</h3><p>لوجو وهوية ومتجر لعطور وبودي ميست بروح فاخرة.</p></div></a><a class="pcard" href="m7.html"><div class="im"><img src="07.jpg" alt="M7"></div><div class="tx"><h3>M7</h3><p>شعار عصري ومتجر لعلامة أحذية رجالية، بأناقة هادئة بلا مبالغة.</p></div></a><a class="pcard" href="maytroo.html"><div class="im"><img src="04.jpg" alt="Maytroo"></div><div class="tx"><h3>مايترو (Maytroo)</h3><p>هوية ومتجر لعلامة سعودية، مع وصف المنتجات وترتيبها وإبراز جمال الصور.</p></div></a><a class="pcard" href="backbelt.html"><div class="im"><img src="08.jpg" alt="Back Support Landing Page"></div><div class="tx"><h3>صفحة هبوط مشد الظهر</h3><p>صفحة لمنتج واحد ببناء جديد وصور حقيقية للمنتج ورحلة عميل واضحة.</p></div></a><a class="pcard" href="wenwei.html"><div class="im"><img src="09.jpg" alt="Wenwei"></div><div class="tx"><h3>Wenwei</h3><p>متجر لجمهور الكويت لأجهزة العناية بالجسم والشعر، مع شعار مميز وعرض يوضح المشكلة ثم الحل.</p></div></a><a class="pcard" href="wenwix.html"><div class="im"><img src="010.jpg" alt="Wenwix"></div><div class="tx"><h3>Wenwix</h3><p>نسخة للسوق السعودي من الفكرة نفسها، بتصميم يلائم طبيعة المجتمع السعودي.</p></div></a><a class="pcard" href="vamilano.html"><div class="im"><img src="01.jpg" alt="Vamilano"></div><div class="tx"><h3>فاميلانو (Vamilano)</h3><p>هوية ومتجر لمستلزمات الأطفال والأمهات بأسلوب أسود وأبيض راقٍ.</p></div></a><a class="pcard" href="roqea.html"><div class="im"><img src="03.jpg" alt="Roqea"></div><div class="tx"><h3>رقية (Roqea)</h3><p>شعار وهوية وكروت منتجات ومتجر لعلامة عبايات نسائية فاخرة.</p></div></a><a class="pcard" href="nmkids.html"><div class="im"><img src="05.jpg" alt="NM Kids Store"></div><div class="tx"><h3>NM كيدز ستور</h3><p>لوجو وهوية ومتجر لملابس الأطفال، موجّه للأمهات.</p></div></a></div></div>
-  <div class="wrap"><section class="cta rv">
-    <h2 data-ar="هل لديك مشروع مشابه؟" data-en="Have a similar project?">هل لديك مشروع مشابه؟</h2>
-    <p data-ar="اختر باقة بسعر ثابت، أو راسلني على واتساب." data-en="Pick a fixed-price package, or message me on WhatsApp.">اختر باقة بسعر ثابت، أو راسلني على واتساب.</p>
-    <a class="btn" href="packages.html" data-ar="الباقات والأسعار" data-en="Packages and pricing">الباقات والأسعار</a><a class="btn" href="https://wa.me/201123449977" target="_blank" rel="noopener" data-ar="واتساب" data-en="WhatsApp">واتساب</a>
-  </section></div>
-</main>
-<footer>
-  <div class="soc">
-    <a href="https://wa.me/201123449977" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com/hi19man" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+<header class="site-header">
+  <a class="brand" href="design.html" aria-label="Kamal Elnhrawy home">KAMAL ELNHAWRY</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="design.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a>
+    <a href="design.html#work" data-ar="مختارات" data-en="Selected work">مختارات</a>
+    <a href="projects.html" data-ar="كل المشاريع" data-en="All projects">كل المشاريع</a>
+    <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
+    <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
+  </nav>
+  <div class="site-actions">
+    <button class="language-button" type="button" data-lang-toggle aria-label="Switch language">EN</button>
+    <button class="menu-button" type="button" data-menu-open aria-label="Open menu" aria-expanded="false">☰</button>
   </div>
-  <p class="cp">© 2026 Kamal Elnhrawy</p>
+</header>
+<nav class="mobile-menu" data-mobile-menu aria-hidden="true" aria-label="Mobile navigation">
+  <button class="menu-close" type="button" data-menu-close aria-label="Close menu">×</button>
+  <a href="design.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a>
+  <a href="design.html#work" data-ar="مختارات" data-en="Selected work">مختارات</a>
+  <a href="projects.html" data-ar="كل المشاريع" data-en="All projects">كل المشاريع</a>
+  <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
+  <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
+  <a href="design.html#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a>
+</nav>
+
+<main>
+  <section class="projects-hero">
+    <div class="wrap projects-hero-inner">
+      <span class="eyebrow reveal" style="color:#dfc99f">SELECTED WORK / 2025—2026</span>
+      <h1 class="reveal" data-ar="مشاريع اتبنت علشان كل علامة تظهر بشخصيتها." data-en="Digital work built to give every brand its own character.">مشاريع اتبنت علشان كل علامة تظهر بشخصيتها.</h1>
+      <p class="reveal" data-ar="من متاجر متكاملة إلى صفحات منتج واحد؛ دي نماذج من شغل الهوية والتصميم وتجربة الشراء اللي نفذتها لعلامات مختلفة." data-en="From full storefronts to single-product landing pages, explore selected identity, design and customer-experience work for different brands.">من متاجر متكاملة إلى صفحات منتج واحد؛ دي نماذج من شغل الهوية والتصميم وتجربة الشراء اللي نفذتها لعلامات مختلفة.</p>
+      <div class="projects-stats reveal">
+        <div><b id="total-projects">10</b><span data-ar="مشاريع معروضة" data-en="Projects shown">مشاريع معروضة</span></div>
+        <div><b>02</b><span data-ar="منصات رئيسية" data-en="Core platforms">منصات رئيسية</span></div>
+        <div><b>25—26</b><span data-ar="سنوات التنفيذ" data-en="Project years">سنوات التنفيذ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-label="Project gallery">
+    <div class="project-controls">
+      <div class="filter-list" id="project-filters" role="group" aria-label="Filter projects">
+        <button class="filter-button is-active" type="button" data-filter="all" data-ar="كل المشاريع" data-en="All projects">كل المشاريع</button>
+        <button class="filter-button" type="button" data-filter="Shopify">Shopify</button>
+        <button class="filter-button" type="button" data-filter="Easy Order">Easy Order</button>
+      </div>
+      <span class="project-count" id="project-count" aria-live="polite">10 / 10 PROJECTS</span>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <p data-ar="جارٍ تحميل المشاريع…" data-en="Loading projects…">جارٍ تحميل المشاريع…</p>
+    </div>
+    <p class="projects-empty" id="projects-empty" data-ar="مفيش مشاريع ضمن الاختيار ده." data-en="No projects match this filter.">مفيش مشاريع ضمن الاختيار ده.</p>
+  </section>
+
+  <section class="projects-cta">
+    <div class="wrap">
+      <span class="eyebrow" style="color:#dfc99f" data-ar="المشروع القادم" data-en="THE NEXT PROJECT">المشروع القادم</span>
+      <h2 data-ar="هل عندك فكرة متجر محتاجة تتنفذ بصورة مختلفة؟" data-en="Have a store idea that deserves a different approach?">هل عندك فكرة متجر محتاجة تتنفذ بصورة مختلفة؟</h2>
+      <p data-ar="احكيلي عن المنتج والسوق واللي محتاج توصله. هنحدد مع بعض أنسب طريقة للتنفيذ." data-en="Tell me about the product, market and goal. We will define the right way to build it.">احكيلي عن المنتج والسوق واللي محتاج توصله. هنحدد مع بعض أنسب طريقة للتنفيذ.</p>
+      <div class="hero-actions">
+        <a class="button-primary" href="https://wa.me/201123449977" target="_blank" rel="noopener"><span data-ar="ابدأ محادثة" data-en="Start a conversation">ابدأ محادثة</span><span class="arrow">↗</span></a>
+        <a class="button-secondary" href="packages.html"><span data-ar="راجع الباقات" data-en="View packages">راجع الباقات</span><span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span class="footer-brand">KAMAL ELNHAWRY</span>
+  <div class="footer-links">
+    <a href="design.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+    <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
+    <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
+    <a href="https://wa.me/201123449977" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <span>© 2026 Kamal Elnhrawy</span>
 </footer>
+
 <script src="projects-data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-var lang='ar',$=function(s){return document.querySelector(s)};
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-var list=window.PROJECTS||[],cur='all';
-$('#pgrid').innerHTML=list.map(function(p){
-  return '<a class="pcard rv" data-p="'+esc(p.platform)+'" href="'+esc(p.href)+'"><div class="im"><img src="'+esc(p.cover)+'" alt="'+esc(p.title.en)+'" loading="lazy" onerror="this.parentNode.parentNode.remove()"></div><div class="tx"><div class="mt"><span>'+esc(p.platform)+'</span>'+(p.year?'<span>'+esc(p.year)+'</span>':'')+'</div><h3 data-ar="'+esc(p.title.ar)+'" data-en="'+esc(p.title.en)+'">'+esc(p.title.ar)+'</h3><p data-ar="'+esc(p.desc.ar)+'" data-en="'+esc(p.desc.en)+'">'+esc(p.desc.ar)+'</p><span class="lk" data-ar="عرض المشروع ←" data-en="View project →">عرض المشروع ←</span></div></a>'}).join('');
-var plats=[];list.forEach(function(p){if(plats.indexOf(p.platform)<0)plats.push(p.platform)});
-if(plats.length>1){
-  $('#chips').innerHTML='<button class="on" data-f="all" data-ar="الكل" data-en="All">الكل</button>'+plats.map(function(x){return '<button data-f="'+esc(x)+'">'+esc(x)+'</button>'}).join('');
-  $('#chips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.getAttribute('data-f');
-    document.querySelectorAll('#chips button').forEach(function(x){x.classList.toggle('on',x===b)});
-    document.querySelectorAll('.pcard').forEach(function(c){c.hidden=cur!=='all'&&c.getAttribute('data-p')!==cur})});
-}else $('#chips').hidden=true;
-function apply(){
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.documentElement.lang=lang;
-  document.body.classList.toggle('en',lang==='en');$('#lang').textContent=lang==='ar'?'EN':'AR';
-  document.querySelectorAll('[data-ar]').forEach(function(e){e.textContent=e.getAttribute('data-'+lang)});
-  document.title=lang==='ar'?'معرض أعمال تصميم المتاجر الإلكترونية | كمال النحراوي':'Store Design Portfolio | Kamal Elnhrawy';
-}
-$('#lang').onclick=function(){lang=lang==='ar'?'en':'ar';apply()};
-apply();
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+(function () {
+  "use strict";
+  var lang = "ar";
+  var activeFilter = "all";
+  var list = window.PROJECTS || [];
+  var $ = function (selector) { return document.querySelector(selector); };
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, function (char) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char];
+    });
+  }
+
+  function renderProjects() {
+    $("#projects-grid").innerHTML = list.map(function (project, index) {
+      var number = String(index + 1).padStart(2, "0");
+      var featured = index === 0 ? " project-card--featured" : "";
+      var coverLoading = index < 2 ? "eager" : "lazy";
+      return '<a class="project-card reveal' + featured + '" href="' + escapeHtml(project.href) + '" data-platform="' + escapeHtml(project.platform) + '">' +
+        '<div class="project-card-visual"><span class="project-card-index">' + number + ' / ' + String(list.length).padStart(2, "0") + '</span>' +
+        '<img src="' + escapeHtml(project.cover) + '" alt="' + escapeHtml(project.title.en) + '" loading="' + coverLoading + '"' + (index === 0 ? ' fetchpriority="high"' : '') + ' onerror="this.remove()"></div>' +
+        '<div class="project-card-body"><div class="project-card-meta"><span>' + escapeHtml(project.platform) + '</span>' +
+        (project.year ? '<span>' + escapeHtml(project.year) + '</span>' : '') + '</div>' +
+        '<h2 data-ar="' + escapeHtml(project.title.ar) + '" data-en="' + escapeHtml(project.title.en) + '">' + escapeHtml(project.title.ar) + '</h2>' +
+        '<p data-ar="' + escapeHtml(project.desc.ar) + '" data-en="' + escapeHtml(project.desc.en) + '">' + escapeHtml(project.desc.ar) + '</p>' +
+        '<span class="project-card-link" data-ar="تفاصيل المشروع" data-en="View case study">تفاصيل المشروع</span></div></a>';
+    }).join("");
+    $("#total-projects").textContent = String(list.length).padStart(2, "0");
+    applyFilter();
+    applyLanguage();
+  }
+
+  function applyFilter() {
+    var visible = 0;
+    document.querySelectorAll(".project-card").forEach(function (card) {
+      var show = activeFilter === "all" || card.getAttribute("data-platform") === activeFilter;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    $("#project-count").textContent = String(visible).padStart(2, "0") + " / " + String(list.length).padStart(2, "0") + " PROJECTS";
+    $("#projects-empty").classList.toggle("is-visible", visible === 0);
+  }
+
+  function applyLanguage() {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.body.classList.toggle("en", lang === "en");
+    document.querySelectorAll("[data-ar][data-en]").forEach(function (node) {
+      node.innerHTML = node.getAttribute("data-" + lang);
+    });
+    document.querySelectorAll("[data-lang-toggle]").forEach(function (button) {
+      button.textContent = lang === "ar" ? "EN" : "AR";
+    });
+    document.title = lang === "ar" ? "المشاريع | كمال النحراوي" : "Selected Work | Kamal Elnhrawy";
+  }
+
+  $("#project-filters").addEventListener("click", function (event) {
+    var button = event.target.closest("[data-filter]");
+    if (!button) return;
+    activeFilter = button.getAttribute("data-filter");
+    document.querySelectorAll(".filter-button").forEach(function (item) {
+      var selected = item === button;
+      item.classList.toggle("is-active", selected);
+      item.setAttribute("aria-pressed", selected ? "true" : "false");
+    });
+    applyFilter();
+  });
+
+  document.querySelectorAll("[data-lang-toggle]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      lang = lang === "ar" ? "en" : "ar";
+      applyLanguage();
+    });
+  });
+
+  renderProjects();
+})();
 </script>
+<script src="portfolio-motion.js" defer></script>
 </body>
 </html>
