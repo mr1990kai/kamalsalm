@@ -462,5 +462,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/state-of-marketing-2026-report.svg'
+  },
+  {
+    slug: "chatgpt-ads-offer-less-than-a-sixth-of-the-value-for-money-of-paid-google-s",
+    title: "إعلانات ChatGPT أقل من سدس قيمة إعلانات Google Search، دراسة جديدة تكشف ذلك",
+    excerpt: "إعلانات ChatGPT أقل من سدس قيمة إعلانات Google Search، دراسة جديدة تكشف ذلك",
+    date: "2026-11-05",
+    category: "التسويق",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/chatgpt-ads-offer-less-than-a-sixth-of-the-value-for-money-of-paid-google-s.svg'
   }
 ];
