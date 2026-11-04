@@ -452,5 +452,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/top-10-graphic-design-trends-for-2026.svg'
+  },
+  {
+    slug: "state-of-marketing-2026-report",
+    title: "تقرير 2026 لحالة التسويق",
+    excerpt: "يستعرض تقرير 2026 لحالة التسويق كيف يدمج الذكاء الاصطناعي مع الإنسانية لبناء الثقة وتحقيق النمو، مع إحصائيات حول اعتماد AI في المحتوى والإنتاج.",
+    date: "2026-11-04",
+    category: "التسويق",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/state-of-marketing-2026-report.svg'
   }
 ];
