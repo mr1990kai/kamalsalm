@@ -472,5 +472,15 @@ window.POSTS = [
     lang: "ar",
     read: 3,
     cover: 'images/covers/chatgpt-ads-offer-less-than-a-sixth-of-the-value-for-money-of-paid-google-s.svg'
+  },
+  {
+    slug: "how-cmos-can-stand-out-in-a-sea-of-sameness",
+    title: "كيف يمكن للمدراء التنفيذيين للتسويق التميز في \"بحر التماثل\"",
+    excerpt: "يُقدّم تقرير WARC إطار \"الخبرة المميزة (DX)\" لمواجهة التماثل الرقمي بين استراتيجيات التسويق، مع خطوات عملية لتحديد وتجسيد تجربة فريدة للعلامة التجارية.",
+    date: "2026-11-05",
+    category: "التسويق",
+    lang: "ar",
+    read: 5,
+    cover: 'images/covers/how-cmos-can-stand-out-in-a-sea-of-sameness.svg'
   }
 ];
