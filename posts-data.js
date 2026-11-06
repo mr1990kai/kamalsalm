@@ -482,5 +482,15 @@ window.POSTS = [
     lang: "ar",
     read: 5,
     cover: 'images/covers/how-cmos-can-stand-out-in-a-sea-of-sameness.svg'
+  },
+  {
+    slug: "the-marketers-toolkit-2026",
+    title: "أدوات التسويق 2026: خمسة اتجاهات ستقلب المشهد",
+    excerpt: "يستعرض تقرير WARC خمسة اتجاهات ستغير التسويق في 2026: اختفاء السوق المتوسط، المخاطرة بالمبدعين، الهروب العاطفي، رحلة العميل بدون نقرة، وإعادة ضبط معالم المستهلك.",
+    date: "2026-11-06",
+    category: "التسويق",
+    lang: "ar",
+    read: 3,
+    cover: 'images/covers/the-marketers-toolkit-2026.svg'
   }
 ];
