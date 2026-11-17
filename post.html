@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="مقال | كمال النحراوي">
 <meta name="twitter:description" content="مقال من مدونة كمال النحراوي.">
-<meta name="theme-color" content="#2b1810">
+<meta name="theme-color" content="#111111">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -142,7 +142,7 @@
         if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){window.prompt('انسخ رابط المقال',url)})}
         else window.prompt('انسخ رابط المقال',url);
       });
-      $('#mg').innerHTML=list.filter(function(x){return x.slug!==P.slug}).sort(function(a,b){return String(a.date)<String(b.date)?1:-1}).slice(0,2).map(card).join('');
+      $('#mg').innerHTML=list.filter(function(x){return x.slug!==P.slug&&x.hiddenFromListing!==true}).sort(function(a,b){return String(a.date)<String(b.date)?1:-1}).slice(0,2).map(card).join('');
       $('#more').hidden=!$('#mg').children.length;
     }).catch(function(){notFound()});
   }
