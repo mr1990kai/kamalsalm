@@ -223,8 +223,31 @@
     start();
   }
 
+
+  function initOvoHeroMotion() {
+    var hero = document.querySelector(".ovo-hero");
+    if (!hero || reduced || !window.gsap) return;
+    var images = hero.querySelectorAll(".ovo-image");
+    window.gsap.fromTo(images, { y: 42, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: 1.15, stagger: .13, ease: "power3.out", delay: .15
+    });
+    if (window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      window.gsap.to(".image-main", { yPercent: 9, ease: "none", scrollTrigger: {
+        trigger: hero, start: "top top", end: "bottom top", scrub: .8
+      }});
+      window.gsap.to(".image-side-one", { yPercent: -12, ease: "none", scrollTrigger: {
+        trigger: hero, start: "top top", end: "bottom top", scrub: .8
+      }});
+      window.gsap.to(".image-side-two", { yPercent: 7, ease: "none", scrollTrigger: {
+        trigger: hero, start: "top top", end: "bottom top", scrub: .8
+      }});
+    }
+  }
+
   function initMotion() {
     initReveal();
+    initOvoHeroMotion();
     initProjectMotion();
     initCardPointer();
     initPortraitTilt();
