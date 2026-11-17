@@ -54,7 +54,7 @@
   color: #f8f5ef;
   box-shadow: none;
 }
-.content-page .column-kicker { color: #92754d; }
+.content-page .column-kicker { color: #8F1D16; }
 .content-page .column-copy h2 { color: var(--brown); font-size: 1.28rem; }
 .content-page .column-copy p { color: #776b5f; }
 .content-page .column-button {
@@ -101,7 +101,7 @@
   background: var(--brown);
 }
 .content-page .bcard .tx { padding: 23px; }
-.content-page .bcard .ct { color: #92754d; }
+.content-page .bcard .ct { color: #8F1D16; }
 .content-page .bcard h2,
 .content-page .bcard h3 { color: var(--brown); font-size: 1.08rem; line-height: 1.75; }
 .content-page .bcard p { color: #766b60; font-size: .84rem; line-height: 1.95; }
@@ -118,7 +118,7 @@
   padding-bottom: 35px;
 }
 .content-page .art .cat {
-  color: #92754d;
+  color: #8F1D16;
   font-size: .72rem;
   font-weight: 800;
   letter-spacing: .05em;
@@ -248,7 +248,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #92754d;
+  color: #8F1D16;
   font: 800 .68rem var(--latin);
   letter-spacing: .16em;
   direction: ltr;
@@ -288,7 +288,7 @@
 
 /* Articles and editorial utility pages — matching the portfolio system. */
 .content-page{
- --ink:#111;--muted:#70706d;--line:#d9d9d5;--brown:#111;--gold:#e33d32;
+ --ink:#111;--muted:#70706d;--line:#d9d9d5;--brown:#111;--gold:#B42318;
  --paper:#f6f6f4;--white:#fff;background:#f6f6f4;color:#111;
  font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif
 }
@@ -334,7 +334,7 @@
 .content-page .body.ar{font-size:1.12rem;line-height:2.15}
 .content-page .body h2,.content-page .body h3{margin-top:2.2em;color:#111;font:600 1.65em/1.25 "Geist","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.045em}
 .content-page .body blockquote{padding:24px 28px;border-inline-start:3px solid var(--gold);background:#ededeb;color:#111}
-.content-page .body a{color:#d33a30;text-decoration-thickness:1px;text-underline-offset:3px}
+.content-page .body a{color:#B42318;text-decoration-thickness:1px;text-underline-offset:3px}
 .content-page .body code{color:#111;background:#ededeb}
 .content-page .share{border-color:var(--line)}
 .content-page .share a,.content-page .share button{border:1px solid #c8c8c3;border-radius:0;color:#111;background:transparent}
@@ -386,4 +386,143 @@
 }
 @media(prefers-reduced-motion:reduce){
  .content-page .bcard,.content-page .column-button{transition:none}
+}
+
+/* Article readability: comfortable Arabic line spacing and a centered, stable cover. */
+.content-page .art{
+  width:min(960px,calc(100% - 48px));
+  max-width:960px;
+  margin-inline:auto;
+  padding:clamp(48px,7vw,88px) 0 42px;
+}
+.content-page .art .cat{color:#8F1D16;font-weight:700}
+.content-page .art h1{
+  max-width:900px;
+  margin:18px 0 20px;
+  color:#111;
+  font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;
+  font-size:clamp(2rem,4.25vw,3.7rem);
+  font-weight:700;
+  line-height:1.48;
+  letter-spacing:0;
+  overflow-wrap:normal;
+  text-wrap:pretty;
+}
+.content-page .art .info{
+  color:#595959;
+  line-height:1.9;
+  font-size:.82rem;
+  padding-block:16px 20px;
+}
+.content-page .art .cov{
+  position:relative;
+  inset:auto;
+  display:block;
+  float:none;
+  clear:both;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  max-height:none;
+  aspect-ratio:1200 / 630;
+  margin:26px auto 42px;
+  object-fit:contain;
+  object-position:50% 50%;
+  transform:none!important;
+  translate:none!important;
+  border:1px solid #deded9;
+  border-radius:0;
+  background:#ededeb;
+  box-shadow:none;
+}
+.content-page .body{
+  width:min(100%,790px);
+  max-width:790px;
+  margin-inline:auto;
+  color:#292929;
+  font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;
+  font-size:1.12rem;
+  line-height:2.15;
+  letter-spacing:0;
+  word-spacing:.015em;
+  overflow-wrap:break-word;
+}
+.content-page .body.ar{
+  font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;
+  font-size:1.18rem;
+  line-height:2.2;
+  letter-spacing:0;
+}
+.content-page .body p,
+.content-page .body li{
+  line-height:2.15;
+  margin-bottom:1.15em;
+}
+.content-page .body h2,
+.content-page .body h3{
+  color:#111;
+  font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;
+  font-weight:700;
+  line-height:1.55;
+  letter-spacing:0;
+  margin:2em 0 .7em;
+}
+.content-page .body h2{font-size:1.55rem}
+.content-page .body h3{font-size:1.28rem}
+.content-page .body blockquote{
+  color:#202020;
+  background:#f0f0ed;
+  border-inline-start-color:#B42318;
+  line-height:2.1;
+}
+.content-page .body a{color:#8F1D16}
+.content-page .body code{color:#111;background:#e8e8e4}
+.content-page .bgrid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  background:transparent;
+  border:0;
+}
+.content-page .bcard{
+  grid-template-columns:minmax(0,.78fr) minmax(0,1fr);
+  min-height:238px;
+  background:#fff;
+}
+.content-page .bcard .cv{
+  display:grid;
+  place-items:center;
+  min-width:0;
+  min-height:0;
+  aspect-ratio:auto;
+  background:#ededeb;
+}
+.content-page .bcard .cv img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-width:0;
+  object-fit:contain;
+  object-position:center;
+  background:#ededeb;
+}
+.content-page .bcard h2,.content-page .bcard h3{line-height:1.65;color:#111}
+.content-page .bcard p{color:#555;line-height:1.95}
+.content-page .bcard .ct{color:#8F1D16}
+.content-page .writer{color:#333;background:#f1f1ee;border-color:#d4d4ce}
+.content-page .empty,.content-page .nf{color:#555}
+@media(max-width:760px){
+ .content-page .art{width:calc(100% - 32px);padding:36px 0 28px}
+ .content-page .art h1{font-size:clamp(1.8rem,7vw,2.4rem);line-height:1.52}
+ .content-page .art .cov{width:100%;max-width:100%;aspect-ratio:16/9;margin:20px auto 30px}
+ .content-page .body,.content-page .body.ar{font-size:1.04rem;line-height:2.08}
+ .content-page .body h2{font-size:1.3rem;line-height:1.55}
+ .content-page .body h3{font-size:1.15rem;line-height:1.55}
+ .content-page .bgrid{grid-template-columns:1fr;gap:12px}
+ .content-page .bcard{grid-template-columns:minmax(115px,.7fr) minmax(0,1fr);min-height:190px}
+ .content-page .bcard .cv{min-height:190px}
+ .content-page .bcard .tx{padding:16px}
+}
+@media(max-width:420px){
+ .content-page .bcard{grid-template-columns:1fr}
+ .content-page .bcard .cv{height:auto;aspect-ratio:16/9;min-height:0}
 }
