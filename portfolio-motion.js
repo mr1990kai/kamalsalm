@@ -113,8 +113,41 @@
     revealFallback();
   }
 
+
+  function initProjectMotion() {
+    var cards = document.querySelectorAll(".project-stack .work-card, .project-stack .project-card");
+    if (!cards.length || reduced) return;
+    cards.forEach(function (card) {
+      var image = card.querySelector(".work-card-visual img, .project-card-visual img");
+      if (!image || coarse || !window.gsap || !window.ScrollTrigger) return;
+      window.gsap.fromTo(image, { scale: 1.07, yPercent: 2 }, {
+        scale: 1, yPercent: 0, ease: "none",
+        scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: 0.65 }
+      });
+    });
+  }
+
+  function initCardPointer() {
+    if (coarse || reduced) return;
+    document.querySelectorAll(".work-card, .project-card").forEach(function (card) {
+      card.addEventListener("pointermove", function (event) {
+        var rect = card.getBoundingClientRect();
+        var x = (event.clientX - rect.left) / rect.width - 0.5;
+        var y = (event.clientY - rect.top) / rect.height - 0.5;
+        card.style.setProperty("--pointer-x", (x * 8).toFixed(2) + "px");
+        card.style.setProperty("--pointer-y", (y * 5).toFixed(2) + "px");
+      }, { passive: true });
+      card.addEventListener("pointerleave", function () {
+        card.style.setProperty("--pointer-x", "0px");
+        card.style.setProperty("--pointer-y", "0px");
+      }, { passive: true });
+    });
+  }
+
   function initMotion() {
     initReveal();
+    initProjectMotion();
+    initCardPointer();
     initPortraitTilt();
     initMobileMenu();
   }
