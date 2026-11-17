@@ -8,8 +8,8 @@
   --white: #fffefa;
   --brown: #2b1810;
   --brown-2: #442b1d;
-  --gold: #bd9860;
-  --gold-light: #dfc99f;
+  --gold: #B42318;
+  --gold-light: #E7B4AF;
   --arabic: "Noto Kufi Arabic", Tahoma, sans-serif;
   --latin: "Plus Jakarta Sans", Arial, sans-serif;
   --serif: "Cinzel", Georgia, serif;
@@ -92,7 +92,7 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #92754d;
+  color: #8F1D16;
   font: 800 .66rem/1.5 var(--latin);
   letter-spacing: .16em;
   direction: ltr;
@@ -524,3 +524,11 @@ header{min-height:78px;padding:12px clamp(18px,5vw,76px);background:rgba(246,246
  *,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}
  .case-reveal{opacity:1;transform:none}
 }
+
+/* Project pages: accessible accent and steadier Arabic reading rhythm. */
+:root{--gold:#B42318;--gold-light:#E7B4AF;--muted:#595959}
+.case-kicker{color:#8F1D16}
+.case-story-card .story-index{color:#8F1D16}
+.case-story-card.is-dark .story-index{color:#FF8A80}
+.case-showcase .case-kicker,.case-cta .case-kicker{color:#FF8A80}
+.case-quote cite,.case-review-copy>p,.case-section-heading p{color:#555}
