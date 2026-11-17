@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">تجربة العميل داخل المتجر جزء من التسويق، مش مسؤولية فريق المبيعات بس</title>
+<desc id="desc">غلاف تحريري لمقال التسويق.</desc>
+<rect width="1200" height="630" fill="#F3F2EE"/>
+<circle cx="1115" cy="52" r="220" fill="#D8B96A" opacity=".14"/>
+<circle cx="620" cy="610" r="150" fill="#B42318" opacity=".06"/>
+<rect x="64" y="58" width="468" height="514" rx="26" fill="#111"/>
+<path d="M90 94 H506" stroke="#4A4A4A" stroke-width="1"/>
+<text x="96" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F3F2EE">KAMAL / FIELD NOTES</text>
+<g><path d="M125 246 L180 158 L396 158 L452 246 Z" fill="#D8B96A"/><rect x="145" y="244" width="286" height="220" rx="9" fill="#F3F2EE"/><rect x="178" y="284" width="92" height="180" fill="#73877C"/><rect x="294" y="284" width="105" height="94" rx="5" fill="#B42318"/><rect x="311" y="301" width="70" height="8" rx="4" fill="#F3F2EE"/><rect x="311" y="321" width="54" height="7" rx="3" fill="#F3F2EE"/><rect x="294" y="396" width="105" height="68" rx="5" fill="#111"/><path d="M110 244 H465" stroke="#F3F2EE" stroke-width="13"/><path d="M145 246 Q180 289 216 246 Q252 289 288 246 Q324 289 360 246 Q396 289 431 246" fill="none" stroke="#111" stroke-width="7"/><path d="M110 480 L455 480" stroke="#D8B96A" stroke-width="8"/></g>
+<circle cx="492" cy="118" r="9" fill="#B42318"/>
+<rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
+<text x="1080" y="135" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">التسويق</text>
+<text x="1110" y="276" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">تجربة المتجر</text>
+<text x="1110" y="352" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">جزء من التسويق</text>
+<path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
+<circle cx="668" cy="548" r="6" fill="#B42318"/>
+<circle cx="690" cy="548" r="6" fill="#D8B96A"/>
+<circle cx="712" cy="548" r="6" fill="#73877C"/>
+<text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
+<text x="1110" y="582" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+</svg>
