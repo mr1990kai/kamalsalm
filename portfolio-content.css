@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 /* Editorial content pages: a visual continuation of the portfolio identity. */
 .content-page {
   --ink: #201b17;
@@ -283,4 +284,106 @@
 @media(max-width:600px) {
   .coming-page main { padding: 28px 23px; }
   .coming-page h1 { font-size: 2rem; }
+}
+
+/* Articles and editorial utility pages — matching the portfolio system. */
+.content-page{
+ --ink:#111;--muted:#70706d;--line:#d9d9d5;--brown:#111;--gold:#e33d32;
+ --paper:#f6f6f4;--white:#fff;background:#f6f6f4;color:#111;
+ font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif
+}
+.content-page .site-header{background:rgba(246,246,244,.95);border-color:var(--line)}
+.content-page .brand{font:800 .9rem "Geist","Inter",sans-serif;color:#111;letter-spacing:.13em}
+.content-page .content-back{color:#777;font-size:.7rem}
+.content-page .content-back:hover{color:#111}
+.content-page .hero{padding-top:clamp(70px,10vw,135px);padding-bottom:clamp(28px,4vw,52px)}
+.content-page .hero h1{color:#111;font:600 clamp(3rem,8vw,7.4rem)/.98 "Geist","Inter",sans-serif;letter-spacing:-.075em}
+.content-page .hero .tag{max-width:630px;color:#666;font-size:.9rem;line-height:2}
+.content-page .column-intro{
+ display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:28px;
+ margin-top:42px;padding:clamp(24px,4vw,46px);border:0;border-block:1px solid var(--line);
+ border-radius:0;background:#ededeb;box-shadow:none
+}
+.content-page .column-mark{width:76px;height:76px;display:grid;place-items:center;border-radius:50%;background:#111;color:#fff;box-shadow:none}
+.content-page .column-kicker{color:var(--gold);font:800 .62rem "Inter",sans-serif;letter-spacing:.16em}
+.content-page .column-copy h2{color:#111;font:600 clamp(1.35rem,2.6vw,2.1rem) "Geist","Inter",sans-serif;letter-spacing:-.04em}
+.content-page .column-copy p{color:#70706d;font-size:.83rem;line-height:1.95}
+.content-page .column-button{border-radius:0;background:#111;color:#fff;transition:background .3s}
+.content-page .column-button:hover{background:var(--gold)}
+.content-page .chips{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0}
+.content-page .chips button{padding:9px 16px;border:1px solid #c8c8c3;border-radius:0;color:#444;background:transparent;font-size:.72rem;font-weight:700}
+.content-page .chips button.on,.content-page .chips button:hover{background:#111;border-color:#111;color:#fff}
+.content-page .list-title{margin:50px 0 22px;color:#111;font:600 clamp(1.7rem,3vw,2.6rem) "Geist","Inter",sans-serif;letter-spacing:-.05em}
+.content-page .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;padding-bottom:90px;background:var(--line);border:1px solid var(--line)}
+.content-page .bcard{display:grid;grid-template-columns:minmax(150px,.8fr) minmax(0,1fr);min-height:220px;overflow:hidden;border:0;border-radius:0;background:#fff;box-shadow:none;transition:background .4s}
+.content-page .bcard:hover{transform:none;border:0;background:#ededeb;box-shadow:none}
+.content-page .bcard .cv{min-height:100%;background:#e7e7e4;color:#111}
+.content-page .bcard .cv img{width:100%;height:100%;object-fit:cover}
+.content-page .bcard .tx{display:flex;flex-direction:column;justify-content:center;padding:clamp(18px,2.4vw,30px)}
+.content-page .bcard .ct{color:var(--gold);font:800 .6rem "Inter",sans-serif;letter-spacing:.14em}
+.content-page .bcard h2,.content-page .bcard h3{color:#111;font:600 clamp(1.05rem,1.8vw,1.5rem)/1.4 "Geist","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.035em}
+.content-page .bcard p{color:#70706d;font-size:.78rem;line-height:1.85}
+.content-page .bcard .mt{margin-top:auto;padding-top:12px;border-color:#ddd;color:#888;font-size:.63rem}
+.content-page .empty,.content-page .nf{padding:50px 0;color:#777}
+.content-page .art{max-width:960px;padding:clamp(65px,9vw,125px) 0 40px}
+.content-page .art .cat{color:var(--gold);font:800 .65rem "Inter",sans-serif;letter-spacing:.14em}
+.content-page .art h1{margin:20px 0;color:#111;font:600 clamp(2.5rem,6vw,5.4rem)/1.12 "Geist","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.065em}
+.content-page .art .info{padding-block:18px;border-color:var(--line);color:#888;font-size:.7rem}
+.content-page .art .cov{max-height:600px;object-fit:cover;border:0;border-radius:0;box-shadow:none}
+.content-page .body{max-width:780px;margin-inline:auto;color:#333;font-size:1rem;line-height:2}
+.content-page .body.ar{font-size:1.12rem;line-height:2.15}
+.content-page .body h2,.content-page .body h3{margin-top:2.2em;color:#111;font:600 1.65em/1.25 "Geist","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.045em}
+.content-page .body blockquote{padding:24px 28px;border-inline-start:3px solid var(--gold);background:#ededeb;color:#111}
+.content-page .body a{color:#d33a30;text-decoration-thickness:1px;text-underline-offset:3px}
+.content-page .body code{color:#111;background:#ededeb}
+.content-page .share{border-color:var(--line)}
+.content-page .share a,.content-page .share button{border:1px solid #c8c8c3;border-radius:0;color:#111;background:transparent}
+.content-page .share a:hover,.content-page .share button:hover{background:#111;border-color:#111;color:#fff}
+.content-page .ctab>div{padding:clamp(28px,5vw,55px);border-radius:0;background:#111}
+.content-page .ctab h2{color:#fff;font:600 clamp(1.7rem,3.5vw,3rem) "Geist","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.05em}
+.content-page .ctab p{color:rgba(255,255,255,.65)}
+.content-page .ctab a{border-radius:0;background:#fff;color:#111}
+.content-page .ctab a:hover{background:var(--gold);color:#fff}
+.content-page .more{margin-top:clamp(55px,8vw,100px)}
+.content-page .more h2{color:#111;font:600 clamp(1.8rem,3vw,2.8rem) "Geist","IBM Plex Sans Arabic",sans-serif}
+.content-page footer.site-footer{margin-top:60px;background:#111;color:#fff;border-top:1px solid #333}
+.content-page .site-footer a,.content-page .footer-links a{color:rgba(255,255,255,.65)}
+.content-page .site-footer a:hover,.content-page .footer-links a:hover{color:#fff}
+.coming-page{
+ min-height:100svh;padding:90px 5% 50px;background:#f6f6f4;color:#111;
+ font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif
+}
+.coming-page:before{color:rgba(0,0,0,.035);font:800 clamp(150px,28vw,380px)/.85 "Geist","Inter",sans-serif;letter-spacing:-.1em}
+.coming-brand{color:#111;font:800 .85rem "Geist","Inter",sans-serif;letter-spacing:.13em}
+.coming-page #l{border-radius:50%;border-color:#aaa;color:#111;font-family:"Inter",sans-serif}
+.coming-page main{width:min(850px,100%);padding:clamp(34px,6vw,80px);border:0;border-top:2px solid #111;background:#fff;box-shadow:none;text-align:start}
+.coming-label{color:#777;font:800 .65rem "Inter",sans-serif;letter-spacing:.16em}
+.coming-label:before{background:var(--gold)}
+.coming-page h1{color:#111;font:600 clamp(2.8rem,7vw,6.5rem)/1.04 "Geist","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.07em}
+.coming-page p{color:#70706d;font-size:.9rem;line-height:2}
+.coming-page a.b{border:0;border-radius:0;background:#111;color:#fff}
+.coming-page a.b:hover{background:var(--gold)}
+.coming-page a.back{color:#777}
+@media(max-width:900px){
+ .content-page .bgrid{grid-template-columns:1fr}
+ .content-page .bcard{grid-template-columns:minmax(125px,.65fr) minmax(0,1fr)}
+}
+@media(max-width:600px){
+ .content-page .site-header{grid-template-columns:1fr auto}
+ .content-page .site-nav{display:none}
+ .content-page .hero{padding-top:60px}
+ .content-page .hero h1{font-size:clamp(2.8rem,13vw,4.8rem)}
+ .content-page .column-intro{grid-template-columns:1fr;gap:15px;padding:24px 18px}
+ .content-page .column-mark{width:56px;height:56px}
+ .content-page .bcard{grid-template-columns:1fr}
+ .content-page .bcard .cv{height:190px}
+ .content-page .art{padding-top:55px}
+ .content-page .art h1{font-size:clamp(2.25rem,11vw,3.7rem)}
+ .content-page .body.ar{font-size:1rem}
+ .coming-page{padding:84px 18px 30px}
+ .coming-page main{padding:30px 22px}
+ .coming-page h1{font-size:clamp(2.3rem,11vw,3.7rem)}
+}
+@media(prefers-reduced-motion:reduce){
+ .content-page .bcard,.content-page .column-button{transition:none}
 }
