@@ -8,7 +8,8 @@ window.POSTS = [
     date: "2026-11-07",
     category: "التسويق",
     lang: "ar",
-    read: 14
+    read: 14,
+    cover: 'images/covers/social-comments-customer-insights-2026.svg'
   },
   {
     slug: "product-page-that-converts-and-powers-automation-2026",
@@ -17,7 +18,8 @@ window.POSTS = [
     date: "2026-11-06",
     category: "التجارة الإلكترونية",
     lang: "ar",
-    read: 15
+    read: 15,
+    cover: 'images/covers/product-page-that-converts-and-powers-automation-2026.svg'
   },
   {
     slug: "beyond-the-logo-distinctive-brand-assets-2026",
@@ -26,7 +28,8 @@ window.POSTS = [
     date: "2026-11-05",
     category: "البراندينج",
     lang: "ar",
-    read: 10
+    read: 10,
+    cover: 'images/covers/beyond-the-logo-distinctive-brand-assets-2026.svg'
   },
   {
     slug: "one-great-ad-vs-creative-system-2026",
@@ -35,7 +38,8 @@ window.POSTS = [
     date: "2026-11-04",
     category: "البراندينج",
     lang: "ar",
-    read: 11
+    read: 11,
+    cover: 'images/covers/one-great-ad-vs-creative-system-2026.svg'
   },
   {
     slug: "andrex-humour-effectiveness-2026",
@@ -44,7 +48,8 @@ window.POSTS = [
     date: "2026-11-03",
     category: "التسويق",
     lang: "ar",
-    read: 10
+    read: 10,
+    cover: 'images/covers/andrex-humour-effectiveness-2026.svg'
   },
   {
     slug: "in-store-customer-experience-is-marketing-2026",
@@ -53,7 +58,8 @@ window.POSTS = [
     date: "2026-11-02",
     category: "التسويق",
     lang: "ar",
-    read: 9
+    read: 9,
+    cover: 'images/covers/in-store-customer-experience-is-marketing-2026.svg'
   },
   {
     slug: "brand-world-cohesive-campaign-2026",
@@ -62,7 +68,8 @@ window.POSTS = [
     date: "2026-11-01",
     category: "البراندينج",
     lang: "ar",
-    read: 10
+    read: 10,
+    cover: 'images/covers/brand-world-cohesive-campaign-2026.svg'
   },
   {
     slug: "conversion-growth-four-questions-2026",
@@ -71,7 +78,8 @@ window.POSTS = [
     date: "2026-10-31",
     category: "الميديا باينج",
     lang: "ar",
-    read: 6
+    read: 6,
+    cover: 'images/covers/conversion-growth-four-questions-2026.svg'
   },
   {
     slug: "brand-drift-ai-models-2026",
@@ -80,7 +88,8 @@ window.POSTS = [
     date: "2026-10-30",
     category: "البراندينج",
     lang: "ar",
-    read: 7
+    read: 7,
+    cover: 'images/covers/brand-drift-ai-models-2026.svg'
   },
   {
     slug: "search-visibility-vs-clicks-zero-click-2026",
@@ -492,7 +501,8 @@ window.POSTS = [
     category: "البراندينج",
     lang: "ar",
     read: 7,
-    cover: 'images/covers/contagious-brands-report-2026.svg'
+    cover: 'images/covers/contagious-brands-report-2026.svg',
+    hiddenFromListing: true
   },
   {
     slug: "logo-design-tips-trends-2026",
