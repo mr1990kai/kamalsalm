@@ -502,7 +502,8 @@ window.POSTS = [
     lang: "ar",
     read: 7,
     cover: 'images/covers/contagious-brands-report-2026.svg',
-    hiddenFromListing: true
+    hiddenFromListing: true,
+    duplicateOf: "contagious-brands-report-2026-egypt"
   },
   {
     slug: "logo-design-tips-trends-2026",
