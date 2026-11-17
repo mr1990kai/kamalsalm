@@ -144,11 +144,88 @@
     });
   }
 
+
+  function initProofCarousel() {
+    var carousel = document.querySelector("[data-proof-carousel]");
+    if (!carousel) return;
+    var track = carousel.querySelector("[data-proof-track]");
+    var cards = Array.prototype.slice.call(track.querySelectorAll(".proof-card"));
+    var dotsWrap = carousel.querySelector("[data-proof-dots]");
+    var prev = carousel.querySelector("[data-proof-prev]");
+    var next = carousel.querySelector("[data-proof-next]");
+    if (!track || cards.length < 2 || !dotsWrap || !prev || !next) return;
+
+    var index = 0;
+    var timer = 0;
+    var mobile = window.matchMedia("(max-width: 680px)");
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    dotsWrap.innerHTML = cards.map(function (_, i) {
+      return '<button type="button" aria-label="عرض رأي العميل ' + (i + 1) + '" aria-current="' + (i === 0 ? "true" : "false") + '"></button>';
+    }).join("");
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll("button"));
+
+    function setActive(nextIndex, shouldScroll) {
+      index = (nextIndex + cards.length) % cards.length;
+      dots.forEach(function (dot, i) {
+        dot.setAttribute("aria-current", i === index ? "true" : "false");
+      });
+      if (shouldScroll && mobile.matches) {
+        track.scrollTo({
+          left: cards[index].offsetLeft - track.offsetLeft - (track.clientWidth - cards[index].clientWidth) / 2,
+          behavior: reducedMotion ? "auto" : "smooth"
+        });
+      }
+    }
+
+    function stop() {
+      if (timer) window.clearInterval(timer);
+      timer = 0;
+    }
+    function start() {
+      stop();
+      if (!mobile.matches || reducedMotion || document.hidden) return;
+      timer = window.setInterval(function () { setActive(index + 1, true); }, 4800);
+    }
+
+    prev.addEventListener("click", function () { setActive(index - 1, true); start(); });
+    next.addEventListener("click", function () { setActive(index + 1, true); start(); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { setActive(i, true); start(); });
+    });
+
+    var scrollFrame = 0;
+    track.addEventListener("scroll", function () {
+      if (!mobile.matches) return;
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = window.requestAnimationFrame(function () {
+        var center = track.getBoundingClientRect().left + track.clientWidth / 2;
+        var closest = 0, distance = Infinity;
+        cards.forEach(function (card, i) {
+          var rect = card.getBoundingClientRect();
+          var d = Math.abs((rect.left + rect.width / 2) - center);
+          if (d < distance) { distance = d; closest = i; }
+        });
+        setActive(closest, false);
+      });
+    }, { passive: true });
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+    document.addEventListener("visibilitychange", start);
+    if (mobile.addEventListener) mobile.addEventListener("change", start);
+    setActive(0, false);
+    start();
+  }
+
   function initMotion() {
     initReveal();
     initProjectMotion();
     initCardPointer();
     initPortraitTilt();
+    initProofCarousel();
     initMobileMenu();
   }
 
