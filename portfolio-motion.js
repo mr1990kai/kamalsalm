@@ -171,9 +171,11 @@
         dot.setAttribute("aria-current", i === index ? "true" : "false");
       });
       if (shouldScroll && mobile.matches) {
-        cards[index].scrollIntoView({
-          block: "nearest",
-          inline: "center",
+        var card = cards[index];
+        var targetLeft = card.offsetLeft - track.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+        track.scrollTo({
+          left: targetLeft,
+          top: track.scrollTop,
           behavior: reducedMotion ? "auto" : "smooth"
         });
       }
