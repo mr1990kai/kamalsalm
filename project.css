@@ -389,7 +389,7 @@ header {
 /* Shared project case studies — full editorial system refresh. */
 :root{
  --ink:#111;--muted:#70706d;--line:#d9d9d5;--paper:#f6f6f4;--paper-2:#ededeb;--white:#fff;
- --brown:#111;--brown-2:#242424;--gold:#e33d32;--gold-light:#ff9b91;
+ --brown:#111;--brown-2:#242424;--gold:#B42318;--gold-light:#ff9b91;
  --arabic:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;
  --latin:"Inter",Arial,sans-serif;--serif:"Geist","Inter",Arial,sans-serif;
 }
