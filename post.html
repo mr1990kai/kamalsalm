@@ -17,14 +17,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="مقال | كمال النحراوي">
 <meta name="twitter:description" content="مقال من مدونة كمال النحراوي.">
-<meta name="theme-color" content="#2b1810">
+<meta name="theme-color" content="#111111">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Kufi+Arabic:wght@300;500;700&family=Noto+Naskh+Arabic:wght@400;600&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="project.css">
 <link rel="stylesheet" href="blog.css">
 <style>
@@ -123,7 +123,8 @@
       var coverPath=P.cover||'images/covers/default-article-cover.svg';$('#cov').src=coverPath;$('#cov').alt=P.title||'';$('#cov').hidden=false;$('#cov').onerror=function(){if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/covers/default-article-cover.svg'}else{this.hidden=true}}
       var url=location.origin+location.pathname+'?p='+encodeURIComponent(P.slug);
       var canonical=document.querySelector('link[rel="canonical"]');
-      if(canonical)canonical.href=url;
+      if(canonical)canonical.href=P.duplicateOf?(location.origin+location.pathname+"?p="+encodeURIComponent(P.duplicateOf)):url;
+      if(P.duplicateOf)setMeta('meta[name="robots"]','noindex,follow');
       document.title=(P.title||'مقال')+' | كمال النحراوي';
       setMeta('meta[name="description"]',P.excerpt||P.title||'مقال من مدونة كمال النحراوي.');
       setMeta('meta[property="og:title"]',(P.title||'مقال')+' | كمال النحراوي');
@@ -142,7 +143,7 @@
         if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){window.prompt('انسخ رابط المقال',url)})}
         else window.prompt('انسخ رابط المقال',url);
       });
-      $('#mg').innerHTML=list.filter(function(x){return x.slug!==P.slug}).sort(function(a,b){return String(a.date)<String(b.date)?1:-1}).slice(0,2).map(card).join('');
+      $('#mg').innerHTML=list.filter(function(x){return x.slug!==P.slug&&x.hiddenFromListing!==true}).sort(function(a,b){return String(a.date)<String(b.date)?1:-1}).slice(0,2).map(card).join('');
       $('#more').hidden=!$('#mg').children.length;
     }).catch(function(){notFound()});
   }

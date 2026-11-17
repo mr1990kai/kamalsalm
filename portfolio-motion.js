@@ -113,9 +113,145 @@
     revealFallback();
   }
 
+
+  function initProjectMotion() {
+    var cards = document.querySelectorAll(".project-stack .work-card, .project-stack .project-card");
+    if (!cards.length || reduced) return;
+    cards.forEach(function (card) {
+      var image = card.querySelector(".work-card-visual img, .project-card-visual img");
+      if (!image || coarse || !window.gsap || !window.ScrollTrigger) return;
+      window.gsap.fromTo(image, { scale: 1.07, yPercent: 2 }, {
+        scale: 1, yPercent: 0, ease: "none",
+        scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: 0.65 }
+      });
+    });
+  }
+
+  function initCardPointer() {
+    if (coarse || reduced) return;
+    document.querySelectorAll(".work-card, .project-card").forEach(function (card) {
+      card.addEventListener("pointermove", function (event) {
+        var rect = card.getBoundingClientRect();
+        var x = (event.clientX - rect.left) / rect.width - 0.5;
+        var y = (event.clientY - rect.top) / rect.height - 0.5;
+        card.style.setProperty("--pointer-x", (x * 8).toFixed(2) + "px");
+        card.style.setProperty("--pointer-y", (y * 5).toFixed(2) + "px");
+      }, { passive: true });
+      card.addEventListener("pointerleave", function () {
+        card.style.setProperty("--pointer-x", "0px");
+        card.style.setProperty("--pointer-y", "0px");
+      }, { passive: true });
+    });
+  }
+
+
+  function initProofCarousel() {
+    var carousel = document.querySelector("[data-proof-carousel]");
+    if (!carousel) return;
+    var track = carousel.querySelector("[data-proof-track]");
+    var cards = Array.prototype.slice.call(track.querySelectorAll(".proof-card"));
+    var dotsWrap = carousel.querySelector("[data-proof-dots]");
+    var prev = carousel.querySelector("[data-proof-prev]");
+    var next = carousel.querySelector("[data-proof-next]");
+    if (!track || cards.length < 2 || !dotsWrap || !prev || !next) return;
+
+    var index = 0;
+    var timer = 0;
+    var mobile = window.matchMedia("(max-width: 680px)");
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    dotsWrap.innerHTML = cards.map(function (_, i) {
+      return '<button type="button" aria-label="عرض رأي العميل ' + (i + 1) + '" aria-current="' + (i === 0 ? "true" : "false") + '"></button>';
+    }).join("");
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll("button"));
+
+    function setActive(nextIndex, shouldScroll) {
+      index = (nextIndex + cards.length) % cards.length;
+      dots.forEach(function (dot, i) {
+        dot.setAttribute("aria-current", i === index ? "true" : "false");
+      });
+      if (shouldScroll && mobile.matches) {
+        var card = cards[index];
+        var targetLeft = card.offsetLeft - track.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+        track.scrollTo({
+          left: targetLeft,
+          top: track.scrollTop,
+          behavior: reducedMotion ? "auto" : "smooth"
+        });
+      }
+    }
+
+    function stop() {
+      if (timer) window.clearInterval(timer);
+      timer = 0;
+    }
+    function start() {
+      stop();
+      if (!mobile.matches || reducedMotion || document.hidden) return;
+      timer = window.setInterval(function () { setActive(index + 1, true); }, 4800);
+    }
+
+    prev.addEventListener("click", function () { setActive(index - 1, true); start(); });
+    next.addEventListener("click", function () { setActive(index + 1, true); start(); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { setActive(i, true); start(); });
+    });
+
+    var scrollFrame = 0;
+    track.addEventListener("scroll", function () {
+      if (!mobile.matches) return;
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = window.requestAnimationFrame(function () {
+        var center = track.getBoundingClientRect().left + track.clientWidth / 2;
+        var closest = 0, distance = Infinity;
+        cards.forEach(function (card, i) {
+          var rect = card.getBoundingClientRect();
+          var d = Math.abs((rect.left + rect.width / 2) - center);
+          if (d < distance) { distance = d; closest = i; }
+        });
+        setActive(closest, false);
+      });
+    }, { passive: true });
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+    document.addEventListener("visibilitychange", start);
+    if (mobile.addEventListener) mobile.addEventListener("change", start);
+    setActive(0, false);
+    start();
+  }
+
+
+  function initOvoHeroMotion() {
+    var hero = document.querySelector(".ovo-hero");
+    if (!hero || reduced || !window.gsap) return;
+    var images = hero.querySelectorAll(".ovo-image");
+    window.gsap.fromTo(images, { y: 42, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: 1.15, stagger: .13, ease: "power3.out", delay: .15
+    });
+    if (window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      window.gsap.to(".image-main", { yPercent: 9, ease: "none", scrollTrigger: {
+        trigger: hero, start: "top top", end: "bottom top", scrub: .8
+      }});
+      window.gsap.to(".image-side-one", { yPercent: -12, ease: "none", scrollTrigger: {
+        trigger: hero, start: "top top", end: "bottom top", scrub: .8
+      }});
+      window.gsap.to(".image-side-two", { yPercent: 7, ease: "none", scrollTrigger: {
+        trigger: hero, start: "top top", end: "bottom top", scrub: .8
+      }});
+    }
+  }
+
   function initMotion() {
     initReveal();
+    initOvoHeroMotion();
+    initProjectMotion();
+    initCardPointer();
     initPortraitTilt();
+    initProofCarousel();
     initMobileMenu();
   }
 
