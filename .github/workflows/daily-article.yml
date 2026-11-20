@@ -1,9 +1,9 @@
 name: Daily Blog Article
 
 on:
-  schedule:
-    # 08:00 UTC = 10:00 Africa/Cairo, one article per day
-    - cron: "0 8 * * *"
+  # Automatic daily schedule DISABLED 2026-11-20 pending verified editorial gates
+  # (date-accuracy and Egypt-localization checks). Re-enable after verification.
+  # Intended schedule: 0 8 * * * (10:00 Africa/Cairo daily).
   workflow_dispatch:
 
 permissions:
