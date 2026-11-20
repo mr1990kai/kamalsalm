@@ -173,6 +173,7 @@ function fetchPage(url) {
       title: clean(page.title || url, 180),
       url: actualUrl,
       host: host(actualUrl),
+      publishedDate: clean(page.publishedDate || "", 12),
       text: text
     };
   } catch (_) { return null; }
@@ -275,13 +276,12 @@ async function main() {
       if (!page) continue;
       if (page.host !== candidate.host) continue;
       usedHosts.add(page.host);
-      const dateMatch = page.text.match(/\b(?:20\d{2}[-/]\d{1,2}[-/]\d{1,2}|(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2},?\s+20\d{2})\b/i);
       opened.push({
         id: opened.length + 1,
         title: page.title,
         url: page.url,
         publisher: page.host,
-        visibleDate: dateMatch ? dateMatch[0] : "date not clearly visible",
+        publishedDate: page.publishedDate || "date not clearly visible",
         text: page.text.slice(0, 1200)
       });
       if (opened.length >= 4) break;
@@ -306,9 +306,9 @@ async function main() {
             "\nRandomly selected category: " + category.name + " (" + category.topic + ")" +
             "\nExisting posts: " + JSON.stringify(existing) +
             "\nOriginal pages opened from recent English-language sources: " + JSON.stringify(opened) +
-            "\nSelect the newest relevant article with a visible date if available, but do not invent a date. Compare every source topic against all existing titles. If your first choice overlaps with an existing post, choose another distinct page from the supplied set. If all supplied topics repeat existing posts, return SKIP." +
+            "\nSelect the newest relevant article; each page's own publication date is its publishedDate field (from page metadata, reliable). Never state a date, number or name in the Arabic article unless it appears in the supplied source text itself; ignore dates from ads, webinars or unrelated sections of a page. Compare every source topic against all existing titles. If your first choice overlaps with an existing post, choose another distinct page from the supplied set. If all supplied topics repeat existing posts, return SKIP." +
             "\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, title (clear Egyptian Arabic headline), slug (English kebab-case), excerpt (Egyptian Arabic <=220 chars), read (integer), sourceIds (IDs actually used), articleMarkdown (Arabic body only; no H1, no source links)." +
-            "\nWrite 3,000-4,500 characters in natural Egyptian colloquial Arabic: a short engaging opening, a faithful explanation of the source's key methods and findings under clear subheadings, and a closing section titled exactly '## إزاي تطبقها في مصر' with concrete practical steps for applying the method in the Egyptian market. Ground every factual claim in the supplied pages; the Egypt section adapts the method practically without inventing statistics or fake local businesses. Category metadata will be set by workflow to " + category.name + "."
+            "\nWrite 3,000-4,500 characters in natural Egyptian colloquial Arabic: a short engaging opening, a faithful explanation of the source's key methods and findings under clear subheadings marked with ##, and a closing section titled exactly '## إزاي تطبقها في مصر'. That section must be genuinely Egypt-specific: apply the method to Egyptian market realities such as EGP budgets, local platforms and payment habits, Egyptian consumer behavior, or constraints a Cairo-based marketer or business owner actually faces - not generic platform how-to steps. Ground every factual claim in the supplied pages; the Egypt section adapts the method practically without inventing statistics or fake local businesses. Category metadata will be set by workflow to " + category.name + "."
         }
       ], 3700);
     } catch (error) {
@@ -345,6 +345,33 @@ async function main() {
 
     if (!title || !excerpt || articleBodyLength(body) < 2600 || !/[\u0600-\u06ff]/.test(body)) {
       console.log("No usable article draft in " + category.name + "; trying another category.");
+      continue;
+    }
+
+    try {
+      const verification = await ask([
+        {
+          role: "system",
+          content: "Return JSON only. You are a strict fact-checker for an Egyptian professional blog. Verify a drafted Arabic article against the supplied source pages."
+        },
+        {
+          role: "user",
+          content: "Source pages: " + JSON.stringify(opened) +
+            "\nDraft article body (Arabic): " + body +
+            "\nCheck two things. (1) FACTS: every explicit date, number, statistic, company or person name stated in the Arabic draft must correspond to a claim actually present in the supplied source text. A date that appears only in an ad, webinar promo or unrelated page section is UNSUPPORTED. Minor rephrasing of a supported fact is fine. (2) EGYPT SECTION: the '## إزاي تطبقها في مصر' section must contain substantive adaptation to Egyptian market realities (for example EGP budgets, local platforms or payment habits, Egyptian consumer behavior, constraints of Cairo-based businesses), not generic platform instructions that could apply anywhere." +
+            "\nReturn JSON: factsCheck ('PASS'/'FAIL'), egyptCheck ('PASS'/'FAIL'), problems (array of short strings naming each unsupported claim or the reason the Egypt section is generic; empty when both pass)."
+        }
+      ], 700);
+      const factsOk = String(verification.factsCheck || "").toUpperCase() === "PASS";
+      const egyptOk = String(verification.egyptCheck || "").toUpperCase() === "PASS";
+      if (!factsOk || !egyptOk) {
+        const why = Array.isArray(verification.problems) ? verification.problems.join(" | ") : "no details";
+        console.log("Editorial gate rejected draft in " + category.name + " (facts:" + verification.factsCheck + ", egypt:" + verification.egyptCheck + "): " + clean(why, 300));
+        continue;
+      }
+      console.log("Editorial gate passed in " + category.name + " (facts + Egypt localization verified against sources).");
+    } catch (error) {
+      console.log("Editorial gate could not run in " + category.name + "; not publishing this draft: " + clean(error.message, 200));
       continue;
     }
 
