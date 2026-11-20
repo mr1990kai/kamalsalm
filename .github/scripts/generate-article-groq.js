@@ -32,22 +32,25 @@ function retryDelay(response) {
   const secs = Number((reset.match(/(\d+(?:\.\d+)?)s/i) || [])[1] || 0);
   return Math.max(1500, Math.min(90000, (mins * 60 + secs) * 1000 + 1500)) || 65000;
 }
-async function ask(messages, maxTokens) {
+async function ask(messages, maxTokens, effort) {
   const key = process.env.GROQ_API_KEY;
   if (!key) stop("Missing GROQ_API_KEY secret in GitHub Actions.");
   let lastError;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  let tokenBudget = maxTokens || 5200;
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const payload = {
+      model: MODEL,
+      messages: messages,
+      temperature: attempt === 0 ? 0.35 : 0.1,
+      max_completion_tokens: tokenBudget,
+      response_format: { type: "json_object" },
+      stream: false
+    };
+    if (effort) payload.reasoning_effort = effort;
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: { authorization: "Bearer " + key, "content-type": "application/json" },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: messages,
-        temperature: attempt === 0 ? 0.35 : 0.1,
-        max_completion_tokens: maxTokens || 5200,
-        response_format: { type: "json_object" },
-        stream: false
-      }),
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(180000)
     });
     const raw = await response.text();
@@ -55,13 +58,20 @@ async function ask(messages, maxTokens) {
     try { body = JSON.parse(raw); } catch (_) {}
     if (!response.ok) {
       lastError = new Error("Groq HTTP " + response.status + ": " + (body && body.error && body.error.message || raw.slice(0, 350)));
-      if ((response.status === 429 || response.status === 413) && attempt < 2) {
+      const errText = String((body && body.error && (body.error.code + " " + body.error.message)) || raw);
+      const generationFailed = response.status === 400 && /failed_generation|json_validate_failed|Failed to validate JSON/i.test(errText);
+      if ((response.status === 429 || response.status === 413) && attempt < 3) {
         const delay = retryDelay(response);
         console.log("Groq rate limit; retrying after " + Math.ceil(delay / 1000) + " seconds.");
         await new Promise(resolve => setTimeout(resolve, delay));
         continue;
       }
-      if (response.status >= 500 && attempt < 2) continue;
+      if (generationFailed && attempt < 3) {
+        tokenBudget = Math.min(6500, Math.round(tokenBudget * 1.6));
+        console.log("Groq JSON generation failed; retrying with " + tokenBudget + " completion tokens.");
+        continue;
+      }
+      if (response.status >= 500 && attempt < 3) continue;
       throw lastError;
     }
     const content = body && body.choices && body.choices[0] && body.choices[0].message && body.choices[0].message.content;
@@ -336,7 +346,7 @@ async function main() {
             role: "user",
             content: "Return {articleMarkdown}. Bring this article to at least 2,800 characters by explaining additional distinct points from the source pages, not by padding. Source pages: " + JSON.stringify(opened) + "\nCurrent draft: " + body
           }
-        ], 3000);
+        ], 4200);
         body = String(expansion.articleMarkdown || body).trim();
       } catch (error) {
         console.log("Expansion failed in " + category.name + ": " + clean(error.message, 200));
@@ -361,7 +371,7 @@ async function main() {
             "\nCheck two things. (1) FACTS: every explicit date, number, statistic, company or person name stated in the Arabic draft must correspond to a claim actually present in the supplied source text. A date that appears only in an ad, webinar promo or unrelated page section is UNSUPPORTED. Minor rephrasing of a supported fact is fine. (2) EGYPT SECTION: the '## إزاي تطبقها في مصر' section must contain substantive adaptation to Egyptian market realities (for example EGP budgets, local platforms or payment habits, Egyptian consumer behavior, constraints of Cairo-based businesses), not generic platform instructions that could apply anywhere." +
             "\nReturn JSON: factsCheck ('PASS'/'FAIL'), egyptCheck ('PASS'/'FAIL'), problems (array of short strings naming each unsupported claim or the reason the Egypt section is generic; empty when both pass)."
         }
-      ], 700);
+      ], 1600, "low");
       const factsOk = String(verification.factsCheck || "").toUpperCase() === "PASS";
       const egyptOk = String(verification.egyptCheck || "").toUpperCase() === "PASS";
       if (!factsOk || !egyptOk) {
