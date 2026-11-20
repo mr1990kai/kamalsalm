@@ -11,13 +11,13 @@
 <g><rect x="126" y="148" width="280" height="332" rx="18" fill="#F3F2EE"/><rect x="146" y="170" width="240" height="40" rx="8" fill="#111"/><rect x="151" y="236" width="105" height="123" rx="12" fill="#D8B96A"/><rect x="269" y="236" width="105" height="12" rx="6" fill="#777"/><rect x="269" y="263" width="88" height="10" rx="5" fill="#bbb"/><rect x="269" y="286" width="105" height="10" rx="5" fill="#bbb"/><rect x="269" y="321" width="88" height="28" rx="8" fill="#B42318"/><path d="M175 270 L228 270 L228 333 L175 333 Z" fill="#fff"/><path d="M183 270 Q201 230 220 270" fill="none" stroke="#111" stroke-width="7"/><g fill="#D8B96A"><circle cx="440" cy="200" r="28"/><circle cx="460" cy="350" r="18"/></g><g stroke="#D8B96A" stroke-width="5" fill="none"><path d="M406 200 L440 200 L460 350"/><path d="M386 390 L460 350"/></g><rect x="414" y="390" width="70" height="55" rx="9" fill="#73877C"/><path d="M431 390 Q449 366 468 390" fill="none" stroke="#111" stroke-width="6"/></g>
 <circle cx="492" cy="118" r="9" fill="#B42318"/>
 <rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
-<text x="1080" y="135" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">التجارة الإلكترونية</text>
-<text x="1110" y="276" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">صفحة المنتج</text>
-<text x="1110" y="352" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">ومصدر بيانات واحد</text>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">التجارة الإلكترونية</text>
+<text x="1110" y="276" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">صفحة المنتج</text>
+<text x="1110" y="352" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">ومصدر بيانات واحد</text>
 <path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
 <circle cx="668" cy="548" r="6" fill="#B42318"/>
 <circle cx="690" cy="548" r="6" fill="#D8B96A"/>
 <circle cx="712" cy="548" r="6" fill="#73877C"/>
 <text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
-<text x="1110" y="582" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
 </svg>
