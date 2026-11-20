@@ -981,3 +981,11 @@ body.en .pv-ar-only { display: none !important; }
 .footer-brand { color: var(--pv-ink) !important; }
 .site-footer { flex-wrap: wrap; }
 .site-footer::before { flex: 0 0 100%; }
+
+/* v2.2 contrast: small-text cases below 4.5:1 (bronze label, #777 metas). */
+.service-card .service-label { color: var(--pv-red) !important; }
+.proof-card small,
+.work-card-meta span,
+.projects-hero .eyebrow,
+.project-count,
+.project-stack--all .project-card-meta span { color: var(--pv-muted) !important; }
