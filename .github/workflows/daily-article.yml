@@ -2,10 +2,8 @@ name: Daily Blog Article
 
 on:
   schedule:
-    - cron: "7 9 * * *"
-      timezone: "Africa/Cairo"
-    - cron: "7 19 * * *"
-      timezone: "Africa/Cairo"
+    # 08:00 UTC = 10:00 Africa/Cairo, one article per day
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
