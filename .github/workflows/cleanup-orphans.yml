@@ -1,0 +1,46 @@
+name: Cleanup orphan posts (one-off)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Delete post files that have no posts-data.js metadata
+        run: |
+          node <<'NODE'
+          const fs = require("fs");
+          const cp = require("child_process");
+          global.window = {};
+          require("./posts-data.js");
+          const slugs = new Set(global.window.POSTS.map(p => p.slug));
+          const tracked = cp.execSync("git ls-files -- 'posts/*.md'", { encoding: "utf8" })
+            .trim().split("\n").filter(Boolean);
+          const orphans = tracked.filter(f => !slugs.has(f.replace(/^posts\//, "").replace(/\.md$/, "")));
+          if (!orphans.length) { console.log("No orphan posts."); }
+          for (const f of orphans) { fs.unlinkSync(f); console.log("deleted " + f); }
+          if (fs.existsSync("images/covers")) {
+            for (const c of fs.readdirSync("images/covers")) {
+              if (!c.endsWith(".svg")) continue;
+              const s = c.replace(/\.svg$/, "");
+              if (!slugs.has(s)) { fs.unlinkSync("images/covers/" + c); console.log("deleted cover " + c); }
+            }
+          }
+          NODE
+
+      - name: Commit deletions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A posts images/covers
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "chore: remove unlisted article files left from cleanup"
+          git push
