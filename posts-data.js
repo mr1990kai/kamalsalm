@@ -414,16 +414,6 @@ window.POSTS = [
     cover: 'images/covers/data-driven-media-mix-modeling-egypt.svg'
   },
   {
-    slug: "storytelling-video-checklist-egypt",
-    title: "قائمة التحقق القصصية للفيديو: كيف تبني هوية علامة تجارية قوية عبر السرد في مصر",
-    excerpt: "تعرف على دليل عملي خطوة بخطوة لبناء هوية علامة تجارية قوية عبر الفيديو القصصي، مع أمثلة مصرية، خطوات عملية، قائمة التحقق، وأخطاء شائعة تتجنبها.",
-    date: "2026-10-26",
-    category: "البراندينج",
-    lang: "ar",
-    read: 8,
-    cover: 'images/covers/storytelling-video-checklist-egypt.svg'
-  },
-  {
     slug: "how-to-exploit-meta-advantage-plus-for-roas-in-egypt",
     title: "Meta Advantage+ للمبيعات: إمتى تسيب الأتمتة تشتغل وإمتى تتدخل؟",
     excerpt: "دليل عملي لفهم Advantage+ وتجهيز قياس الشراء والكتالوج والإبداع، وقراءة تكلفة الطلب المستلم وهامش المساهمة بدل الاعتماد على ROAS أو قواعد ميزانية ثابتة.",
@@ -462,16 +452,6 @@ window.POSTS = [
     lang: "ar",
     read: 6,
     cover: 'images/covers/brand-new.svg'
-  },
-  {
-    slug: "nol-beers-strategic-growth-drivers",
-    title: "البييرات منخفضة الكحول تصبح محركًا استراتيجيًا للنمو",
-    excerpt: "البييرات منخفضة الكحول (NoLo) تشهد نموًا بمعدل مزدوج الأرقام، تجذب مستهلكين جدد وتفتح مناسبات استهلاك جديدة، ما يجعلها محركًا استراتيجيًا للنمو.",
-    date: "2026-10-30",
-    category: "البراندينج",
-    lang: "ar",
-    read: 7,
-    cover: 'images/covers/nol-beers-strategic-growth-drivers.svg'
   },
   {
     slug: "apple-safari-block-hands-wpp-a-fresh-case-for-infosem",
