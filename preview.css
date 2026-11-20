@@ -975,3 +975,9 @@ body.en .pv-ar-only { display: none !important; }
     font-size: .74rem;
   }
 }
+
+/* v2.1 footer polish: brand was still forced white by the original sheet,
+   and the red bar (a flex child) was squeezing the footer row. */
+.footer-brand { color: var(--pv-ink) !important; }
+.site-footer { flex-wrap: wrap; }
+.site-footer::before { flex: 0 0 100%; }
