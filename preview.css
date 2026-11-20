@@ -805,3 +805,29 @@ body.en .pv-ar-only { display: none !important; }
   .reveal, .reveal-left { opacity: 1; transform: none; transition: none; }
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* --------------------------------------------------------------------------
+   10. Mobile refinements
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 920px) {
+  /* Keep the Legion pill, swap the inline links for the text menu button */
+  .site-header .site-nav { display: none; }
+  .site-header .menu-button { display: inline-grid; place-items: center; }
+}
+
+@media (max-width: 680px) {
+  .pv-hero-topline {
+    top: 76px;
+    font-size: .56rem;
+    letter-spacing: .14em;
+  }
+  .pv-hero-topline span:nth-child(2) { display: none; }
+  .pv-hero-scroll-hint { display: none; }
+  .pv-deck { width: min(430px, 84vw); }
+  .pv-hero-bottom { bottom: 26px; gap: 14px; }
+  .pv-hero-bottom p { font-size: .92rem; }
+  .pv-hero-cta { padding: 13px 22px; font-size: .88rem; }
+  .pv-pagehero { padding-top: 130px; }
+  .pv-case-info { position: static; }
+}
