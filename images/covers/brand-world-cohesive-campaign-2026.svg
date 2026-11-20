@@ -11,13 +11,13 @@
 <g><circle cx="282" cy="302" r="84" fill="#B42318"/><circle cx="282" cy="302" r="46" fill="#F3F2EE"/><ellipse cx="282" cy="302" rx="192" ry="88" fill="none" stroke="#D8B96A" stroke-width="10" transform="rotate(-24 282 302)"/><ellipse cx="282" cy="302" rx="192" ry="88" fill="none" stroke="#73877C" stroke-width="10" transform="rotate(48 282 302)"/><circle cx="110" cy="221" r="24" fill="#F3F2EE"/><circle cx="438" cy="235" r="22" fill="#D8B96A"/><circle cx="184" cy="457" r="26" fill="#73877C"/><circle cx="431" cy="408" r="18" fill="#B42318" stroke="#F3F2EE" stroke-width="5"/><path d="M282 192 L282 116 M370 302 L468 302 M282 390 L282 482 M194 302 L100 302" stroke="#F3F2EE" stroke-width="4" stroke-dasharray="8 10"/></g>
 <circle cx="492" cy="118" r="9" fill="#B42318"/>
 <rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
-<text x="1080" y="135" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">البراندينج</text>
-<text x="1110" y="276" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">عالم متكامل</text>
-<text x="1110" y="352" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">للعلامة التجارية</text>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">البراندينج</text>
+<text x="1110" y="276" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">عالم متكامل</text>
+<text x="1110" y="352" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">للعلامة التجارية</text>
 <path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
 <circle cx="668" cy="548" r="6" fill="#B42318"/>
 <circle cx="690" cy="548" r="6" fill="#D8B96A"/>
 <circle cx="712" cy="548" r="6" fill="#73877C"/>
 <text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
-<text x="1110" y="582" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
 </svg>
