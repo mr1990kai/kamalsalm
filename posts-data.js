@@ -564,15 +564,5 @@ window.POSTS = [
     lang: "ar",
     read: 8,
     cover: 'images/covers/the-marketers-toolkit-2026.svg'
-  },
-  {
-    slug: "microsoft-smart-bidding-upgrade",
-    title: "مايكروسوفت تطلق تحديث Smart Bidding: إزاي يخلّي إعلاناتك تتكيف مع السلوك؟",
-    excerpt: "مايكروسوفت تطلق تحديث كبر في موديلات Smart Bidding، يخلّي الإعلانات تتكيف تلقائياً مع سلوك المستخدم، وده بيقلل التكاليف ويزود العائد. اكتشف إزاي تطبقها في مصر.",
-    date: "2026-11-20",
-    category: "الميديا باينج",
-    lang: "ar",
-    read: 5,
-    cover: 'images/covers/microsoft-smart-bidding-upgrade.svg'
   }
 ];
