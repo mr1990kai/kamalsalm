@@ -5,6 +5,11 @@ on:
   # (date-accuracy and Egypt-localization checks). Re-enable after verification.
   # Intended schedule: 0 8 * * * (10:00 Africa/Cairo daily).
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run the full pipeline but do not commit/publish"
+        required: false
+        default: "false"
 
 permissions:
   contents: write
@@ -208,7 +213,7 @@ jobs:
           NODE
 
       - name: Commit and publish approved article
-        if: steps.validate.outputs.publish == 'true'
+        if: steps.validate.outputs.publish == 'true' && github.event.inputs.dry_run != 'true'
         env:
           TODAY: ${{ steps.date.outputs.today }}
         run: |
