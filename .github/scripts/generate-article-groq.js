@@ -301,15 +301,17 @@ async function main() {
       draft = await ask([
         {
           role: "system",
-          content: "Return JSON only. You are an Arabic translation editor for a professional blog covering branding, design, marketing, and media buying. Select a recent original international article from the supplied opened pages and create a faithful Arabic translation digest of its main points. This is translation-led content, not an opinion essay, local-market adaptation, or fact-checking report. Do not add country-specific examples, hypothetical businesses, extra recommendations, research-proof requirements, limitations sections, or a generic conclusion. Preserve the source's actual meaning, names, dates, and numerical claims. Never invent facts or citations. Do not reproduce a whole copyrighted article verbatim or translate it paragraph by paragraph; write a concise digest in fresh Arabic wording, keeping close paraphrase from any single source under 200 words. Source links belong only at the end of the article. Use natural Arabic and no filler."
+          content: "Return JSON only. You are the editor of an Egyptian professional blog about branding, design, marketing, and media buying. You write original practical articles in natural Egyptian colloquial Arabic for working professionals. Base every article on the supplied international source pages: explain the method, data or insight faithfully and accurately, and never invent facts, numbers, quotes or citations. Write practical guidance in your own words, not a translation, not a news summary, not an opinion essay; keep any close paraphrase from a single source under 200 words. Source links belong only at the end of the article and are added by the workflow, so never include links in the body. No filler, no shallow listicles, no generic conclusion."
         },
         {
           role: "user",
           content: "Blog date: " + TODAY +
             "\nRandomly selected category: " + category.name + " (" + category.topic + ")" +
             "\nExisting posts: " + JSON.stringify(existing) +
-            "\nOriginal pages opened from recent English-language searches: " + JSON.stringify(opened) +
-            "\nSelect the newest relevant article with a visible date if available, but do not invent a date. Compare every source topic against all existing titles and excerpts. If your first choice overlaps with an existing post, choose another distinct page from the supplied set. Return JSON: decision ('PUBLISH'/'SKIP'), decisionReason, title (Arabic rendering of the original headline), slug (English kebab-case), excerpt (Arabic <=220 chars), read (integer), sourceIds (IDs actually used), articleMarkdown (Arabic body only; no H1, no source links). If all supplied topics repeat existing posts, return SKIP. Target 3,000–4,500 characters, with a short opening and source-faithful subheadings. No Egypt adaptation, no invented example, no extra proof/limitations section, and no generalized recommendations. Keep the original article's subject and intent; do not change the article into a different theme. Category metadata will be set by workflow to " + category.name + "."
+            "\nOriginal pages opened from recent English-language sources: " + JSON.stringify(opened) +
+            "\nSelect the newest relevant article with a visible date if available, but do not invent a date. Compare every source topic against all existing titles and excerpts. If your first choice overlaps with an existing post, choose another distinct page from the supplied set. If all supplied topics repeat existing posts, return SKIP." +
+            "\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, title (clear Egyptian Arabic headline), slug (English kebab-case), excerpt (Egyptian Arabic <=220 chars), read (integer), sourceIds (IDs actually used), articleMarkdown (Arabic body only; no H1, no source links)." +
+            "\nWrite 3,000-4,500 characters in natural Egyptian colloquial Arabic: a short engaging opening, a faithful explanation of the source's key methods and findings under clear subheadings, and a closing section titled exactly '## إزاي تطبقها في مصر' with concrete practical steps for applying the method in the Egyptian market. Ground every factual claim in the supplied pages; the Egypt section adapts the method practically without inventing statistics or fake local businesses. Category metadata will be set by workflow to " + category.name + "."
         }
       ], 6200);
     } catch (error) {
@@ -331,11 +333,11 @@ async function main() {
         const expansion = await ask([
           {
             role: "system",
-            content: "Return JSON only. Expand the supplied Arabic translation digest using only distinct information present in the source pages. Do not add local examples, new opinions, fact checking, claims, or generic advice. Do not repeat existing sections. Do not copy source wording verbatim."
+            content: "Return JSON only. Expand the supplied Egyptian Arabic article using only distinct information present in the source pages. Keep the natural Egyptian colloquial voice. Do not add invented facts, statistics, local business examples, or generic advice. Do not repeat existing sections. Do not copy source wording verbatim."
           },
           {
             role: "user",
-            content: "Return {articleMarkdown}. Bring this translation digest to at least 2,800 characters by explaining additional distinct points from the source pages, not by padding. Source pages: " + JSON.stringify(opened) + "\nCurrent draft: " + body
+            content: "Return {articleMarkdown}. Bring this article to at least 2,800 characters by explaining additional distinct points from the source pages, not by padding. Source pages: " + JSON.stringify(opened) + "\nCurrent draft: " + body
           }
         ], 5200);
         body = String(expansion.articleMarkdown || body).trim();
