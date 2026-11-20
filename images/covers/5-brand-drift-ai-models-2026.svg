@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">لما البراند يتطور ونموذج الذكاء الاصطناعي يفضل فاكر شكله القديم</title>
+<desc id="desc">غلاف تحريري لمقال البراندينج.</desc>
+<rect width="1200" height="630" fill="#F3F2EE"/>
+<circle cx="1115" cy="52" r="220" fill="#D8B96A" opacity=".14"/>
+<circle cx="620" cy="610" r="150" fill="#B42318" opacity=".06"/>
+<rect x="64" y="58" width="468" height="514" rx="26" fill="#111"/>
+<path d="M90 94 H506" stroke="#4A4A4A" stroke-width="1"/>
+<text x="96" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F3F2EE">KAMAL / FIELD NOTES</text>
+<g><rect x="112" y="176" width="130" height="190" rx="15" fill="#F3F2EE"/><rect x="134" y="198" width="86" height="68" rx="9" fill="#D8B96A"/><rect x="134" y="284" width="86" height="8" rx="4" fill="#777"/><rect x="134" y="306" width="64" height="8" rx="4" fill="#777"/><path d="M257 270 H321" stroke="#D8B96A" stroke-width="10" stroke-linecap="round"/><path d="M304 249 L326 270 L304 291" fill="none" stroke="#D8B96A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><g fill="none" stroke="#F3F2EE" stroke-width="7"><path d="M374 185 L450 222 L450 316 L374 354 L298 316 L298 222 Z"/><path d="M374 185 V354 M298 222 L450 316 M450 222 L298 316"/></g><g fill="#B42318"><circle cx="374" cy="185" r="13"/><circle cx="450" cy="222" r="13"/><circle cx="450" cy="316" r="13"/><circle cx="374" cy="354" r="13"/><circle cx="298" cy="316" r="13"/><circle cx="298" cy="222" r="13"/></g><circle cx="374" cy="270" r="32" fill="#73877C" stroke="#F3F2EE" stroke-width="6"/></g>
+<circle cx="492" cy="118" r="9" fill="#B42318"/>
+<rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">البراندينج</text>
+<text x="1110" y="276" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">البراند والذكاء</text>
+<text x="1110" y="352" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">الاصطناعي</text>
+<path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
+<circle cx="668" cy="548" r="6" fill="#B42318"/>
+<circle cx="690" cy="548" r="6" fill="#D8B96A"/>
+<circle cx="712" cy="548" r="6" fill="#73877C"/>
+<text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+</svg>
