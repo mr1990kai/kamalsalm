@@ -218,6 +218,27 @@ async function search(query) {
   process.exitCode = 2;
 }
 
+function extractPublishedDate(html) {
+  // Prefer structured metadata over any date-looking string in the page body:
+  // body dates are often ads, webinar promos or unrelated events.
+  const patterns = [
+    /"datePublished"\s*:\s*"([^"]{8,40})"/i,
+    /"dateCreated"\s*:\s*"([^"]{8,40})"/i,
+    /<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']{8,40})["']/i,
+    /<meta[^>]+content=["']([^"']{8,40})["'][^>]+property=["']article:published_time["']/i,
+    /<meta[^>]+name=["']date["'][^>]+content=["']([^"']{8,40})["']/i,
+    /<time[^>]+datetime=["']([^"']{8,40})["']/i
+  ];
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) {
+      const parsed = new Date(match[1]);
+      if (!isNaN(parsed.getTime()) && parsed.getFullYear() >= 2020) return parsed.toISOString().slice(0, 10);
+    }
+  }
+  return "";
+}
+
 async function fetchPage(rawUrl) {
   let url;
   try { url = new URL(rawUrl); } catch (_) { throw new Error("Invalid URL."); }
@@ -236,6 +257,7 @@ async function fetchPage(rawUrl) {
     url: response.url || url.toString(),
     ok: true,
     title: titleMatch ? plainHtml(titleMatch[1]) : "",
+    publishedDate: extractPublishedDate(html),
     text
   }, null, 2));
 }
