@@ -56,6 +56,72 @@ function extractResults(html, base) {
   }
   return results;
 }
+
+const FEEDS = [
+  "https://brandingmag.com/feed/",
+  "https://identitydesigned.com/feed/",
+  "https://thedieline.com/feed/",
+  "https://www.creativebloq.com/feeds/all",
+  "https://digiday.com/feed/",
+  "https://blog.hubspot.com/marketing/rss.xml",
+  "https://www.adweek.com/feed/",
+  "https://searchenginejournal.com/feed/",
+  "https://www.wordstream.com/blog/feed",
+  "https://ahrefs.com/blog/feed/"
+];
+function cdata(value) {
+  return String(value || "").replace(/^\s*<!\[CDATA\[/, "").replace(/\]\]>\s*$/, "");
+}
+function tagValue(chunk, tag) {
+  const match = chunk.match(new RegExp("<" + tag + "(?:\\s[^>]*)?>([\\s\\S]*?)</" + tag + ">", "i"));
+  return match ? plainHtml(cdata(match[1])) : "";
+}
+function parseFeedItems(xml) {
+  const items = [];
+  for (const match of String(xml || "").matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)) {
+    const chunk = match[1];
+    const title = tagValue(chunk, "title");
+    const url = (chunk.match(/<link>\s*([^<\s]+)\s*<\/link>/i) || [])[1] || "";
+    const snippet = tagValue(chunk, "description").slice(0, 320);
+    const ts = Date.parse((chunk.match(/<pubDate>\s*([^<]+?)\s*<\/pubDate>/i) || [])[1] || "") || 0;
+    if (title && /^https?:\/\//i.test(url) && !/\.(?:jpe?g|png|gif|webp|svg|mp4|pdf)(?:[?#]|$)/i.test(url)) {
+      items.push({ title, url, snippet, ts });
+    }
+  }
+  return items;
+}
+const RSS_STOP = new Set(["latest","news","articles","article","recent","original","industry","publication","with","from","this","that","2025","2026","2027"]);
+async function rssSearch(query) {
+  const terms = String(query || "").toLowerCase()
+    .replace(/site:\S+/g, " ").replace(/\bor\b/g, " ")
+    .split(/[^a-z0-9]+/).filter(function(w) { return w.length > 3 && !RSS_STOP.has(w); });
+  const cutoff = Date.now() - 90 * 24 * 3600 * 1000;
+  let items = [];
+  for (const feed of FEEDS) {
+    try {
+      const response = await request(feed);
+      if (!response.ok) continue;
+      items = items.concat(parseFeedItems(await response.text()));
+    } catch (_) { /* skip unreachable feed */ }
+  }
+  const seen = new Set();
+  const scored = [];
+  for (const item of items) {
+    const key = item.url.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    if (item.ts && item.ts < cutoff) continue;
+    const hay = (item.title + " " + item.snippet).toLowerCase();
+    let score = item.ts ? Math.max(0, (item.ts - cutoff) / (Date.now() - cutoff)) : 0.1;
+    for (const term of terms) if (hay.includes(term)) score += 2;
+    scored.push({ score: score, item: item });
+  }
+  scored.sort(function(a, b) { return b.score - a.score; });
+  return scored.slice(0, 6).map(function(entry) {
+    return { title: entry.item.title, url: entry.item.url, snippet: entry.item.snippet };
+  });
+}
+
 function readLog() {
   if (!fs.existsSync(logPath)) return [];
   try {
@@ -128,6 +194,25 @@ async function search(query) {
         ok: false, results: [], error: lastError
       });
     }
+  }
+  try {
+    const rssResults = await rssSearch(query);
+    const rssEntry = {
+      type: "search", query,
+      language: /[\u0600-\u06FF]/.test(query) ? "ar" : "en",
+      timestamp: new Date().toISOString(),
+      engine: "Publication RSS",
+      ok: rssResults.length > 0,
+      status: 200,
+      results: rssResults,
+      error: rssResults.length ? "" : "RSS feeds returned no usable items."
+    };
+    appendLog(rssEntry);
+    console.log(JSON.stringify(rssEntry, null, 2));
+    if (!rssEntry.ok) process.exitCode = 2;
+    return;
+  } catch (error) {
+    lastError = error && error.message ? error.message : String(error);
   }
   console.log(JSON.stringify({ query, ok: false, results: [], error: lastError }, null, 2));
   process.exitCode = 2;
