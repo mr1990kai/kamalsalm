@@ -1,4 +1,4 @@
-name: Daily Blog Article
+name: Daily Article Candidate
 
 on:
   # Automatic daily schedule DISABLED 2026-11-20 pending verified editorial gates
@@ -7,12 +7,12 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Run the full pipeline but do not commit/publish"
+        description: "Compatibility option: all runs stage candidates only, never publish"
         required: false
-        default: "false"
+        default: "true"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: daily-blog-article
@@ -212,17 +212,38 @@ jobs:
           }
           NODE
 
-      - name: Commit and publish approved article
-        if: steps.validate.outputs.publish == 'true' && github.event.inputs.dry_run != 'true'
+      # Candidates never write to the repository. Publication is a separate,
+      # reviewed commit of the exact candidate, after source and visual checks.
+      - name: Package validated candidate for editorial review
+        if: steps.validate.outputs.publish == 'true'
         env:
           TODAY: ${{ steps.date.outputs.today }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add posts/ posts-data.js images/covers/ sitemap.xml blog.html post.html
-          if git diff --cached --quiet; then
-            echo "No article changes to publish."
-            exit 1
-          fi
-          git commit -m "content: publish researched article $TODAY"
-          git push
+          mkdir -p editorial-candidate
+          node <<'NODE'
+          const fs = require("fs"), cp = require("child_process"), crypto = require("crypto");
+          const created = cp.execFileSync("git", ["ls-files", "--others", "--exclude-standard", "--", "posts/*.md"], {encoding:"utf8"}).trim().split(/\r?\n/).filter(Boolean);
+          if (created.length !== 1) throw new Error("Expected one candidate");
+          const slug = created[0].slice(6,-3);
+          const files = [created[0], "posts-data.js", "images/covers/"+slug+".svg", "sitemap.xml", "blog.html", "post.html", "research-audit.md", "web-search-log.json"];
+          const bundle = {schema:1, state:"UNREVIEWED_NOT_PUBLISHED", base_sha:process.env.GITHUB_SHA, run_id:process.env.GITHUB_RUN_ID, date:process.env.TODAY, slug, files:{}};
+          for(const file of files) {
+            if(!fs.existsSync(file)) throw new Error("Missing candidate file: "+file);
+            const content=fs.readFileSync(file,"utf8");
+            bundle.files[file]={content,sha256:crypto.createHash("sha256").update(content).digest("hex")};
+            fs.mkdirSync("editorial-candidate/"+require("path").dirname(file),{recursive:true});
+            fs.writeFileSync("editorial-candidate/"+file,content);
+          }
+          fs.writeFileSync("editorial-candidate/bundle.json", JSON.stringify(bundle,null,2));
+          const summary="\n## Candidate, not published\n\nBase commit: `"+bundle.base_sha+"`\n\nSlug: `"+slug+"`\n\nIndependent editorial review is required before publication. Review all factual claims against primary sources, practical Egypt adaptation, semantic overlap with prior articles, and cover/page rendering. The bundle contains exact file hashes. Do not apply stale metadata over newer content.\n\n"+fs.readFileSync(created[0],"utf8");
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,summary);
+          NODE
+
+      - name: Preserve candidate bundle
+        if: steps.validate.outputs.publish == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: editorial-candidate-${{ steps.date.outputs.today }}-${{ github.run_id }}
+          path: editorial-candidate/
+          retention-days: 7
+          if-no-files-found: error
