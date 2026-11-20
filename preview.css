@@ -831,3 +831,147 @@ body.en .pv-ar-only { display: none !important; }
   .pv-pagehero { padding-top: 130px; }
   .pv-case-info { position: static; }
 }
+
+/* --------------------------------------------------------------------------
+   11. Revision v2 - palette discipline and readability fixes.
+   One accent (brand brick red), one ink, warm paper neutrals only.
+   -------------------------------------------------------------------------- */
+
+:root { --pv-red: #B42318; }
+
+/* Solid pill: the frosted translucent capsule let scrolling content show
+   through it, which read as overlapping layers. */
+.site-header.is-pilled {
+  background: var(--pv-paper) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Footer: the original stylesheet paints white text for a #111 footer; the
+   preview footer is paper, so text and links must be ink. */
+.site-footer { color: var(--pv-ink) !important; }
+.site-footer a, .footer-links a { color: rgba(22, 19, 15, .68) !important; }
+.site-footer a:hover, .footer-links a:hover { color: var(--pv-ink) !important; }
+
+/* Ticker: light neutral band instead of a third dark block. */
+.ticker {
+  background: var(--pv-paper-2) !important;
+  color: var(--pv-ink) !important;
+  border-block: 1px solid var(--pv-line) !important;
+}
+.ticker span::after, .ticker span:after { color: var(--pv-red) !important; }
+
+/* One dark value across all dark sections. */
+.craft-section, .contact-section, .projects-cta {
+  background: var(--pv-ink) !important;
+  color: var(--pv-paper) !important;
+}
+.contact-section .eyebrow, .projects-cta .eyebrow { color: rgba(244, 243, 240, .6) !important; }
+.contact-section .eyebrow::before, .contact-section .eyebrow:before,
+.projects-cta .eyebrow::before, .projects-cta .eyebrow:before { background: var(--pv-red) !important; }
+
+/* Buttons on dark sections: the ghost button was dark-on-dark (invisible). */
+.contact-section .button-primary, .projects-cta .button-primary {
+  background: var(--pv-paper) !important;
+  color: var(--pv-ink) !important;
+  border-color: var(--pv-paper) !important;
+}
+.contact-section .button-primary:hover, .projects-cta .button-primary:hover {
+  background: var(--pv-red) !important;
+  color: #fff !important;
+  border-color: var(--pv-red) !important;
+}
+.contact-section .button-secondary, .projects-cta .button-secondary {
+  color: var(--pv-paper) !important;
+  background: transparent !important;
+  border-color: rgba(244, 243, 240, .4) !important;
+}
+.contact-section .button-secondary:hover, .projects-cta .button-secondary:hover {
+  background: var(--pv-paper) !important;
+  color: var(--pv-ink) !important;
+  border-color: var(--pv-paper) !important;
+}
+
+/* Warm beige remnants -> the two paper neutrals. */
+.work-section { background: var(--pv-paper-2) !important; }
+.work-card-visual { background: var(--pv-paper) !important; }
+.proof-card img { background: var(--pv-paper-2) !important; }
+.proof-card:hover { border-color: rgba(180, 35, 24, .45) !important; }
+
+/* Case-study next card: the small-label rule also hit the project-name span
+   inside <b>, rendering it dim on dark. */
+.pv-case-next .pv-next-card b span {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--pv-paper);
+  direction: inherit;
+  display: inline;
+  margin-bottom: 0;
+}
+
+/* About section (2.jpg): photo beside the personal intro. */
+.pv-about { padding-block: clamp(70px, 9vw, 130px); background: var(--pv-paper); }
+.pv-about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+}
+.pv-about-photo {
+  margin: 0;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--pv-shadow-soft);
+  aspect-ratio: 4 / 5;
+  max-width: 440px;
+}
+.pv-about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-about-copy .eyebrow { color: var(--pv-red); }
+.pv-about-copy p {
+  font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--pv-ink);
+  margin: 18px 0 0;
+}
+
+/* Contact photo (3.jpg): sits beside the contact copy on the dark section. */
+.contact-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr);
+  gap: clamp(28px, 4vw, 60px);
+  align-items: center;
+}
+.contact-inner .contact-copy, .contact-inner .hero-actions { grid-column: 1; }
+.pv-contact-photo {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 34px 70px -34px rgba(0, 0, 0, .55);
+}
+.pv-contact-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 860px) {
+  .pv-about-inner { grid-template-columns: 1fr; }
+  .pv-about-photo { aspect-ratio: 4 / 3; max-width: 480px; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-inner .contact-copy, .contact-inner .hero-actions { grid-column: auto; }
+  .pv-contact-photo { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; max-width: 480px; }
+}
+
+/* Mobile: deck caption chip stays inside its card. */
+@media (max-width: 680px) {
+  .pv-deck-card .pv-deck-caption {
+    max-width: calc(100% - 32px);
+    inset-inline-start: 16px;
+    bottom: 14px;
+    padding: 8px 13px;
+    font-size: .74rem;
+  }
+}
