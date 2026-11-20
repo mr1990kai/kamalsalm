@@ -1,0 +1,991 @@
+/* ==========================================================================
+   Legion-inspired preview layer — Kamal Elnhrawy portfolio
+   Loads AFTER the existing stylesheets on design.html / projects.html and
+   restyles them around: warm paper, ink type, one red accent, big rounded
+   photo cards, scroll-driven motion. No icons, pure typography.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --pv-paper: #f4f3f0;
+  --pv-paper-2: #eceae5;
+  --pv-ink: #16130f;
+  --pv-ink-soft: #3d3831;
+  --pv-muted: #69645b;
+  --pv-line: #e2ded6;
+  --pv-red: #e1251b;
+  --pv-white: #fffefa;
+  --pv-radius: 26px;
+  --pv-radius-lg: 34px;
+  --pv-shadow: 0 34px 70px -34px rgba(22, 19, 15, .35);
+  --pv-shadow-soft: 0 18px 44px -22px rgba(22, 19, 15, .28);
+  --pv-arabic: "IBM Plex Sans Arabic", "Noto Kufi Arabic", Tahoma, sans-serif;
+  --pv-latin: "Inter", "Plus Jakarta Sans", Arial, sans-serif;
+  --pv-ease: cubic-bezier(.22, .61, .21, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--pv-paper) !important;
+  color: var(--pv-ink);
+  font-family: var(--pv-arabic);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+body.en { font-family: var(--pv-latin); }
+
+::selection { background: var(--pv-red); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   1. Floating frosted nav
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: fixed !important;
+  inset-inline: 0;
+  top: 0;
+  z-index: 90;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px clamp(18px, 4vw, 44px);
+  background: transparent !important;
+  border: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: padding .45s var(--pv-ease);
+}
+
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--pv-latin);
+  font-weight: 800;
+  font-size: .82rem;
+  letter-spacing: .16em;
+  color: var(--pv-ink);
+  text-decoration: none;
+  direction: ltr;
+}
+.site-header .brand::before {
+  content: "";
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+}
+
+.site-header .site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 30px);
+}
+.site-header .site-nav a {
+  position: relative;
+  color: var(--pv-ink-soft);
+  text-decoration: none;
+  font-size: .95rem;
+  font-weight: 500;
+  padding: 4px 2px;
+  transition: color .25s var(--pv-ease);
+}
+.site-header .site-nav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--pv-red);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .35s var(--pv-ease);
+}
+.site-header .site-nav a:hover,
+.site-header .site-nav a[aria-current] { color: var(--pv-ink); }
+.site-header .site-nav a:hover::after,
+.site-header .site-nav a[aria-current]::after { transform: scaleX(1); }
+
+.site-header .site-actions { display: flex; align-items: center; gap: 10px; }
+.site-header .language-button {
+  border: 1px solid var(--pv-line);
+  background: rgba(255, 254, 250, .7);
+  color: var(--pv-ink);
+  font: 700 .72rem/1 var(--pv-latin);
+  letter-spacing: .08em;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background .3s var(--pv-ease), color .3s var(--pv-ease), border-color .3s var(--pv-ease);
+}
+.site-header .language-button:hover { background: var(--pv-ink); color: var(--pv-paper); border-color: var(--pv-ink); }
+.site-header .menu-button {
+  border: 1px solid var(--pv-line);
+  background: rgba(255, 254, 250, .7);
+  color: var(--pv-ink);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* The pill: once the page scrolls, the whole header contracts into a
+   floating frosted capsule, Legion-style. Toggled by preview.js. */
+.site-header.is-pilled {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  top: 14px;
+  width: max-content;
+  max-width: calc(100vw - 28px);
+  padding: 8px 10px 8px 20px;
+  border-radius: 999px;
+  background: rgba(244, 243, 240, .78) !important;
+  border: 1px solid rgba(226, 222, 214, .9) !important;
+  box-shadow: var(--pv-shadow-soft);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+}
+.site-header.is-pilled .brand { margin-inline-end: 6px; }
+.site-header.is-pilled .site-nav { gap: 16px; }
+.site-header.is-pilled .site-nav a { font-size: .88rem; }
+.site-header.is-pilled .language-button,
+.site-header.is-pilled .menu-button { width: 38px; height: 38px; border-color: transparent; background: transparent; }
+
+/* Mobile menu keeps working on top of everything */
+.mobile-menu { z-index: 120; }
+
+/* --------------------------------------------------------------------------
+   2. Hero: scroll-driven photo deck over a giant marquee
+   -------------------------------------------------------------------------- */
+
+.pv-hero {
+  position: relative;
+  height: 420vh; /* scroll runway for the deck; the stage itself is sticky */
+  background: var(--pv-paper);
+}
+.pv-hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.pv-hero-marquee {
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  translate: 0 -50%;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.pv-hero-marquee-track {
+  display: inline-flex;
+  will-change: transform;
+  animation: pv-marquee 26s linear infinite;
+}
+.pv-hero-marquee-track span {
+  font-family: var(--pv-latin);
+  font-weight: 800;
+  font-size: clamp(6rem, 19vw, 17rem);
+  letter-spacing: -.02em;
+  line-height: 1;
+  color: var(--pv-ink);
+  padding-inline-end: .35em;
+  direction: ltr;
+}
+@keyframes pv-marquee {
+  to { transform: translateX(-50%); }
+}
+
+.pv-hero-topline {
+  position: absolute;
+  top: 86px;
+  inset-inline: clamp(18px, 4vw, 44px);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--pv-latin);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  color: var(--pv-muted);
+  direction: ltr;
+  z-index: 3;
+}
+
+.pv-deck {
+  position: relative;
+  z-index: 2;
+  width: min(560px, 74vw);
+  aspect-ratio: 4 / 3;
+}
+.pv-deck-card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--pv-shadow);
+  background: var(--pv-paper-2);
+  will-change: transform;
+}
+.pv-deck-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pv-deck-card .pv-deck-caption {
+  position: absolute;
+  inset-inline-start: 18px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(255, 254, 250, .82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--pv-ink);
+}
+.pv-deck-card .pv-deck-caption::before {
+  content: "";
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+}
+.pv-deck-card .pv-deck-caption small {
+  font-family: var(--pv-latin);
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--pv-muted);
+  font-size: .64rem;
+}
+
+.pv-hero-bottom {
+  position: absolute;
+  bottom: 34px;
+  inset-inline: clamp(18px, 4vw, 44px);
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.pv-hero-bottom p {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 500;
+  color: var(--pv-ink-soft);
+}
+.pv-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  border-radius: 999px;
+  background: var(--pv-ink);
+  color: var(--pv-paper) !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .98rem;
+  transition: transform .35s var(--pv-ease), background .35s var(--pv-ease);
+}
+.pv-hero-cta::before {
+  content: "";
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+  transition: transform .35s var(--pv-ease);
+}
+.pv-hero-cta:hover { transform: translateY(-3px); }
+.pv-hero-cta:hover::before { transform: scale(1.5); }
+.pv-hero-scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--pv-latin);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  color: var(--pv-muted);
+  animation: pv-hint 2.2s ease-in-out infinite;
+}
+@keyframes pv-hint {
+  0%, 100% { translate: 0 0; opacity: .55; }
+  50% { translate: 0 8px; opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   3. Statement: word-by-word ink reveal
+   -------------------------------------------------------------------------- */
+
+.pv-statement {
+  padding: clamp(90px, 14vw, 190px) clamp(18px, 6vw, 90px);
+  max-width: 1150px;
+  margin-inline: auto;
+}
+.pv-statement .eyebrow,
+.pv-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--pv-latin);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  color: var(--pv-muted);
+  text-transform: uppercase;
+  direction: ltr;
+  margin-bottom: 26px;
+}
+.pv-statement .eyebrow::before,
+.pv-eyebrow::before {
+  content: "";
+  width: 26px; height: 2px;
+  background: var(--pv-red);
+  border-radius: 2px;
+}
+.pv-statement h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.6vw, 3.9rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--pv-ink);
+}
+.pv-statement h2 .w {
+  display: inline-block;
+  color: #69645b; /* readable baseline (>=4.5:1 on paper) until the reveal inks it */
+  transition: color .45s var(--pv-ease);
+}
+.pv-statement h2 .w.on { color: var(--pv-ink); }
+
+/* language split-blocks: each language keeps its own word spans */
+body:not(.en) .pv-en-only { display: none !important; }
+body.en .pv-ar-only { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   4. Stacking project cards (projects.html grid + design.html #work)
+   -------------------------------------------------------------------------- */
+
+.pv-stack {
+  display: grid;
+  gap: clamp(26px, 4vw, 54px);
+  padding: clamp(40px, 6vw, 90px) clamp(18px, 6vw, 90px);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.pv-card[hidden] { display: none !important; }
+.pv-card {
+  position: sticky;
+  top: clamp(84px, 12vh, 120px);
+  display: block;
+  text-decoration: none;
+  color: var(--pv-ink);
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  background: var(--pv-paper-2);
+  box-shadow: var(--pv-shadow);
+  will-change: transform;
+  transform-origin: center top;
+}
+.pv-card .pv-card-media {
+  position: relative;
+  aspect-ratio: 16 / 9.5;
+  overflow: hidden;
+}
+.pv-card .pv-card-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.001);
+  transition: transform .9s var(--pv-ease);
+}
+.pv-card:hover .pv-card-media img { transform: scale(1.05); }
+
+.pv-card-pill {
+  position: absolute;
+  inset-inline: 22px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 22px;
+  border-radius: 20px;
+  background: rgba(255, 254, 250, .84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: inset-inline .55s var(--pv-ease), padding .55s var(--pv-ease),
+              border-radius .55s var(--pv-ease), bottom .55s var(--pv-ease);
+}
+.pv-card:hover .pv-card-pill {
+  inset-inline: 30%;
+  padding: 13px 20px;
+  border-radius: 999px;
+  bottom: 24px;
+}
+@media (max-width: 720px) {
+  .pv-card:hover .pv-card-pill { inset-inline: 14%; }
+}
+.pv-card-pill .pv-card-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pv-card-pill .pv-card-name::before {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+}
+.pv-card-pill .pv-card-cat {
+  font-family: var(--pv-latin);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--pv-muted);
+  white-space: nowrap;
+  direction: ltr;
+}
+.pv-card-index {
+  position: absolute;
+  top: 18px;
+  inset-inline-start: 20px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(22, 19, 15, .72);
+  color: #f4f3f0;
+  font-family: var(--pv-latin);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  direction: ltr;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Entrance tilt for stack cards, driven by .reveal system */
+.pv-card.reveal { transform: perspective(1200px) rotateX(4deg) translateY(60px); opacity: 0; }
+.pv-card.reveal.is-visible { transform: none; opacity: 1; transition: transform .9s var(--pv-ease), opacity .7s var(--pv-ease); }
+
+/* --------------------------------------------------------------------------
+   5. Page hero for projects.html
+   -------------------------------------------------------------------------- */
+
+.pv-pagehero {
+  padding: clamp(150px, 22vh, 220px) clamp(18px, 6vw, 90px) clamp(30px, 4vw, 50px);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+.pv-pagehero h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 7vw, 5.6rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--pv-ink);
+}
+.pv-pagehero h1 .accent { color: var(--pv-red); }
+.pv-pagehero p {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--pv-ink-soft);
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+}
+.pv-pagehero .pv-stats {
+  display: flex;
+  gap: clamp(24px, 5vw, 70px);
+  margin-top: 40px;
+  padding-top: 26px;
+  border-top: 1px solid var(--pv-line);
+  flex-wrap: wrap;
+}
+.pv-pagehero .pv-stats div { direction: ltr; text-align: start; }
+.pv-pagehero .pv-stats b {
+  display: block;
+  font-family: var(--pv-latin);
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  font-weight: 800;
+  color: var(--pv-ink);
+}
+.pv-pagehero .pv-stats span {
+  font-size: .8rem;
+  color: var(--pv-muted);
+}
+
+/* Filters as quiet text buttons, no boxes of icons */
+.pv-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 clamp(18px, 6vw, 90px);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.pv-filters .filter-button {
+  border: 0;
+  background: transparent;
+  color: var(--pv-muted);
+  font: 600 .92rem/1 var(--pv-arabic);
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .3s var(--pv-ease), background .3s var(--pv-ease);
+}
+.pv-filters .filter-button:hover { color: var(--pv-ink); background: rgba(22, 19, 15, .05); }
+.pv-filters .filter-button.is-active { color: var(--pv-paper); background: var(--pv-ink); }
+
+/* --------------------------------------------------------------------------
+   6. Case-study (project) pages — Legion pinned-info + scrolling gallery
+   -------------------------------------------------------------------------- */
+
+.pv-case-hero {
+  padding: clamp(150px, 22vh, 210px) clamp(18px, 6vw, 90px) clamp(40px, 5vw, 70px);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+.pv-case-hero .case-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--pv-latin);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  color: var(--pv-muted);
+  direction: ltr;
+  margin-bottom: 22px;
+}
+.pv-case-hero h1 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 16px;
+  font-size: clamp(2.6rem, 7.5vw, 6rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--pv-ink);
+}
+.pv-case-hero h1::before {
+  content: "";
+  width: .22em; height: .22em;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+  translate: 0 -.55em;
+}
+.pv-case-hero .case-tagline {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  color: var(--pv-ink-soft);
+}
+
+.pv-case-heroimg {
+  max-width: 1280px;
+  margin: clamp(30px, 4vw, 54px) auto 0;
+  padding: 0 clamp(18px, 6vw, 90px);
+}
+.pv-case-heroimg img,
+.pv-case-heroimg video {
+  width: 100%;
+  border-radius: var(--pv-radius-lg);
+  display: block;
+  box-shadow: var(--pv-shadow);
+}
+
+.pv-case-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 5fr) 7fr;
+  gap: clamp(30px, 5vw, 80px);
+  max-width: 1280px;
+  margin: clamp(60px, 8vw, 110px) auto 0;
+  padding: 0 clamp(18px, 6vw, 90px);
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .pv-case-grid { grid-template-columns: 1fr; }
+}
+
+.pv-case-info {
+  position: sticky;
+  top: 110px;
+}
+.pv-case-info h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--pv-ink);
+}
+.pv-case-info p { color: var(--pv-ink-soft); margin: 0 0 18px; }
+.pv-case-info ul {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.pv-case-info ul li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: var(--pv-ink-soft);
+  font-size: .98rem;
+}
+.pv-case-info ul li::before {
+  content: "";
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+  translate: 0 -1px;
+}
+.pv-case-meta {
+  margin: 30px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--pv-line);
+  display: grid;
+  gap: 14px;
+}
+.pv-case-meta div { display: grid; gap: 2px; }
+.pv-case-meta dt {
+  font-family: var(--pv-latin);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  color: var(--pv-muted);
+  text-transform: uppercase;
+}
+.pv-case-meta dd { margin: 0; font-weight: 600; color: var(--pv-ink); }
+.pv-case-meta dd a { color: var(--pv-ink); text-decoration-color: var(--pv-red); text-underline-offset: 4px; }
+
+.pv-case-gallery { display: grid; gap: clamp(20px, 3vw, 36px); }
+.pv-case-gallery figure {
+  margin: 0;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--pv-shadow-soft);
+  background: var(--pv-paper-2);
+}
+.pv-case-gallery img,
+.pv-case-gallery video {
+  width: 100%;
+  display: block;
+}
+.pv-case-gallery .case-video-frame { border-radius: var(--pv-radius-lg); overflow: hidden; box-shadow: var(--pv-shadow-soft); }
+.pv-case-gallery .case-video-frame video { width: 100%; display: block; }
+
+.pv-case-next {
+  display: block;
+  max-width: 1280px;
+  margin: clamp(80px, 10vw, 140px) auto clamp(60px, 8vw, 110px);
+  padding: 0 clamp(18px, 6vw, 90px);
+  text-decoration: none;
+}
+.pv-case-next .pv-next-card {
+  position: relative;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  background: var(--pv-ink);
+  color: var(--pv-paper);
+  padding: clamp(44px, 7vw, 90px) clamp(26px, 5vw, 70px);
+  transition: transform .5s var(--pv-ease);
+}
+.pv-case-next:hover .pv-next-card { transform: translateY(-6px); }
+.pv-case-next .pv-next-card span {
+  font-family: var(--pv-latin);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  color: rgba(244, 243, 240, .6);
+  text-transform: uppercase;
+  direction: ltr;
+  display: block;
+  margin-bottom: 14px;
+}
+.pv-case-next .pv-next-card b {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: clamp(2rem, 5.5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.pv-case-next .pv-next-card b::before {
+  content: "";
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer (shared visual language)
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  border-top: 0 !important;
+  background: var(--pv-paper) !important;
+  padding: 60px clamp(18px, 6vw, 90px) 46px !important;
+}
+.site-footer::before {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--pv-red);
+  border-radius: 3px;
+  margin-bottom: 44px;
+}
+
+/* --------------------------------------------------------------------------
+   8. De-icon the existing sections: red check bullets -> quiet red dots,
+      decorative arrows removed.
+   -------------------------------------------------------------------------- */
+
+.service-card li::before {
+  content: "" !important;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--pv-red);
+  flex: none;
+  translate: 0 -1px;
+}
+.service-card li { display: flex; align-items: baseline; gap: 12px; }
+.craft-arrow { display: none !important; }
+.button-primary .arrow, .button-secondary .arrow,
+.section-link span:first-child { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   9. Reveal utilities (reuse existing .reveal hooks)
+   -------------------------------------------------------------------------- */
+
+.reveal, .reveal-left {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity .8s var(--pv-ease), transform .8s var(--pv-ease);
+}
+.reveal-left { transform: translateY(34px) translateX(-26px); }
+.reveal.is-visible, .reveal-left.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-hero { height: auto; }
+  .pv-hero-stage { position: static; height: auto; min-height: 92vh; }
+  .pv-deck { width: min(720px, 88vw); aspect-ratio: auto; display: grid; gap: 16px; }
+  .pv-deck-card { position: relative; inset: auto; aspect-ratio: 4 / 3; }
+  .pv-hero-marquee-track { animation: none; }
+  .pv-card { position: static; }
+  .pv-statement h2 .w { opacity: 1; color: var(--pv-ink); }
+  .reveal, .reveal-left { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* --------------------------------------------------------------------------
+   10. Mobile refinements
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 920px) {
+  /* Keep the Legion pill, swap the inline links for the text menu button */
+  .site-header .site-nav { display: none; }
+  .site-header .menu-button { display: inline-grid; place-items: center; }
+}
+
+@media (max-width: 680px) {
+  .pv-hero-topline {
+    top: 76px;
+    font-size: .56rem;
+    letter-spacing: .14em;
+  }
+  .pv-hero-topline span:nth-child(2) { display: none; }
+  .pv-hero-scroll-hint { display: none; }
+  .pv-deck { width: min(430px, 84vw); }
+  .pv-hero-bottom { bottom: 26px; gap: 14px; }
+  .pv-hero-bottom p { font-size: .92rem; }
+  .pv-hero-cta { padding: 13px 22px; font-size: .88rem; }
+  .pv-pagehero { padding-top: 130px; }
+  .pv-case-info { position: static; }
+}
+
+/* --------------------------------------------------------------------------
+   11. Revision v2 - palette discipline and readability fixes.
+   One accent (brand brick red), one ink, warm paper neutrals only.
+   -------------------------------------------------------------------------- */
+
+:root { --pv-red: #B42318; }
+
+/* Solid pill: the frosted translucent capsule let scrolling content show
+   through it, which read as overlapping layers. */
+.site-header.is-pilled {
+  background: var(--pv-paper) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Footer: the original stylesheet paints white text for a #111 footer; the
+   preview footer is paper, so text and links must be ink. */
+.site-footer { color: var(--pv-ink) !important; }
+.site-footer a, .footer-links a { color: rgba(22, 19, 15, .68) !important; }
+.site-footer a:hover, .footer-links a:hover { color: var(--pv-ink) !important; }
+
+/* Ticker: light neutral band instead of a third dark block. */
+.ticker {
+  background: var(--pv-paper-2) !important;
+  color: var(--pv-ink) !important;
+  border-block: 1px solid var(--pv-line) !important;
+}
+.ticker span::after, .ticker span:after { color: var(--pv-red) !important; }
+
+/* One dark value across all dark sections. */
+.craft-section, .contact-section, .projects-cta {
+  background: var(--pv-ink) !important;
+  color: var(--pv-paper) !important;
+}
+.contact-section .eyebrow, .projects-cta .eyebrow { color: rgba(244, 243, 240, .6) !important; }
+.contact-section .eyebrow::before, .contact-section .eyebrow:before,
+.projects-cta .eyebrow::before, .projects-cta .eyebrow:before { background: var(--pv-red) !important; }
+
+/* Buttons on dark sections: the ghost button was dark-on-dark (invisible). */
+.contact-section .button-primary, .projects-cta .button-primary {
+  background: var(--pv-paper) !important;
+  color: var(--pv-ink) !important;
+  border-color: var(--pv-paper) !important;
+}
+.contact-section .button-primary:hover, .projects-cta .button-primary:hover {
+  background: var(--pv-red) !important;
+  color: #fff !important;
+  border-color: var(--pv-red) !important;
+}
+.contact-section .button-secondary, .projects-cta .button-secondary {
+  color: var(--pv-paper) !important;
+  background: transparent !important;
+  border-color: rgba(244, 243, 240, .4) !important;
+}
+.contact-section .button-secondary:hover, .projects-cta .button-secondary:hover {
+  background: var(--pv-paper) !important;
+  color: var(--pv-ink) !important;
+  border-color: var(--pv-paper) !important;
+}
+
+/* Warm beige remnants -> the two paper neutrals. */
+.work-section { background: var(--pv-paper-2) !important; }
+.work-card-visual { background: var(--pv-paper) !important; }
+.proof-card img { background: var(--pv-paper-2) !important; }
+.proof-card:hover { border-color: rgba(180, 35, 24, .45) !important; }
+
+/* Case-study next card: the small-label rule also hit the project-name span
+   inside <b>, rendering it dim on dark. */
+.pv-case-next .pv-next-card b span {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--pv-paper);
+  direction: inherit;
+  display: inline;
+  margin-bottom: 0;
+}
+
+/* About section (2.jpg): photo beside the personal intro. */
+.pv-about { padding-block: clamp(70px, 9vw, 130px); background: var(--pv-paper); }
+.pv-about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+}
+.pv-about-photo {
+  margin: 0;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--pv-shadow-soft);
+  aspect-ratio: 4 / 5;
+  max-width: 440px;
+}
+.pv-about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-about-copy .eyebrow { color: var(--pv-red); }
+.pv-about-copy p {
+  font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--pv-ink);
+  margin: 18px 0 0;
+}
+
+/* Contact photo (3.jpg): sits beside the contact copy on the dark section. */
+.contact-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr);
+  gap: clamp(28px, 4vw, 60px);
+  align-items: center;
+}
+.contact-inner .contact-copy, .contact-inner .hero-actions { grid-column: 1; }
+.pv-contact-photo {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0;
+  border-radius: var(--pv-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 34px 70px -34px rgba(0, 0, 0, .55);
+}
+.pv-contact-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 860px) {
+  .pv-about-inner { grid-template-columns: 1fr; }
+  .pv-about-photo { aspect-ratio: 4 / 3; max-width: 480px; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-inner .contact-copy, .contact-inner .hero-actions { grid-column: auto; }
+  .pv-contact-photo { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; max-width: 480px; }
+}
+
+/* Mobile: deck caption chip stays inside its card. */
+@media (max-width: 680px) {
+  .pv-deck-card .pv-deck-caption {
+    max-width: calc(100% - 32px);
+    inset-inline-start: 16px;
+    bottom: 14px;
+    padding: 8px 13px;
+    font-size: .74rem;
+  }
+}
+
+/* v2.1 footer polish: brand was still forced white by the original sheet,
+   and the red bar (a flex child) was squeezing the footer row. */
+.footer-brand { color: var(--pv-ink) !important; }
+.site-footer { flex-wrap: wrap; }
+.site-footer::before { flex: 0 0 100%; }
+
+/* v2.2 contrast: small-text cases below 4.5:1 (bronze label, #777 metas). */
+.service-card .service-label { color: var(--pv-red) !important; }
+.proof-card small,
+.work-card-meta span,
+.projects-hero .eyebrow,
+.project-count,
+.project-stack--all .project-card-meta span { color: var(--pv-muted) !important; }
