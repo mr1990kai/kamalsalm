@@ -11,13 +11,13 @@
 <g><g transform="rotate(-8 270 300)"><rect x="120" y="174" width="195" height="270" rx="14" fill="#F3F2EE"/><rect x="143" y="198" width="150" height="114" rx="9" fill="#B42318"/><circle cx="218" cy="255" r="34" fill="#D8B96A"/><rect x="143" y="332" width="120" height="9" rx="4" fill="#111"/><rect x="143" y="354" width="92" height="8" rx="4" fill="#777"/><rect x="143" y="390" width="75" height="25" rx="6" fill="#111"/></g><g transform="rotate(7 390 300)"><rect x="302" y="190" width="165" height="224" rx="13" fill="#73877C"/><rect x="322" y="212" width="125" height="70" rx="7" fill="#D8B96A"/><rect x="322" y="300" width="125" height="10" rx="5" fill="#F3F2EE"/><rect x="322" y="324" width="95" height="8" rx="4" fill="#F3F2EE"/><rect x="322" y="362" width="85" height="27" rx="7" fill="#B42318"/></g><path d="M178 135 C265 82 397 110 442 160" fill="none" stroke="#D8B96A" stroke-width="7" stroke-linecap="round"/><path d="M427 137 L447 161 L414 166" fill="none" stroke="#D8B96A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g>
 <circle cx="492" cy="118" r="9" fill="#B42318"/>
 <rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
-<text x="1080" y="135" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">البراندينج</text>
-<text x="1110" y="276" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">من إعلان ناجح</text>
-<text x="1110" y="352" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">لنظام إبداعي</text>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">البراندينج</text>
+<text x="1110" y="276" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">من إعلان ناجح</text>
+<text x="1110" y="352" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">لنظام إبداعي</text>
 <path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
 <circle cx="668" cy="548" r="6" fill="#B42318"/>
 <circle cx="690" cy="548" r="6" fill="#D8B96A"/>
 <circle cx="712" cy="548" r="6" fill="#73877C"/>
 <text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
-<text x="1110" y="582" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
 </svg>
