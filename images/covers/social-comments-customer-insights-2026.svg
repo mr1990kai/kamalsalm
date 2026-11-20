@@ -11,13 +11,13 @@
 <g><g stroke="#F3F2EE" stroke-width="3" stroke-linejoin="round"><rect x="126" y="170" width="220" height="112" rx="22" fill="#F3F2EE"/><path d="M174 282 L154 310 L207 284" fill="#F3F2EE"/><rect x="245" y="290" width="205" height="104" rx="22" fill="#B42318"/><path d="M393 394 L423 423 L366 395" fill="#B42318"/><rect x="150" y="198" width="150" height="9" rx="4" fill="#111"/><rect x="150" y="224" width="112" height="8" rx="4" fill="#777"/><rect x="271" y="320" width="142" height="8" rx="4" fill="#fff"/><rect x="271" y="345" width="104" height="8" rx="4" fill="#F3F2EE" opacity=".65"/></g><circle cx="420" cy="178" r="54" fill="none" stroke="#D8B96A" stroke-width="15"/><path d="M458 216 L493 251" stroke="#D8B96A" stroke-width="18" stroke-linecap="round"/></g>
 <circle cx="492" cy="118" r="9" fill="#B42318"/>
 <rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
-<text x="1080" y="135" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">التسويق</text>
-<text x="1110" y="276" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">تعليقات الجمهور</text>
-<text x="1110" y="352" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">رؤى تفهم العميل</text>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">التسويق</text>
+<text x="1110" y="276" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">تعليقات الجمهور</text>
+<text x="1110" y="352" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">رؤى تفهم العميل</text>
 <path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
 <circle cx="668" cy="548" r="6" fill="#B42318"/>
 <circle cx="690" cy="548" r="6" fill="#D8B96A"/>
 <circle cx="712" cy="548" r="6" fill="#73877C"/>
 <text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
-<text x="1110" y="582" text-anchor="end" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
 </svg>
