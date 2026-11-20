@@ -145,6 +145,27 @@
   paintWords();
   initReveals();
 
+
+  /* ------------------------------------------------ 6. mobile menu */
+  (function initMobileMenu() {
+    var openBtn = document.querySelector("[data-menu-open]");
+    var panel = document.querySelector("[data-mobile-menu]");
+    var closeBtn = document.querySelector("[data-menu-close]");
+    if (!openBtn || !panel) return;
+    function setOpen(open) {
+      panel.classList.toggle("is-open", open);
+      panel.setAttribute("aria-hidden", open ? "false" : "true");
+      openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+    openBtn.addEventListener("click", function () { setOpen(true); });
+    if (closeBtn) closeBtn.addEventListener("click", function () { setOpen(false); });
+    panel.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () { setOpen(false); });
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+  })();
+
   // Cards render async from window.PROJECTS — re-arm once the grid fills.
   var grid = document.querySelector("#projects-grid, #home-projects");
   if (grid && "MutationObserver" in window) {
