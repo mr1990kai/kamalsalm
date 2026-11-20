@@ -82,12 +82,9 @@ function getPosts() {
   return global.window.POSTS;
 }
 function existingPostBrief(posts) {
-  return posts.map(function(post) {
+  return posts.slice(0, 44).map(function(post) {
     return {
-      slug: clean(post.slug, 100),
-      title: clean(post.title, 180),
-      excerpt: clean(post.excerpt, 180),
-      category: clean(post.category, 50),
+      title: clean(post.title, 140),
       date: clean(post.date, 20)
     };
   });
@@ -285,7 +282,7 @@ async function main() {
         url: page.url,
         publisher: page.host,
         visibleDate: dateMatch ? dateMatch[0] : "date not clearly visible",
-        text: page.text.slice(0, 2600)
+        text: page.text.slice(0, 1200)
       });
       if (opened.length >= 4) break;
     }
@@ -309,11 +306,11 @@ async function main() {
             "\nRandomly selected category: " + category.name + " (" + category.topic + ")" +
             "\nExisting posts: " + JSON.stringify(existing) +
             "\nOriginal pages opened from recent English-language sources: " + JSON.stringify(opened) +
-            "\nSelect the newest relevant article with a visible date if available, but do not invent a date. Compare every source topic against all existing titles and excerpts. If your first choice overlaps with an existing post, choose another distinct page from the supplied set. If all supplied topics repeat existing posts, return SKIP." +
+            "\nSelect the newest relevant article with a visible date if available, but do not invent a date. Compare every source topic against all existing titles. If your first choice overlaps with an existing post, choose another distinct page from the supplied set. If all supplied topics repeat existing posts, return SKIP." +
             "\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, title (clear Egyptian Arabic headline), slug (English kebab-case), excerpt (Egyptian Arabic <=220 chars), read (integer), sourceIds (IDs actually used), articleMarkdown (Arabic body only; no H1, no source links)." +
             "\nWrite 3,000-4,500 characters in natural Egyptian colloquial Arabic: a short engaging opening, a faithful explanation of the source's key methods and findings under clear subheadings, and a closing section titled exactly '## إزاي تطبقها في مصر' with concrete practical steps for applying the method in the Egyptian market. Ground every factual claim in the supplied pages; the Egypt section adapts the method practically without inventing statistics or fake local businesses. Category metadata will be set by workflow to " + category.name + "."
         }
-      ], 6200);
+      ], 3700);
     } catch (error) {
       console.log("Could not draft in " + category.name + ": " + clean(error.message, 220));
       continue;
@@ -339,7 +336,7 @@ async function main() {
             role: "user",
             content: "Return {articleMarkdown}. Bring this article to at least 2,800 characters by explaining additional distinct points from the source pages, not by padding. Source pages: " + JSON.stringify(opened) + "\nCurrent draft: " + body
           }
-        ], 5200);
+        ], 3000);
         body = String(expansion.articleMarkdown || body).trim();
       } catch (error) {
         console.log("Expansion failed in " + category.name + ": " + clean(error.message, 200));
@@ -386,7 +383,7 @@ async function main() {
       "\n\n## Selected Original Sources\n" + used.map(function(page) {
         return "- " + page.title + " — " + page.url + " (visible date: " + page.visibleDate + ")";
       }).join("\n") +
-      "\n\n## Existing Site Duplicate Check\nCompared the proposed topic with all " + existing.length + " current article metadata entries; the writer was instructed to choose an alternate source if the topic overlaps.\n" +
+      "\n\n## Existing Site Duplicate Check\nCompared the proposed topic with the newest " + existing.length + " existing article titles; the writer was instructed to choose an alternate source if the topic overlaps.\n" +
       "\n## Decision\nDECISION: PUBLISH — Arabic translation digest prepared from the selected original source pages.\n",
       "utf8"
     );
