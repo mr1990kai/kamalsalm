@@ -14,11 +14,12 @@
 <meta property="og:url" content="https://kamalsalm.vercel.app/projects.html">
 <meta property="og:image" content="https://kamalsalm.vercel.app/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2b1810">
+<meta name="theme-color" content="#f4f3f0">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="portfolio-site.css">
+<link rel="stylesheet" href="preview.css">
 </head>
 <body>
 <header class="site-header">
@@ -26,7 +27,7 @@
   <nav class="site-nav" aria-label="Main navigation">
     <a href="design.html#services" data-ar="الخدمات" data-en="Services">الخدمات</a>
     <a href="design.html#work" data-ar="مختارات" data-en="Selected work">مختارات</a>
-    <a href="projects.html" data-ar="كل المشاريع" data-en="All projects">كل المشاريع</a>
+    <a href="projects.html" data-ar="كل المشاريع" data-en="All projects" aria-current="page">كل المشاريع</a>
     <a href="packages.html" data-ar="الباقات" data-en="Packages">الباقات</a>
     <a href="blog.html" data-ar="المقالات" data-en="Articles">المقالات</a>
   </nav>
@@ -46,43 +47,38 @@
 </nav>
 
 <main>
-  <section class="projects-hero">
-    <div class="wrap projects-hero-inner">
-      <span class="eyebrow reveal" style="color:#dfc99f">SELECTED WORK / 2025—2026</span>
-      <h1 class="reveal" data-ar="مشاريع اتبنت علشان كل علامة تظهر بشخصيتها." data-en="Digital work built to give every brand its own character.">مشاريع اتبنت علشان كل علامة تظهر بشخصيتها.</h1>
-      <p class="reveal" data-ar="من متاجر متكاملة إلى صفحات منتج واحد؛ دي نماذج من شغل الهوية والتصميم وتجربة الشراء اللي نفذتها لعلامات مختلفة." data-en="From full storefronts to single-product landing pages, explore selected identity, design and customer-experience work for different brands.">من متاجر متكاملة إلى صفحات منتج واحد؛ دي نماذج من شغل الهوية والتصميم وتجربة الشراء اللي نفذتها لعلامات مختلفة.</p>
-      <div class="projects-stats reveal">
-        <div><b id="total-projects">10</b><span data-ar="مشاريع معروضة" data-en="Projects shown">مشاريع معروضة</span></div>
-        <div><b>02</b><span data-ar="منصات رئيسية" data-en="Core platforms">منصات رئيسية</span></div>
-        <div><b>25—26</b><span data-ar="سنوات التنفيذ" data-en="Project years">سنوات التنفيذ</span></div>
-      </div>
+  <section class="pv-pagehero">
+    <span class="pv-eyebrow">SELECTED WORK / 2025—2026</span>
+    <h1 class="reveal" data-ar="مشاريع اتبنت علشان كل علامة تظهر بشخصيتها." data-en="Digital work built to give every brand its own character.">مشاريع اتبنت علشان كل علامة <span class="accent">تظهر بشخصيتها</span>.</h1>
+    <p class="reveal" data-ar="من متاجر متكاملة إلى صفحات منتج واحد؛ دي نماذج من شغل الهوية والتصميم وتجربة الشراء اللي نفذتها لعلامات مختلفة." data-en="From full storefronts to single-product landing pages, explore selected identity, design and customer-experience work for different brands.">من متاجر متكاملة إلى صفحات منتج واحد؛ دي نماذج من شغل الهوية والتصميم وتجربة الشراء اللي نفذتها لعلامات مختلفة.</p>
+    <div class="pv-stats reveal">
+      <div><b id="total-projects">10</b><span data-ar="مشاريع معروضة" data-en="Projects shown">مشاريع معروضة</span></div>
+      <div><b>02</b><span data-ar="منصات رئيسية" data-en="Core platforms">منصات رئيسية</span></div>
+      <div><b>25—26</b><span data-ar="سنوات التنفيذ" data-en="Project years">سنوات التنفيذ</span></div>
     </div>
   </section>
 
-  <section class="wrap" aria-label="Project gallery">
-    <div class="project-controls">
-      <div class="filter-list" id="project-filters" role="group" aria-label="Filter projects">
-        <button class="filter-button is-active" type="button" data-filter="all" data-ar="كل المشاريع" data-en="All projects" aria-pressed="true">كل المشاريع</button>
-        <button class="filter-button" type="button" data-filter="Shopify">Shopify</button>
-        <button class="filter-button" type="button" data-filter="Easy Order" aria-pressed="false">Easy Order</button>
-        <button class="filter-button" type="button" data-filter="landing" data-ar="صفحات الهبوط" data-en="Landing pages" aria-pressed="false">صفحات الهبوط</button>
-      </div>
-      <span class="project-count" id="project-count" aria-live="polite">10 / 10 PROJECTS</span>
-    </div>
-    <div class="projects-grid project-stack project-stack--all" id="projects-grid">
-      <p data-ar="جارٍ تحميل المشاريع…" data-en="Loading projects…">جارٍ تحميل المشاريع…</p>
-    </div>
-    <p class="projects-empty" id="projects-empty" data-ar="مفيش مشاريع ضمن الاختيار ده." data-en="No projects match this filter.">مفيش مشاريع ضمن الاختيار ده.</p>
+  <div class="pv-filters" id="project-filters" role="group" aria-label="Filter projects">
+    <button class="filter-button is-active" type="button" data-filter="all" data-ar="كل المشاريع" data-en="All projects" aria-pressed="true">كل المشاريع</button>
+    <button class="filter-button" type="button" data-filter="Shopify">Shopify</button>
+    <button class="filter-button" type="button" data-filter="Easy Order" aria-pressed="false">Easy Order</button>
+    <button class="filter-button" type="button" data-filter="landing" data-ar="صفحات الهبوط" data-en="Landing pages" aria-pressed="false">صفحات الهبوط</button>
+    <span class="project-count" id="project-count" aria-live="polite" style="margin-inline-start:auto;font:700 .7rem var(--pv-latin);letter-spacing:.14em;color:var(--pv-muted);direction:ltr">10 / 10 PROJECTS</span>
+  </div>
+
+  <section class="pv-stack" id="projects-grid" aria-label="Project gallery">
+    <p data-ar="جارٍ تحميل المشاريع…" data-en="Loading projects…">جارٍ تحميل المشاريع…</p>
   </section>
+  <p class="projects-empty" id="projects-empty" data-ar="مفيش مشاريع ضمن الاختيار ده." data-en="No projects match this filter." style="text-align:center;color:var(--pv-muted)">مفيش مشاريع ضمن الاختيار ده.</p>
 
   <section class="projects-cta">
     <div class="wrap">
-      <span class="eyebrow" style="color:#dfc99f" data-ar="المشروع القادم" data-en="THE NEXT PROJECT">المشروع القادم</span>
+      <span class="eyebrow" data-ar="المشروع القادم" data-en="THE NEXT PROJECT">المشروع القادم</span>
       <h2 data-ar="هل عندك فكرة متجر محتاجة تتنفذ بصورة مختلفة؟" data-en="Have a store idea that deserves a different approach?">هل عندك فكرة متجر محتاجة تتنفذ بصورة مختلفة؟</h2>
       <p data-ar="احكيلي عن المنتج والسوق واللي محتاج توصله. هنحدد مع بعض أنسب طريقة للتنفيذ." data-en="Tell me about the product, market and goal. We will define the right way to build it.">احكيلي عن المنتج والسوق واللي محتاج توصله. هنحدد مع بعض أنسب طريقة للتنفيذ.</p>
       <div class="hero-actions">
-        <a class="button-primary" href="https://wa.me/201123449977" target="_blank" rel="noopener"><span data-ar="ابدأ محادثة" data-en="Start a conversation">ابدأ محادثة</span><span class="arrow">↗</span></a>
-        <a class="button-secondary" href="packages.html"><span data-ar="راجع الباقات" data-en="View packages">راجع الباقات</span><span class="arrow">↗</span></a>
+        <a class="button-primary" href="https://wa.me/201123449977" target="_blank" rel="noopener"><span data-ar="ابدأ محادثة" data-en="Start a conversation">ابدأ محادثة</span></a>
+        <a class="button-secondary" href="packages.html"><span data-ar="راجع الباقات" data-en="View packages">راجع الباقات</span></a>
       </div>
     </div>
   </section>
@@ -100,8 +96,6 @@
 </footer>
 
 <script src="projects-data.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function () {
   "use strict";
@@ -117,20 +111,15 @@
   }
 
   function renderProjects() {
+    var total = String(list.length).padStart(2, "0");
     $("#projects-grid").innerHTML = list.map(function (project, index) {
       var number = String(index + 1).padStart(2, "0");
-      var featured = index === 0 ? " project-card--featured" : "";
-      var coverLoading = index < 2 ? "eager" : "lazy";
       var workType = project.workType || { ar: "متجر إلكتروني", en: "Online store" };
-      return '<a class="project-card reveal' + featured + '" href="' + escapeHtml(project.href) + '" data-platform="' + escapeHtml(project.platform) + '" data-kind="' + escapeHtml(project.kind || "store") + '">' +
-        '<div class="project-card-visual"><span class="project-card-index">' + number + ' / ' + String(list.length).padStart(2, "0") + '</span>' +
-        '<img src="' + escapeHtml(project.cover) + '" alt="' + escapeHtml(project.title.en) + '" loading="' + coverLoading + '"' + (index === 0 ? ' fetchpriority="high"' : '') + ' onerror="this.remove()"></div>' +
-        '<div class="project-card-body"><div class="project-card-meta"><span>' + escapeHtml(project.platform) + '</span>' +
-        '<span data-ar="' + escapeHtml(workType.ar) + '" data-en="' + escapeHtml(workType.en) + '">' + escapeHtml(workType.ar) + '</span>' +
-        (project.year ? '<span>' + escapeHtml(project.year) + '</span>' : '') + '</div>' +
-        '<h2 data-ar="' + escapeHtml(project.title.ar) + '" data-en="' + escapeHtml(project.title.en) + '">' + escapeHtml(project.title.ar) + '</h2>' +
-        '<p data-ar="' + escapeHtml(project.desc.ar) + '" data-en="' + escapeHtml(project.desc.en) + '">' + escapeHtml(project.desc.ar) + '</p>' +
-        '<span class="project-card-link" data-ar="تفاصيل المشروع" data-en="View case study">تفاصيل المشروع</span></div></a>';
+      return '<a class="pv-card" href="' + escapeHtml(project.href) + '" data-platform="' + escapeHtml(project.platform) + '" data-kind="' + escapeHtml(project.kind || "store") + '">' +
+        '<div class="pv-card-media"><span class="pv-card-index">' + number + ' / ' + total + '</span>' +
+        '<img src="' + escapeHtml(project.cover) + '" alt="' + escapeHtml(project.title.en) + '" loading="' + (index < 2 ? "eager" : "lazy") + '"' + (index === 0 ? ' fetchpriority="high"' : '') + ' onerror="this.remove()">' +
+        '<div class="pv-card-pill"><span class="pv-card-name" data-ar="' + escapeHtml(project.title.ar) + '" data-en="' + escapeHtml(project.title.en) + '">' + escapeHtml(project.title.ar) + '</span>' +
+        '<span class="pv-card-cat">' + escapeHtml(project.platform) + (project.year ? ' · ' + escapeHtml(project.year) : '') + '</span></div></div></a>';
     }).join("");
     $("#total-projects").textContent = String(list.length).padStart(2, "0");
     applyFilter();
@@ -139,7 +128,7 @@
 
   function applyFilter() {
     var visible = 0;
-    document.querySelectorAll(".project-card").forEach(function (card) {
+    document.querySelectorAll(".pv-card").forEach(function (card) {
       var show = activeFilter === "all" || card.getAttribute("data-platform") === activeFilter;
       if (activeFilter === "landing") show = card.getAttribute("data-kind") === "landing";
       card.hidden = !show;
@@ -160,6 +149,7 @@
       button.textContent = lang === "ar" ? "EN" : "AR";
     });
     document.title = lang === "ar" ? "المشاريع | كمال النحراوي" : "Selected Work | Kamal Elnhrawy";
+    document.dispatchEvent(new CustomEvent("pv:lang"));
   }
 
   $("#project-filters").addEventListener("click", function (event) {
@@ -184,6 +174,6 @@
   renderProjects();
 })();
 </script>
-<script src="portfolio-motion.js" defer></script>
+<script src="preview.js" defer></script>
 </body>
 </html>
