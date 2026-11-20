@@ -12,7 +12,7 @@
   --pv-paper-2: #eceae5;
   --pv-ink: #16130f;
   --pv-ink-soft: #3d3831;
-  --pv-muted: #8a8378;
+  --pv-muted: #69645b;
   --pv-line: #e2ded6;
   --pv-red: #e1251b;
   --pv-white: #fffefa;
@@ -372,10 +372,10 @@ body.en { font-family: var(--pv-latin); }
 }
 .pv-statement h2 .w {
   display: inline-block;
-  opacity: .14;
-  transition: opacity .45s var(--pv-ease);
+  color: #69645b; /* readable baseline (>=4.5:1 on paper) until the reveal inks it */
+  transition: color .45s var(--pv-ease);
 }
-.pv-statement h2 .w.on { opacity: 1; }
+.pv-statement h2 .w.on { color: var(--pv-ink); }
 
 /* language split-blocks: each language keeps its own word spans */
 body:not(.en) .pv-en-only { display: none !important; }
@@ -801,7 +801,7 @@ body.en .pv-ar-only { display: none !important; }
   .pv-deck-card { position: relative; inset: auto; aspect-ratio: 4 / 3; }
   .pv-hero-marquee-track { animation: none; }
   .pv-card { position: static; }
-  .pv-statement h2 .w { opacity: 1; }
+  .pv-statement h2 .w { opacity: 1; color: var(--pv-ink); }
   .reveal, .reveal-left { opacity: 1; transform: none; transition: none; }
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
