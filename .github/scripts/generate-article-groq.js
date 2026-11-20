@@ -37,6 +37,11 @@ async function ask(messages, maxTokens, effort) {
   if (!key) stop("Missing GROQ_API_KEY secret in GitHub Actions.");
   let lastError;
   let tokenBudget = maxTokens || 5200;
+  const sinceLast = Date.now() - ask.lastCallAt;
+  if (ask.lastCallAt && sinceLast < 10000) {
+    await new Promise(resolve => setTimeout(resolve, 10000 - sinceLast));
+  }
+  ask.lastCallAt = Date.now();
   for (let attempt = 0; attempt < 4; attempt++) {
     const payload = {
       model: MODEL,
@@ -84,6 +89,7 @@ async function ask(messages, maxTokens, effort) {
   }
   throw lastError || new Error("Groq request failed after retries.");
 }
+ask.lastCallAt = 0;
 function getPosts() {
   global.window = {};
   try { require(path.join(ROOT, "posts-data.js")); }
@@ -292,9 +298,9 @@ async function main() {
         url: page.url,
         publisher: page.host,
         publishedDate: page.publishedDate || "date not clearly visible",
-        text: page.text.slice(0, 1200)
+        text: page.text.slice(0, 1000)
       });
-      if (opened.length >= 4) break;
+      if (opened.length >= 3) break;
     }
 
     if (!opened.length) {
@@ -320,7 +326,7 @@ async function main() {
             "\nReturn JSON: decision ('PUBLISH'/'SKIP'), decisionReason, title (clear Egyptian Arabic headline), slug (English kebab-case), excerpt (Egyptian Arabic <=220 chars), read (integer), sourceIds (IDs actually used), articleMarkdown (Arabic body only; no H1, no source links)." +
             "\nWrite 3,000-4,500 characters in natural Egyptian colloquial Arabic: a short engaging opening, a faithful explanation of the source's key methods and findings under clear subheadings marked with ##, and a closing section titled exactly '## إزاي تطبقها في مصر'. That section must be genuinely Egypt-specific: apply the method to Egyptian market realities such as EGP budgets, local platforms and payment habits, Egyptian consumer behavior, or constraints a Cairo-based marketer or business owner actually faces - not generic platform how-to steps. Ground every factual claim in the supplied pages; the Egypt section adapts the method practically without inventing statistics or fake local businesses. Category metadata will be set by workflow to " + category.name + "."
         }
-      ], 3700);
+      ], 5200);
     } catch (error) {
       console.log("Could not draft in " + category.name + ": " + clean(error.message, 220));
       continue;
