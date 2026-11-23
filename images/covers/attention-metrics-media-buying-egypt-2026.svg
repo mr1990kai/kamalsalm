@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">مقاييس الانتباه: الفرق بين إعلان اتعرض وإعلان اتشاف</title>
+<desc id="desc">غلاف تحريري لمقال الميديا باينج.</desc>
+<rect width="1200" height="630" fill="#F3F2EE"/>
+<circle cx="1115" cy="52" r="220" fill="#D8B96A" opacity=".14"/>
+<circle cx="620" cy="610" r="150" fill="#B42318" opacity=".06"/>
+<rect x="64" y="58" width="468" height="514" rx="26" fill="#111"/>
+<path d="M90 94 H506" stroke="#4A4A4A" stroke-width="1"/>
+<text x="96" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F3F2EE">KAMAL / FIELD NOTES</text>
+<g><circle cx="298" cy="298" r="150" fill="#D8B96A"/><path d="M298 218 C238 218 190 256 168 298 C190 340 238 378 298 378 C358 378 406 340 428 298 C406 256 358 218 298 218 Z" fill="#111"/><circle cx="298" cy="298" r="56" fill="#F3F2EE"/><circle cx="298" cy="298" r="30" fill="#111"/><circle cx="310" cy="286" r="10" fill="#F3F2EE"/><path d="M168 298 H140 M456 298 H428" stroke="#F3F2EE" stroke-width="10" stroke-linecap="round"/><circle cx="140" cy="298" r="12" fill="#B42318"/><path d="M196 196 L170 168 M400 196 L426 168" stroke="#F3F2EE" stroke-width="10" stroke-linecap="round"/><circle cx="160" cy="158" r="12" fill="#73877C"/><circle cx="436" cy="158" r="12" fill="#B42318"/><path d="M216 424 C260 448 336 448 380 424" fill="none" stroke="#F3F2EE" stroke-width="8" stroke-linecap="round"/></g>
+<circle cx="492" cy="118" r="9" fill="#B42318"/>
+<rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">الميديا باينج</text>
+<text x="1110" y="276" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">مين شاف</text>
+<text x="1110" y="352" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">إعلانك فعلًا؟</text>
+<path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
+<circle cx="668" cy="548" r="6" fill="#B42318"/>
+<circle cx="690" cy="548" r="6" fill="#D8B96A"/>
+<circle cx="712" cy="548" r="6" fill="#73877C"/>
+<text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+</svg>
