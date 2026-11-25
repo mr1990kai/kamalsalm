@@ -1177,3 +1177,69 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .craft-item .craft-no,.craft-item .craft-tag,.craft-item .craft-arrow{color:#FF8A80}
 .projects-cta .eyebrow:before,.contact-section .eyebrow:before{background:#FF8A80}
 .section-head>p,.hero-copy>p,.work-card-copy p,.project-stack--all .project-card p{color:#595959}
+
+/* ===== packages v4 ===== */
+.packages-page .hero{padding:clamp(48px,7vw,96px) 0 28px;text-align:start}
+.packages-page .hero h1{font-size:clamp(2.1rem,5.4vw,4.4rem);line-height:1.12;letter-spacing:-.05em;max-width:15em;text-wrap:balance}
+.packages-page .hero p{max-width:34em;font-size:clamp(.95rem,1.3vw,1.08rem);line-height:2}
+.packages-page .eyebrow{display:inline-flex;align-items:center;gap:10px;font:700 .68rem/1 var(--latin);letter-spacing:.14em;text-transform:uppercase;color:#595959}
+.pk-market{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:26px;border:1px solid #111}
+.pk-m{appearance:none;border:0;border-inline-start:1px solid #111;background:transparent;color:#111;padding:16px 10px;font:600 .9rem/1.3 var(--arabic);cursor:pointer;transition:background .2s,color .2s}
+.pk-m:first-child{border-inline-start:0}
+.pk-m:hover{background:#ededeb}
+.pk-m.active{background:#111;color:#fff}
+.packages-page .market-hint{margin-top:12px;font-size:.84rem}
+.pk-offer-wrap{margin-top:10px}
+.pk-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(18px,4vw,56px);align-items:center;background:#111;color:#fff;padding:clamp(22px,3.4vw,42px)}
+.pk-offer[hidden]{display:none}
+.pk-offer-tag{display:inline-block;font:700 .68rem/1 var(--latin);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--accent);padding:7px 10px;margin-bottom:14px}
+.pk-offer h2{font-size:clamp(1.4rem,2.8vw,2.3rem);line-height:1.25;letter-spacing:-.04em;color:#fff;margin:0}
+.pk-offer p{margin:0 0 10px;font-size:.93rem;line-height:1.95;color:#d9d9d6}
+.pk-offer .pk-offer-fine{font-size:.82rem;color:#aaa;margin:0}
+.pk-choose{margin-top:48px}
+.pk-tabs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #111;margin-bottom:26px}
+.pk-tab{appearance:none;border:0;border-inline-start:1px solid #111;background:transparent;color:#111;text-align:start;padding:18px 20px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:background .2s,color .2s}
+.pk-tab:first-child{border-inline-start:0}
+.pk-tab b{font:800 1.25rem/1 var(--latin);letter-spacing:-.03em}
+.pk-tab span{font:400 .82rem/1.6 var(--arabic);opacity:.75}
+.pk-tab:hover{background:#ededeb}
+.pk-tab.active{background:#111;color:#fff}
+.pk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.pk-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);padding:26px 24px 24px;position:relative}
+.pk-card.pop{border:2px solid #111}
+.pk-top{display:flex;justify-content:space-between;align-items:center;min-height:24px;margin-bottom:18px}
+.pk-no{font:800 .8rem/1 var(--latin);letter-spacing:.14em;color:#8a8a86}
+.pk-badge{font:700 .66rem/1 var(--latin);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;padding:6px 9px}
+.pk-card h3{font-size:1.4rem;line-height:1.3;letter-spacing:-.03em;margin:0 0 6px}
+.pk-sub{color:#5D5D5A;font-size:.88rem;line-height:1.8;margin:0 0 18px}
+.pk-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;justify-content:flex-start}
+.pk-price strong{font:800 clamp(2rem,3.2vw,2.7rem)/1 var(--latin);letter-spacing:-.05em;color:#111}
+.pk-price s{font:500 1.05rem/1 var(--latin);color:#8a8a86}
+.pk-save{margin:8px 0 0;font:700 .76rem/1.5 var(--arabic);color:var(--accent)}
+.pk-spec{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:20px 0;border-block:1px solid var(--line)}
+.pk-spec div{padding:12px 8px;border-inline-start:1px solid var(--line)}
+.pk-spec div:first-child{border-inline-start:0;padding-inline-start:0}
+.pk-spec dt{font:700 .62rem/1 var(--latin);letter-spacing:.1em;text-transform:uppercase;color:#8a8a86;margin-bottom:7px}
+.pk-spec dd{margin:0;font:600 .86rem/1.5 var(--arabic)}
+.pk-scope{font-size:.86rem;line-height:1.9;color:#333;margin:0 0 14px}
+.pk-list{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:9px}
+.pk-list li{position:relative;padding-inline-start:22px;font-size:.88rem;line-height:1.75}
+.pk-list li:before{content:"";position:absolute;inset-inline-start:0;top:.62em;width:10px;height:2px;background:var(--accent)}
+.pk-more{margin:0 0 10px}
+.pk-more summary{cursor:pointer;font:700 .82rem/1.6 var(--arabic);color:#111;padding:6px 0;list-style:none;text-decoration:underline;text-underline-offset:4px}
+.pk-more summary::-webkit-details-marker{display:none}
+.pk-more .pk-list{margin-top:10px}
+.pk-card .btn{margin-top:auto;width:100%;justify-content:center}
+.pk-card.pop .btn{background:var(--accent);border-color:var(--accent);color:#fff}
+.pk-included{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,2fr);gap:20px;align-items:start;margin:42px 0 0;padding:26px 0;border-block:1px solid #111}
+.pk-included h2{font-size:1.25rem;margin:0;letter-spacing:-.03em}
+.pk-included ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+.pk-included li{position:relative;padding-inline-start:22px;font-size:.9rem;line-height:1.7}
+.pk-included li:before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:10px;height:2px;background:var(--accent)}
+.packages-page .extras{margin-top:0}
+.packages-page .extras-grid p b{font-family:var(--latin)}
+.packages-page .grid{display:block;gap:0;background:none;border:0;padding-top:0}
+#order .lead{color:#d0d0cd}
+.packages-page #order legend{color:#111;background:#fff;padding:3px 12px;font-weight:700}
+@media(max-width:900px){.pk-grid{grid-template-columns:1fr}.pk-offer{grid-template-columns:1fr}.pk-included{grid-template-columns:1fr}}
+@media(max-width:640px){.pk-market{grid-template-columns:1fr 1fr}.pk-m:nth-child(3){border-inline-start:0}.pk-m:nth-child(n+3){border-top:1px solid #111}.pk-included ul{grid-template-columns:1fr}.pk-tab{padding:14px}.pk-tab span{display:none}.pk-spec dd{font-size:.8rem}}
