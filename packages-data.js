@@ -20,8 +20,8 @@ var PACKAGES=[
    "en": "Product Page"
   },
   "sub": {
-   "ar": "لاختبار منتج أو عرض واحد",
-   "en": "To test one product or offer"
+   "ar": "صفحة منتج مصممة تخلي الزائر يطلب من أول شاشة",
+   "en": "A product page built to turn a visitor into an order"
   },
   "days": {
    "ar": "3–4 أيام عمل",
@@ -42,16 +42,20 @@ var PACKAGES=[
   "items": {
    "ar": [
     "تصميم مخصص ومتجاوب مع الموبايل",
-    "ترتيب الصور والمميزات والعرض بشكل واضح",
+    "ترتيب الصور والمميزات والعرض بشكل واضح يشجع على الطلب",
     "إضافة الأسئلة الشائعة أو آراء العملاء المتاحة",
     "ربط نموذج الطلب الموجود على EasyOrders",
+    "※تجربة طلب تجريبية قبل التسليم للتأكد إن كل حاجة شغالة",
+    "※شرح مختصر لتعديل الصفحة بنفسك بعد التسليم",
     "تعديل واحد بعد المعاينة"
    ],
    "en": [
     "Custom mobile-responsive design",
-    "Clear product, benefit and offer structure",
+    "Photos, benefits and offer arranged to push the order",
     "FAQ or existing customer reviews when supplied",
     "Connect the existing EasyOrders order form",
+    "※A test order before handover to confirm everything works",
+    "※A short walkthrough to edit the page yourself after handover",
     "One revision after preview"
    ]
   }
@@ -76,8 +80,8 @@ var PACKAGES=[
    "en": "Sales Page Plus"
   },
   "sub": {
-   "ar": "لمنتج محتاج شرح وإقناع",
-   "en": "For a product that needs explaining"
+   "ar": "صفحة بيع كاملة تشرح وتقنع وتقفل الطلب",
+   "en": "A full sales page that explains, convinces and closes"
   },
   "days": {
    "ar": "4–6 أيام عمل",
@@ -103,6 +107,8 @@ var PACKAGES=[
     "ضبط مظهر الصفحة للموبايل ومراجعة رحلة الطلب",
     "مساعدة في تنظيم النصوص المرسلة منك",
     "إعداد ربط البيكسل إذا وفّرت بياناته وصلاحية الوصول",
+    "※اختبار أحداث البيكسل قبل التسليم",
+    "※تخصيص بكود CSS/HTML بسيط لما الصفحة تحتاجه",
     "تعديلان بعد المعاينة"
    ],
    "en": [
@@ -112,6 +118,8 @@ var PACKAGES=[
     "Mobile polish and order-flow review",
     "Organise copy you provide",
     "Pixel connection when you provide its ID and access",
+    "※Pixel events tested before handover",
+    "※Light CSS/HTML customisation where the page needs it",
     "Two revisions after preview"
    ]
   }
@@ -136,8 +144,8 @@ var PACKAGES=[
    "en": "Mini Store"
   },
   "sub": {
-   "ar": "لأكثر من منتج وكتالوج منظم",
-   "en": "For several products and a tidy catalogue"
+   "ar": "متجر كامل ومنظم لحد 10 منتجات، جاهز يستقبل الطلبات",
+   "en": "A tidy, order-ready store for up to 10 products"
   },
   "days": {
    "ar": "6–8 أيام عمل",
@@ -163,6 +171,8 @@ var PACKAGES=[
     "مراجعة عرض المتجر والمنتجات على الموبايل",
     "ربط وسائل التواصل والدومين إذا كان جاهزًا ومتاحًا",
     "إعداد البيكسل إذا توفرت البيانات والصلاحيات",
+    "※صفحات التواصل والسياسات (الشحن والاستبدال)",
+    "※تجربة طلب تجريبية وشرح لإدارة الطلبات بعد التسليم",
     "تعديلان بعد المعاينة"
    ],
    "en": [
@@ -172,6 +182,8 @@ var PACKAGES=[
     "Review store and product views on mobile",
     "Connect socials and an existing domain when available",
     "Pixel setup if IDs and access are provided",
+    "※Contact and policy pages (shipping and returns)",
+    "※A test order and a walkthrough for managing orders",
     "Two revisions after preview"
    ]
   }
@@ -196,8 +208,8 @@ var PACKAGES=[
    "en": "Shopify Launch"
   },
   "sub": {
-   "ar": "متجر مرتب بقالب مجاني مناسب",
-   "en": "A tidy store on a suitable free theme"
+   "ar": "متجر Shopify نظيف وجاهز للبيع على قالب مناسب",
+   "en": "A clean, ready-to-sell Shopify store on a suitable theme"
   },
   "days": {
    "ar": "6–8 أيام عمل",
@@ -222,6 +234,8 @@ var PACKAGES=[
     "تنظيم القوائم والأقسام وصفحات المنتج",
     "ضبط العرض على الموبايل والكمبيوتر",
     "إعدادات المتجر الأساسية وربط الدومين الموجود",
+    "※صفحات السياسات والتواصل",
+    "※طلب تجريبي قبل التسليم وشرح لإدارة المتجر",
     "تعديلان بعد المعاينة"
    ],
    "en": [
@@ -230,6 +244,8 @@ var PACKAGES=[
     "Organise menus, collections and product pages",
     "Mobile and desktop layout polish",
     "Core store settings and connection of an existing domain",
+    "※Policy and contact pages",
+    "※A test order before handover and a store-management walkthrough",
     "Two revisions after preview"
    ]
   }
@@ -254,8 +270,8 @@ var PACKAGES=[
    "en": "Branded Store"
   },
   "sub": {
-   "ar": "تخصيص أعمق وتناسق بصري للبراند",
-   "en": "Deeper customisation, consistent brand feel"
+   "ar": "متجر بهوية واضحة يشبه البراند مش القالب",
+   "en": "A store that looks like your brand, not the theme"
   },
   "days": {
    "ar": "8–10 أيام عمل",
@@ -280,6 +296,8 @@ var PACKAGES=[
     "بانرات وتنسيق بصري من المواد التي يرسلها العميل",
     "تعديلات CSS بسيطة تناسب هوية المتجر",
     "إعداد SEO أساسي وربط البيكسل عند توفير البيانات",
+    "※تحسين حجم الصور لسرعة تحميل أفضل على الموبايل",
+    "※اختبار أحداث البيكسل والشراء قبل التسليم",
     "3 جولات تعديل محددة"
    ],
    "en": [
@@ -288,6 +306,8 @@ var PACKAGES=[
     "Banners/layout using client-supplied assets",
     "Light CSS customisation to suit the brand",
     "Basic SEO and pixel connection when details are provided",
+    "※Image optimisation for faster mobile loading",
+    "※Pixel and purchase events tested before handover",
     "Three defined revision rounds"
    ]
   }
@@ -312,8 +332,8 @@ var PACKAGES=[
    "en": "Shopify Custom"
   },
   "sub": {
-   "ar": "لما القالب الجاهز محتاج شغل مخصوص",
-   "en": "When the theme needs custom work"
+   "ar": "لما القالب الجاهز مش كفاية: كود مخصص وبوابة دفع وتطبيقات",
+   "en": "When a theme is not enough: custom code, gateway and apps"
   },
   "days": {
    "ar": "10–14 يوم عمل",
@@ -335,6 +355,8 @@ var PACKAGES=[
    "ar": [
     "كل أساسيات باقة الهوية",
     "تعديلات Liquid/CSS لما يصل إلى 3 أقسام أو مكونات محددة",
+    "※إعداد بوابة الدفع المتاحة في بلدك (بحساب العميل)",
+    "※ربط حتى 3 تطبيقات (شحن، تتبع، تحليلات وغيرها)",
     "تحسين شكل صفحات المنتج والمجموعات والموبايل",
     "إعدادات SEO أساسية وربط البيكسل عند توفير البيانات",
     "مراجعة قبل التسليم و3 جولات تعديل",
@@ -343,10 +365,392 @@ var PACKAGES=[
    "en": [
     "Everything in the Branded Store package",
     "Liquid/CSS customisation for up to 3 defined sections or components",
+    "※Payment gateway setup for what your market allows (in the client's own account)",
+    "※Connect up to 3 apps (shipping, tracking, analytics and similar)",
     "Polish product, collection and mobile views",
     "Basic SEO and pixel connection when details are provided",
     "Pre-handover review and three revision rounds",
     "Agree the code scope before work begins"
+   ]
+  }
+ },
+ {
+  "id": "salla-launch",
+  "platform": {
+   "id": "salla",
+   "ar": "Salla",
+   "en": "Salla"
+  },
+  "no": "01",
+  "pop": false,
+  "price": {
+   "eg": 1200,
+   "gulf": 1200,
+   "uae": 1180,
+   "intl": 320
+  },
+  "name": {
+   "ar": "إطلاق المتجر",
+   "en": "Store Launch"
+  },
+  "sub": {
+   "ar": "متجر سلة جاهز للبيع بهوية تخصك وبداية سريعة",
+   "en": "A ready-to-sell Salla store in your brand, launched fast"
+  },
+  "days": {
+   "ar": "5–7 أيام عمل",
+   "en": "5–7 business days"
+  },
+  "rev": {
+   "ar": "جولتان",
+   "en": "2 rounds"
+  },
+  "prod": {
+   "ar": "حتى 10",
+   "en": "Up to 10"
+  },
+  "scope": {
+   "ar": "حتى 10 منتجات باستخدام قالب متاح داخل المنصة، بدون برمجة مخصصة.",
+   "en": "Up to 10 products on an available platform theme, without custom coding."
+  },
+  "items": {
+   "ar": [
+    "إعداد القالب والصفحة الرئيسية الأساسية",
+    "إضافة حتى 10 منتجات من ملفات العميل",
+    "تنظيم الأقسام وصفحات المنتج",
+    "ضبط العرض على الموبايل والكمبيوتر",
+    "ربط الدومين الموجود إذا كان جاهزًا",
+    "※3 بانرات للواجهة بهوية متجرك",
+    "※صفحات السياسات والتواصل",
+    "※طلب تجريبي قبل التسليم وشرح لإدارة المتجر والطلبات",
+    "تعديلان بعد المعاينة"
+   ],
+   "en": [
+    "Set up the theme and core homepage",
+    "Add up to 10 products from client materials",
+    "Organise categories and product pages",
+    "Mobile and desktop layout polish",
+    "Connect an existing domain when ready",
+    "※3 homepage banners in your brand",
+    "※Policy and contact pages",
+    "※A test order before handover and a store and order walkthrough",
+    "Two revisions after preview"
+   ]
+  }
+ },
+ {
+  "id": "salla-brand",
+  "platform": {
+   "id": "salla",
+   "ar": "Salla",
+   "en": "Salla"
+  },
+  "no": "02",
+  "pop": true,
+  "price": {
+   "eg": 2000,
+   "gulf": 2200,
+   "uae": 2150,
+   "intl": 590
+  },
+  "name": {
+   "ar": "متجر بهوية",
+   "en": "Branded Store"
+  },
+  "sub": {
+   "ar": "متجر سلة بهوية واضحة وتجربة شراء أنضف",
+   "en": "A Salla store with a clear identity and a smoother buying flow"
+  },
+  "days": {
+   "ar": "6–9 أيام عمل",
+   "en": "6–9 business days"
+  },
+  "rev": {
+   "ar": "جولتان",
+   "en": "2 rounds"
+  },
+  "prod": {
+   "ar": "حتى 25",
+   "en": "Up to 25"
+  },
+  "scope": {
+   "ar": "حتى 25 منتجًا، مع تخصيص التصميم في حدود ما يسمح به القالب وإعداداته.",
+   "en": "Up to 25 products, with design customisation within what the theme and its settings allow."
+  },
+  "items": {
+   "ar": [
+    "كل أساسيات باقة الإطلاق",
+    "تنسيق الصفحة الرئيسية وصفحات الأقسام والمنتجات",
+    "بانرات وتنسيق بصري من المواد التي يرسلها العميل",
+    "توحيد الألوان والخطوط بما يناسب البراند",
+    "إعداد البيكسل إذا توفرت البيانات والصلاحيات",
+    "※ربط التتبع لميتا وتيك توك وسناب وجوجل واختباره قبل التسليم",
+    "※كوبونات وتذكير بالسلات المتروكة بأدوات المنصة",
+    "※تحسين حجم الصور لسرعة أفضل على الموبايل",
+    "تعديلان بعد المعاينة"
+   ],
+   "en": [
+    "Everything in the Launch package",
+    "Tailored home, category and product pages",
+    "Banners and layout from client-supplied assets",
+    "Align colours and typography with the brand",
+    "Pixel setup if IDs and access are provided",
+    "※Meta, TikTok, Snap and Google tracking connected and tested before handover",
+    "※Coupons and abandoned-cart reminders using the platform tools",
+    "※Image optimisation for faster mobile loading",
+    "Two revisions after preview"
+   ]
+  }
+ },
+ {
+  "id": "salla-full",
+  "platform": {
+   "id": "salla",
+   "ar": "Salla",
+   "en": "Salla"
+  },
+  "no": "03",
+  "pop": false,
+  "price": {
+   "eg": 2800,
+   "gulf": 3000,
+   "uae": 2930,
+   "intl": 800
+  },
+  "name": {
+   "ar": "متجر كامل",
+   "en": "Full Store"
+  },
+  "sub": {
+   "ar": "متجر سلة كامل: كتالوج أكبر وتفاصيل تبني الثقة",
+   "en": "A full Salla store: bigger catalogue, details that build trust"
+  },
+  "days": {
+   "ar": "8–12 يوم عمل",
+   "en": "8–12 business days"
+  },
+  "rev": {
+   "ar": "3 جولات",
+   "en": "3 rounds"
+  },
+  "prod": {
+   "ar": "حتى 40",
+   "en": "Up to 40"
+  },
+  "scope": {
+   "ar": "حتى 40 منتجًا بنطاق واضح يتفق عليه قبل البدء، بدون بناء قالب من الصفر. الكود المخصص وبوابة الدفع وربط التطبيقات تتسعّر كإضافات (تحت).",
+   "en": "Up to 40 products with a scope agreed before work begins, not a theme built from scratch. Custom code, payment gateway and app integrations are quoted as add-ons (below)."
+  },
+  "items": {
+   "ar": [
+    "كل أساسيات باقة الهوية",
+    "تنسيق صفحات إضافية مثل من نحن والتواصل والسياسات",
+    "مراجعة رحلة الشراء على الموبايل قبل التسليم",
+    "إعدادات SEO أساسية",
+    "※ربط واتساب لتواصل العملاء",
+    "※كود مخصص وبوابة دفع وربط تطبيقات كإضافات حسب الاتفاق (تحت)",
+    "3 جولات تعديل محددة",
+    "تحديد النطاق كتابةً قبل البدء لتجنب المفاجآت"
+   ],
+   "en": [
+    "Everything in the Branded Store package",
+    "Extra pages such as About, Contact and policies",
+    "Mobile purchase-flow review before handover",
+    "Basic SEO settings",
+    "※WhatsApp connected for customer contact",
+    "※Custom code, payment gateway and app integrations as agreed add-ons (below)",
+    "Three defined revision rounds",
+    "Agree the scope in writing before work begins"
+   ]
+  }
+ },
+ {
+  "id": "zid-launch",
+  "platform": {
+   "id": "zid",
+   "ar": "Zid",
+   "en": "Zid"
+  },
+  "no": "01",
+  "pop": false,
+  "price": {
+   "eg": 1200,
+   "gulf": 1200,
+   "uae": 1180,
+   "intl": 320
+  },
+  "name": {
+   "ar": "إطلاق المتجر",
+   "en": "Store Launch"
+  },
+  "sub": {
+   "ar": "متجر زد جاهز للبيع بهوية تخصك وبداية سريعة",
+   "en": "A ready-to-sell Zid store in your brand, launched fast"
+  },
+  "days": {
+   "ar": "5–7 أيام عمل",
+   "en": "5–7 business days"
+  },
+  "rev": {
+   "ar": "جولتان",
+   "en": "2 rounds"
+  },
+  "prod": {
+   "ar": "حتى 10",
+   "en": "Up to 10"
+  },
+  "scope": {
+   "ar": "حتى 10 منتجات باستخدام قالب متاح داخل المنصة، بدون برمجة مخصصة.",
+   "en": "Up to 10 products on an available platform theme, without custom coding."
+  },
+  "items": {
+   "ar": [
+    "إعداد القالب والصفحة الرئيسية الأساسية",
+    "إضافة حتى 10 منتجات من ملفات العميل",
+    "تنظيم الأقسام وصفحات المنتج",
+    "ضبط العرض على الموبايل والكمبيوتر",
+    "ربط الدومين الموجود إذا كان جاهزًا",
+    "※3 بانرات للواجهة بهوية متجرك",
+    "※صفحات السياسات والتواصل",
+    "※طلب تجريبي قبل التسليم وشرح لإدارة المتجر والطلبات",
+    "تعديلان بعد المعاينة"
+   ],
+   "en": [
+    "Set up the theme and core homepage",
+    "Add up to 10 products from client materials",
+    "Organise categories and product pages",
+    "Mobile and desktop layout polish",
+    "Connect an existing domain when ready",
+    "※3 homepage banners in your brand",
+    "※Policy and contact pages",
+    "※A test order before handover and a store and order walkthrough",
+    "Two revisions after preview"
+   ]
+  }
+ },
+ {
+  "id": "zid-brand",
+  "platform": {
+   "id": "zid",
+   "ar": "Zid",
+   "en": "Zid"
+  },
+  "no": "02",
+  "pop": true,
+  "price": {
+   "eg": 2000,
+   "gulf": 2200,
+   "uae": 2150,
+   "intl": 590
+  },
+  "name": {
+   "ar": "متجر بهوية",
+   "en": "Branded Store"
+  },
+  "sub": {
+   "ar": "متجر زد بهوية واضحة وتجربة شراء أنضف",
+   "en": "A Zid store with a clear identity and a smoother buying flow"
+  },
+  "days": {
+   "ar": "6–9 أيام عمل",
+   "en": "6–9 business days"
+  },
+  "rev": {
+   "ar": "جولتان",
+   "en": "2 rounds"
+  },
+  "prod": {
+   "ar": "حتى 25",
+   "en": "Up to 25"
+  },
+  "scope": {
+   "ar": "حتى 25 منتجًا، مع تخصيص التصميم في حدود ما يسمح به القالب وإعداداته.",
+   "en": "Up to 25 products, with design customisation within what the theme and its settings allow."
+  },
+  "items": {
+   "ar": [
+    "كل أساسيات باقة الإطلاق",
+    "تنسيق الصفحة الرئيسية وصفحات الأقسام والمنتجات",
+    "بانرات وتنسيق بصري من المواد التي يرسلها العميل",
+    "توحيد الألوان والخطوط بما يناسب البراند",
+    "إعداد البيكسل إذا توفرت البيانات والصلاحيات",
+    "※ربط التتبع لميتا وتيك توك وسناب وجوجل واختباره قبل التسليم",
+    "※كوبونات وتذكير بالسلات المتروكة بأدوات المنصة",
+    "※تحسين حجم الصور لسرعة أفضل على الموبايل",
+    "تعديلان بعد المعاينة"
+   ],
+   "en": [
+    "Everything in the Launch package",
+    "Tailored home, category and product pages",
+    "Banners and layout from client-supplied assets",
+    "Align colours and typography with the brand",
+    "Pixel setup if IDs and access are provided",
+    "※Meta, TikTok, Snap and Google tracking connected and tested before handover",
+    "※Coupons and abandoned-cart reminders using the platform tools",
+    "※Image optimisation for faster mobile loading",
+    "Two revisions after preview"
+   ]
+  }
+ },
+ {
+  "id": "zid-full",
+  "platform": {
+   "id": "zid",
+   "ar": "Zid",
+   "en": "Zid"
+  },
+  "no": "03",
+  "pop": false,
+  "price": {
+   "eg": 2800,
+   "gulf": 3000,
+   "uae": 2930,
+   "intl": 800
+  },
+  "name": {
+   "ar": "متجر كامل",
+   "en": "Full Store"
+  },
+  "sub": {
+   "ar": "متجر زد كامل: كتالوج أكبر وتفاصيل تبني الثقة",
+   "en": "A full Zid store: bigger catalogue, details that build trust"
+  },
+  "days": {
+   "ar": "8–12 يوم عمل",
+   "en": "8–12 business days"
+  },
+  "rev": {
+   "ar": "3 جولات",
+   "en": "3 rounds"
+  },
+  "prod": {
+   "ar": "حتى 40",
+   "en": "Up to 40"
+  },
+  "scope": {
+   "ar": "حتى 40 منتجًا بنطاق واضح يتفق عليه قبل البدء، بدون بناء قالب من الصفر. الكود المخصص وبوابة الدفع وربط التطبيقات تتسعّر كإضافات (تحت).",
+   "en": "Up to 40 products with a scope agreed before work begins, not a theme built from scratch. Custom code, payment gateway and app integrations are quoted as add-ons (below)."
+  },
+  "items": {
+   "ar": [
+    "كل أساسيات باقة الهوية",
+    "تنسيق صفحات إضافية مثل من نحن والتواصل والسياسات",
+    "مراجعة رحلة الشراء على الموبايل قبل التسليم",
+    "إعدادات SEO أساسية",
+    "※ربط واتساب لتواصل العملاء",
+    "※كود مخصص وبوابة دفع وربط تطبيقات كإضافات حسب الاتفاق (تحت)",
+    "3 جولات تعديل محددة",
+    "تحديد النطاق كتابةً قبل البدء لتجنب المفاجآت"
+   ],
+   "en": [
+    "Everything in the Branded Store package",
+    "Extra pages such as About, Contact and policies",
+    "Mobile purchase-flow review before handover",
+    "Basic SEO settings",
+    "※WhatsApp connected for customer contact",
+    "※Custom code, payment gateway and app integrations as agreed add-ons (below)",
+    "Three defined revision rounds",
+    "Agree the scope in writing before work begins"
    ]
   }
  }

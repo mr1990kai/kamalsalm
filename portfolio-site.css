@@ -1197,7 +1197,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .pk-offer p{margin:0 0 10px;font-size:.93rem;line-height:1.95;color:#d9d9d6}
 .pk-offer .pk-offer-fine{font-size:.82rem;color:#aaa;margin:0}
 .pk-choose{margin-top:48px}
-.pk-tabs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #111;margin-bottom:26px}
+.pk-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #111;margin-bottom:26px}
 .pk-tab{appearance:none;border:0;border-inline-start:1px solid #111;background:transparent;color:#111;text-align:start;padding:18px 20px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:background .2s,color .2s}
 .pk-tab:first-child{border-inline-start:0}
 .pk-tab b{font:800 1.25rem/1 var(--latin);letter-spacing:-.03em}
@@ -1242,4 +1242,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 #order .lead{color:#d0d0cd}
 .packages-page #order legend{color:#111;background:#fff;padding:3px 12px;font-weight:700}
 @media(max-width:900px){.pk-grid{grid-template-columns:1fr}.pk-offer{grid-template-columns:1fr}.pk-included{grid-template-columns:1fr}}
-@media(max-width:640px){.pk-market{grid-template-columns:1fr 1fr}.pk-m:nth-child(3){border-inline-start:0}.pk-m:nth-child(n+3){border-top:1px solid #111}.pk-included ul{grid-template-columns:1fr}.pk-tab{padding:14px}.pk-tab span{display:none}.pk-spec dd{font-size:.8rem}}
+@media(max-width:640px){.pk-market{grid-template-columns:1fr 1fr}.pk-m:nth-child(3){border-inline-start:0}.pk-m:nth-child(n+3){border-top:1px solid #111}.pk-included ul{grid-template-columns:1fr}.pk-tabs{grid-template-columns:1fr 1fr}.pk-tab:nth-child(3){border-inline-start:0}.pk-tab:nth-child(n+3){border-top:1px solid #111}.pk-tabs{grid-template-columns:1fr 1fr}.pk-tab:nth-child(3){border-inline-start:0}.pk-tab:nth-child(n+3){border-top:1px solid #111}.pk-tabs{grid-template-columns:1fr 1fr}.pk-tab:nth-child(3){border-inline-start:0}.pk-tab:nth-child(n+3){border-top:1px solid #111}.pk-tab{padding:14px}.pk-tab span{display:none}.pk-spec dd{font-size:.8rem}}
+
+
+/* review mode only: marks items awaiting owner confirmation */
+.review .nc{background:#fff2a8;outline:1px dashed #b88a00}
+.review .nc::after{content:' (يحتاج تأكيد / confirm)';font-size:.75em;color:#7a5b00}
