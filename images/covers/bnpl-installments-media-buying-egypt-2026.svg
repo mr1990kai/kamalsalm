@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">التقسيط: «0%» مش صفر، مين دافع الفاتورة؟</title>
+<desc id="desc">غلاف تحريري لمقال الميديا باينج عن تكلفة عروض التقسيط في الحملات.</desc>
+<rect width="1200" height="630" fill="#F3F2EE"/>
+<circle cx="1115" cy="52" r="220" fill="#D8B96A" opacity=".14"/>
+<circle cx="620" cy="610" r="150" fill="#B42318" opacity=".06"/>
+<rect x="64" y="58" width="468" height="514" rx="26" fill="#111"/>
+<path d="M90 94 H506" stroke="#4A4A4A" stroke-width="1"/>
+<text x="96" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F3F2EE">KAMAL / FIELD NOTES</text>
+<g>
+  <circle cx="298" cy="298" r="150" fill="#D8B96A"/>
+  <g transform="rotate(-6 298 305)">
+    <rect x="212" y="196" width="172" height="214" rx="14" fill="#F3F2EE"/>
+    <rect x="232" y="226" width="96" height="12" rx="6" fill="#111"/>
+    <rect x="232" y="258" width="132" height="9" rx="4.5" fill="#BDBDB6"/>
+    <rect x="232" y="284" width="132" height="9" rx="4.5" fill="#BDBDB6"/>
+    <rect x="232" y="310" width="132" height="9" rx="4.5" fill="#BDBDB6"/>
+    <path d="M232 344 H364" stroke="#111" stroke-width="2" stroke-dasharray="6 6"/>
+    <rect x="232" y="360" width="72" height="14" rx="7" fill="#B42318"/>
+    <rect x="318" y="360" width="46" height="14" rx="7" fill="#111"/>
+  </g>
+  <circle cx="386" cy="232" r="48" fill="#B42318"/>
+  <text x="386" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#fff">0%</text>
+  <circle cx="228" cy="448" r="10" fill="#B42318"/>
+  <circle cx="298" cy="462" r="10" fill="#73877C"/>
+  <circle cx="368" cy="448" r="10" fill="#F3F2EE"/>
+  <path d="M210 486 C260 508 336 508 386 486" fill="none" stroke="#F3F2EE" stroke-width="8" stroke-linecap="round"/>
+</g>
+<circle cx="492" cy="118" r="9" fill="#B42318"/>
+<rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">الميديا باينج</text>
+<text x="1110" y="286" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">«0%» مش صفر</text>
+<text x="1110" y="366" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="44" font-weight="700" fill="#111">مين دافع الفاتورة؟</text>
+<path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
+<circle cx="668" cy="548" r="6" fill="#B42318"/>
+<circle cx="690" cy="548" r="6" fill="#D8B96A"/>
+<circle cx="712" cy="548" r="6" fill="#73877C"/>
+<text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+</svg>
