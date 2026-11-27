@@ -1,0 +1,56 @@
+/* Packages page: dark editorial skin over the existing logic */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Cairo:wght@400;600;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Inter+Tight:wght@300..800&family=Instrument+Serif:ital@1&display=swap');
+:root{--bg:#070707;--ink:#f2f0ec;--muted:rgba(242,240,236,.6);--line:rgba(242,240,236,.15);--brown:#f2f0ec;--gold:#e5452b;--acc:#e5452b;--card:#121212;--ar:'Cairo','IBM Plex Sans Arabic',Tahoma,sans-serif;--en:'Inter Tight',Arial,sans-serif;--logo:'Archivo',Arial,sans-serif;--e1:cubic-bezier(.22,1,.36,1)}
+html,body{background:#070707;color:#f2f0ec;overflow-x:clip}
+body{font-family:'IBM Plex Sans Arabic','Cairo',Tahoma,sans-serif}
+body.en{font-family:'Inter Tight',Arial,sans-serif}
+h1,h2,h3{font-family:'Cairo',sans-serif;font-weight:800}
+body.en h1,body.en h2,body.en h3{font-family:'Archivo',sans-serif;font-weight:600;letter-spacing:-.035em}
+::selection{background:rgba(229,69,43,.4);color:#fff}
+/* floating header pill */
+header{position:fixed!important;top:14px!important;left:0;right:0;z-index:100;display:flex!important;justify-content:center;gap:6px;align-items:center;width:max-content;max-width:calc(100vw - 24px);margin-inline:auto;padding:6px!important;border-radius:999px;background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.13)!important;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+header .back{font-size:13.5px!important;font-weight:500;color:rgba(242,240,236,.6)!important;padding:9px 14px;border-radius:999px;white-space:nowrap}
+header .back:hover{color:#f2f0ec!important;background:rgba(255,255,255,.1)}
+header .logo{font:800 13px/1 'Archivo',sans-serif!important;letter-spacing:.18em;direction:ltr;padding:0 12px;white-space:nowrap;color:#f2f0ec!important;text-transform:uppercase}
+header .logo::before{display:none}
+#lang{font:600 12px/1 'Inter Tight',sans-serif!important;letter-spacing:.08em;padding:10px 13px!important;border-radius:999px!important;border:1px solid rgba(242,240,236,.26)!important;color:#f2f0ec!important;background:none!important}
+#lang:hover{background:rgba(255,255,255,.12)!important}
+.hero{padding-top:clamp(130px,20vh,210px)!important;text-align:start!important}
+.hero h1{font-size:clamp(2.4rem,6.4vw,6.2rem)!important;line-height:1.1!important;margin-bottom:22px!important;max-width:14em}
+.hero p{max-width:36em!important;margin:0!important;color:var(--muted)!important}
+.eyebrow{font:600 11.5px/1 'Inter Tight',sans-serif!important;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)!important;border:0!important;padding:0!important;display:inline-flex!important;align-items:center;gap:10px;direction:ltr}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+/* cards */
+.card,.pk-card,.pk-offer,.extras,.process-grid article,fieldset,#done,.sum,.pay{background:linear-gradient(180deg,#141414,#0c0c0c)!important;border:1px solid var(--line)!important;color:#f2f0ec!important;border-radius:24px!important}
+fieldset{padding:26px 24px!important;border-radius:22px!important}
+.card:hover{box-shadow:none!important;border-color:rgba(242,240,236,.3)!important;transform:translateY(-6px)}
+.card.pop{background:#f2f0ec!important;color:#0a0a0a!important;border-color:#f2f0ec!important}
+.card.pop *{color:inherit}
+.card.pop .btn{background:#0a0a0a!important;color:#f2f0ec!important;border-color:#0a0a0a!important}
+.badge,.pk-badge{background:var(--acc)!important;color:#fff!important}
+.card .price,.price{font-family:'Archivo',sans-serif;font-weight:300!important;letter-spacing:-.04em;direction:ltr;text-align:start}
+.btn{background:#f2f0ec!important;color:#0a0a0a!important;border:0!important;border-radius:999px!important;padding:15px 24px!important;font-weight:700!important;transition:transform .3s var(--e1),background .3s,color .3s!important}
+.btn:hover{background:var(--acc)!important;color:#fff!important;opacity:1!important}
+.btn.out{background:transparent!important;color:#f2f0ec!important;border:1px solid rgba(242,240,236,.3)!important}
+.card li::before{color:var(--acc)}
+.market-option,.pk-m,.pk-t,.pk-tabs button{background:transparent!important;border:1px solid rgba(242,240,236,.26)!important;color:rgba(242,240,236,.7)!important;border-radius:999px!important;padding:10px 18px!important;font-weight:500!important}
+.market-option.active,.pk-m[aria-pressed="true"],.pk-m.on,.pk-t.on,.pk-t[aria-pressed="true"],.pk-tabs button.on,.pk-tabs button[aria-pressed="true"],.pk-tabs button.active{background:#f2f0ec!important;color:#0a0a0a!important;border-color:#f2f0ec!important}
+input,select,textarea{background:#0f0f0f!important;color:#f2f0ec!important;border:1px solid rgba(242,240,236,.22)!important;border-radius:14px!important}
+input:focus,select:focus,textarea:focus{border-color:var(--acc)!important;outline:none}
+.choices label{border:1px solid rgba(242,240,236,.22)!important;border-radius:999px!important;background:#0f0f0f}
+.sum,.pay{border-radius:16px!important;border-style:solid!important}
+.pay{border-style:dashed!important}
+.err{color:#ff8a78!important}
+.remove-proof{color:#ff8a78!important}
+.copy-account{background:transparent!important;color:#f2f0ec!important;border-color:rgba(242,240,236,.3)!important;border-radius:999px!important}
+.proof-preview{border-color:var(--line)!important}
+.faq details,.policy{border-color:var(--line)!important}
+.process-grid article>span{color:var(--acc)!important}
+#done .id{background:#0f0f0f!important;border-color:var(--line)!important}
+.group-head h2,.process h2,.faq h2,#order h2,.extras h2,.pk-included h2{font-size:clamp(1.8rem,3.6vw,3rem)}
+footer{border-top:1px solid var(--line)!important;color:rgba(242,240,236,.55)!important;background:transparent!important}
+.pk-included li,.pk-included ul{color:rgba(242,240,236,.75)}
+a{color:inherit}
+@media (max-width:640px){header .back{padding:9px 8px;font-size:12.5px!important}header .logo{padding:0 4px;font-size:11px!important;letter-spacing:.1em}}
+.pk-sub,.pk-scope,.pk-spec dt,.pk-save+*{color:rgba(242,240,236,.66)!important}
+.pk-card.pop .pk-sub,.card.pop .pk-sub{color:rgba(10,10,10,.65)!important}
