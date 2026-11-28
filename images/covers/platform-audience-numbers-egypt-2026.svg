@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">أرقام المنصات: نفس الرقم مش نفس الجمهور</title>
+<desc id="desc">غلاف تحريري لمقال الميديا باينج عن قراءة أرقام جمهور المنصات في مصر.</desc>
+<rect width="1200" height="630" fill="#F3F2EE"/>
+<circle cx="1115" cy="52" r="220" fill="#D8B96A" opacity=".14"/>
+<circle cx="620" cy="610" r="150" fill="#B42318" opacity=".06"/>
+<rect x="64" y="58" width="468" height="514" rx="26" fill="#111"/>
+<path d="M90 94 H506" stroke="#4A4A4A" stroke-width="1"/>
+<text x="96" y="83" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F3F2EE">KAMAL / FIELD NOTES</text>
+<g>
+  <circle cx="298" cy="298" r="150" fill="#D8B96A"/>
+  <rect x="196" y="262" width="146" height="46" rx="10" fill="#111"/>
+  <rect x="356" y="268" width="58" height="34" rx="9" fill="#F3F2EE"/>
+  <text x="385" y="291" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#111">13+</text>
+  <rect x="196" y="340" width="146" height="46" rx="10" fill="#111"/>
+  <rect x="356" y="346" width="58" height="34" rx="9" fill="#F3F2EE"/>
+  <text x="385" y="369" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#111">18+</text>
+  <path d="M196 416 H414" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="392" cy="204" r="36" fill="#B42318"/>
+  <text x="392" y="217" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#fff">؟</text>
+</g>
+<circle cx="492" cy="118" r="9" fill="#B42318"/>
+<rect x="650" y="106" width="460" height="44" rx="22" fill="#B42318"/>
+<text x="1080" y="135" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="19" font-weight="700" fill="#fff">الميديا باينج</text>
+<text x="1110" y="286" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="52" font-weight="700" fill="#111">نفس الرقم</text>
+<text x="1110" y="366" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="44" font-weight="700" fill="#111">مش نفس الجمهور</text>
+<path d="M650 508 H1110" stroke="#BDBDB6" stroke-width="2"/>
+<circle cx="668" cy="548" r="6" fill="#B42318"/>
+<circle cx="690" cy="548" r="6" fill="#D8B96A"/>
+<circle cx="712" cy="548" r="6" fill="#73877C"/>
+<text x="1110" y="554" text-anchor="end" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#111">KAMAL ELNHAWRY</text>
+<text x="1110" y="582" text-anchor="start" direction="rtl" unicode-bidi="plaintext" font-family="Arial,Tahoma,sans-serif" font-size="16" fill="#595959">أفكار تسويقية من الواقع</text>
+</svg>
